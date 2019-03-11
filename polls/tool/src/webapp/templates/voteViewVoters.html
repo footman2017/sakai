@@ -1,0 +1,66 @@
+<!DOCTYPE html      PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html rsf:id="polls-html" xmlns="http://www.w3.org/1999/xhtml" xmlns:rsf="http://ponder.org.uk/rsf">
+<head>
+    <title>Polls : Voters</title>
+    <link rsf:id="scr=portal-matter"  href="https://vula.uct.ac.za/library/skin/tool_base.css" type="text/css" rel="stylesheet" media="all"/>
+    <link rsf:id="scr=portal-matter" href="https://vula.uct.ac.za/library/skin/default/tool.css" type="text/css" rel="stylesheet" media="all"/>
+    <script rsf:id="scr=portal-matter" type="text/javascript" src="/library/js/headscripts.js"></script>
+    <script type="text/javascript">includeLatestJQuery('polls');</script>
+    <script type="text/javascript">includeWebjarLibrary('jquery.tablesorter');</script>
+    <script type="text/javascript" src="/library/js/jquery/cookie/jquery.cookie.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() { 
+                $("#sortableTable").tablesorter({ 
+                        // sort on the first column
+                        sortList: [[0,0]]
+                }); 
+            $("#reset-order-link").click(function() { 
+                // set sorting column and direction, this will sort on the first column index starts at zero
+                                //Highlight effect to notify user of that action has been performed
+                                //$("#reset-order-link").parent().parent().effect("highlight", {}, 1000);
+                var sorting = [[0,0]]; 
+                // sort on the first column 
+                $("#sortableTable").trigger("sorton",[sorting]); 
+               // return false to stop default link action 
+                return false; 
+            }); 
+        });
+    </script>
+</head>
+    
+<body rsf:id="scr=sakai-body">
+    
+<div class="portletBody">
+<h3 rsf:id="msg=voters_title">Voters</h3>
+<div rsf:id="message-for:*" class="alertMessage">
+    <span>Message for user here</span>
+</div>
+<p rsf:id="poll-size">Num votes</p>
+  <table id="sortableTable" class="listHier lines nolines" border="0" cellspacing="0">
+	<caption class="skip"><span class="skip" rsf:id="msg=results_summary"></span></caption>
+    <thead>
+  <tr>
+    <th style="display:none"><a title="Sort by Option number" href="#" rsf:id="answers-count">Number</a></th>
+    <th width="15px"><div title="Sort by default order" class="reset-order" rsf:id="answers-default:"><a href="#" id="reset-order-link"><span rsf:id="msg=results_answers_reset_ordering">Reset Order</span></a></div></th>
+    <th><a title="Sort by Names" href="#" rsf:id="voters-name-title">Names</a></th>
+    <th><a title="Sort by Answers" href="#" rsf:id="voters-answer">Answers</a></th>
+  </tr>
+</thead>
+<tbody>
+  <tr rsf:id="answer-row:">
+    <td style="display:none" rsf:id="answer-count">1</td>
+    <td></td>
+    <td valign="middle" rsf:id="voters-name">John Doe</td>
+    <td valign="middle" rsf:id="voters-answer">Option 1</td>
+  </tr>
+</tbody>
+</table>
+
+<form rsf:id="actform">
+<p class="act">
+  <input type="submit" name="back" id="reset" value="Back"  accesskey="backspace" rsf:id="back" class="active"/>
+</p>
+</form>
+
+</html>

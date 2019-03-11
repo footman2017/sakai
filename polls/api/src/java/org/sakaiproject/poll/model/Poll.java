@@ -187,7 +187,7 @@ public class Poll implements Entity  {
     }
 
     public void setVoteCloseStr(String value) {
-		try {
+        try {
             Date parsedDate = DATE_FORMAT.parse(value);
             if (parsedDate != null) {
                 voteClose = parsedDate;
