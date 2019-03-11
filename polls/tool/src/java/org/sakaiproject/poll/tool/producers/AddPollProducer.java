@@ -330,7 +330,31 @@ public class AddPollProducer implements ViewComponentProducer,NavigationCaseRepo
 			UILabelTargetDecorator.targetLabel(lb, choice);
 		}
 
+                String[] view_values = new String[] { "1", "0"};
+		String[] view_labels = new String[] {
+				messageLocator.getMessage("new_poll_view_voters_yes"),
+				messageLocator.getMessage("new_poll_view_voters_no")
+		};
 
+
+
+		UISelect radioviewvoters = UISelect.make(newPoll, "release-view-voters", view_values,
+				"#{poll.displayResult}", poll.getDisplayResult());
+
+		radioviewvoters.optionnames = UIOutputMany.make(view_labels);
+
+
+		String viewvotersID = radioviewvoters.getFullID();
+		//StringList optList = new StringList();
+		UIMessage.make(newPoll,"add_view_voters","new_poll_view_voters");
+		for (int i = 0; i < view_values.length; ++i) {
+
+			UIBranchContainer radiobranch = UIBranchContainer.make(newPoll,
+					"releaserow-v:", Integer.toString(i));
+			UISelectChoice choice = UISelectChoice.make(radiobranch, "release-view", viewvotersID, i);
+			UISelectLabel lb = UISelectLabel.make(radiobranch, "releaseLabel", viewvotersID, i);
+			UILabelTargetDecorator.targetLabel(lb, choice);
+		}
 
 		log.debug("About to close the form");
 		newPoll.parameters.add(new UIELBinding("#{poll.owner}",
