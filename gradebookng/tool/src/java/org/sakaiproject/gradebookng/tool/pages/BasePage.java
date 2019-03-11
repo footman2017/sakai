@@ -68,6 +68,11 @@ public class BasePage extends WebPage {
 	Link<Void> settingsPageLink;
 	Link<Void> importExportPageLink;
 	Link<Void> permissionsPageLink;
+	
+	//Modified By Ali @alipiqri2
+	Link<Void> gradebookStudentPageLink;
+	Link<Void> rankPageLink;
+	//End Modified
 
 	public final GbFeedbackPanel feedbackPanel;
 
@@ -178,8 +183,66 @@ public class BasePage extends WebPage {
 		this.settingsPageLink.add(new Label("screenreaderlabel", getString("link.screenreader.tabnotselected")));
 		nav.add(this.settingsPageLink);
 
-		add(nav);
+		// Modified By Ali @alipiqri2
+		// For Students Page
+		// nav container Student
+		final WebMarkupContainer navStudent = new WebMarkupContainer("gradebookStudentPageNav") {
 
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public boolean isVisible() {
+				return (BasePage.this.role == GbRole.STUDENT);
+			}
+
+		};
+		// grades page
+		this.gradebookStudentPageLink = new Link<Void>("gradebookStudentPageLink") {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public void onClick() {
+				setResponsePage(StudentPage.class);
+			}
+
+			@Override
+			public boolean isVisible() {
+				return (BasePage.this.role == GbRole.STUDENT);
+			}
+
+		};
+		this.gradebookStudentPageLink.add(new Label("screenreaderlabel", getString("link.screenreader.tabnotselected")));
+		navStudent.add(this.gradebookStudentPageLink);
+
+		// Ranking page
+		this.rankPageLink = new Link<Void>("rankPageLink") {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public void onClick() {
+				setResponsePage(RankingPage.class);
+			}
+
+			@Override
+			public boolean isVisible() {
+				return (BasePage.this.role == GbRole.STUDENT);
+			}
+
+		};
+		this.rankPageLink.add(new Label("screenreaderlabel", getString("link.screenreader.tabnotselected")));
+		navStudent.add(this.rankPageLink);
+
+		add(nav);
+		add(navStudent);
+
+		// if (BasePage.this.role == GbRole.STUDENT) {
+		// 	add(navStudent);
+		// } else {
+		// 	add(nav);
+		// }
+
+		// End Modified By Ali @alipiqri2
+		
 		// Add a FeedbackPanel for displaying our messages
 		this.feedbackPanel = new GbFeedbackPanel("feedback");
 		add(this.feedbackPanel);

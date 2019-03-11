@@ -33,6 +33,7 @@ import org.sakaiproject.gradebookng.tool.pages.ImportExportPage;
 import org.sakaiproject.gradebookng.tool.pages.PermissionsPage;
 import org.sakaiproject.gradebookng.tool.pages.SettingsPage;
 import org.sakaiproject.gradebookng.tool.pages.StudentPage;
+import org.sakaiproject.gradebookng.tool.pages.RankingPage;
 
 /**
  * Main application class
@@ -54,6 +55,7 @@ public class GradebookNgApplication extends WebApplication {
 		mountPage("/gradebook", StudentPage.class);
 		mountPage("/accessdenied", AccessDeniedPage.class);
 		mountPage("/error", ErrorPage.class);
+		mountPage("/ranking", RankingPage.class);
 
 		// remove the version number from the URL so that browser refreshes re-render the page
 		getRequestCycleSettings().setRenderStrategy(RenderStrategy.ONE_PASS_RENDER);

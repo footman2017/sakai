@@ -43,7 +43,9 @@ public class StudentPage extends BasePage {
 	private static final long serialVersionUID = 1L;
 
 	public StudentPage() {
-
+		// Modified By Ali @alipiqri2
+		disableLink(this.gradebookStudentPageLink);
+		// End Modification
 		if (role == GbRole.NONE) {
 			sendToAccessDeniedPage(getString("error.role"));
 		}

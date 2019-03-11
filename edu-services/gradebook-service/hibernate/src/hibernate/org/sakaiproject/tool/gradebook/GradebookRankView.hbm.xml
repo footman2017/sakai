@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping default-cascade="none"
+				   package="org.sakaiproject.tool.gradebook"
+				   default-lazy="false">
+				   
+	<class name="org.sakaiproject.tool.gradebook.GradebookRankView" table="gb_rankviewprimary_t">
+
+		<id name="id" column="ID" type="integer">
+			<generator class="native">
+				<param name="sequence">GB_RANKVIEW_S</param>
+			</generator>
+		</id>
+
+		<property name="gradebookUID" column="GRADEBOOK_UID" type="string" not-null="true"/>
+		<property name="studentID" column="STUDENT_ID" type="string" not-null="true"/>
+		<property name="pointsEarned" column="POINTS_EARNED" type="double" not-null="true"/>
+		<property name="fullname" column="FULLNAME" type="string" not-null="true"/>
+
+	</class>
+</hibernate-mapping>
