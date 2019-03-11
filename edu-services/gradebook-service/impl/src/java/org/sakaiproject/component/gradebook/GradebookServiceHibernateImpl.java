@@ -3741,4 +3741,15 @@ public class GradebookServiceHibernateImpl extends BaseHibernateManager implemen
 		assignments.forEach(a -> a.setCounted(false));
 		batchPersistEntities(assignments);
 	}
+
+	// Buatan Ali
+	@Override
+	public GradebookViewRank getGradebookRank(final String gradebookUID) throws GradebookNotFoundException {
+        final List list = getHibernateTemplate().findByNamedParam("from GradebookViewRank as gbrv where gbrv.gradebookUID = :gradebookUID", "gradebookUID", gradebookUID);
+        if (list.size() == 1) {
+            return (GradebookViewRank)list.get(0);
+        } else {
+            throw new GradebookNotFoundException("Could not find gradebook uid=" + uid);
+        }
+    }
 }

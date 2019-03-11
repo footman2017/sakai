@@ -91,6 +91,8 @@ package org.sakaiproject.component.gradebook;
 
  import lombok.extern.slf4j.Slf4j;
 
+ // @Ali
+ import org.sakaiproject.tool.gradebook.GradebookRankView;
 
  /**
  * Provides methods which are shared between service business logic and application business
@@ -107,6 +109,16 @@ public abstract class BaseHibernateManager extends HibernateDaoSupport {
 
     // Local cache of static-between-deployment properties.
 	protected Map<String, String> propertiesMap = new HashMap<>();
+
+    // Penambahan function ranking
+    public GradebookViewRank getGradebookRank(final String gradebookUID) throws GradebookNotFoundException {
+        final List list = getHibernateTemplate().findByNamedParam("from GradebookViewRank as gbrv where gbrv.gradebookUID = :gradebookUID", "gradebookUID", gradebookUID);
+        if (list.size() == 1) {
+            return (GradebookViewRank)list.get(0);
+        } else {
+            throw new GradebookNotFoundException("Could not find gradebook uid=" + uid);
+        }
+    }
 
     public Gradebook getGradebook(final String uid) throws GradebookNotFoundException {
     	final List list = getHibernateTemplate().findByNamedParam("from Gradebook as gb where gb.uid = :uid", "uid", uid);
