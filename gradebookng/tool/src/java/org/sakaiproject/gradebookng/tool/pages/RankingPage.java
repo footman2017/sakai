@@ -23,8 +23,10 @@ import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.head.JavaScriptHeaderItem;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.HiddenField;
+import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.StringResourceModel;
+import org.apache.wicket.model.util.ListModel;
 import org.sakaiproject.gradebookng.business.GbRole;
 import org.sakaiproject.gradebookng.business.util.EventHelper;
 import org.sakaiproject.gradebookng.tool.panels.StudentGradeSummaryGradesPanel;
@@ -57,8 +59,10 @@ public class RankingPage extends BasePage {
 		final HiddenField<String> rubricsTokenHiddenField = new HiddenField<String>("rubricsTokenHiddenField", Model.of(rubricsService.generateJsonWebToken(RubricsConstants.RBCS_TOOL_GRADEBOOKNG)));
 		add(rubricsTokenHiddenField);
 
-		add(new Label("heading", new StringResourceModel("heading.studentpage", null, new Object[] { u.getDisplayName() })));
-		add(new StudentGradeSummaryGradesPanel("summary", Model.ofMap(userData)));
+		add(new Label("heading", new StringResourceModel("heading.studentrankingpage", null, new Object[] { u.getDisplayName() })));
+		add(new Label("summary", "Ranking 1 : " + this.businessService.getGradebookRankView().get(0).getFullname()));
+		add(new Label("summary2", "Ranking 2 : " + this.businessService.getGradebookRankView().get(1).getFullname()));
+		add(new Label("summary3", "Ranking 3 : " + this.businessService.getGradebookRankView().get(2).getFullname()));
 
 		EventHelper.postStudentViewEvent(this.businessService.getGradebook(), u.getId());
 	}

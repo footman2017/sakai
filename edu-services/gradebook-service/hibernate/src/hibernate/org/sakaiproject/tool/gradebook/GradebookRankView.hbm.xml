@@ -4,7 +4,7 @@
 				   package="org.sakaiproject.tool.gradebook"
 				   default-lazy="false">
 				   
-	<class name="org.sakaiproject.tool.gradebook.GradebookRankView" table="gb_rankviewprimary_t">
+	<class name="org.sakaiproject.tool.gradebook.GradebookRankView" table="gb_rankviewprimary_t" mutable="false">
 
 		<id name="id" column="ID" type="integer">
 			<generator class="native">

@@ -88,6 +88,7 @@ import org.sakaiproject.service.gradebook.shared.GradingType;
 import org.sakaiproject.service.gradebook.shared.InvalidGradeException;
 import org.sakaiproject.service.gradebook.shared.PermissionDefinition;
 import org.sakaiproject.service.gradebook.shared.SortType;
+import org.sakaiproject.service.gradebook.shared.GradebookRankView;
 import org.sakaiproject.site.api.Group;
 import org.sakaiproject.site.api.Site;
 import org.sakaiproject.site.api.SiteService;
@@ -2834,5 +2835,14 @@ public class GradebookNgBusinessService {
 	// Return a CandidateDetailProvider or null if it's not enabled
 	private CandidateDetailProvider getCandidateDetailProvider() {
 		return (CandidateDetailProvider)ComponentManager.get("org.sakaiproject.user.api.CandidateDetailProvider");
+	}
+	
+	// alipiqri2
+	public List<GradebookRankView> getGradebookRankView() {
+		return this.getGradebookRankView(getCurrentSiteId());
+	}
+	
+	private List<GradebookRankView> getGradebookRankView(final String siteId) {
+		return this.gradebookService.getGradebookRankView(siteId);
 	}
 }

@@ -888,5 +888,7 @@ public interface GradebookService {
 	 * @return set of changes made
 	 */
 	List getGradingEvents(final List<Long> assignmentIds, final Date since);
+	
+	public List<GradebookRankView> getGradebookRankView(final String gradebookUID);
 
 }

@@ -16,6 +16,7 @@
 package org.sakaiproject.gradebookng.tool.panels;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.apache.wicket.RestartResponseException;
 import org.apache.wicket.markup.html.panel.Panel;
@@ -34,6 +35,7 @@ import org.sakaiproject.gradebookng.tool.pages.AccessDeniedPage;
 import org.sakaiproject.rubrics.logic.RubricsConstants;
 import org.sakaiproject.rubrics.logic.RubricsService;
 import org.sakaiproject.tool.gradebook.Gradebook;
+import org.sakaiproject.tool.gradebook.GradebookRankView;
 
 /**
  * Panel extension to abstract away some common functionality that many GBNG panels share. Classes extending {@link BasePanel} do not need
@@ -108,6 +110,11 @@ public abstract class BasePanel extends Panel {
 		return this.businessService.getGradebook();
 	}
 
+	// @alipiqri2
+//	protected List<Object> getGradebookRankView() {
+//		return this.businessService.getGradebookRankView();
+//	}
+	
 	/**
 	 * Get the Rubric request parameters
 	 *

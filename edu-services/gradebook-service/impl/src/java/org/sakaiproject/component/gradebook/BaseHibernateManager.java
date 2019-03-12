@@ -111,13 +111,12 @@ public abstract class BaseHibernateManager extends HibernateDaoSupport {
 	protected Map<String, String> propertiesMap = new HashMap<>();
 
     // Penambahan function ranking
-    public GradebookViewRank getGradebookRank(final String gradebookUID) throws GradebookNotFoundException {
-        final List list = getHibernateTemplate().findByNamedParam("from GradebookViewRank as gbrv where gbrv.gradebookUID = :gradebookUID", "gradebookUID", gradebookUID);
-        if (list.size() == 1) {
-            return (GradebookViewRank)list.get(0);
-        } else {
-            throw new GradebookNotFoundException("Could not find gradebook uid=" + uid);
-        }
+    public List<GradebookRankView> getGradebookRank(final String gradebookUID) throws GradebookNotFoundException {
+    	final HibernateCallback<List<GradebookRankView>> hc = session -> session
+    			.createQuery(
+				"from GradebookRankView as asn where asn.gradebookUID = :gradebookUID")
+				.setParameter("gradebookUID", gradebookUID).list();
+		return getHibernateTemplate().execute(hc);
     }
 
     public Gradebook getGradebook(final String uid) throws GradebookNotFoundException {

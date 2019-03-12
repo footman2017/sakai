@@ -51,7 +51,7 @@ public class GradebookRankView implements Serializable, Comparable<Object> {
 	public int getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getGradebookUID() {
@@ -60,7 +60,7 @@ public class GradebookRankView implements Serializable, Comparable<Object> {
 	public void setGradebookUID(String gradebookUID) {
 		this.gradebookUID = gradebookUID;
 	}
-	public Long getStudentID() {
+	public String getStudentID() {
 		return studentID;
 	}
 	public void setStudentID(String studentID) {
@@ -75,7 +75,7 @@ public class GradebookRankView implements Serializable, Comparable<Object> {
 	public double getPointsEarned() {
 		return pointsEarned;
 	}
-	public void setPointsEarned(String pointsEarned) {
+	public void setPointsEarned(double pointsEarned) {
 		this.pointsEarned = pointsEarned;
 	}
 }

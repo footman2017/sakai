@@ -87,6 +87,7 @@ import org.sakaiproject.tool.gradebook.GradeMapping;
 import org.sakaiproject.tool.gradebook.Gradebook;
 import org.sakaiproject.tool.gradebook.GradebookAssignment;
 import org.sakaiproject.tool.gradebook.GradingEvent;
+import org.sakaiproject.tool.gradebook.GradebookRankView;
 import org.sakaiproject.tool.gradebook.LetterGradePercentMapping;
 import org.sakaiproject.tool.gradebook.facades.Authz;
 import org.sakaiproject.util.ResourceLoader;
@@ -3744,12 +3745,24 @@ public class GradebookServiceHibernateImpl extends BaseHibernateManager implemen
 
 	// Buatan Ali
 	@Override
-	public GradebookViewRank getGradebookRank(final String gradebookUID) throws GradebookNotFoundException {
-        final List list = getHibernateTemplate().findByNamedParam("from GradebookViewRank as gbrv where gbrv.gradebookUID = :gradebookUID", "gradebookUID", gradebookUID);
-        if (list.size() == 1) {
-            return (GradebookViewRank)list.get(0);
-        } else {
-            throw new GradebookNotFoundException("Could not find gradebook uid=" + uid);
-        }
+	public List<org.sakaiproject.service.gradebook.shared.GradebookRankView> getGradebookRankView(final String gradebookUID){
+		final List<org.sakaiproject.service.gradebook.shared.GradebookRankView> rval = new ArrayList<>();
+
+		try {
+			final List<GradebookRankView> gradebookRankView = getGradebookRank(gradebookUID);
+			gradebookRankView.forEach(grv -> {
+
+				final org.sakaiproject.service.gradebook.shared.GradebookRankView sgrv = new org.sakaiproject.service.gradebook.shared.GradebookRankView();
+				sgrv.setId(grv.getId());
+				sgrv.setFullname(grv.getFullname());
+				sgrv.setPointsEarned(grv.getPointsEarned());
+				sgrv.setGradebookUID(grv.getGradebookUID());
+				sgrv.setStudentID(grv.getStudentID());
+				rval.add(sgrv);
+			});
+		} catch (final Exception e) {
+			log.error("Error in getCourseGradeForStudents", e);
+		}
+		return rval; 
     }
 }
