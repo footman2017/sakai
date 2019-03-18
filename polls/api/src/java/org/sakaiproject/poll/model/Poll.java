@@ -70,7 +70,7 @@ public class Poll implements Entity  {
     private String entityID;
     
     private boolean isPublic = false;
-    private boolean viewVotersIsAvalaible = true;
+    private String viewVotersIsAvalaible = "yes";
 
     public Poll() {
         //set the defaults
@@ -80,7 +80,7 @@ public class Poll implements Entity  {
         this.maxOptions = 1;
         this.limitVoting = true;
         this.isPublic = false;
-        this.viewVotersIsAvalaible = true;
+        this.viewVotersIsAvalaible = "yes";
         this.voteOpen = new Date();
         
         Calendar cal = Calendar.getInstance();
@@ -367,11 +367,11 @@ public class Poll implements Entity  {
 		this.isPublic = isPublic;
 	}
 
-    public boolean isViewVotersIsAvalaible() {
+    public String isViewVotersIsAvalaible() {
         return viewVotersIsAvalaible;
     }
 
-    public void setViewVotersIsAvalaible(boolean viewVotersIsAvalaible) {
+    public void setViewVotersIsAvalaible(String viewVotersIsAvalaible) {
         this.viewVotersIsAvalaible = viewVotersIsAvalaible;
     }
        

@@ -330,7 +330,7 @@ public class AddPollProducer implements ViewComponentProducer,NavigationCaseRepo
 			UILabelTargetDecorator.targetLabel(lb, choice);
 		}
 
-                String[] view_values = new String[] { "1", "0"};
+                String[] view_values = new String[] { "yes", "no"};
 		String[] view_labels = new String[] {
 				messageLocator.getMessage("new_poll_view_voters_yes"),
 				messageLocator.getMessage("new_poll_view_voters_no")
