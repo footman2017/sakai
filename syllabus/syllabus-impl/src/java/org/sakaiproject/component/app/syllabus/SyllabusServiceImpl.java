@@ -626,7 +626,7 @@ public class SyllabusServiceImpl implements SyllabusService, EntityTransferrer, 
                                 syData = syllabusManager.createSyllabusDataObject(syData.getTitle(), (new Integer(initPosition)), syData.getAsset(),
                                         syData.getView(), syData.getStatus(),
                                         syData.getEmailNotification(), syData.getStartDate(), syData.getEndDate(), syData.getLinkCalendar(),
-                                        syData.getCalendarEventIdStartDate(), syData.getCalendarEventIdEndDate());
+                                        syData.getCalendarEventIdStartDate(), syData.getCalendarEventIdEndDate(),syData.getMethod());
 
                                 Set<SyllabusAttachment> attachSet = new TreeSet<SyllabusAttachment>();
                                 for(int m=0; m<attachStringList.size(); m++)
@@ -735,7 +735,7 @@ public class SyllabusServiceImpl implements SyllabusService, EntityTransferrer, 
                   		  .createSyllabusDataObject(toSyData.getTitle(),
                           positionNo, toSyData.getAsset(), toSyData.getView(),
                           toSyData.getStatus(), toSyData.getEmailNotification(), toSyData.getStartDate(), toSyData.getEndDate(), toSyData.getLinkCalendar(),
-                          toSyData.getCalendarEventIdStartDate(), toSyData.getCalendarEventIdEndDate());
+                          toSyData.getCalendarEventIdStartDate(), toSyData.getCalendarEventIdEndDate(), toSyData.getMethod());
                   
                   syllabusManager.addSyllabusToSyllabusItem(toSyItem, newToSyData, false);
                 }
@@ -1167,7 +1167,7 @@ public class SyllabusServiceImpl implements SyllabusService, EntityTransferrer, 
 										toSyData.getView(), toSyData
 												.getStatus(), toSyData
 												.getEmailNotification(), toSyData.getStartDate(), toSyData.getEndDate(), toSyData.getLinkCalendar(),
-												toSyData.getCalendarEventIdStartDate(), toSyData.getCalendarEventIdEndDate());
+												toSyData.getCalendarEventIdStartDate(), toSyData.getCalendarEventIdEndDate(), toSyData.getMethod());
 						Set attachSet = syllabusManager.getSyllabusAttachmentsForSyllabusData(toSyData);
 						Iterator attachIter = attachSet.iterator();
 						Set<SyllabusAttachment> newAttachSet = new TreeSet<SyllabusAttachment>();

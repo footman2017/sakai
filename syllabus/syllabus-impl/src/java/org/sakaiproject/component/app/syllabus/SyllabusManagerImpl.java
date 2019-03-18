@@ -154,12 +154,13 @@ public class SyllabusManagerImpl extends HibernateDaoSupport implements Syllabus
    * @param assetId
    * @param view
    * @param status
-   * @param emailNotification 
+   * @param emailNotification
+   * @param method
    */
   public SyllabusData createSyllabusDataObject(String title, Integer position,
         String asset, String view, String status, String emailNotification,
         Date startDate, Date endDate, boolean linkCalendar, String calendarEventIdStartDate,
-        String calendarEventIdEndDate)      
+        String calendarEventIdEndDate, String method)      
   {
     if (position == null)
     {
@@ -180,6 +181,7 @@ public class SyllabusManagerImpl extends HibernateDaoSupport implements Syllabus
       data.setLinkCalendar(linkCalendar);
       data.setCalendarEventIdStartDate(calendarEventIdStartDate);
       data.setCalendarEventIdEndDate(calendarEventIdEndDate);
+      data.setMethod(method);
       saveSyllabus(data, false);
       return data;
     }
@@ -188,7 +190,7 @@ public class SyllabusManagerImpl extends HibernateDaoSupport implements Syllabus
   public SyllabusData createSyllabusDataObject(String title, Integer position,
 	        String asset, String view, String status, String emailNotification,
 	        Date startDate, Date endDate, boolean linkCalendar, String calendarEventIdStartDate,
-	        String calendarEventIdEndDate, SyllabusItem syllabusItem)      
+	        String calendarEventIdEndDate, SyllabusItem syllabusItem, String method)      
 	  {
 	    if (position == null)
 	    {
@@ -210,6 +212,7 @@ public class SyllabusManagerImpl extends HibernateDaoSupport implements Syllabus
 	      data.setSyllabusItem(syllabusItem);
 	      data.setCalendarEventIdStartDate(calendarEventIdStartDate);
 	      data.setCalendarEventIdEndDate(calendarEventIdEndDate);
+              data.setMethod(method);
 	      saveSyllabus(data);
 	      return data;
 	    }
