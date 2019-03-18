@@ -280,6 +280,8 @@ public class ResultsProducer implements ViewComponentProducer,NavigationCaseRepo
 		UICommand cancel = UICommand.make(form,"cancel",messageLocator.getMessage("results_cancel"),"#{pollToolBean.cancel}");
 		cancel.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("results_cancel_tooltip"))); 
 		
+		UILink viewVoters = UILink.make(tofill,"viewVoters",messageLocator.getMessage("results_view_poll"),"#");
+		
 		externalLogic.postEvent("poll.viewResult", "poll/site/" + externalLogic.getCurrentLocationId() +"/poll/" +  poll.getPollId(), false);
 
 
