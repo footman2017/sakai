@@ -28,6 +28,7 @@ import java.util.Map;
 import org.sakaiproject.poll.model.Option;
 import org.sakaiproject.poll.model.Poll;
 import org.sakaiproject.poll.model.Vote;
+import org.sakaiproject.poll.model.Voter;
 
 public interface PollVoteManager {
 
@@ -47,6 +48,13 @@ public interface PollVoteManager {
     public void saveVoteList(List<Vote> voteCollection);
 
     public List<Vote> getAllVotesForPoll(Poll poll);
+    
+    /**
+     *
+     * @param poll
+     * @return
+     */
+    public List<Voter> getAllVotersForPoll(Poll poll);
 
     /**
      * Check if the given user can vote in the supplied poll,
