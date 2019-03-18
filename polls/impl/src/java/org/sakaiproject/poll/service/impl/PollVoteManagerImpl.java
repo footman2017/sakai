@@ -38,6 +38,7 @@ import org.sakaiproject.poll.logic.PollVoteManager;
 import org.sakaiproject.poll.model.Option;
 import org.sakaiproject.poll.model.Poll;
 import org.sakaiproject.poll.model.Vote;
+import org.sakaiproject.poll.model.Voter;
 
 @Slf4j
 public class PollVoteManagerImpl implements PollVoteManager {
@@ -84,7 +85,14 @@ public class PollVoteManagerImpl implements PollVoteManager {
 		return votes;
 	}
 
-
+        @Override
+	public List<Voter> getAllVotersForPoll(Poll poll) {
+		Search search = new Search();
+		search.addRestriction(new Restriction("pollId",poll.getPollId()));
+		List<Voter> voters = dao.findBySearch(Voter.class, search); 
+		return voters;
+	}
+        
 	public List<Vote> getAllVotesForOption(Option option) {
 
 		Search search = new Search();

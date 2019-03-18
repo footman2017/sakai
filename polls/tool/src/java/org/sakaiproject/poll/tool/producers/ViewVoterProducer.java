@@ -27,6 +27,7 @@ import org.sakaiproject.poll.logic.PollVoteManager;
 import org.sakaiproject.poll.model.Option;
 import org.sakaiproject.poll.model.Poll;
 import org.sakaiproject.poll.model.Vote;
+import org.sakaiproject.poll.model.Voter;
 import org.sakaiproject.poll.tool.params.PollViewParameters;
 
 import uk.org.ponder.localeutil.LocaleGetter;
@@ -125,12 +126,12 @@ public class ViewVoterProducer implements ViewComponentProducer,NavigationCaseRe
 		
 		
 		//get the number of votes
-		int voters = pollVoteManager.getDisctinctVotersForPoll(poll);
+		int nvoters = pollVoteManager.getDisctinctVotersForPoll(poll);
 		//Object[] args = new Object[] { Integer.valueOf(voters).toString()};
 		if (poll.getMaxOptions()>1)
-			UIOutput.make(tofill,"poll-size",messageLocator.getMessage("results_poll_size",Integer.valueOf(voters).toString()));
+			UIOutput.make(tofill,"poll-size",messageLocator.getMessage("results_poll_size",Integer.valueOf(nvoters).toString()));
 
-		log.debug(voters + " have voted on this poll");
+		log.debug(nvoters + " have voted on this poll");
 
 //		UIOutput.make(tofill,"question",poll.getText());
 //		log.debug("got poll " + poll.getText());
@@ -145,28 +146,18 @@ public class ViewVoterProducer implements ViewComponentProducer,NavigationCaseRe
 			pollOptions.add(noVote);
 		}
 
-		List<Vote> votes = pollVoteManager.getAllVotesForPoll(poll);
-		int totalVotes= votes.size();
-		log.debug("got " + totalVotes + " votes");
-		List<CollatedVote> collation = new ArrayList<CollatedVote>();
+		List<Voter> voters = pollVoteManager.getAllVotersForPoll(poll);
+		int totalVoters= voters.size();
+		log.debug("got " + totalVoters + " voters");
+		List<CollatedVoter> collation = new ArrayList<CollatedVoter>();
 
 		for (int i=0; i <pollOptions.size(); i++ ) {
-			CollatedVote collatedVote = new CollatedVote();
+			CollatedVoter collatedVoter = new CollatedVoter();
 			Option option = (Option) pollOptions.get(i);
 			log.debug("collating option " + option.getOptionId());
-			collatedVote.setoptionId(option.getOptionId());
-			collatedVote.setOptionText(option.getOptionText());
-			collatedVote.setDeleted(option.getDeleted());
-			for (int q=0; q <votes.size(); q++ ) {
-				Vote vote = (Vote)votes.get(q);
-				if (vote.getPollOption().equals(option.getOptionId())){
-					log.debug("got a vote for option " + option.getOptionId());
-					collatedVote.incrementVotes();
-
-				}
-
-			}
-			collation.add(collatedVote);
+			collatedVoter.setOptionText(option.getOptionText());
+//			collatedVote.setUserNane(voters.);
+			collation.add(collatedVoter);
 
 		}
                 
@@ -178,53 +169,22 @@ public class ViewVoterProducer implements ViewComponentProducer,NavigationCaseRe
 
 //		UILink avotes = UILink.make(tofill,"answers-votes",messageLocator.getMessage("results_answers_votes"), "#");
 //		avotes.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("results_answers_votes_tooltip")));
-//		UILink apercent = UILink.make(tofill,"answers-percent","%", "#");
-//		apercent.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("results_answers_percent_tooltip")));
-		
+
                 UIBranchContainer adefault = UIBranchContainer.make(tofill,"answers-default:");
 		adefault.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("results_answers_default_tooltip")));
 		
-		
 		//output the votes
-		Map<Long,String> chartTextData = new LinkedHashMap<Long,String>();
-		Map<Long,String> chartValueData = new LinkedHashMap<Long,String>();
-		NumberFormat nf = NumberFormat.getPercentInstance(localegetter.get());
 		for (int i=0; i <collation.size(); i++ ) {
-			CollatedVote cv = (CollatedVote)collation.get(i);
-			UIBranchContainer resultRow = UIBranchContainer.make(tofill,"answer-row:",cv.getoptionId().toString());
+			CollatedVoter cv = (CollatedVoter)collation.get(i);
+			UIBranchContainer resultRow = UIBranchContainer.make(tofill,"answer-row:",cv.getUserId().toString());
 			
+			String userName = cv.getUserName();
 			String optionText = cv.getOptionText();
-			String userName = cv.getOptionText();
-			if (cv.getDeleted()) {
-				optionText += messageLocator.getMessage("deleted_option_tag_html");
-			}
 
-			UIVerbatim.make(resultRow,"voter-answer",optionText);
 			UIOutput.make(resultRow,"voter-name",optionText);
+			UIVerbatim.make(resultRow,"voter-answer",optionText);
 			
-			
-//			log.debug("about to do the calc: (" + cv.getVotes()+"/"+ totalVotes +")*100");
-//			double percent = (double)0;
-//			if (totalVotes>0  && poll.getMaxOptions() == 1)
-//				percent = ((double)cv.getVotes()/(double)totalVotes); //*(double)100;
-//			else if (totalVotes>0  && poll.getMaxOptions() > 1)
-//				percent = ((double)cv.getVotes()/(double)voters); //*(double)100;
-//			else
-//				percent = (double) 0;
-			
-			//setup chartdata, use percentages for the values
-			//also, remove the &nbsp; from the beginning of the label, POLL-139
-			//we use the same number formatter which adds a % to the end of the data, remove that as well.
-			chartTextData.put(cv.getoptionId(), StringUtils.removeStart(optionText, "&nbsp;"));
-//			chartValueData.put(cv.getoptionId(), StringUtils.removeEnd(nf.format(percent), "%"));
-
-//			log.debug("result is "+ percent);
-//			UIOutput.make(resultRow,"answer-percVotes", nf.format(percent));
-
 		}
-//		UIOutput.make(tofill,"votes-total",Integer.valueOf(totalVotes).toString());
-//		if (totalVotes > 0 && poll.getMaxOptions() == 1)
-//			UIOutput.make(tofill,"total-percent","100%");
 
 		//the cancel button
 		UIForm form = UIForm.make(tofill,"actform");
@@ -250,21 +210,26 @@ public class ViewVoterProducer implements ViewComponentProducer,NavigationCaseRe
 
 
 
-	private static class CollatedVote {
-		private Long optionId ;
+	private static class CollatedVoter {
+		private Long userId ;
+		private String userName;
 		private String optionText;
-		private int votes;
-		private Boolean deleted;
 		
-		public CollatedVote() {
-			this.votes=0;
+		public CollatedVoter() {
 		}
-		public void setoptionId(Long val){
-			this.optionId = val;
+                
+		public void setUserId(Long val){
+			this.userId = val;
+		}
+		public Long getUserId(){
+			return this.userId;
 		}
 
-		public Long getoptionId(){
-			return this.optionId;
+		public void setUserName(String t){
+			this.userName = t;
+		}
+		public String getUserName(){
+			return this.userName;
 		}
 
 		public void setOptionText(String t){
@@ -272,22 +237,6 @@ public class ViewVoterProducer implements ViewComponentProducer,NavigationCaseRe
 		}
 		public String getOptionText(){
 			return this.optionText;
-		}
-
-		public void setVotes(int i){
-			this.votes = i;
-		}
-		public int getVotes(){
-			return this.votes;
-		}
-		public void incrementVotes(){
-			this.votes++;
-		}
-		public void setDeleted(Boolean deleted) {
-			this.deleted = deleted;
-		}
-		public Boolean getDeleted() {
-			return deleted;
 		}
 
 	}
