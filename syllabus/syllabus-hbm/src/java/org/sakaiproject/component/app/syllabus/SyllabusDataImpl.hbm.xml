@@ -60,6 +60,10 @@
         	<column name="CALENDAR_EVENT_ID_END" length="99"/>
         </property>
         
+        <property name="method">
+            <column name="methoda" length="256" not-null="false"/>
+        </property>
+        
         <set name="attachments" lazy="true" sort="natural"
              cascade="all-delete-orphan" batch-size="50">
             <key column="syllabusId"/>                        

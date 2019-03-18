@@ -166,7 +166,14 @@ public interface SyllabusData
    * @param calendarEventIdEndDate
    */
   public void setCalendarEventIdEndDate(String calendarEventIdEndDate);
+
+    /**
+   * @return Returns the title.
+   */
+  public String getMethod();
+
+  /**
+   * @param method The title to set.
+   */
+  public void setMethod(String method);
 }
-
-
-

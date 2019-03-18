@@ -13,6 +13,7 @@ create table SAKAI_SYLLABUS_DATA (
    status varchar(64),
    emailNotification varchar(128),
    surrogateKey bigint,
+   methoda text,
    primary key (id)
 )
 create table SAKAI_SYLLABUS_ITEM (

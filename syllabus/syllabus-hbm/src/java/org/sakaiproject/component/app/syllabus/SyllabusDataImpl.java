@@ -55,6 +55,7 @@ public class SyllabusDataImpl implements SyllabusData, Comparable {
     private String calendarEventIdStartDate;
     private String calendarEventIdEndDate;
     private SyllabusItem syllabusItem;
+    private String method;
 
     public int compareTo(Object obj) {
         if (this.equals(obj)) return 0;
