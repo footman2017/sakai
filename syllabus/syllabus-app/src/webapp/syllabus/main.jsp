@@ -67,7 +67,9 @@
 				bar_publish: $("#messages #bar_publish").html(),
 				addItemTitle: $("#messages #addItemTitle").html(),
 				draftTitlePrefix: $("#messages #draftTitlePrefix").html(),
-				noUndoWarning: $("#messages #noUndoWarning").html()
+				noUndoWarning: $("#messages #noUndoWarning").html(),
+				//tambahan
+				method: $("#messages #method").html()
 			};
 		setupAccordion('<%= org.sakaiproject.util.Web.escapeJavascript(thisId)%>',<h:outputText value="#{SyllabusTool.editAble == 'true' ? true : false}"/>, msgs, 
 							'<h:outputText value="#{SyllabusTool.openDataId}"/>');
@@ -156,6 +158,25 @@
 				</li>
 				</f:verbatim>
 				</c:if>
+
+				<!-- TAMBAHAN MYSYLLABUS TOOLBAR -->
+
+<!-- 				<c:if test="${SyllabusTool.bulkEdit}">
+				<f:verbatim>
+				<li>
+					<span>
+					</f:verbatim>
+						<h:commandLink action="#{SyllabusTool.processCreateAndEdit}">
+							<h:outputText value="#{msgs.mySyllabusTitle}"/>
+						</h:commandLink>
+					<f:verbatim>
+					</span>
+				</li>
+				</f:verbatim>
+				</c:if> -->
+
+				<!-- ----------------------------- -->
+
 				<c:if test="${SyllabusTool.redirect}">
 				<f:verbatim>
 				<li>
@@ -213,6 +234,13 @@
 							<span class="fa fa-arrows handleIcon" alt="</f:verbatim><h:outputText value="#{msgs.dragToReorder}"/><f:verbatim>" title="</f:verbatim><h:outputText value="#{msgs.dragToReorder}"/><f:verbatim>"></span>
 							<span class="edit-actions">
 							  <span class="fa fa-eye actionIcon publish publishOn" alt="</f:verbatim><h:outputText value="#{msgs.clickToUnpublish}"/><f:verbatim>" title="</f:verbatim><h:outputText value="#{msgs.clickToUnpublish}"/><f:verbatim>" style="</f:verbatim><h:outputText value="#{eachEntry.status == eachEntry.draftStatus ? 'display:none' : ''}"/><f:verbatim>"></span>
+
+							  <!-- Tambahan -->
+
+							   <!-- <span class="fa fa-eye actionIcon publish publishOn" alt="</f:verbatim><h:outputText value="#{msgs.clickToUnpublish}"/><f:verbatim>" title="</f:verbatim><h:outputText value="#{msgs.clickToUnpublish}"/><f:verbatim>" style="</f:verbatim><h:outputText value="#{eachEntry.status == eachEntry.draftStatus ? 'display:none' : ''}"/><f:verbatim>"></span> -->
+
+							  <!-- --------------- -->
+
 							  <span class="fa fa-eye-slash actionIcon publish publishOff" alt="</f:verbatim><h:outputText value="#{msgs.clickToPublish}"/><f:verbatim>" title="</f:verbatim><h:outputText value="#{msgs.clickToPublish}"/><f:verbatim>" style="</f:verbatim><h:outputText value="#{eachEntry.status == eachEntry.draftStatus ? '' : 'display:none'}"/><f:verbatim>"></span>
 							  <span class="fa fa-calendar-check-o actionIcon linkCal linkCalOn" alt="</f:verbatim><h:outputText value="#{msgs.clickToRemoveCal}"/><f:verbatim>" title="</f:verbatim><h:outputText value="#{msgs.clickToRemoveCal}"/><f:verbatim>" style="</f:verbatim><h:outputText value="#{(eachEntry.entry.linkCalendar && SyllabusTool.calendarExistsForSite) ? '' : 'display:none'}"/><f:verbatim>"></span>
 							  <span class="fa fa-calendar-times-o actionIcon linkCal linkCalOff" alt="</f:verbatim><h:outputText value="#{msgs.clickToAddCal}"/><f:verbatim>" title="</f:verbatim><h:outputText value="#{msgs.clickToAddCal}"/><f:verbatim>" style="</f:verbatim><h:outputText value="#{(eachEntry.entry.linkCalendar  && SyllabusTool.calendarExistsForSite) ? 'display:none' : ''}"/><f:verbatim>"></span>
@@ -358,6 +386,9 @@
 				<span id="addItemTitle"></f:verbatim><h:outputText value="#{msgs.addItemTitle}"/><f:verbatim></span>
 				<span id="draftTitlePrefix"></f:verbatim><h:outputText value="#{msgs.draftTitlePrefix}"/><f:verbatim></span>
 				<span id="noUndoWarning"></f:verbatim><h:outputText value="#{msgs.noUndoWarning}"/><f:verbatim></span>
+				<!-- Tambahan -->
+				<span id="method"></f:verbatim><h:outputText value="#{msgs.method}"/><f:verbatim></span>
+				<!-- ------- -->
 			</span>
 		</f:verbatim>
 	</sakai:view_content>
