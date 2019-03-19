@@ -308,7 +308,7 @@ function doAddItemButtonClick( msgs, published )
 	var title = $( "#newTitle" ).val();
 	
 	// TAMBAHAN
-	var method = $( "#method" ).val();
+	var metode = $( "#metode" ).val();
 	// -------
 
 	if( !title || "" === title.trim() )
@@ -330,7 +330,7 @@ function doAddItemButtonClick( msgs, published )
 			"siteId": $("#siteId").val(),
 			"published": published,
 			// tambahan
-			"method": method,
+			"metode": metode,
 			// ------
 			"content": $("#newContentTextAreaWysiwyg").val()
 		};
@@ -349,8 +349,8 @@ function doAddItemButtonClick( msgs, published )
 function showConfirmAdd(msgs, mainframeId){
 	$('#container', this.top.document).append("<div></div>");
 	$('<div></div>').appendTo('body')
-		.html("<div><h6><span class='reqStar'>* </span>" + msgs.syllabus_title + "</h6><input type='text' id='newTitle'/></div><div style='display:none' id='requiredTitle' class='messageError'>" + msgs.required + "</div>" + 
-				"<div><h6>" + msgs.method + "</h6><input type='text' id='method'/></div>" +
+		.html("<div><h6><span class='reqStar'>** </span>" + msgs.syllabus_title + "</h6><input type='text' id='newTitle'/></div><div style='display:none' id='requiredTitle' class='messageError'>" + msgs.required + "</div>" + 
+				"<div><h6>" + msgs.method + "</h6><input type='text' id='metode'/></div>" +
 				"<h6>" + msgs.syllabus_content + "</h6><div class='bodyInput' id='newContentDiv'><textarea cols='120' id='newContentTextAreaWysiwyg'/></div>")
 		.dialog({
 			position: {

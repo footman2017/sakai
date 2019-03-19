@@ -287,7 +287,7 @@ public class SyllabusEntityProvider extends AbstractEntityProvider implements En
 	
 	public void updateEntity(EntityReference ref, Object entity, Map<String, Object> params){
 		if(params != null){
-			if(params.containsKey("add") && params.containsKey("title") && params.containsKey("siteId")){
+			if(params.containsKey("add") && params.containsKey("title") && params.containsKey("siteId") && params.containsKey("metode")){
 				String siteId = (String) params.get("siteId");
 				if(!"".equals(siteId.trim())){
 					//check that this user is truly the maintainer
@@ -296,7 +296,7 @@ public class SyllabusEntityProvider extends AbstractEntityProvider implements En
 						throw new IllegalArgumentException("User doesn't have access to modify this site.");
 					}
 					String title = (String) params.get("title");
-                                        String method = (String) params.get("method");
+                    String method = (String) params.get("metode");
 					title = title.trim();
 					if(!"".equals(title)){
 						SyllabusItem item = syllabusManager.getSyllabusItemByContextId(siteId);
@@ -312,7 +312,7 @@ public class SyllabusEntityProvider extends AbstractEntityProvider implements En
 							published = ServerConfigurationService.getBoolean("syllabus.new.published.default", false) ? SyllabusData.ITEM_POSTED : SyllabusData.ITEM_DRAFT; 
 						}
 
-						SyllabusData data = syllabusManager.createSyllabusDataObject(title, new Integer(initPosition), null, null, published, "none", null, null, Boolean.FALSE, null, null, "Firna tuh emang cantik");
+						SyllabusData data = syllabusManager.createSyllabusDataObject(title, new Integer(initPosition), null, null, published, "none", null, null, Boolean.FALSE, null, null, method);
 						data.setView("no");
 						try {
 							String content = (String) params.get("content");
