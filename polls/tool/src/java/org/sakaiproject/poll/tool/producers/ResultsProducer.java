@@ -280,8 +280,13 @@ public class ResultsProducer implements ViewComponentProducer,NavigationCaseRepo
 		UICommand cancel = UICommand.make(form,"cancel",messageLocator.getMessage("results_cancel"),"#{pollToolBean.cancel}");
 		cancel.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("results_cancel_tooltip"))); 
 		
-		UIInternalLink viewVoters = UIInternalLink.make(tofill,"viewVoters",messageLocator.getMessage("results_view_poll"),new PollViewParameters(ViewVoterProducer.VIEW_ID, poll.getPollId().toString()));
-		
+                System.out.println("Ini isi dari poll view votersnya :" + poll.isViewVotersIsAvalaible());
+                
+                if(poll.isViewVotersIsAvalaible() == "yes"){
+                    UIInternalLink viewVoters = UIInternalLink.make(tofill,"viewVoters",messageLocator.getMessage("results_view_poll"),new PollViewParameters(ViewVoterProducer.VIEW_ID, poll.getPollId().toString()));
+                    System.out.println("Masuk Sini");
+                }
+		                
 		externalLogic.postEvent("poll.viewResult", "poll/site/" + externalLogic.getCurrentLocationId() +"/poll/" +  poll.getPollId(), false);
 
 
