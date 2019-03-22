@@ -282,7 +282,7 @@ public class ResultsProducer implements ViewComponentProducer,NavigationCaseRepo
 		
                 System.out.println("Ini isi dari poll view votersnya :" + poll.isViewVotersIsAvalaible());
                 
-                if(poll.isViewVotersIsAvalaible() == "yes"){
+                if(poll.isViewVotersIsAvalaible().equals("0") || poll.isViewVotersIsAvalaible().equals(0) || poll.isViewVotersIsAvalaible().equals("yes")){
                     UIInternalLink viewVoters = UIInternalLink.make(tofill,"viewVoters",messageLocator.getMessage("results_view_poll"),new PollViewParameters(ViewVoterProducer.VIEW_ID, poll.getPollId().toString()));
                     System.out.println("Masuk Sini");
                 }
