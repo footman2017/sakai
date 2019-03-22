@@ -1,0 +1,16 @@
+
+    <div id="commons-sicker-dialog">
+        <div class="commons-dialog-container">
+            <div id="commons-link-dialog-table">
+                <div class="commons-link-dialog-row">
+                    <label for="commons-sticker-dialog-file" id="commons-imagefile-instruction">{{tr 'commons' 'this_sticker' max=maxUploadSize}}</label>
+                    <input type="file" id="commons-sticker-dialog-file" accept=".png,.jpg,.jpeg,.gif,image/png,image/jpeg,image/jpg,image/gif" />
+                </div>
+            </div>
+            <div class="act">
+                <button id="commons-sticker-insert-button" disabled="true">{{tr 'commons' 'insert'}}</button>
+                <button id="commons-sticker-cancel-button" onclick="return commons.switchState('posts');">{{tr 'commons' 'cancel'}}</button>
+            </div>
+            <span id="commons-sticker-dialog-message"></span>
+        </div>
+    </div>
