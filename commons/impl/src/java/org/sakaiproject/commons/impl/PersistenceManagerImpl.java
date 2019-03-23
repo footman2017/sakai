@@ -67,6 +67,8 @@ public class PersistenceManagerImpl implements PersistenceManager {
     private static final String COMMONS_POST_DELETE = "DELETE FROM COMMONS_COMMONS_POST WHERE POST_ID = ?";
     private static final String COMMENTS_DELETE = "DELETE FROM COMMONS_COMMENT WHERE POST_ID = ?";
 
+    private static final String STICKER_ADD = "INSERT INTO COMMONS_STICKERS VALUES(?,?)";
+
     private SakaiProxy sakaiProxy;
     private ServerConfigurationService serverConfigurationService;
     private SqlService sqlService;
@@ -312,4 +314,10 @@ public class PersistenceManagerImpl implements PersistenceManager {
             return null;
         }
     }
+
+    public boolean uploadSticker(String ID, String stickerVal) {
+        sqlService.dbWrite(STICKER_ADD, new Object[] { ID, stickerVal });
+        return true;
+    }
+
 }

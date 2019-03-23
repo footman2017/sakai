@@ -19,6 +19,7 @@ commons.states = {
         POSTS: 'posts',
         POST: 'post',
         PERMISSIONS: 'permissions',
+        STICKERS: 'stickers',
         PERMISSIONS_NOT_SET: 'permissions_not_set'
     };
 
@@ -35,6 +36,9 @@ commons.switchState = function (state, arg) {
     $("#commons-post-editor").toggle(commons.currentUserPermissions.postCreate);
 
     if (commons.states.POSTS === state) {
+        $('#commons-toolbar > li > span').addClass('current');
+        $('#commons-stickers-link > span').removeClass('current');
+        $('#commons-permissions-link > span').removeClass('current');
 
         var templateData = {
                 currentUserId: commons.userId,
@@ -286,6 +290,7 @@ commons.switchState = function (state, arg) {
             });
     } else if (commons.states.PERMISSIONS === state) {
         $('#commons-toolbar > li > span').removeClass('current');
+        $('#commons-stickers-link > span').removeClass('current');
         $('#commons-permissions-link > span').addClass('current');
 
         var permissionsCallback = function (perms) {
@@ -300,6 +305,52 @@ commons.switchState = function (state, arg) {
         commons.utils.getSitePermissionMatrix(permissionsCallback);
     } else if (commons.states.PERMISSIONS_NOT_SET === state) {
         commons.utils.renderTemplate('permissions_not_set', {}, 'commons-content');
+    } else if (commons.states.STICKERS === state) {
+        $('#commons-toolbar > li > span').removeClass('current');
+        $('#commons-permissions-link > span').removeClass('current');
+        $('#commons-stickers-link > span').addClass('current');
+        
+        var templateData = {
+            maxUploadSize: commons.maxUploadSize
+        };
+
+        commons.utils.renderTemplate('stickers_list', templateData, 'commons-content');
+
+        var stickerInsertButton = $('#commons-sticker-insert-button');
+        var stickerField = $('#commons-sticker-dialog-file');
+        var stickerMessage = $('#commons-sticker-dialog-message');
+
+        stickerInsertButton.click(function (e) {
+
+            var file = stickerField[0].files[0];
+            var extension = file.name.substring(file.name.lastIndexOf('.') + 1).toLowerCase();
+
+            if (commons.imageFileExtensions.indexOf(extension) != -1) {
+                console.log('masuk');
+                var formData = new FormData();
+                formData.append('siteId', commons.siteId);
+                formData.append('imageFile', file);
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', '/direct/commons/uploadImage', true);
+                // xhr.onload = function (e) {
+                //     editor.append("<div><img src=\"" + xhr.responseText + "\" class=\"commons-image\" /></div>");
+                // };
+                xhr.send(formData);
+                stickerField.val('');
+                // editorImageButton.qtip('api').hide();
+            }
+        });
+        
+        stickerField.change(function (e) {
+
+            var file = stickerField[0].files[0];
+            if ((file.size/1000000) > parseInt(commons.maxUploadSize)) {
+                stickerMessage.html('File too big');
+            } else {
+                stickerInsertButton.prop('disabled', false);
+            }
+        });
+
     }
 };
 
@@ -321,6 +372,9 @@ commons.switchState = function (state, arg) {
 
             $('#commons-permissions-link>span>a').click(function (e) {
                 commons.switchState(commons.states.PERMISSIONS);
+            });
+            $('#commons-stickers-link>span>a').click(function (e) {
+                commons.switchState(commons.states.STICKERS);
             });
         }
 
