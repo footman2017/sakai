@@ -159,6 +159,21 @@
 				</f:verbatim>
 				</c:if>
 
+
+                                <c:if test="${SyllabusTool.bulkEdit}">
+				<f:verbatim>
+				<li>
+					<span>
+					</f:verbatim>
+						<h:commandLink action="#{SyllabusTool.processCreateAndEdit}">
+							<h:outputText value="#{msgs.bar_create_edit}"/>
+						</h:commandLink>
+					<f:verbatim>
+					</span>
+				</li>
+				</f:verbatim>
+				</c:if>
+                                
 				<!-- TAMBAHAN MYSYLLABUS TOOLBAR -->
 
 <!-- 				<c:if test="${SyllabusTool.bulkEdit}">
@@ -286,6 +301,11 @@
 							</h3>
 						</f:verbatim>
 						<f:verbatim><div></f:verbatim>
+                                                        <%/* tambahan */%>
+                                                        <f:verbatim><div class="" data-tpl='<textarea cols="120" id="textAreaWysiwyg" style="display:none"></textarea><img id="loading" style="margin: 2em;" src="images/loading.gif"/>'></f:verbatim>
+							<h:outputText value="<h3> Method : #{eachEntry.entry.method}</h3>" escape="false"/>
+							<f:verbatim></div></f:verbatim>
+
 							<f:verbatim><div class="" data-tpl='<textarea cols="120" id="textAreaWysiwyg" style="display:none"></textarea><img id="loading" style="margin: 2em;" src="images/loading.gif"/>'></f:verbatim>
 							<h:outputText value="#{eachEntry.entry.asset}" escape="false"/>
 							<f:verbatim></div></f:verbatim>
