@@ -146,9 +146,9 @@ public class ViewVoterProducer implements ViewComponentProducer,NavigationCaseRe
 			pollOptions.add(noVote);
 		}
 
-		List<Voter> voters = pollVoteManager.getAllVotersForPoll(poll);
-		int totalVoters= voters.size();
-		log.debug("got " + totalVoters + " voters");
+//		List<Voter> voters = pollVoteManager.getAllVotersForPoll(poll); //disins msh salah, mungkin di getAllVotersForPoll
+//		int totalVoters= voters.size();                                 //disins
+//		log.debug("got " + totalVoters + " voters");                    //disins
 		List<CollatedVoter> collation = new ArrayList<CollatedVoter>();
 
 		for (int i=0; i <pollOptions.size(); i++ ) {
@@ -167,8 +167,8 @@ public class ViewVoterProducer implements ViewComponentProducer,NavigationCaseRe
 		UILink title = UILink.make(tofill,"voters-answer",messageLocator.getMessage("voters_answer_title"), "#");
 		title.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("voters_answer_title_tooltip")));
 
-//		UILink avotes = UILink.make(tofill,"answers-votes",messageLocator.getMessage("results_answers_votes"), "#");
-//		avotes.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("results_answers_votes_tooltip")));
+//		UILink avotes = UILink.make(tofill,"answers-votes",messageLocator.getMessage("results_answers_votes"), "#");                //disins
+//		avotes.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("results_answers_votes_tooltip")));  //disins
 
                 UIBranchContainer adefault = UIBranchContainer.make(tofill,"answers-default:");
 		adefault.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("results_answers_default_tooltip")));
@@ -176,13 +176,13 @@ public class ViewVoterProducer implements ViewComponentProducer,NavigationCaseRe
 		//output the votes
 		for (int i=0; i <collation.size(); i++ ) {
 			CollatedVoter cv = (CollatedVoter)collation.get(i);
-			UIBranchContainer resultRow = UIBranchContainer.make(tofill,"answer-row:",cv.getUserId().toString());
+//			UIBranchContainer resultRow = UIBranchContainer.make(tofill,"answer-row:",cv.getUserId().toString());               //disisn
 			
 			String userName = cv.getUserName();
 			String optionText = cv.getOptionText();
 
-			UIOutput.make(resultRow,"voter-name",optionText);
-			UIVerbatim.make(resultRow,"voter-answer",optionText);
+//			UIOutput.make(resultRow,"voter-name",optionText);       //disins
+//			UIVerbatim.make(resultRow,"voter-answer",optionText);   //disins
 			
 		}
 
@@ -200,7 +200,7 @@ public class ViewVoterProducer implements ViewComponentProducer,NavigationCaseRe
 		
 		List<NavigationCase> togo = new ArrayList<NavigationCase>(); // Always navigate back to this view.
 		togo.add(new NavigationCase(null, new SimpleViewParameters(VIEW_ID)));
-		togo.add(new NavigationCase("cancel", new SimpleViewParameters(PollToolProducer.VIEW_ID)));
+		togo.add(new NavigationCase("cancel", new SimpleViewParameters(ResultsProducer.VIEW_ID)));
 		return togo;
 	}	
 	public ViewParameters getViewParameters() {
