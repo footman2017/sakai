@@ -200,7 +200,7 @@ public class ViewVoterProducer implements ViewComponentProducer,NavigationCaseRe
 		
 		List<NavigationCase> togo = new ArrayList<NavigationCase>(); // Always navigate back to this view.
 		togo.add(new NavigationCase(null, new SimpleViewParameters(VIEW_ID)));
-		togo.add(new NavigationCase("cancel", new SimpleViewParameters(ResultsProducer.VIEW_ID)));
+		togo.add(new NavigationCase("cancel", new PollViewParameters(ResultsProducer.VIEW_ID)));
 		return togo;
 	}	
 	public ViewParameters getViewParameters() {
