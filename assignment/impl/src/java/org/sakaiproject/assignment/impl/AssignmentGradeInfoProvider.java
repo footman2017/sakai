@@ -130,6 +130,8 @@ public class AssignmentGradeInfoProvider implements ExternalAssignmentProvider, 
             ArrayList<String> azgList = new ArrayList<String>((Collection<String>) a.getGroups());
             List<AuthzGroup> matched = authzGroupService.getAuthzUserGroupIds(azgList, userId);
             visible = (matched.size() > 0);
+            log.info("Jumlah azgList : " + azgList.size());
+            log.info("Jumlah matched : " + matched.size());
         } else {
             visible = securityService.unlock(userId, AssignmentServiceConstants.SECURE_ACCESS_ASSIGNMENT, assignmentService.createAssignmentEntity(a).getReference());
         }

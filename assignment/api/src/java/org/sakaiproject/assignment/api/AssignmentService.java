@@ -508,6 +508,19 @@ public interface AssignmentService extends EntityProducer {
      * @throws IdUnusedException   if there is no object with this id.
      * @throws PermissionException if the current user is not allowed to access this.
      */
+
+    //*******EDIT*******
+    public int countSubmitter(String assignmentRef, Boolean graded);
+
+    /**
+     * Access the grades spreadsheet for the reference, either for an assignment or all assignments in a context.
+     *
+     * @param ref The reference, either to a specific assignment, or just to an assignment context.
+     * @return The grades spreadsheet bytes.
+     * @throws IdUnusedException   if there is no object with this id.
+     * @throws PermissionException if the current user is not allowed to access this.
+     */
+
     public byte[] getGradesSpreadsheet(String ref) throws IdUnusedException, PermissionException;
 
     /**

@@ -1604,6 +1604,33 @@ public class AssignmentServiceImpl implements AssignmentService, EntityTransferr
         return 0;
     }
 
+    //EDIT
+    public int countSubmitter(String assignmentReference, Boolean graded) {
+        String assignmentId = AssignmentReferenceReckoner.reckoner().reference(assignmentReference).reckon().getId();
+        try {
+            Assignment assignment = getAssignment(assignmentId);
+
+            List<User> allowAddSubmissionUsers = allowAddSubmissionUsers(assignmentReference);
+            // SAK-28055 need to take away those users who have the permissions defined in sakai.properties
+            String resourceString = AssignmentReferenceReckoner.reckoner().context(assignment.getContext()).reckon().getReference();
+            String[] permissions = serverConfigurationService.getStrings("assignment.submitter.remove.permission");
+            if (permissions != null) {
+                for (String permission : permissions) {
+                    allowAddSubmissionUsers.removeAll(securityService.unlockUsers(permission, resourceString));
+                }
+            } else {
+                allowAddSubmissionUsers.removeAll(securityService.unlockUsers(SECURE_ADD_ASSIGNMENT, resourceString));
+            }
+            List<String> userIds = allowAddSubmissionUsers.stream().map(User::getId).collect(Collectors.toList());
+            // if the assignment is non-electronic don't include submission date or is user submission
+            log.warn("COUNT USER ASN SUCCES {}", userIds.size());
+            return userIds.size();
+        } catch (Exception e) {
+            log.warn("COUNT USER ASN FAILED");
+        }
+        return 0;
+    }
+
     @Override
     public byte[] getGradesSpreadsheet(String ref) throws IdUnusedException, PermissionException {
         return new byte[0];
