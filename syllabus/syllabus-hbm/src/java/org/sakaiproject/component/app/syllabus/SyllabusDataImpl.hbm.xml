@@ -64,6 +64,10 @@
             <column name="methoda" length="256" not-null="false"/>
         </property>
         
+         <property name="author">
+            <column name="author" length="255" not-null="false"/>
+        </property>
+        
         <set name="attachments" lazy="true" sort="natural"
              cascade="all-delete-orphan" batch-size="50">
             <key column="syllabusId"/>                        

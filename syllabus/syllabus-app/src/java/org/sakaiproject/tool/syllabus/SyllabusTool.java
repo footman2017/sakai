@@ -1156,7 +1156,7 @@ public class SyllabusTool
 									cal.set(java.util.Calendar.MINUTE, calStartTime.get(java.util.Calendar.MINUTE));
 									cal.set(java.util.Calendar.SECOND, calStartTime.get(java.util.Calendar.SECOND));
 								}
-								SyllabusData syllabusDataObj = syllabusManager.createSyllabusDataObject(bulkEntry.getTitle() + " - " + i, initPosition, null, "no", status, "none", startDate, endDate, bulkEntry.isLinkCalendar(), null, null, syllabusItem, bulkEntry.getMethod());
+								SyllabusData syllabusDataObj = syllabusManager.createSyllabusDataObject(bulkEntry.getTitle() + " - " + i, initPosition, null, "no", status, "none", startDate, endDate, bulkEntry.isLinkCalendar(), null, null, syllabusItem, bulkEntry.getMethod(), bulkEntry.getAuthor());
 								syllabusManager.addSyllabusToSyllabusItem(syllabusItem, syllabusDataObj, false);
 								i++;
 								initPosition++;
@@ -1166,7 +1166,7 @@ public class SyllabusTool
 					}else if(bulkItems > 0 && bulkItems <= 100){
 						//add by bulk items
 						for(int i = 1; i <= bulkItems; i++){
-							SyllabusData syllabusDataObj = syllabusManager.createSyllabusDataObject(bulkEntry.getTitle() + " - " + i, initPosition, null, "no", status, "none", null, null, false, null, null, syllabusItem, bulkEntry.getMethod());
+							SyllabusData syllabusDataObj = syllabusManager.createSyllabusDataObject(bulkEntry.getTitle() + " - " + i, initPosition, null, "no", status, "none", null, null, false, null, null, syllabusItem, bulkEntry.getMethod(), bulkEntry.getAuthor());
 							syllabusManager.addSyllabusToSyllabusItem(syllabusItem, syllabusDataObj, false);
 							initPosition++;
 						}
@@ -1361,7 +1361,7 @@ public class SyllabusTool
       else
       {
         int initPosition = syllabusManager.findLargestSyllabusPosition(syllabusItem) + 1;
-        SyllabusData en = syllabusManager.createSyllabusDataObject(null, initPosition, null, null, SyllabusData.ITEM_DRAFT, "none", null, null, Boolean.FALSE, null, null, null);
+        SyllabusData en = syllabusManager.createSyllabusDataObject(null, initPosition, null, null, SyllabusData.ITEM_DRAFT, "none", null, null, Boolean.FALSE, null, null, null, null);
         en.setView("no");
 
         entry = new DecoratedSyllabusEntry(en);
@@ -2906,6 +2906,7 @@ public class SyllabusTool
 	  private String addByItems = "1";
 	  private String addByDate;
           private String method = "";
+          private String author = "";
 	  
 	public Date getStartDate() {
 		return startDate;
@@ -2992,6 +2993,15 @@ public class SyllabusTool
         
         public void setMethod(String method){
             this.method = method;
+        }
+        
+//        Tambahan
+        public String getAuthor(){
+            return author;
+        }
+        
+        public void setAuthor(String author){
+            this.author = author;
         }
         
   

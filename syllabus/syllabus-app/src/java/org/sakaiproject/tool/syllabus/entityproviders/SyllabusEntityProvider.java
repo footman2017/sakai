@@ -60,6 +60,7 @@ import org.sakaiproject.site.api.Site;
 import org.sakaiproject.site.api.SiteService;
 import org.sakaiproject.site.api.ToolConfiguration;
 import org.sakaiproject.tool.api.ToolManager;
+import org.sakaiproject.user.cover.UserDirectoryService;
 import org.sakaiproject.util.FormattedText;
 
 /**
@@ -297,6 +298,7 @@ public class SyllabusEntityProvider extends AbstractEntityProvider implements En
 					}
 					String title = (String) params.get("title");
                     String method = (String) params.get("metode");
+                    String author = UserDirectoryService.getCurrentUser().getDisplayName();
 					title = title.trim();
 					if(!"".equals(title)){
 						SyllabusItem item = syllabusManager.getSyllabusItemByContextId(siteId);
@@ -312,7 +314,7 @@ public class SyllabusEntityProvider extends AbstractEntityProvider implements En
 							published = ServerConfigurationService.getBoolean("syllabus.new.published.default", false) ? SyllabusData.ITEM_POSTED : SyllabusData.ITEM_DRAFT; 
 						}
 
-						SyllabusData data = syllabusManager.createSyllabusDataObject(title, new Integer(initPosition), null, null, published, "none", null, null, Boolean.FALSE, null, null, method);
+						SyllabusData data = syllabusManager.createSyllabusDataObject(title, new Integer(initPosition), null, null, published, "none", null, null, Boolean.FALSE, null, null, method, author);
 						data.setView("no");
 						try {
 							String content = (String) params.get("content");

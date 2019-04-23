@@ -176,4 +176,15 @@ public interface SyllabusData
    * @param method The title to set.
    */
   public void setMethod(String method);
+
+  //Tambah
+  /**
+   * @return Returns the title.
+   */
+  public String getAuthor();
+
+  /**
+   * @param author The title to set.
+   */
+  public void setAuthor(String method);
 }

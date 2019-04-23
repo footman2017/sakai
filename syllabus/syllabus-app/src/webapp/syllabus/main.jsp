@@ -302,10 +302,15 @@
 						</f:verbatim>
 						<f:verbatim><div></f:verbatim>
                                                         <%/* tambahan */%>
-                                                        <f:verbatim><div class="" data-tpl='<textarea cols="120" id="textAreaWysiwyg" style="display:none"></textarea><img id="loading" style="margin: 2em;" src="images/loading.gif"/>'></f:verbatim>
-							<h:outputText value="<h3> Method : #{eachEntry.entry.method}</h3>" escape="false"/>
+                                                        <f:verbatim><div class="" data-tpl='<textarea cols="120" id="textAreaWysiwyg" style="display:none"></textarea><img id="loading" style="margin: 0em;" src="images/loading.gif"/>'></f:verbatim>
+							<h:outputText value="<h3> Author : #{eachEntry.entry.author}</h3>" escape="false"/>
 							<f:verbatim></div></f:verbatim>
 
+                                                        <%/* tambahan */%>
+                                                        <f:verbatim><div class="" data-tpl='<textarea cols="120" id="textAreaWysiwyg" style="display:none"></textarea><img id="loading" style="margin: 2em;" src="images/loading.gif"/>'></f:verbatim>
+							<h:outputText value="<h4> Method : #{eachEntry.entry.method}</h4>" escape="false"/>
+							<f:verbatim></div></f:verbatim>
+                                                        
 							<f:verbatim><div class="" data-tpl='<textarea cols="120" id="textAreaWysiwyg" style="display:none"></textarea><img id="loading" style="margin: 2em;" src="images/loading.gif"/>'></f:verbatim>
 							<h:outputText value="#{eachEntry.entry.asset}" escape="false"/>
 							<f:verbatim></div></f:verbatim>

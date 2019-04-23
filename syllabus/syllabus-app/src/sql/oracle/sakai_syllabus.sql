@@ -17,6 +17,7 @@ create table SAKAI_SYLLABUS_DATA (
    emailNotification varchar2(128),
    surrogateKey number(19,0),
    methoda varchar2(256),
+   author varchar2(255),
    primary key (id)
 )
 create table SAKAI_SYLLABUS_ITEM (

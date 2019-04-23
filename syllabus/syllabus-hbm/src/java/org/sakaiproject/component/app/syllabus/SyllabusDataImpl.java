@@ -38,7 +38,7 @@ import org.sakaiproject.api.app.syllabus.SyllabusItem;
 
 @Data
 @EqualsAndHashCode(of = "syllabusId")
-@ToString(of = {"syllabusId", "syllabusItem", "asset", "position", "title", "view", "status", "emailNotification", "lockId", "method"})
+@ToString(of = {"syllabusId", "syllabusItem", "asset", "position", "title", "view", "status", "emailNotification", "lockId", "method", "author"})
 public class SyllabusDataImpl implements SyllabusData, Comparable {
     private Long syllabusId;
     private String asset;
@@ -56,6 +56,7 @@ public class SyllabusDataImpl implements SyllabusData, Comparable {
     private String calendarEventIdEndDate;
     private SyllabusItem syllabusItem;
     private String method;
+    private String author;
 
     public int compareTo(Object obj) {
         if (this.equals(obj)) return 0;

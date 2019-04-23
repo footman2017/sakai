@@ -309,6 +309,7 @@ function doAddItemButtonClick( msgs, published )
 	
 	// TAMBAHAN
 	var metode = $( "#metode" ).val();
+        var author = $( "#author" ).val();
 	// -------
 
 	if( !title || "" === title.trim() )
@@ -331,6 +332,7 @@ function doAddItemButtonClick( msgs, published )
 			"published": published,
 			// tambahan
 			"metode": metode,
+                        "author": author,
 			// ------
 			"content": $("#newContentTextAreaWysiwyg").val()
 		};
