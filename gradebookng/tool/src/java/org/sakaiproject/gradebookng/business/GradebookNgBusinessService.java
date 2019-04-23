@@ -2866,4 +2866,25 @@ public class GradebookNgBusinessService {
 		
 		return siteTitle;
 	}
+
+	// EDIT
+	 /**
+	  * Get the course grade for a student. Safe to call when logged in as a student.
+	  *
+	  * @param studentUuid
+	  * @return coursegrade. May have null fields if the coursegrade has not been released
+	  */
+	 public CourseGrade getCourseGrade(final String studentUuid, final String siteId) {
+
+	  final Gradebook gradebook = this.getGradebook(siteId);
+	  final CourseGrade courseGrade = this.gradebookService.getCourseGradeForStudent(gradebook.getUid(), studentUuid);
+
+	  // handle the special case in the gradebook service where totalPointsPossible = -1
+	  if (courseGrade != null && (courseGrade.getTotalPointsPossible() == null || courseGrade.getTotalPointsPossible() == -1)) {
+	   courseGrade.setTotalPointsPossible(null);
+	   courseGrade.setPointsEarned(null);
+	  }
+
+	  return courseGrade;
+	 }
 }
