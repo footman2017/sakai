@@ -10,11 +10,49 @@
 			<button type="button" class="btn btn-info btn-xs gb-summary-print pull-right"><wicket:message key="button.print" /></button>
 		</div>
 	</div>
-
-	<div wicket:id="summary" id="studentGradeSummary"></div>
-	<div wicket:id="summary2" id="studentGradeSummary"></div>
-	<div wicket:id="summary3" id="studentGradeSummary"></div>
-
+	
+	<div class="row">
+		<div class="col-sm-6">
+			<table class="table">
+			  <thead class="thead-light">
+			    <tr>
+			      <th scope="col">Rank</th>
+			      <th scope="col">Fullname</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    <tr>
+			      <th scope="row">1</th>
+			      <td wicket:id="summary" id="studentGradeSummary"></td>
+			    </tr>
+			    <tr>
+			      <th scope="row">2</th>
+			      <td wicket:id="summary2" id="studentGradeSummary"></td>
+			    </tr>
+			    <tr>
+			      <th scope="row">3</th>
+			      <td wicket:id="summary3" id="studentGradeSummary"></td>
+			    </tr>
+			  </tbody>
+			</table>
+		</div>
+		
+		<div class="col-sm-6">
+			<table class="table">
+			  <thead class="thead-light">
+			    <tr>
+			      <th scope="col">Your Rank</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    <tr>
+			      <th wicket:id="currentRank" id="studentGradeSummary" scope="row">1</th>
+			    </tr>
+			  </tbody>
+			</table>
+		</div>
+	</div>
+	
 	<input wicket:id="rubricsTokenHiddenField" type="hidden" />
 
 	<script>

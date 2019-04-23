@@ -72,6 +72,7 @@ public class BasePage extends WebPage {
 	//Modified By Ali @alipiqri2
 	Link<Void> gradebookStudentPageLink;
 	Link<Void> rankPageLink;
+	Link<Void> transcriptPageLink;
 	//End Modified
 
 	public final GbFeedbackPanel feedbackPanel;
@@ -231,7 +232,25 @@ public class BasePage extends WebPage {
 		};
 		this.rankPageLink.add(new Label("screenreaderlabel", getString("link.screenreader.tabnotselected")));
 		navStudent.add(this.rankPageLink);
+		
+		// IPK page
+		this.transcriptPageLink = new Link<Void>("transcriptPageLink") {
+			private static final long serialVersionUID = 1L;
 
+			@Override
+			public void onClick() {
+				setResponsePage(TranscriptPage.class);
+			}
+
+			@Override
+			public boolean isVisible() {
+				return (BasePage.this.role == GbRole.STUDENT);
+			}
+
+		};
+		this.transcriptPageLink.add(new Label("screenreaderlabel", getString("link.screenreader.tabnotselected")));
+		navStudent.add(this.transcriptPageLink);
+				
 		add(nav);
 		add(navStudent);
 

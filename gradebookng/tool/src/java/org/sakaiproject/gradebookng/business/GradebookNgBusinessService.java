@@ -2845,4 +2845,25 @@ public class GradebookNgBusinessService {
 	private List<GradebookRankView> getGradebookRankView(final String siteId) {
 		return this.gradebookService.getGradebookRankView(siteId);
 	}
+	
+	public int getCurrentRank(final String userID) {
+		List<GradebookRankView> gradebooks = this.gradebookService.getGradebookRankView(getCurrentSiteId());
+		for ( final GradebookRankView gradebook : gradebooks) {
+			if (gradebook.getStudentID().equals(userID)) {
+				return gradebooks.indexOf(gradebook) + 1;
+			}
+		}
+		return 0;
+	}
+	
+	public List<String> getGradebookTitleAllSite(final String userID) {
+		List<Site> sites = this.siteService.getUserSites(true, userID);
+		List<String> siteTitle = new ArrayList<String>();
+		for ( final Site site : sites) {
+			siteTitle.add(site.getTitle());
+			log.warn(site.getTitle() + "\n");
+		}
+		
+		return siteTitle;
+	}
 }

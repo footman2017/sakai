@@ -60,10 +60,11 @@ public class RankingPage extends BasePage {
 		add(rubricsTokenHiddenField);
 
 		add(new Label("heading", new StringResourceModel("heading.studentrankingpage", null, new Object[] { u.getDisplayName() })));
-		add(new Label("summary", "Ranking 1 : " + this.businessService.getGradebookRankView().get(0).getFullname()));
-		add(new Label("summary2", "Ranking 2 : " + this.businessService.getGradebookRankView().get(1).getFullname()));
-		add(new Label("summary3", "Ranking 3 : " + this.businessService.getGradebookRankView().get(2).getFullname()));
-
+		add(new Label("summary", this.businessService.getGradebookRankView().get(0).getFullname()));
+		add(new Label("summary2", this.businessService.getGradebookRankView().get(1).getFullname()));
+		add(new Label("summary3", this.businessService.getGradebookRankView().get(2).getFullname()));
+		add(new Label("currentRank", this.businessService.getCurrentRank(u.getId())));
+		
 		EventHelper.postStudentViewEvent(this.businessService.getGradebook(), u.getId());
 	}
 
