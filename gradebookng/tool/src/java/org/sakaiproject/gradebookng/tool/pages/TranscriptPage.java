@@ -65,15 +65,27 @@ public class TranscriptPage extends BasePage {
 //		List<String> test = this.businessService.getGradebookTitleAllSite(u.getId());
 //		test.get(0);
 		
-		ListView<String> siteList = new ListView<String>("siteList", this.businessService.getGradebookTitleAllSite(u.getId())){
+//---EDIT---
+	ListView<Entry<String, String>> siteList = new ListView<Entry<String, String>>("siteList", new ListView<Entry<String, String>(this.businessService.getGradebookTitleAllSite(u.getId()).entrySet()) {
+	    @Override
+	    protected void populateItem(Item item) {
+	        Entry<String, String> entry = item.getModelObject();
+	        item.add(new Label("siteTitle", entry.getKey()));
+	        item.add(new Label("courseGrades", entry.getValue()));
+	    }
+	});
+//-----
 
-			@Override
-			protected void populateItem(ListItem<String> item) {
-				// TODO Auto-generated method stub
-				item.add(new Label("siteTitle", item.getModel()));
-			}
+
+		// ListView<String> siteList = new ListView<String>("siteList", this.businessService.getGradebookTitleAllSite(u.getId())){
+
+		// 	@Override
+		// 	protected void populateItem(ListItem<String> item) {
+		// 		// TODO Auto-generated method stub
+		// 		item.add(new Label("siteTitle", item.getModel()));
+		// 	}
 			
-       };
+  //      };
        add(siteList);
        EventHelper.postStudentViewEvent(this.businessService.getGradebook(), u.getId());
 	}
@@ -99,4 +111,5 @@ public class TranscriptPage extends BasePage {
 				JavaScriptHeaderItem.forUrl(
 						String.format("/gradebookng-tool/scripts/gradebook-grade-summary.js?version=%s", version)));
 	}
+
 }

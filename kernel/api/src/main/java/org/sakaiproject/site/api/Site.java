@@ -442,4 +442,11 @@ public interface Site extends Edit, Comparable, Serializable, AuthzGroup
 	 * @param flag true or false
 	 */
 	void setSoftlyDeleted(boolean flag);
+
+
+// EDIT
+	/**
+	 * Get siteId
+	 */
+	String getId();
 }

@@ -2856,15 +2856,19 @@ public class GradebookNgBusinessService {
 		return 0;
 	}
 	
-	public List<String> getGradebookTitleAllSite(final String userID) {
+
+	// EDIT
+	public Map<String,String> getGradebookTitleAllSite(final String userID) {
 		List<Site> sites = this.siteService.getUserSites(true, userID);
-		List<String> siteTitle = new ArrayList<String>();
+		Map<String,String> courseGrades = new HashMap<String,String>(); 
+		// List<String> siteTitle = new ArrayList<String>();
 		for ( final Site site : sites) {
-			siteTitle.add(site.getTitle());
-			log.warn(site.getTitle() + "\n");
+			courseGrades.put(site.getId(), site.getTitle());
+			// siteTitle.add(site.getTitle());
+			log.warn(site.getTitle() + "&"+ site.getId() +"\n");
 		}
 		
-		return siteTitle;
+		return courseGrades;
 	}
 
 	// EDIT
