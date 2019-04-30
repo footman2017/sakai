@@ -37,6 +37,7 @@ import org.sakaiproject.poll.logic.PollVoteManager;
 import org.sakaiproject.poll.model.Option;
 import org.sakaiproject.poll.model.Poll;
 import org.sakaiproject.poll.model.Vote;
+import org.sakaiproject.poll.model.Voter;
 import org.sakaiproject.poll.tool.params.PollViewParameters;
 
 import uk.org.ponder.localeutil.LocaleGetter;

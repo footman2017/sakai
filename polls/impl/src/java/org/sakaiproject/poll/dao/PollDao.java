@@ -21,8 +21,11 @@
 
 package org.sakaiproject.poll.dao;
 
+import java.util.List;
 import org.sakaiproject.genericdao.api.GeneralGenericDao;
 import org.sakaiproject.poll.model.Poll;
+import org.sakaiproject.poll.model.Voter;
+
 
 public interface PollDao extends GeneralGenericDao {
 	
@@ -32,5 +35,10 @@ public interface PollDao extends GeneralGenericDao {
 	 * @return
 	 */
 	 public int getDisctinctVotersForPoll(Poll poll);
+         public int getVotersForPoll(Poll poll);
+         public List<String> getVoterName(Poll poll);
+         public List<String> getVoterLName(Poll poll);
+         public List<String> getVoterOption(Poll poll);
+         public List<String> getVoterUserId(Poll poll);
 
 }

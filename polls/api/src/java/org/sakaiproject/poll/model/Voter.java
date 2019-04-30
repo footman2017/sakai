@@ -21,10 +21,16 @@
 
 package org.sakaiproject.poll.model;
 
+import java.util.Date;
+import org.sakaiproject.event.api.UsageSession;
+import org.sakaiproject.event.cover.UsageSessionService;
+import org.sakaiproject.tool.cover.SessionManager;
+
 public class Voter {
 
     private String userId;
     private Long pollId;
+    private String ip;
     private String optionText;
     private String userName;
     private String userFName;
@@ -33,9 +39,19 @@ public class Voter {
     public Voter() {
         // needed by hibernate
     }
-
+    
     public Voter(Poll poll) {
         this.pollId = poll.getPollId();
+
+
+        // TODO move this stuff to the service
+        // user is current user
+        userId = SessionManager.getCurrentSessionUserId();
+        // set the Ip to the current sessions IP
+        UsageSession usageSession = UsageSessionService.getSession();
+        if (usageSession != null) {
+            ip = usageSession.getIpAddress();
+        }
     }
 
     public void setUserId(String uid) {
@@ -68,7 +84,15 @@ public class Voter {
 
     public String getUserLName() {
         return userLName;
-    } 
+    }
+    
+    public void setIp(String value) {
+        ip = value;
+    }
+
+    public String getIp() {
+        return ip;
+    }
 
     public void setPollId(Long value) {
         this.pollId = value;
@@ -80,6 +104,14 @@ public class Voter {
 
     public String toString() {
         return this.pollId + ":" + this.userId + ":" + ":" + this.optionText;
+    }
+    
+    public void setOptionText(String optionText) {
+        this.optionText = optionText;
+    }
+    
+    public String getOptionText() {
+        return this.optionText;
     }
 
 }

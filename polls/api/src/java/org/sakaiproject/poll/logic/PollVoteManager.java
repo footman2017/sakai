@@ -85,6 +85,14 @@ public interface PollVoteManager {
      * @param pollIds an array of all polls to get the votes for (null to get all)
      * @return the map of poll ID => list of votes for that poll for this user
      */
+    
+    public int getVotersForPoll(Poll poll);
+    
+    public List<String> getVoterName(Poll poll);
+    public List<String> getVoterLName(Poll poll);
+    public List<String> getVoterOption(Poll poll);
+    public List<String> getVoterUserId(Poll poll);
+    
     public Map<Long, List<Vote>> getVotesForUser(String userId, Long[] pollIds);
     
     /**

@@ -102,6 +102,7 @@ public class PollVoteManagerImpl implements PollVoteManager {
 
 		return votes;
 	}
+        
 
 	public Map<Long, List<Vote>> getVotesForUser(String userId, Long[] pollIds) {
 		if (userId == null) {
@@ -136,6 +137,26 @@ public class PollVoteManagerImpl implements PollVoteManager {
 	public int getDisctinctVotersForPoll(Poll poll) {
 		return dao.getDisctinctVotersForPoll(poll);
 	}
+        
+        public int getVotersForPoll(Poll poll) {
+		return dao.getVotersForPoll(poll);
+	}
+        
+        public List<String> getVoterName(Poll poll){
+            return dao.getVoterName(poll);
+        }
+        
+        public List<String> getVoterLName(Poll poll){
+            return dao.getVoterLName(poll);
+        }
+        
+        public List<String> getVoterOption(Poll poll){
+            return dao.getVoterOption(poll);
+        }
+        
+        public List<String> getVoterUserId(Poll poll){
+            return dao.getVoterUserId(poll);
+        }
 
 	public boolean userHasVoted(Long pollid, String userID) {
 		Search search = new Search();

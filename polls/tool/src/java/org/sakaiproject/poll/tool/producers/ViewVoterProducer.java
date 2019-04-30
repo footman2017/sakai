@@ -123,76 +123,68 @@ public class ViewVoterProducer implements ViewComponentProducer,NavigationCaseRe
 
 		UIOutput.make(tofill, "polls-html", null).decorate(new UIFreeAttributeDecorator(langMap));
 		
-		
-		
-		//get the number of votes
-		int nvoters = pollVoteManager.getDisctinctVotersForPoll(poll);
-		//Object[] args = new Object[] { Integer.valueOf(voters).toString()};
-		if (poll.getMaxOptions()>1)
-			UIOutput.make(tofill,"poll-size",messageLocator.getMessage("results_poll_size",Integer.valueOf(nvoters).toString()));
-
-		log.debug(nvoters + " have voted on this poll");
-
-//		UIOutput.make(tofill,"question",poll.getText());
-//		log.debug("got poll " + poll.getText());
-		List<Option> pollOptions = poll.getPollOptions();
-
-		log.debug("got a list of " + pollOptions.size() + " options");
-		//Append an option for no votes
-		if (poll.getMinOptions()==0) {
-			Option noVote = new Option(Long.valueOf(0));
-			noVote.setOptionText(messageLocator.getMessage("voters_novote"));
-			noVote.setPollId(poll.getPollId());
-			pollOptions.add(noVote);
-		}
-
-//		List<Voter> voters = pollVoteManager.getAllVotersForPoll(poll); //disins msh salah, mungkin di getAllVotersForPoll
-//		int totalVoters= voters.size();                                 //disins
-//		log.debug("got " + totalVoters + " voters");                    //disins
-		List<CollatedVoter> collation = new ArrayList<CollatedVoter>();
-
-		for (int i=0; i <pollOptions.size(); i++ ) {
-			CollatedVoter collatedVoter = new CollatedVoter();
-			Option option = (Option) pollOptions.get(i);
-			log.debug("collating option " + option.getOptionId());
-			collatedVoter.setOptionText(option.getOptionText());
-//			collatedVote.setUserNane(voters.);
-			collation.add(collatedVoter);
-
+                int totalVoter = pollVoteManager.getVotersForPoll(poll);
+                List<String> vfname = pollVoteManager.getVoterName(poll);
+                List<String> vlname = pollVoteManager.getVoterLName(poll);
+                List<String> vuserid = pollVoteManager.getVoterUserId(poll);
+                List<String> voption = pollVoteManager.getVoterOption(poll);
+                List<CollatedVoter> collationVoter = new ArrayList<CollatedVoter>();
+                
+                System.out.println("Ini adalah jumlah dari Voter : " + totalVoter);
+                System.out.println("User Voter : " + vuserid);
+                System.out.println("Nama Voter : " + vfname + " " + vlname);
+                System.out.println("Option Voter : " + voption);
+                
+                //Untuk ke model
+//                List<Voter> voters = new ArrayList<Voter>();
+                
+                List<CollatedVoter> collation = new ArrayList<CollatedVoter>();
+                
+                // Untuk ke model
+//                for (int i=0; i <totalVoter; i++ ) {                         
+//			voters.get(i).setUserFName(vfname.get(i));
+//                        voters.get(i).setUserLName(vlname.get(i));
+//                        voters.get(i).setUserName();
+//                        voters.get(i).setUserId(vuserid.get(i));
+//                        voters.get(i).setOptionText(voption.get(i));
+//		}
+                
+                for (int i=0; i <totalVoter; i++ ) {    
+                        CollatedVoter collatedVoter = new CollatedVoter();
+                        
+			collatedVoter.setVoterName(vfname.get(i).concat(" ").concat(vlname.get(i)));
+                        collatedVoter.setUserId(vuserid.get(i));
+                        collatedVoter.setOptionText(voption.get(i));
+                        
+                        collation.add(collatedVoter);
 		}
                 
-                UILink count = UILink.make(tofill,"voters-name",messageLocator.getMessage("voters_name_title"), "#");
-		count.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("voters_name_title_tooltip")));
+                UILink vname = UILink.make(tofill,"answers-voter",messageLocator.getMessage("results_answers_voter"), "#");
+		vname.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("results_answers_voter_tooltip")));
+
+                // Untuk ke model
+//                for (int i=0; i <totalVoter; i++ ) {
+//			UIBranchContainer resultVoterRow = UIBranchContainer.make(tofill,"answer-row-voter:",voters.get(i).getUserId().toString());
+//
+//			UIVerbatim.make(resultVoterRow,"answer-option-voter",voters.get(i).getUserName());
+//			UIOutput.make(resultVoterRow,"answer-count-voter", Integer.valueOf(i+1).toString());
+//			UIOutput.make(resultVoterRow,"answer-optionVote",voters.get(i).getOptionText());
+//		}
                 
-		UILink title = UILink.make(tofill,"voters-answer",messageLocator.getMessage("voters_answer_title"), "#");
-		title.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("voters_answer_title_tooltip")));
+                for (int i=0; i <totalVoter; i++ ) {
+			UIBranchContainer resultVoterRow = UIBranchContainer.make(tofill,"answer-row-voter:",collation.get(i).getUserId().toString());
 
-//		UILink avotes = UILink.make(tofill,"answers-votes",messageLocator.getMessage("results_answers_votes"), "#");                //disins
-//		avotes.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("results_answers_votes_tooltip")));  //disins
-
-                UIBranchContainer adefault = UIBranchContainer.make(tofill,"answers-default:");
-		adefault.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("results_answers_default_tooltip")));
-		
-		//output the votes
-		for (int i=0; i <collation.size(); i++ ) {
-			CollatedVoter cv = (CollatedVoter)collation.get(i);
-//			UIBranchContainer resultRow = UIBranchContainer.make(tofill,"answer-row:",cv.getUserId().toString());               //disisn
-			
-			String userName = cv.getUserName();
-			String optionText = cv.getOptionText();
-
-//			UIOutput.make(resultRow,"voter-name",optionText);       //disins
-//			UIVerbatim.make(resultRow,"voter-answer",optionText);   //disins
-			
+			UIVerbatim.make(resultVoterRow,"answer-option-voter",collation.get(i).getVoterName());
+			UIOutput.make(resultVoterRow,"answer-count-voter", Integer.valueOf(i+1).toString());
+			UIOutput.make(resultVoterRow,"answer-optionVote",collation.get(i).getOptionText());
 		}
-
+                
 		//the cancel button
 		UIForm form = UIForm.make(tofill,"actform");
 		UICommand cancel = UICommand.make(form,"back",messageLocator.getMessage("voters_cancel"),"#{pollToolBean.cancel}");
 		cancel.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("voters_cancel_tooltip"))); 
 		
 		externalLogic.postEvent("poll.viewResult", "poll/site/" + externalLogic.getCurrentLocationId() +"/poll/" +  poll.getPollId(), false);
-
 
 	}
 
@@ -208,28 +200,13 @@ public class ViewVoterProducer implements ViewComponentProducer,NavigationCaseRe
 
 	}
 
-
-
 	private static class CollatedVoter {
-		private Long userId ;
-		private String userName;
-		private String optionText;
+		private String userId;
+                private String voterName;
+                private String optionText;
 		
 		public CollatedVoter() {
-		}
-                
-		public void setUserId(Long val){
-			this.userId = val;
-		}
-		public Long getUserId(){
-			return this.userId;
-		}
-
-		public void setUserName(String t){
-			this.userName = t;
-		}
-		public String getUserName(){
-			return this.userName;
+			this.voterName = "";
 		}
 
 		public void setOptionText(String t){
@@ -237,6 +214,20 @@ public class ViewVoterProducer implements ViewComponentProducer,NavigationCaseRe
 		}
 		public String getOptionText(){
 			return this.optionText;
+		}
+
+                public void setUserId(String t){
+			this.userId = t;
+		}
+		public String getUserId(){
+			return this.userId;
+		}
+                
+		public void setVoterName(String name){
+			this.voterName = name;
+		}
+		public String getVoterName(){
+			return this.voterName;
 		}
 
 	}

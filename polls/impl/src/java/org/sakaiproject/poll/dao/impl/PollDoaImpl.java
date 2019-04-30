@@ -52,5 +52,71 @@ public class PollDoaImpl extends HibernateGeneralGenericDao implements PollDao {
 
         return 0; 
     }
+    
+    public int getVotersForPoll(Poll poll) {
+
+        Query q = null;
+
+        Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
+        String statement = "select * from view_voter where poll_id = " + poll.getPollId().toString();
+        q = session.createSQLQuery(statement);
+        List<String> results = q.list();
+        if (results.size() > 0)
+            return results.size();
+
+        return 0; 
+    }
+    
+    public List<String> getVoterName(Poll poll){
+        Query q = null;
+
+        Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
+        String statement = "select FIRST_NAME from view_voter where poll_id = " + poll.getPollId().toString();
+        q = session.createSQLQuery(statement);
+        List<String> result = q.list();
+        if (result != null)
+            return result;
+
+        return null; 
+    }
+    
+    public List<String> getVoterLName(Poll poll){
+        Query q = null;
+
+        Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
+        String statement = "select LAST_NAME from view_voter where poll_id = " + poll.getPollId().toString();
+        q = session.createSQLQuery(statement);
+        List<String> result = q.list();
+        if (result != null)
+            return result;
+
+        return null; 
+    }
+    
+    public List<String> getVoterOption(Poll poll){
+        Query q = null;
+
+        Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
+        String statement = "select OPTION_TEXT from view_voter where poll_id = " + poll.getPollId().toString();
+        q = session.createSQLQuery(statement);
+        List<String> result = q.list();
+        if (result != null)
+            return result;
+
+        return null; 
+    }
+    
+    public List<String> getVoterUserId(Poll poll){
+        Query q = null;
+
+        Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
+        String statement = "select USER_ID from view_voter where poll_id = " + poll.getPollId().toString();
+        q = session.createSQLQuery(statement);
+        List<String> result = q.list();
+        if (result != null)
+            return result;
+
+        return null; 
+    }
 
 }

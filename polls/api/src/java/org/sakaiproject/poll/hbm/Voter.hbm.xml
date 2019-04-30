@@ -2,16 +2,16 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="org.sakaiproject.poll.model">
 
-	<class name="org.sakaiproject.poll.model.Vote" table="VIEW_VOTER">
+	<class name="org.sakaiproject.poll.model.Voter" table="VIEW_VOTER">
 
-		<!-- create the primary key id, using native is typically the best way
+<!--		 create the primary key id, using native is typically the best way
 			to do this -->
 
-<!-- 		<id name="id" type="long" column="VOTE_ID">
+ 		<id name="userId" type="long" column="USER_ID">
 	    	<generator class="native">
                 <param name="sequence">POLL_VOTE_ID_SEQ</param>
 	    	</generator>
-		</id> -->
+		</id> 
 
 		<!-- The remaining properties should just match the properties
 			of your value object.
@@ -19,24 +19,32 @@
 			We used Hibernate native property types here but
 			you could also use java classes like java.lang.String.
 			Column names are optional but people often specify them. -->
-		<property name="userId" type="string" length="255" not-null="true">
+<!--	<property name="userId" type="string" length="255" not-null="true">
             <column name="USER_ID" index="POLLTOOL_VIEW_VOTER_USERID_IDX"/>
-        </property>	
+        </property>	-->
        
       	<property name="pollId" type="long" not-null="true">
-            <column name="VOTE_POLL_ID" index="POLLTOOL_VIEW_VOTER_POLLID_IDX"/>
+            <column name="POLL_ID"/>
+        </property>
+        
+        <property name="ip" type="string" length="255" not-null="true">
+            <column name="VOTE_IP"/>
         </property>
             
 		<property name="optionText" type="materialized_clob" length="255" not-null="true">
             <column name="OPTION_TEXT"/>
         </property>
             
+<!--        <property name="userName" type="string" length="255" not-null="true">
+            <column name="FIRST_NAME"/>
+        </property>-->
+            
 		<property name="userFName" type="string" length="255" not-null="true">
             <column name="FIRST_NAME"/>
         </property>
 
 		<property name="userLName" type="string" length="255" not-null="true">
-            <column name="LASST_NAME"/>
+            <column name="LAST_NAME"/>
         </property>       
         
        
