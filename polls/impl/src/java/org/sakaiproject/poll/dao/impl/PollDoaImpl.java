@@ -29,6 +29,7 @@ import org.hibernate.Session;
 
 import org.sakaiproject.genericdao.hibernate.HibernateGeneralGenericDao;
 import org.sakaiproject.poll.dao.PollDao;
+import org.sakaiproject.poll.model.Form;
 import org.sakaiproject.poll.model.Poll;
 
 @Slf4j
@@ -117,6 +118,15 @@ public class PollDoaImpl extends HibernateGeneralGenericDao implements PollDao {
             return result;
 
         return null; 
+    }
+    
+    public void setFormToDatabase(Form form){
+        Query q = null;
+
+        Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
+        String statement = "INSERT INTO `form_user`(`NIM`, `NAMA`, `KELAS`, `JENIS_KELAMIN`, `PEMINATAN`, `ALAMAT`) "
+                + "VALUES (["+ form.getNim() +"],["+ form.getNama() +"],["+ form.getKelas() +"],["+ form.getJenis_kelamin() +"],["+ form.getPeminatan() +"],["+ form.getAlamat() +"])";
+        q = session.createSQLQuery(statement);       
     }
 
 }

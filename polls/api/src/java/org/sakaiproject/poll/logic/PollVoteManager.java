@@ -29,6 +29,7 @@ import org.sakaiproject.poll.model.Option;
 import org.sakaiproject.poll.model.Poll;
 import org.sakaiproject.poll.model.Vote;
 import org.sakaiproject.poll.model.Voter;
+import org.sakaiproject.poll.model.Form;
 
 public interface PollVoteManager {
 
@@ -92,6 +93,7 @@ public interface PollVoteManager {
     public List<String> getVoterLName(Poll poll);
     public List<String> getVoterOption(Poll poll);
     public List<String> getVoterUserId(Poll poll);
+    public void setFormToDatabase(Form form);
     
     public Map<Long, List<Vote>> getVotesForUser(String userId, Long[] pollIds);
     

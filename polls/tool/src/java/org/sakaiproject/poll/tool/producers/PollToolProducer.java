@@ -80,6 +80,7 @@ DefaultView,NavigationCaseReporter {
 
 	private static final String NAVIGATE_ADD = "actions-add";
 	private static final String NAVIGATE_PERMISSIONS = "actions-permissions";
+        private static final String NAVIGATE_FORM = "actions-form";
 	private static final String NAVIGATE_VOTE = "poll-vote";
 
 	public String getViewID() {
@@ -148,7 +149,11 @@ DefaultView,NavigationCaseReporter {
 			} 
 			if (this.isSiteOwner()) {
 				UIInternalLink.make(actions, NAVIGATE_PERMISSIONS, UIMessage.make("action_set_permissions"),new SimpleViewParameters(PermissionsProducer.VIEW_ID));
-			} 
+			}
+                        
+                        if (this.isAllowedForm()) {
+				UIInternalLink.make(actions, NAVIGATE_FORM, UIMessage.make("action_set_form"),new SimpleViewParameters(FormProducer.VIEW_ID));
+			}
 		}
 
 
@@ -304,6 +309,16 @@ DefaultView,NavigationCaseReporter {
 			return true;
 
 		if (externalLogic.isAllowedInLocation(PollListManager.PERMISSION_ADD, externalLogic.getCurrentLocationReference()))
+			return true;
+
+		return false;
+	}
+        
+        private boolean isAllowedForm() {
+		if (externalLogic.isUserAdmin())
+			return true;
+
+		if (externalLogic.isAllowedInLocation(PollListManager.PERMISSION_FORM, externalLogic.getCurrentLocationReference()))
 			return true;
 
 		return false;

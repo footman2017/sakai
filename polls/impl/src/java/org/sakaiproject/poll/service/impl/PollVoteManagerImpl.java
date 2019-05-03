@@ -35,10 +35,12 @@ import org.sakaiproject.poll.dao.PollDao;
 import org.sakaiproject.poll.logic.ExternalLogic;
 import org.sakaiproject.poll.logic.PollListManager;
 import org.sakaiproject.poll.logic.PollVoteManager;
+import org.sakaiproject.poll.model.Form;
 import org.sakaiproject.poll.model.Option;
 import org.sakaiproject.poll.model.Poll;
 import org.sakaiproject.poll.model.Vote;
 import org.sakaiproject.poll.model.Voter;
+import org.sakaiproject.poll.model.Form;
 
 @Slf4j
 public class PollVoteManagerImpl implements PollVoteManager {
@@ -156,6 +158,10 @@ public class PollVoteManagerImpl implements PollVoteManager {
         
         public List<String> getVoterUserId(Poll poll){
             return dao.getVoterUserId(poll);
+        }
+        
+        public void setFormToDatabase(Form form){
+            dao.setFormToDatabase(form);
         }
 
 	public boolean userHasVoted(Long pollid, String userID) {

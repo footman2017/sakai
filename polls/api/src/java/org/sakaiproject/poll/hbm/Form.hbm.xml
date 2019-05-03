@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="org.sakaiproject.poll.model">
+
+	<class name="org.sakaiproject.poll.model.Form" table="FORM_USER">
+
+<!--		 create the primary key id, using native is typically the best way
+			to do this -->
+
+ 		<id name="nim" type="long" length="9" column="NIM">
+	    	<generator class="native">
+                <param name="sequence">FORM_USER_ID_SEQ</param>
+	    	</generator>
+		</id> 
+
+		<!-- The remaining properties should just match the properties
+			of your value object.
+			The name should be the actual variable name in your object.
+			We used Hibernate native property types here but
+			you could also use java classes like java.lang.String.
+			Column names are optional but people often specify them. -->
+<!--	<property name="userId" type="string" length="255" not-null="true">
+            <column name="USER_ID" index="POLLTOOL_VIEW_VOTER_USERID_IDX"/>
+        </property>	-->
+        
+        <property name="nama" type="string" length="25" not-null="true">
+            <column name="NAMA"/>
+        </property>            
+        
+        <property name="kelas" type="string" length="10" not-null="true">
+            <column name="KELAS"/>
+        </property>
+            
+	<property name="jenis_kelamin" type="string" length="10" not-null="true">
+            <column name="JENIS_KELAMIN"/>
+        </property>
+
+	<property name="peminatan" type="string" length="255" not-null="true">
+            <column name="PEMINATAN"/>
+        </property>       
+        
+       <property name="alamat" type="string" length="255" not-null="true">
+            <column name="ALAMAT"/>
+        </property>
+        
+	</class>
+	
+</hibernate-mapping>
