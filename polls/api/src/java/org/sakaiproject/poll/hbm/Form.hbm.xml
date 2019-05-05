@@ -7,21 +7,80 @@
 <!--		 create the primary key id, using native is typically the best way
 			to do this -->
 
- 		<id name="nim" type="long" length="9" column="NIM">
+ 		<id name="id" type="long" length="9" column="FORM_ID">
 	    	<generator class="native">
                 <param name="sequence">FORM_USER_ID_SEQ</param>
 	    	</generator>
 		</id> 
 
-		<!-- The remaining properties should just match the properties
+    
+    <property name="nim" type="string" length="9" not-null="true">
+        <column name="NIM"/>
+    </property>
+    
+    <property name="nama" type="string" length="50" not-null="true">
+        <column name="NAMA"/>
+    </property>
+
+    <property name="prodi" type="string" length="2" not-null="true">
+        <column name="PRODI"/>
+    </property>    
+
+    <property name="kelas" type="string" length="2" not-null="true">
+        <column name="KELAS"/>
+    </property>    
+
+    <property name="alamat" type="string" length="255" not-null="true">
+        <column name="ALAMAT"/>
+    </property>     
+<!--
+    <property name="tanggalLahir" type="timestamp" not-null="true">
+        <column name="TANGGAL_LAHIR"/>
+    </property>    -->
+
+    <property name="isMale" type="string" not-null="true">
+        <column name="IS_MALE"/>
+    </property>    
+
+    <property name="DDP" type="string" not-null="true">
+        <column name="DDP"/>
+    </property>    
+
+    <property name="SDA" type="string" not-null="true">
+        <column name="SDA"/>
+    </property>    
+
+    <property name="SI" type="string" not-null="true">
+        <column name="SI"/>
+    </property>    
+	</class>
+</hibernate-mapping>
+
+<!--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="org.sakaiproject.poll.model">
+
+	<class name="org.sakaiproject.poll.model.Mahasiswa" table="MAHASISWA">
+
+		 create the primary key id, using native is typically the best way
+			to do this 
+
+ 		<id name="nim" type="long" length="9" column="NIM">
+	    	<generator class="native">
+                <param name="sequence">MAHASISWA_ID_SEQ</param>
+	    	</generator>
+		</id> 
+
+		 The remaining properties should just match the properties
 			of your value object.
 			The name should be the actual variable name in your object.
 			We used Hibernate native property types here but
 			you could also use java classes like java.lang.String.
-			Column names are optional but people often specify them. -->
-<!--	<property name="userId" type="string" length="255" not-null="true">
+			Column names are optional but people often specify them. 
+	<property name="userId" type="string" length="255" not-null="true">
             <column name="USER_ID" index="POLLTOOL_VIEW_VOTER_USERID_IDX"/>
-        </property>	-->
+        </property>	
         
         <property name="nama" type="string" length="25" not-null="true">
             <column name="NAMA"/>
@@ -45,4 +104,5 @@
         
 	</class>
 	
-</hibernate-mapping>
+</hibernate-mapping>-->
+

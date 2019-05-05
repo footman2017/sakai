@@ -125,7 +125,7 @@ public class PollDoaImpl extends HibernateGeneralGenericDao implements PollDao {
 
         Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
         String statement = "INSERT INTO `form_user`(`NIM`, `NAMA`, `KELAS`, `JENIS_KELAMIN`, `PEMINATAN`, `ALAMAT`) "
-                + "VALUES (["+ form.getNim() +"],["+ form.getNama() +"],["+ form.getKelas() +"],["+ form.getJenis_kelamin() +"],["+ form.getPeminatan() +"],["+ form.getAlamat() +"])";
+                + "VALUES (["+ form.getNim() +"],["+ form.getNama() +"],["+ form.getKelas() +"],["+ form.getIsMale()+"],["+ form.getSDA()+"],["+ form.getAlamat() +"])";
         q = session.createSQLQuery(statement);       
     }
 
