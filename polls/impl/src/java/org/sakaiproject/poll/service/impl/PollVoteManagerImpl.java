@@ -35,12 +35,11 @@ import org.sakaiproject.poll.dao.PollDao;
 import org.sakaiproject.poll.logic.ExternalLogic;
 import org.sakaiproject.poll.logic.PollListManager;
 import org.sakaiproject.poll.logic.PollVoteManager;
-import org.sakaiproject.poll.model.Form;
 import org.sakaiproject.poll.model.Option;
 import org.sakaiproject.poll.model.Poll;
 import org.sakaiproject.poll.model.Vote;
 import org.sakaiproject.poll.model.Voter;
-import org.sakaiproject.poll.model.Form;
+import org.sakaiproject.poll.model.Mahasiswa;
 
 @Slf4j
 public class PollVoteManagerImpl implements PollVoteManager {
@@ -77,6 +76,13 @@ public class PollVoteManagerImpl implements PollVoteManager {
 	public boolean saveVote(Vote vote)  {
 		dao.save(vote);
 		log.debug(" Vote  " + vote.getId() + " successfuly saved");
+		return true;
+	}
+        
+        //modif
+        public boolean saveMahasiswa(Mahasiswa mahasiswa)  {
+		dao.save(mahasiswa);
+		log.debug(" mahasiswa  " + mahasiswa.getId() + " successfuly saved");
 		return true;
 	}
 
@@ -160,8 +166,8 @@ public class PollVoteManagerImpl implements PollVoteManager {
             return dao.getVoterUserId(poll);
         }
         
-        public void setFormToDatabase(Form form){
-            dao.setFormToDatabase(form);
+        public void setFormToDatabase(Mahasiswa mahasiswa){
+            dao.setFormToDatabase(mahasiswa);
         }
 
 	public boolean userHasVoted(Long pollid, String userID) {

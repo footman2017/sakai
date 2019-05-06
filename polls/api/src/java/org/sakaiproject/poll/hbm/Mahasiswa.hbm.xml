@@ -2,14 +2,14 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="org.sakaiproject.poll.model">
 
-	<class name="org.sakaiproject.poll.model.Form" table="FORM_USER">
+	<class name="org.sakaiproject.poll.model.Mahasiswa" table="MAHASISWA">
 
 <!--		 create the primary key id, using native is typically the best way
 			to do this -->
 
- 		<id name="id" type="long" length="9" column="FORM_ID">
+ 		<id name="id" type="long" length="9" column="MAHASISWA_ID">
 	    	<generator class="native">
-                <param name="sequence">FORM_USER_ID_SEQ</param>
+                <param name="sequence">MAHASISWA_ID_SEQ</param>
 	    	</generator>
 		</id> 
 
@@ -33,26 +33,26 @@
     <property name="alamat" type="string" length="255" not-null="true">
         <column name="ALAMAT"/>
     </property>     
-<!--
+
     <property name="tanggalLahir" type="timestamp" not-null="true">
         <column name="TANGGAL_LAHIR"/>
-    </property>    -->
+    </property>    
 
-    <property name="isMale" type="string" not-null="true">
+    <property name="isMale" type="boolean" not-null="true">
         <column name="IS_MALE"/>
     </property>    
 
-    <property name="DDP" type="string" not-null="true">
+    <property name="DDP" type="boolean" not-null="true">
         <column name="DDP"/>
     </property>    
 
-    <property name="SDA" type="string" not-null="true">
+    <property name="SDA" type="boolean" not-null="true">
         <column name="SDA"/>
     </property>    
 
-    <property name="SI" type="string" not-null="true">
+    <property name="SI" type="boolean" not-null="true">
         <column name="SI"/>
-    </property>    
+    </property>      
 	</class>
 </hibernate-mapping>
 

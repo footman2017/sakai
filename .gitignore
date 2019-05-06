@@ -20,3 +20,11 @@ bower_components
 rebel.xml
 rsf/sakai-rsf-web/templates/overlays
 rsf/sakai-rsf-web/test/overlays
+
+*.docx
+
+*.pdf
+
+*.jpeg
+
+how to/

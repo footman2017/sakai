@@ -29,7 +29,7 @@ import org.hibernate.Session;
 
 import org.sakaiproject.genericdao.hibernate.HibernateGeneralGenericDao;
 import org.sakaiproject.poll.dao.PollDao;
-import org.sakaiproject.poll.model.Form;
+import org.sakaiproject.poll.model.Mahasiswa;
 import org.sakaiproject.poll.model.Poll;
 
 @Slf4j
@@ -120,12 +120,12 @@ public class PollDoaImpl extends HibernateGeneralGenericDao implements PollDao {
         return null; 
     }
     
-    public void setFormToDatabase(Form form){
+    public void setFormToDatabase(Mahasiswa mahasiswa){
         Query q = null;
 
         Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
-        String statement = "INSERT INTO `form_user`(`NIM`, `NAMA`, `KELAS`, `JENIS_KELAMIN`, `PEMINATAN`, `ALAMAT`) "
-                + "VALUES (["+ form.getNim() +"],["+ form.getNama() +"],["+ form.getKelas() +"],["+ form.getIsMale()+"],["+ form.getSDA()+"],["+ form.getAlamat() +"])";
+        String statement = "INSERT INTO `mahasiswa_user`(`NIM`, `NAMA`, `KELAS`, `JENIS_KELAMIN`, `PEMINATAN`, `ALAMAT`) "
+                + "VALUES (["+ mahasiswa.getNim() +"],["+ mahasiswa.getNama() +"],["+ mahasiswa.getKelas() +"],["+ mahasiswa.getIsMale()+"],["+ mahasiswa.getSDA()+"],["+ mahasiswa.getAlamat() +"])";
         q = session.createSQLQuery(statement);       
     }
 
