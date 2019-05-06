@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Mahasiswa: Input</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link  rsf:id="scr=portal-matter"  href="/library/skin/tool_base.css" type="text/css" rel="stylesheet" media="all"/>
+        <link rsf:id="scr=portal-matter" href="/library/skin/default/tool.css" type="text/css" rel="stylesheet" media="all"/>
+        <script  rsf:id="scr=portal-matter" type="text/javascript" language="JavaScript" src="/library/js/headscripts.js"></script>
+    </head>
+
+    <body rsf:id="scr=sakai-body">
+        <div class="portletBody container-fluid">
+        <h3 rsf:id="mahasiswa-title">Input Mahasiswa</h3>
+          <div rsf:id="message-for:*">
+                <span>Message for user here</span>
+          </div>
+        
+        <form rsf:id="add-mahasiswa-form">
+            <div class="form-group row"> 
+                <label for="mahasiswaNim" class="col-md-4 col-lg-2 form-control-label">
+                    <span class="reqStarInline">*</span>
+                    <span rsf:id="nim-mahasiswa-label">Nim</span>
+                </label>
+                <div class="col-md-2">
+                    <input name="nim" type="text" size="50" rsf:id="nim-mahasiswa-text" id="mahasiswaNim" />
+                </div>
+            </div>
+            
+            <div class="form-group row"> 
+                <label for="mahasiswaName" class="col-md-4 col-lg-2 form-control-label">
+                    <span class="reqStarInline">*</span>
+                    <span rsf:id="nama-mahasiswa-label">Nama</span>
+                </label>
+                <div class="col-md-2">
+                    <input name="nama" type="text" size="50" rsf:id="nama-mahasiswa-text" id="mahasiswaName" />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="birthDate:1:date-field" class="col-md-4 col-lg-2 form-control-label">
+                    <span class="reqStarInline">*</span>
+                    <span rsf:id="msg=tanggalLahir_mahasiswa_label">Tanggal Lahir</span>
+                </label>
+                <div class="col-md-4">
+                    <input rsf:id="tanggalLahir-iso8601" type="hidden"
+                                    id="tanggalLahir" name="tanggalLahir" value="MM/DD/YYYY"
+                                    size="25" maxlength="25" /> 
+                    <input type="text" id="tanggalLahir" name="tanggalLahir"/>
+                </div>
+            </div>	
+            
+            <!--<div class="mahasiswaEditorSmall">-->
+            <div class="form-group row">
+                <label for="mahasiswaAlamat" class="col-md-4 col-lg-2 form-control-label">
+                    <span class="reqStarInline">*</span>
+                    <span rsf:id="alamat-mahasiswa-label">Alamat</span>
+                </label>
+                <div rsf:id="mahasiswaAlamat">
+                    <textarea name="alamat" cols="50" rows="3"></textarea>
+                </div>
+            </div>
+            <!--</div>-->
+            
+            <p><strong rsf:id="prodi_mahasiswa_label">Prodi: </strong><br />
+            </p>
+            <span rsf:id="prodi-mahasiswa-" />
+            <div rsf:id="prodi-mahasiswa-v:">
+                <input type="radio" rsf:id="prodi-mahasiswa-radio" id="prodi-mahasiswa-id" />
+                <label rsf:id="prodiMahasiswaLabel">D3</label>
+            </div>
+            
+            <div class="form-group row">
+                <p><strong rsf:id="kelas_mahasiswa_label">Kelas: </strong><br />
+            </p>
+                <div class="col-md-4">
+                    <select name="kelasMahasiswa" rsf:id="kelas-mahasiswa" id="min-votes">
+                        <option value="1A">1A</option>
+                        <option value="1B">1B</option>
+                        <option value="2A">2A</option>
+                        <option value="2B">2B</option>
+                        <option value="3A">3A</option>
+                        <option value="3B">3B</option>
+                        <option value="4A">4A</option>
+                    </select>
+                </div>
+            </div>
+
+            <p><strong rsf:id="matkul_mahasiswa_label">Matkul yang diminati:</strong></p>
+            <div>
+                <input type="checkbox" rsf:id="matkul-mahasiswa" id="matkul-mahasiswa" />
+                <label rsf:id="matkul_mahasiswa_label" for="matkul-mahasiswa">DDP</label>
+                <input type="checkbox" rsf:id="matkul-mahasiswa" id="matkul-mahasiswa" />
+                <label rsf:id="matkul_mahasiswa_label" for="matkul-mahasiswa">SDA</label>
+                <input type="checkbox" rsf:id="matkul-mahasiswa" id="matkul-mahasiswa" />
+                <label rsf:id="matkul_mahasiswa_label" for="matkul-mahasiswa">SI</label>
+            </div>
+
+            <p><strong rsf:id="gender_mahasiswa_label">Gender: </strong><br />
+            </p>
+
+            <span rsf:id="gender-mahasiswa-select" />
+            <div rsf:id="gender_mahasiswa-row:">
+                <input type="radio" rsf:id="gender-mahasiswa" id="gender-mahasiswa" name="gender" />
+                <label rsf:id="genderLabel">Pria</label>
+            </div>
+
+            <p class="act"><input type="submit" value="Post"
+                    rsf:id="submit-new-mahasiswa" class="active" />
+                <input name="_cancel"
+                    type="submit" value="Cancel" rsf:id="cancel" />
+            </p>
+        </form>
+        </div>
+    </body>
+</html>

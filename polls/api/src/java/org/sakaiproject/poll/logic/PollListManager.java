@@ -185,4 +185,6 @@ public interface PollListManager extends EntityProducer {
      * @return true or false
      */
     public boolean userCanDeletePoll(Poll poll);
+
+
 }
