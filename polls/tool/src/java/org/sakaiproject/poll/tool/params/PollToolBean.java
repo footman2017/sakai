@@ -38,6 +38,7 @@ import org.sakaiproject.poll.logic.PollVoteManager;
 import org.sakaiproject.poll.model.Option;
 import org.sakaiproject.poll.model.Poll;
 import org.sakaiproject.poll.model.Vote;
+import org.sakaiproject.poll.model.Mahasiswa;
 import org.sakaiproject.poll.model.VoteCollection;
 import org.sakaiproject.poll.util.PollUtils;
 import org.sakaiproject.util.FormattedText;
@@ -119,6 +120,11 @@ public class PollToolBean {
 	private Poll poll;
 	public void setPoll(Poll p) {
 		poll = p;
+	}
+        
+        private Mahasiswa mahasiswa;
+	public void setMahasiswa(Mahasiswa m) {
+		mahasiswa = m;
 	}
 
 	private LocaleGetter localegetter;
@@ -372,6 +378,27 @@ public class PollToolBean {
 		Poll poll = manager.getPollById(option.getPollId());
 		String siteTitle = externalLogic.getSiteTile(poll.getSiteId());
 		externalLogic.notifyDeletedOption(Arrays.asList(userEids), siteTitle, poll.getPollText());
+	}
+
+//      modif
+        public Mahasiswa processActionAddMahasiswa() {
+                mahasiswa.setNim("17151104");
+                mahasiswa.setNama("Kiki");
+                mahasiswa.setProdi("D3");
+                mahasiswa.setKelas("B");
+                mahasiswa.setAlamat("B");
+                mahasiswa.setTanggalLahir(new Date());
+                mahasiswa.setIsMale(true);
+                mahasiswa.setDDP(true);
+                mahasiswa.setSDA(true);
+                mahasiswa.setSI(true);
+                
+		log.debug("about to save mahasiswa " + mahasiswa);
+		pollVoteManager.saveMahasiswa(mahasiswa);
+
+		log.info("mahasiswa saved with id of " + mahasiswa.getId());
+		
+		return mahasiswa;
 	}
 
 }

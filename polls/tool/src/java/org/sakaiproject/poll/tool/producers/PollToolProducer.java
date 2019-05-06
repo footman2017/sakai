@@ -151,7 +151,7 @@ DefaultView,NavigationCaseReporter {
 				UIInternalLink.make(actions, NAVIGATE_PERMISSIONS, UIMessage.make("action_set_permissions"),new SimpleViewParameters(PermissionsProducer.VIEW_ID));
 			}
                         //modif
-                        UIInternalLink.make(actions, NAVIGATE_MAHASISWA, UIMessage.make("action_set_mahasiswa"),new SimpleViewParameters(AddPollProducer.VIEW_ID));
+                        UIInternalLink.make(actions, NAVIGATE_MAHASISWA, UIMessage.make("action_set_mahasiswa"),new SimpleViewParameters(MahasiswaInputProducer.VIEW_ID));
 		}
 
 

@@ -40,7 +40,8 @@ public class Mahasiswa {
     private boolean SI;
     
     public Mahasiswa() {
-        
+        this.nim = "";
+        this.nama = "";
         this.isMale = true;
         this.DDP = false;
         this.SDA = false;
