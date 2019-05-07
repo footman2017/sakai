@@ -160,6 +160,7 @@
 		<property name="dateEvolver"    ref="fieldDateInputEvolver" />
 		<property name="externalLogic"  ref="org.sakaiproject.poll.logic.ExternalLogic"/>
 		<property name="pollListManager"    ref="org.sakaiproject.poll.logic.PollListManager" />
+		<property name="richTextEvolver"    ref="richTextEvolver" />
 		<property name="pollVoteManager"    ref="org.sakaiproject.tool.poll.api.PollVoteManager" />
 		<property name="targettedMessageList"   ref="targettedMessageList" />
         </bean>

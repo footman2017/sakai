@@ -26,6 +26,7 @@ import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.criterion.DetachedCriteria;
 
 import org.sakaiproject.genericdao.hibernate.HibernateGeneralGenericDao;
 import org.sakaiproject.poll.dao.PollDao;
@@ -118,6 +119,18 @@ public class PollDoaImpl extends HibernateGeneralGenericDao implements PollDao {
             return result;
 
         return null; 
+    }
+    
+    public List<Mahasiswa> getAllExample(){
+	DetachedCriteria d = DetachedCriteria.forClass(Mahasiswa.class);
+	
+	List<Mahasiswa> l = (List<Mahasiswa>) getHibernateTemplate().findByCriteria(d);
+	
+	if(l != null && l.size() > 0){
+		return l;
+	} else{
+		return null;
+	}
     }
     
     public void setFormToDatabase(Mahasiswa mahasiswa){

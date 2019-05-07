@@ -122,6 +122,7 @@ public class PollToolBean {
 		poll = p;
 	}
         
+//        modif
         private Mahasiswa mahasiswa;
 	public void setMahasiswa(Mahasiswa m) {
 		mahasiswa = m;
@@ -380,8 +381,61 @@ public class PollToolBean {
 		externalLogic.notifyDeletedOption(Arrays.asList(userEids), siteTitle, poll.getPollText());
 	}
 
+        
+    private String nim;
+    private String nama;
+    private String prodi;
+    private String kelas;
+    private String alamat;
+
+    private Date tanggalLahir;
+    
+    private boolean isMale;
+    private boolean DDP;
+    private boolean SDA;
+    private boolean SI;
+    
+    public void setNim(String nim) {
+        this.nim = nim;
+    }
+    
+    public void setNama(String nama) {
+        this.nama = nama;
+    }
+    
+    public void setProdi(String prodi) {
+        this.prodi = prodi;
+    }
+
+    public void setKelas(String kelas) {
+        this.kelas = kelas;
+    }
+    public void setAlamat(String alamat) {
+        this.alamat = alamat;
+    }
+    
+    public void setTanggalLahir(Date tanggalLahir) {
+        this.tanggalLahir = tanggalLahir;
+    }
+    
+    public void setIsMale(boolean isMale) {
+        this.isMale = isMale;
+    }
+    
+    public void setDDP(boolean DDP) {
+        this.DDP = DDP;
+    }
+    
+    public void setSDA(boolean SDA) {
+        this.SDA = SDA;
+    }
+    
+    public void setSI(boolean SI) {
+        this.SI = SI;
+    }
 //      modif
-        public Mahasiswa processActionAddMahasiswa() {
+        public String processActionAddMahasiswa() {
+            Mahasiswa mahasiswa = new Mahasiswa();
                 mahasiswa.setNim("17151104");
                 mahasiswa.setNama("Kiki");
                 mahasiswa.setProdi("D3");
@@ -393,12 +447,13 @@ public class PollToolBean {
                 mahasiswa.setSDA(true);
                 mahasiswa.setSI(true);
                 
-		log.debug("about to save mahasiswa " + mahasiswa);
+//		log.debug("about to save mahasiswa " + mahasiswa);
+                System.out.println("#here");
 		pollVoteManager.saveMahasiswa(mahasiswa);
-
-		log.info("mahasiswa saved with id of " + mahasiswa.getId());
+//
+//		log.info("mahasiswa saved with id of " + mahasiswa.getId());
 		
-		return mahasiswa;
+		return "success";
 	}
 
 }

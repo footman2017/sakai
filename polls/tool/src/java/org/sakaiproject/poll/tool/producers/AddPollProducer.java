@@ -77,7 +77,9 @@ import uk.org.ponder.rsf.viewstate.ViewParameters;
 import uk.org.ponder.rsf.viewstate.ViewParamsReporter;
 
 @Slf4j
-public class AddPollProducer implements ViewComponentProducer,NavigationCaseReporter, ViewParamsReporter, ActionResultInterceptor {
+public class AddPollProducer implements ViewComponentProducer,
+        NavigationCaseReporter, ViewParamsReporter, 
+        ActionResultInterceptor {
 	public static final String VIEW_ID = "voteAdd";
 
 	private PollListManager pollListManager;

@@ -166,6 +166,11 @@ public class PollVoteManagerImpl implements PollVoteManager {
             return dao.getVoterUserId(poll);
         }
         
+//        modif
+        public List<Mahasiswa> getAllExample(){
+            return dao.getAllExample();
+        }
+        
         public void setFormToDatabase(Mahasiswa mahasiswa){
             dao.setFormToDatabase(mahasiswa);
         }

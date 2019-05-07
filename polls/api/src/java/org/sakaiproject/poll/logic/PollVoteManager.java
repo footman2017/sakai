@@ -93,6 +93,10 @@ public interface PollVoteManager {
     public List<String> getVoterLName(Poll poll);
     public List<String> getVoterOption(Poll poll);
     public List<String> getVoterUserId(Poll poll);
+    
+//    modif
+    
+    public List<Mahasiswa> getAllExample();
     public void setFormToDatabase(Mahasiswa mahasiswa);
     
     public Map<Long, List<Vote>> getVotesForUser(String userId, Long[] pollIds);
