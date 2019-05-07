@@ -435,6 +435,8 @@ public class PollToolBean {
     }
 //      modif
         public String processActionAddMahasiswa() {
+            
+            System.out.println("#here "+nim.isEmpty());
             Mahasiswa mahasiswa = new Mahasiswa();
                 mahasiswa.setNim("17151104");
                 mahasiswa.setNama("Kiki");
@@ -448,7 +450,7 @@ public class PollToolBean {
                 mahasiswa.setSI(true);
                 
 //		log.debug("about to save mahasiswa " + mahasiswa);
-                System.out.println("#here");
+                System.out.println("#here "+mahasiswa);
 		pollVoteManager.saveMahasiswa(mahasiswa);
 //
 //		log.info("mahasiswa saved with id of " + mahasiswa.getId());

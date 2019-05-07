@@ -1,3 +1,4 @@
+
 /**********************************************************************************
  * $URL: $
  * $Id:  $
@@ -68,9 +69,9 @@ import uk.org.ponder.rsf.viewstate.ViewParameters;
 import uk.org.ponder.stringutil.StringList;
 
 @Slf4j
-public class PollToolProducer implements ViewComponentProducer,
+public class ShowGlossaryProducer implements ViewComponentProducer,
 DefaultView,NavigationCaseReporter {
-	public static final String VIEW_ID = "votePolls";
+	public static final String VIEW_ID = "glossaryShow";
 	
 	private PollListManager pollListManager;
 	

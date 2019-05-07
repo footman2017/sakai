@@ -35,6 +35,7 @@ import org.sakaiproject.poll.dao.PollDao;
 import org.sakaiproject.poll.logic.ExternalLogic;
 import org.sakaiproject.poll.logic.PollListManager;
 import org.sakaiproject.poll.logic.PollVoteManager;
+import org.sakaiproject.poll.model.Glossary;
 import org.sakaiproject.poll.model.Option;
 import org.sakaiproject.poll.model.Poll;
 import org.sakaiproject.poll.model.Vote;
@@ -83,6 +84,12 @@ public class PollVoteManagerImpl implements PollVoteManager {
         public boolean saveMahasiswa(Mahasiswa mahasiswa)  {
 		dao.save(mahasiswa);
 		log.debug(" mahasiswa  " + mahasiswa.getId() + " successfuly saved");
+		return true;
+	}
+        
+        public boolean saveGlossary(Glossary glossary)  {
+		dao.save(glossary);
+		log.debug(" Glossary  " + glossary.getId() + " successfuly saved");
 		return true;
 	}
 

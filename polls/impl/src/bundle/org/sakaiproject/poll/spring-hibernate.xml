@@ -12,6 +12,7 @@
 		<value>org/sakaiproject/poll/hbm/Vote.hbm.xml</value>
                 <value>org/sakaiproject/poll/hbm/Voter.hbm.xml</value>
                 <value>org/sakaiproject/poll/hbm/Mahasiswa.hbm.xml</value>
+                <value>org/sakaiproject/poll/hbm/Glossary.hbm.xml</value>
             </list>
         </constructor-arg>
     </bean>
@@ -27,6 +28,7 @@
             <value>org.sakaiproject.poll.model.Vote</value>
             <value>org.sakaiproject.poll.model.Voter</value>
             <value>org.sakaiproject.poll.model.Mahasiswa</value>
+            <value>org.sakaiproject.poll.model.Glossary</value>
          </list>
       </property>
    </bean>

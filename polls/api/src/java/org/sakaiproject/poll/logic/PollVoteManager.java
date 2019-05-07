@@ -24,6 +24,7 @@ package org.sakaiproject.poll.logic;
 
 import java.util.List;
 import java.util.Map;
+import org.sakaiproject.poll.model.Glossary;
 
 import org.sakaiproject.poll.model.Option;
 import org.sakaiproject.poll.model.Poll;
@@ -131,4 +132,6 @@ public interface PollVoteManager {
     //modif
     public boolean saveMahasiswa(Mahasiswa mahasiswa);
     
+    public boolean saveGlossary(Glossary glossary);
+	
 }

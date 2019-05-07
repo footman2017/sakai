@@ -30,6 +30,7 @@ import org.hibernate.criterion.DetachedCriteria;
 
 import org.sakaiproject.genericdao.hibernate.HibernateGeneralGenericDao;
 import org.sakaiproject.poll.dao.PollDao;
+import org.sakaiproject.poll.model.Glossary;
 import org.sakaiproject.poll.model.Mahasiswa;
 import org.sakaiproject.poll.model.Poll;
 
@@ -121,10 +122,23 @@ public class PollDoaImpl extends HibernateGeneralGenericDao implements PollDao {
         return null; 
     }
     
+    //modif
     public List<Mahasiswa> getAllExample(){
 	DetachedCriteria d = DetachedCriteria.forClass(Mahasiswa.class);
 	
 	List<Mahasiswa> l = (List<Mahasiswa>) getHibernateTemplate().findByCriteria(d);
+	
+	if(l != null && l.size() > 0){
+		return l;
+	} else{
+		return null;
+	}
+    }
+    
+    public List<Glossary> getAllGlossary(){
+	DetachedCriteria d = DetachedCriteria.forClass(Glossary.class);
+	
+	List<Glossary> l = (List<Glossary>) getHibernateTemplate().findByCriteria(d);
 	
 	if(l != null && l.size() > 0){
 		return l;

@@ -173,8 +173,24 @@
         <bean id="voter" class="org.sakaiproject.poll.model.Voter" />
         <!--modif-->
         <bean id="mahasiswa" class="org.sakaiproject.poll.model.Mahasiswa" />
+        <bean id="glossary" class="org.sakaiproject.poll.model.Glossary" />
 
 
+        <bean id="showGlossaryProducer"
+		class="org.sakaiproject.poll.tool.producers.ShowGlossaryProducer">
+		<property name="pollListManager"
+			ref="org.sakaiproject.poll.logic.PollListManager" />
+		<property name="localeGetter" ref="requestLocaleProxy" />
+		<property name="messageLocator" ref="messageLocator" />
+		<property name="pollVoteManager"
+			ref="org.sakaiproject.tool.poll.api.PollVoteManager" />
+		<property name="voteBean" ref="voteBean" />
+		<property name="targettedMessageList"
+			ref="targettedMessageList" />
+		<property name="externalLogic" ref="org.sakaiproject.poll.logic.ExternalLogic"/>
+	</bean>
+        
+        
 
 	<bean id="fieldDateTransit" parent="beanExploder">
 		<property name="factory">

@@ -26,6 +26,7 @@ import org.sakaiproject.genericdao.api.GeneralGenericDao;
 import org.sakaiproject.poll.model.Poll;
 import org.sakaiproject.poll.model.Voter;
 import org.sakaiproject.poll.model.Mahasiswa;
+import org.sakaiproject.poll.model.Glossary;
 
 
 public interface PollDao extends GeneralGenericDao {
@@ -45,5 +46,6 @@ public interface PollDao extends GeneralGenericDao {
 //         modif
          public void setFormToDatabase(Mahasiswa mahasiswa);
          public List<Mahasiswa> getAllExample();
+         public List<Glossary> getAllGlossary();
 
 }

@@ -79,7 +79,8 @@
 			value="pollToolBean, voteBean, pollVoteProducer, 
                                 voteCollection,option,poll, pollGuard, 
                                 permissionAction, roleperms, optionValidator,
-                                mahasiswaInputProducer, mahasiswa" />
+                                mahasiswaInputProducer, mahasiswa
+                                ShowGlossaryProducer, glossary" />
 	</bean>
 	
     <!-- Scope for the vote bean -->
