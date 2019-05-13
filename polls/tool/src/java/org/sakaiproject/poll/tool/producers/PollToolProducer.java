@@ -152,7 +152,7 @@ DefaultView,NavigationCaseReporter {
 			}
                         
                         if (this.isAllowedForm()) {
-				UIInternalLink.make(actions, NAVIGATE_FORM, UIMessage.make("action_set_form"),new SimpleViewParameters(FormProducer.VIEW_ID));
+				UIInternalLink.make(actions, NAVIGATE_FORM, UIMessage.make("action_set_form"),new SimpleViewParameters(glossaryProducer.VIEW_ID));
 			}
 		}
 

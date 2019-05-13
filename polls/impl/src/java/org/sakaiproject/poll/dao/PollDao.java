@@ -25,7 +25,7 @@ import java.util.List;
 import org.sakaiproject.genericdao.api.GeneralGenericDao;
 import org.sakaiproject.poll.model.Poll;
 import org.sakaiproject.poll.model.Voter;
-import org.sakaiproject.poll.model.Form;
+import org.sakaiproject.poll.model.Glossary;
 
 
 public interface PollDao extends GeneralGenericDao {
@@ -41,6 +41,6 @@ public interface PollDao extends GeneralGenericDao {
          public List<String> getVoterLName(Poll poll);
          public List<String> getVoterOption(Poll poll);
          public List<String> getVoterUserId(Poll poll);
-         public void setFormToDatabase(Form form);
-
+         public void setGlossaryToDatabase(Glossary glossary);
+         public List<Glossary> getAllGlossary();
 }

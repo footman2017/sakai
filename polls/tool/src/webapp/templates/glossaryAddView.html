@@ -1,0 +1,121 @@
+<!DOCTYPE html      PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html rsf:id="glossary-html" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:rsf="http://ponder.org.uk/rsf">
+<head>
+<title>Polls: Add/edit a poll</title>
+<link rsf:id="scr=portal-matter"
+	href="https:https://vula.uct.ac.za/library/skin/tool_base.css"
+	type="text/css" rel="stylesheet" media="all" />
+<link href="https://vula.uct.ac.za/library/skin/default/tool.css"
+	type="text/css" rel="stylesheet" media="all" rsf:id="scr=portal-matter" />
+<script rsf:id="scr=portal-matter" type="text/javascript"
+	language="JavaScript" src="/library/js/headscripts.js"></script>
+	<script type="text/javascript">includeLatestJQuery('polls');</script>
+	<link href="/library/webjars/jquery-ui/1.12.1/jquery-ui.min.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="/library/js/lang-datepicker/lang-datepicker.js"></script>
+
+	<script type="text/javascript">
+		$( document ).ready(function() {
+			localDatePicker({
+				input:'#opendate',
+				useTime:1,
+				parseFormat: 'YYYY-MM-DD HH:mm:ss',
+				getval: '#openDate-iso8601',
+				ashidden: { iso8601: 'openDate-iso8601' }
+			});
+
+			localDatePicker({
+				input:'#closedate',
+				useTime:1,
+				parseFormat: 'YYYY-MM-DD HH:mm:ss',
+				getval: '#closeDate-iso8601',
+				ashidden: { iso8601: 'closeDate-iso8601' }
+			});
+		});
+	</script>
+</head>
+
+<body rsf:id="scr=sakai-body">
+<div class="portletBody container-fluid">
+          <h3 rsf:id="glossary_new_title">Input Glossary</h3>
+          <div rsf:id="message-for:*">
+                <span>Message for user here</span>
+          </div>
+        
+        <form rsf:id="add-glossary-form">
+            <div class="form-group row"> 
+                <label for="glossaryTerm" class="col-md-4 col-lg-2 form-control-label">
+                    <span class="reqStarInline">*</span>
+                    <span rsf:id="term-glossary-label">Term</span>
+                </label>
+                <div class="col-md-2">
+                    <input name="term" type="text" size="50" rsf:id="description-glossary-text" id="glossaryTerm" />
+                </div>
+            </div>
+            
+            <div class="form-group row"> 
+                <label for="glossaryDescription" class="col-md-4 col-lg-2 form-control-label">
+                    <span class="reqStarInline">*</span>
+                    <span rsf:id="description-glossary-label">Description</span>
+                </label>
+                <div class="col-md-2">
+                    <textarea rsf:id="description-glossary-text" name="Instructions"
+	cols="50" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="form-group row">
+                    <label for="min-votes-selection" class="col-md-4 col-lg-2 form-control-label">
+                            <span class="reqStarInline">*</span>
+                            <span rsf:id="category-glossary-label">CATEGORY</span>
+                    </label>
+                    <div class="col-md-4">
+                            <select name="kelas" rsf:id="category" id="min-votes">
+                                    <option value="Komputer">Komputer</option>
+                                    <option value="Pemrograman">Pemrograman</option>
+                                    <option value="D3/2A">Perangkat Lunak</option>
+                                    <option value="D3/2B">Hacking</option>
+                                    <option value="D3/3A">Design</option>
+                            </select>
+                    </div>
+            </div>        
+            <p class="act">
+<input type="submit" value="Post"
+                    rsf:id="submit-new-glossary" class="active" />
+                <input name="_cancel"
+                    type="submit" value="Cancel" rsf:id="cancel" />
+            </p>
+</form>
+          
+    <!-- menampilkan data -->
+    <ul>
+        <li rsf:id="list-glossary:">
+            <span rsf:id="id_glossary">An Item </span>
+            <span rsf:id="term_glossary">An Item</span>
+            <span rsf:id="description_glossary">An Item</span>
+            <span rsf:id="category_glossary">An Item</span>
+        </li>
+    </ul>
+    
+    <table id="sortableTable" class="listHier lines nolines" border="0" cellspacing="0">
+	<caption class="skip"><span class="skip"></span>Glossary</caption>
+    <thead>
+      <tr>
+        <th><a title="Sort by Option number" href="#" rsf:id="answers-count">Id</a></th>
+        <th><a title="Sort by Voter" href="#" rsf:id="answers-term">Term</a></th>
+        <th><a title="Sort by Voter" href="#" rsf:id="answers-voter">Description</a></th>
+        <th><a title="Sort by the number of Voter" href="#" rsf:id="answers-title">Category</a></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr rsf:id="answer-row-voter:">
+        <td rsf:id="answer-count-voter">1</td>
+        <td rsf:id="answer-option-voter">Voter 1</td>
+        <td valign="middle" rsf:id="answer-optionVote">Option</td>
+        <td valign="middle" rsf:id="answer-optionCategory">Category</td>
+      </tr>
+    </tbody>
+    </table>
+        
+</div>
+</body>
+</html>

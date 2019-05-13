@@ -38,6 +38,7 @@ import org.sakaiproject.poll.logic.PollVoteManager;
 import org.sakaiproject.poll.model.Option;
 import org.sakaiproject.poll.model.Poll;
 import org.sakaiproject.poll.model.Vote;
+import org.sakaiproject.poll.model.Glossary;
 import org.sakaiproject.poll.model.VoteCollection;
 import org.sakaiproject.poll.util.PollUtils;
 import org.sakaiproject.util.FormattedText;
@@ -372,6 +373,23 @@ public class PollToolBean {
 		Poll poll = manager.getPollById(option.getPollId());
 		String siteTitle = externalLogic.getSiteTile(poll.getSiteId());
 		externalLogic.notifyDeletedOption(Arrays.asList(userEids), siteTitle, poll.getPollText());
+	}
+        
+        public String processActionAddGlossary() {
+            Glossary glossary = new Glossary();
+                glossary.setTerm("Encapsulation");
+                glossary.setDescription("Merupakan suatu istilah dalam lingkup\n" +
+                    "pemrograman objek untuk membungkus\n" +
+                    "properti objek dan menyembunyikan detail\n" +
+                    "informasi");
+                glossary.setCategory("Pemrograman");
+                
+                System.out.println("#here");
+		pollVoteManager.saveGlossary(glossary);
+//
+//		log.info("mahasiswa saved with id of " + mahasiswa.getId());
+		
+		return "success";
 	}
 
 }
