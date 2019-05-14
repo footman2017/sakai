@@ -81,6 +81,7 @@ DefaultView,NavigationCaseReporter {
 	private static final String NAVIGATE_ADD = "actions-add";
 	private static final String NAVIGATE_PERMISSIONS = "actions-permissions";
 	private static final String NAVIGATE_VOTE = "poll-vote";
+        private static final String NAVIGATE_SCHEDULE = "action-schedule";
 
 	public String getViewID() {
 		return VIEW_ID;
@@ -145,9 +146,11 @@ DefaultView,NavigationCaseReporter {
 				//       .getMessage("action_add_poll"));
 				UIInternalLink.make(actions,NAVIGATE_ADD,UIMessage.make("action_add_poll"),
 						new PollViewParameters(AddPollProducer.VIEW_ID, "New 0"));
+                                
 			} 
 			if (this.isSiteOwner()) {
 				UIInternalLink.make(actions, NAVIGATE_PERMISSIONS, UIMessage.make("action_set_permissions"),new SimpleViewParameters(PermissionsProducer.VIEW_ID));
+                                UIInternalLink.make(actions, NAVIGATE_SCHEDULE, UIMessage.make("action_schedule"),new SimpleViewParameters(ScheduleProducer.VIEW_ID));
 			} 
 		}
 

@@ -1,0 +1,115 @@
+<!DOCTYPE html      PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html rsf:id="schedule-html" xmlns="http://www.w3.org/1999/xhtml" xmlns:rsf="http://ponder.org.uk/rsf">
+<head >
+<title>Schedule</title>
+<link rsf:id="scr=portal-matter" href="https://vula.uct.ac.za/library/skin/tool_base.css" type="text/css" rel="stylesheet" media="all"/>
+<link href="https://vula.uct.ac.za/library/skin/default/tool.css" type="text/css" rel="stylesheet" media="all" rsf:id="scr=portal-matter" />
+<script  rsf:id="scr=portal-matter" type="text/javascript" src="/library/js/headscripts.js"></script>
+<script type="text/javascript">includeLatestJQuery('polls');</script>
+<script type="text/javascript">includeWebjarLibrary('jquery.tablesorter');</script>
+<script type="text/javascript" src="../js/polls.js"></script>
+</head>
+
+<body rsf:id="scr=sakai-body">
+<div class="portletBody">
+
+<ul rsf:id="actions:" class="navIntraTool">
+  <li><span><a href="voteAdd.html" rsf:id="actions-overview">Overview</a></span></li>
+  <li><span><a href="votePermissions.html" rsf:id="actions-add">Add Section</a></span></li>
+  <li><span><a href="votePermissions.html" rsf:id="actions-membership">Student Memberships</a></span></li>
+  <li><span><a href="votePermissions.html" rsf:id="actions-options">Options</a></span></li>
+  <li><span><a href="votePermissions.html" rsf:id="actions-schedule">Schedule</a></span></li>
+</ul>
+
+	
+<h3 rsf:id="schedule-list-title">Schedule</h3>
+
+
+<div rsf:id="message-for:*" class="alertMessage">
+	<span>Message for user here</span>
+</div>
+<div class="instruction" rsf:id="no-polls">No polls have been created yet.</div>
+<div class="addItem" rsf:id="add-poll-icon">
+	<a href="voteAdd.html" rsf:id="add-poll">Add</a>
+</div>
+
+<!--<div rsf:id="poll_list_remove_confirm" id="poll_list_remove_confirm"></div>
+<div rsf:id="poll_list_reset_confirm" id="poll_list_reset_confirm"></div>-->
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#remove-all').change(function () {
+
+            var isChecked = $(this).is(':checked');
+            $('.checkbox-cell input').prop('checked', isChecked);
+            $('#delete-polls').prop('disabled', !isChecked);
+            $('#reset-polls-votes').prop('disabled', !isChecked);
+        });
+
+        $('.checkbox-cell input').change(function () {
+
+            var someChecked = $('.checkbox-cell input:checked').length;
+            $('#delete-polls').prop('disabled', !someChecked);
+            $('#reset-polls-votes').prop('disabled', !someChecked);
+
+            if (!someChecked) {
+                $('#remove-all').prop('checked', false);
+            }
+         });
+
+         $('#delete-polls').click(function () {
+
+             var removeMessage = $('#poll_list_remove_confirm').text();
+             return confirm(removeMessage);
+             });
+
+         $('#reset-polls-votes').click(function () {
+
+             var resetMessage = $('#poll_list_reset_confirm').text();
+             return confirm(resetMessage);
+         });
+	});
+</script>
+
+<!--<form rsf:id="delete-poll-form">
+ This span is needed here to guide the renderer away to the checkboxes 
+<span rsf:id="delete-poll"/>-->
+
+<h4 rsf:id="study-program-title">Program Studi D3 Teknik Informatika</h4>
+<div class="row">
+    <h4>Class : </h4>
+    <h4>Kurikulum :</h4>
+</div>
+<div class="row">
+    <h4>Semester : </h4>
+    <h4>Tahun Akademik</h4>
+</div>
+
+<table id="sortableTable" class="listHier lines nolines table table-responsive table-bordered table-striped table-hover" border="0" cellspacing="0">
+<caption class="skip"><span class="skip" rsf:id="msg=poll_list_summary"></span></caption>
+  <thead>
+    <tr> 
+      <th><a rsf:id="schedule-no-title" title="Sort by No" href="#">No</a></th>
+      <th><a rsf:id="schedule-time-title" title=" Sort by Waktu" href="#">Waktu</a></th>
+      <th><a rsf:id="schedule-mk-title" title="Sort by Nama MK" href="#">Nama MK</a></th>
+      <th><a rsf:id="schedule-tepr-title" title="Sort by TE/PR" href="#">TE/PR</a></th>
+      <th><a rsf:id="schedule-dosen-title" title="Sort by Nama Dosen" href="#">Nama Dosen</a></th>
+      <th><a rsf:id="schedule-ruang-title" title="Sort by Kode dan Nama Ruang" href="#">Kode dan Nama Ruang</a></th>       
+    </tr>
+  </thead>
+  <tbody id="tasks:polllist:tbody_element">
+
+    <tr rsf:id="schedule-row"> 
+      <td rsf:id="schedule-no">no</td>  
+      <td rsf:id="schedule-time">time</td>
+      <td rsf:id="schedule-mk">mk</td>
+      <td rsf:id="schedule-tepr">te/pr</td>
+      <td rsf:id="schedule-dosen">dosen</td>
+      <td rsf:id="schedule-ruang">ruang</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</body>
+</html>
