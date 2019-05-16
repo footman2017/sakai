@@ -1,0 +1,66 @@
+<!DOCTYPE html      PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html rsf:id="schedule-html" xmlns="http://www.w3.org/1999/xhtml" xmlns:rsf="http://ponder.org.uk/rsf">
+<head>
+    <title>Polls : Voters</title>
+    <link rsf:id="scr=portal-matter"  href="https://vula.uct.ac.za/library/skin/tool_base.css" type="text/css" rel="stylesheet" media="all"/>
+    <link rsf:id="scr=portal-matter" href="https://vula.uct.ac.za/library/skin/default/tool.css" type="text/css" rel="stylesheet" media="all"/>
+    <script rsf:id="scr=portal-matter" type="text/javascript" src="/library/js/headscripts.js"></script>
+    <script type="text/javascript">includeLatestJQuery('polls');</script>
+    <script type="text/javascript">includeWebjarLibrary('jquery.tablesorter');</script>
+    <script type="text/javascript" src="/library/js/jquery/cookie/jquery.cookie.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() { 
+                $("#sortableTable").tablesorter({ 
+                        // sort on the first column
+                        sortList: [[0,0]]
+                }); 
+            $("#reset-order-link").click(function() { 
+                // set sorting column and direction, this will sort on the first column index starts at zero
+                                //Highlight effect to notify user of that action has been performed
+                                //$("#reset-order-link").parent().parent().effect("highlight", {}, 1000);
+                var sorting = [[0,0]]; 
+                // sort on the first column 
+                $("#sortableTable").trigger("sorton",[sorting]); 
+               // return false to stop default link action 
+                return false; 
+            }); 
+        });
+    </script>
+</head>
+    
+<body rsf:id="scr=sakai-body">
+    
+<div class="portletBody">
+    <h3 rsf:id="schedule-title">Jadwal Kuliah</h3>
+    <div rsf:id="message-for:*" class="alertMessage">
+        <span>Message for user here</span>
+    </div>
+    <p rsf:id="poll-size">Num votes</p>
+<!--    <table id="sortableTable" class="listHier lines nolines" border="0" cellspacing="0">
+	<caption class="skip"><span class="skip"></span>Voters</caption>
+    <thead>
+      <tr>
+        <th><a title="Waktu" href="#" rsf:id="exam-time">Waktu</a></th>
+        <th><a title="Nama MK" href="#" rsf:id="exam-mk">Nama Mata Kuliah</a></th>
+        <th><a title="TE/PR" href="#" rsf:id="exam-type">TE/PR</a></th>
+        <th><a title="Nama Dosen" href="#" rsf:id="exam-lecture">Nama Dosen</a></th>
+        <th><a title="Kelas" href="#" rsf:id="exam-class">Kelas</a></th>
+        <th><a title="Kode" href="#" rsf:id="exam-kode">Kode & Nama Ruangan</a></th>
+        <th><a title="Pengawas" href="#" rsf:id="exam-pengawas">Pengawas</a></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr rsf:id="exam-row:">
+        <td rsf:id="time-exam-schedule">Waktu</td>
+        <td rsf:id="mk-exam-schedule">Matkul</td>
+        <td rsf:id="type-exam-schedule">TE/PR</td>
+        <td rsf:id="class-exam-schedule">Kelas</td>
+        <td rsf:id="kode-exam-schedule">Kode</td>
+        <td rsf:id="pengawas-exam-schedule">Kelas</td>
+      </tr>
+    </tbody>
+    </table>-->
+    </div>
+</body>
+</html>
