@@ -1,24 +1,3 @@
-/**********************************************************************************
- * $URL: $
- * $Id:  $
- ***********************************************************************************
- *
- * Copyright (c) 2006, 2007 The Sakai Foundation
- *
- * Licensed under the Educational Community License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *       http://www.opensource.org/licenses/ECL-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- **********************************************************************************/
-
 package org.sakaiproject.poll.service.impl;
 
 import java.util.ArrayList;
@@ -35,12 +14,12 @@ import org.sakaiproject.poll.dao.PollDao;
 import org.sakaiproject.poll.logic.ExternalLogic;
 import org.sakaiproject.poll.logic.PollListManager;
 import org.sakaiproject.poll.logic.PollVoteManager;
-import org.sakaiproject.poll.model.Form;
+import org.sakaiproject.poll.model.glossary;
 import org.sakaiproject.poll.model.Option;
 import org.sakaiproject.poll.model.Poll;
 import org.sakaiproject.poll.model.Vote;
 import org.sakaiproject.poll.model.Voter;
-import org.sakaiproject.poll.model.Form;
+//import org.sakaiproject.poll.model.Mahasiswa;
 
 @Slf4j
 public class PollVoteManagerImpl implements PollVoteManager {
@@ -77,6 +56,19 @@ public class PollVoteManagerImpl implements PollVoteManager {
 	public boolean saveVote(Vote vote)  {
 		dao.save(vote);
 		log.debug(" Vote  " + vote.getId() + " successfuly saved");
+		return true;
+	}
+        
+        //modif
+//        public boolean saveMahasiswa(Mahasiswa mahasiswa)  {
+//		dao.save(mahasiswa);
+//		log.debug(" mahasiswa  " + mahasiswa.getId() + " successfuly saved");
+//		return true;
+//	}
+        
+        public boolean saveGlossary(glossary glossary)  {
+		dao.save(glossary);
+		log.debug(" Glossary  " + glossary.getId() + " successfuly saved");
 		return true;
 	}
 
@@ -160,9 +152,18 @@ public class PollVoteManagerImpl implements PollVoteManager {
             return dao.getVoterUserId(poll);
         }
         
-        public void setFormToDatabase(Form form){
-            dao.setFormToDatabase(form);
+//        modif
+        public List<glossary> getAllGlossary(){
+            return dao.getAllGlossary();
         }
+
+//        public List<Mahasiswa> getAllExample(){
+//            return dao.getAllExample();
+//        }
+        
+//        public void setFormToDatabase(Mahasiswa mahasiswa){
+//            dao.setFormToDatabase(mahasiswa);
+//        }
 
 	public boolean userHasVoted(Long pollid, String userID) {
 		Search search = new Search();

@@ -57,6 +57,7 @@ import org.sakaiproject.poll.logic.PollVoteManager;
 import org.sakaiproject.poll.model.Option;
 import org.sakaiproject.poll.model.Poll;
 import org.sakaiproject.poll.model.Vote;
+import org.sakaiproject.poll.model.glossary;
 import org.sakaiproject.poll.util.PollUtil;
 import org.sakaiproject.site.api.SiteService;
 
@@ -714,4 +715,14 @@ public class PollListManagerImpl implements PollListManager,EntityTransferrer {
 		}
 		return false;
 	}
+        
+        public boolean saveGlossary(glossary t) throws SecurityException, IllegalArgumentException {
+            if(t == null || t.getCategory()== null || t.getTerm() == null || t.getDescription() == null) {
+                throw new IllegalArgumentException("You must supply glossary data");
+            } try {
+                dao.save(t);
+            } catch (DataAccessException e) {
+                log.error
+            }
+        }
 }

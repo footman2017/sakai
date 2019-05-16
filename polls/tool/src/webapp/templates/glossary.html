@@ -1,0 +1,54 @@
+<!DOCTYPE html      PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html rsf:id="glossary-html" xmlns="http://www.w3.org/1999/xhtml" xmlns:rsf="http://ponder.org.uk/rsf">
+<head >
+<title>Glossaries</title>
+<link rsf:id="scr=portal-matter" href="https://vula.uct.ac.za/library/skin/tool_base.css" type="text/css" rel="stylesheet" media="all"/>
+<link href="https://vula.uct.ac.za/library/skin/default/tool.css" type="text/css" rel="stylesheet" media="all" rsf:id="scr=portal-matter" />
+<script  rsf:id="scr=portal-matter" type="text/javascript" src="/library/js/headscripts.js"></script>
+<script type="text/javascript">includeLatestJQuery('glossary');</script>
+<script type="text/javascript">includeWebjarLibrary('jquery.tablesorter');</script>
+<script type="text/javascript" src="../js/glossary.js"></script>
+</head>
+
+<body rsf:id="scr=sakai-body">
+<div class="portletBody">
+
+<ul rsf:id="actions:" class="navIntraTool">
+  <li><span><a href="voteAdd.html" rsf:id="actions-add">Add</a></span></li>
+  <li><span><a href="votePermissions.html" rsf:id="actions-permissions">Permissions</a></span></li>
+  <li><span><a href="glossaryShow.html" rsf:id="actions-glossary">Glossary</a></span></li> 
+</ul>
+
+	
+<h3 rsf:id="glossary-list-title">Glossary</h3>
+
+
+<div rsf:id="message-for:*" class="alertMessage">
+	<span>Message for user here</span>
+</div>
+<div class="instruction" rsf:id="no-glossary">No glossary have been created yet.</div>
+
+<table id="sortableTable" class="listHier lines nolines table table-responsive table-bordered table-striped table-hover" border="0" cellspacing="0">
+  <thead>
+    <tr> 
+      <th><a rsf:id="glossary-id-title" title="Sort by Question" href="#">ID</a></th>
+      <th><a rsf:id="glossary-term-title" title=" Sort by Opening Date" href="#">Term</a></th>
+      <th><a rsf:id="glossary-description-title" title="Sort by Closing Date" href="#">Description</a></th>
+       <th><a rsf:id="glossary-category-title" title="Sort by Closing Date" href="#"> Category</a></th> 
+    </tr>
+  </thead>
+  <tbody id="tasks:glossarylist:tbody_element">
+
+    <tr rsf:id="glossary-row:"> 
+      <td rsf:id="glossary-id">001</td>
+      <td rsf:id="glossary-term">Isi term</td>
+      <td rsf:id="glossary-description">isi deskripsi</td>
+      <td><a rsf:id="glossary-category">isi kategori</a></td>
+    </tr>
+      
+  </tbody>
+</table>
+
+</div>
+</body>
+</html>

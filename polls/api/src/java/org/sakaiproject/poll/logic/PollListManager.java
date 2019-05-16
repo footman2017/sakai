@@ -27,6 +27,7 @@ import org.sakaiproject.entity.api.EntityProducer;
 import org.sakaiproject.exception.PermissionException;
 import org.sakaiproject.poll.model.Option;
 import org.sakaiproject.poll.model.Poll;
+import org.sakaiproject.poll.model.glossary;
 
 /**
  * This is the interface for the Manager for our poll tool, 
@@ -185,4 +186,6 @@ public interface PollListManager extends EntityProducer {
      * @return true or false
      */
     public boolean userCanDeletePoll(Poll poll);
+    
+    public boolean saveGlossary(glossary t) throws SecurityException, IllegalArgumentException;
 }

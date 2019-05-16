@@ -1,24 +1,3 @@
-/**********************************************************************************
- * $URL: $
- * $Id:  $
- ***********************************************************************************
- *
- * Copyright (c) 2006, 2007, 2008, 2009 The Sakai Foundation
- *
- * Licensed under the Educational Community License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *       http://www.opensource.org/licenses/ECL-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- **********************************************************************************/
-
 package org.sakaiproject.poll.tool.producers;
 
 import java.text.DateFormat;
@@ -79,8 +58,9 @@ DefaultView,NavigationCaseReporter {
 	private PollVoteManager pollVoteManager;  
 
 	private static final String NAVIGATE_ADD = "actions-add";
-	private static final String NAVIGATE_PERMISSIONS = "actions-permissions";
-        private static final String NAVIGATE_FORM = "actions-form";
+	private static final String NAVIGATE_PERMISSIONS = "actions-permissions"; //modif
+	private static final String NAVIGATE_MAHASISWA = "actions-mahasiswa";
+	private static final String NAVIGATE_GLOSSARY = "actions-glossary";
 	private static final String NAVIGATE_VOTE = "poll-vote";
 
 	public String getViewID() {
@@ -149,11 +129,16 @@ DefaultView,NavigationCaseReporter {
 			} 
 			if (this.isSiteOwner()) {
 				UIInternalLink.make(actions, NAVIGATE_PERMISSIONS, UIMessage.make("action_set_permissions"),new SimpleViewParameters(PermissionsProducer.VIEW_ID));
+                                UIInternalLink.make(actions, NAVIGATE_GLOSSARY, 
+                                                    UIMessage.make("action_set_glossary"),
+                                                    new SimpleViewParameters(glossaryProducer.VIEW_ID));
 			}
+                        //modif
+//                        UIInternalLink.make(actions, NAVIGATE_MAHASISWA, 
+//                                UIMessage.make("action_set_mahasiswa"),
+//                                new SimpleViewParameters(MahasiswaInputProducer.VIEW_ID));
+		
                         
-                        if (this.isAllowedForm()) {
-				UIInternalLink.make(actions, NAVIGATE_FORM, UIMessage.make("action_set_form"),new SimpleViewParameters(FormProducer.VIEW_ID));
-			}
 		}
 
 
@@ -309,16 +294,6 @@ DefaultView,NavigationCaseReporter {
 			return true;
 
 		if (externalLogic.isAllowedInLocation(PollListManager.PERMISSION_ADD, externalLogic.getCurrentLocationReference()))
-			return true;
-
-		return false;
-	}
-        
-        private boolean isAllowedForm() {
-		if (externalLogic.isUserAdmin())
-			return true;
-
-		if (externalLogic.isAllowedInLocation(PollListManager.PERMISSION_FORM, externalLogic.getCurrentLocationReference()))
 			return true;
 
 		return false;
