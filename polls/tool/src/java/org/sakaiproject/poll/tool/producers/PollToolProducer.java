@@ -81,6 +81,7 @@ DefaultView,NavigationCaseReporter {
 	private static final String NAVIGATE_ADD = "actions-add";
 	private static final String NAVIGATE_PERMISSIONS = "actions-permissions";
 	private static final String NAVIGATE_VOTE = "poll-vote";
+        private static final String NAVIGATE_LISTDOSEN = "actions-listDosen";
 
 	public String getViewID() {
 		return VIEW_ID;
@@ -148,6 +149,7 @@ DefaultView,NavigationCaseReporter {
 			} 
 			if (this.isSiteOwner()) {
 				UIInternalLink.make(actions, NAVIGATE_PERMISSIONS, UIMessage.make("action_set_permissions"),new SimpleViewParameters(PermissionsProducer.VIEW_ID));
+                                UIInternalLink.make(actions, NAVIGATE_LISTDOSEN, UIMessage.make("action_set_listdosen"),new SimpleViewParameters(ListDosenProducer.VIEW_ID));
 			} 
 		}
 
