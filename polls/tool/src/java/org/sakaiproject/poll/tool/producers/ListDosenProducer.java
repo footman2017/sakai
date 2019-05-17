@@ -123,6 +123,9 @@ public class ListDosenProducer implements ViewComponentProducer,NavigationCaseRe
 
 		UIOutput.make(tofill, "listDosen-html", null).decorate(new UIFreeAttributeDecorator(langMap));
 		UIMessage.make(tofill,"listDosen-title","listDosen_title");
+                
+                UILink dosen = UILink.make(tofill,"dosen-title",messageLocator.getMessage("dosen_title"), "#");
+                UILink matkul = UILink.make(tofill,"matkul-title",messageLocator.getMessage("matkul_title"), "#");
 //                int totalVoter = pollVoteManager.getVotersForPoll(poll);
 //                List<String> vfname = pollVoteManager.getVoterName(poll);
 //                List<String> vlname = pollVoteManager.getVoterLName(poll);
