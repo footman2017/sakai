@@ -122,7 +122,7 @@ public class ListDosenProducer implements ViewComponentProducer,NavigationCaseRe
                 langMap.put("xml:lang", locale);
 
 		UIOutput.make(tofill, "listDosen-html", null).decorate(new UIFreeAttributeDecorator(langMap));
-//		
+		UIMessage.make(tofill,"listDosen-title","listDosen_title");
 //                int totalVoter = pollVoteManager.getVotersForPoll(poll);
 //                List<String> vfname = pollVoteManager.getVoterName(poll);
 //                List<String> vlname = pollVoteManager.getVoterLName(poll);
