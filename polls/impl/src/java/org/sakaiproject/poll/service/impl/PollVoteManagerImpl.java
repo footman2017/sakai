@@ -276,4 +276,8 @@ public class PollVoteManagerImpl implements PollVoteManager {
             deleteVote(vote);
         }
     }
+
+    public List<Object[]> getJadwalKuliah(){
+    	return dao.getJadwalKuliah();
+    }
 }

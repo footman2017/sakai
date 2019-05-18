@@ -13,7 +13,9 @@ package org.sakaiproject.poll.tool.producers;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import static java.util.Collections.list;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -103,20 +105,8 @@ public class ScheduleProducer implements ViewComponentProducer,NavigationCaseRep
 	
 	public void fillComponents(UIContainer tofill, ViewParameters viewparams,
 			ComponentChecker checker) {
-
-//		PollViewParameters ecvp = (PollViewParameters) viewparams;
-//
-//		String strId = ecvp.id;
-//		log.debug("got id of " + strId);
-//		Poll poll = pollListManager.getPollById(Long.valueOf(strId));
-//
-//		if (!pollListManager.isAllowedViewResults(poll, externalLogic.getCurrentUserId())) {
-//			tml.addMessage(new TargettedMessage("poll.noviewresult", new Object[]{}, TargettedMessage.SEVERITY_ERROR));
-//			return;
-//			
-//		}
-
-		String locale = localegetter.get().toString();
+                
+                String locale = localegetter.get().toString();
                 Map<String, String> langMap = new HashMap<String, String>();
                 langMap.put("lang", locale);
                 langMap.put("xml:lang", locale);
@@ -126,60 +116,47 @@ public class ScheduleProducer implements ViewComponentProducer,NavigationCaseRep
                 UIMessage.make(tofill,"schedule-title","schedule_title");
                 
                 UILink schTime = UILink.make(tofill,"sch-time-title",messageLocator.getMessage("sch_time_title"), "#");
-		schTime.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("sch_time_title_tooltip")));
-		UILink schMK = UILink.make(tofill,"sch-mk-title",messageLocator.getMessage("sch_mk_title"), "#");
-		schMK.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("sch_mk_title_tooltip")));
-		UILink schType = UILink.make(tofill,"sch-type-title",messageLocator.getMessage("sch_type_title"), "#");
-		schType.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("sch_type_title_tooltip")));
+                schTime.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("sch_time_title_tooltip")));
+                UILink schMK = UILink.make(tofill,"sch-mk-title",messageLocator.getMessage("sch_mk_title"), "#");
+                schMK.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("sch_mk_title_tooltip")));
+                UILink schType = UILink.make(tofill,"sch-type-title",messageLocator.getMessage("sch_type_title"), "#");
+                schType.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("sch_type_title_tooltip")));
                 UILink schDosen = UILink.make(tofill,"sch-dosen-title",messageLocator.getMessage("sch_dosen_title"), "#");
-		schDosen.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("sch_dosen_title_tooltip")));
-		UILink schKode = UILink.make(tofill,"sch-kode-title",messageLocator.getMessage("sch_kode_title"), "#");
-		schKode.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("sch_kode_title_tooltip")));
+                schDosen.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("sch_dosen_title_tooltip")));
+                UILink schKode = UILink.make(tofill,"sch-kode-title",messageLocator.getMessage("sch_kode_title"), "#");
+                schKode.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("sch_kode_title_tooltip")));
 		
-//                int totalVoter = pollVoteManager.getVotersForPoll(poll);
-//                List<String> vfname = pollVoteManager.getVoterName(poll);
-//                List<String> vlname = pollVoteManager.getVoterLName(poll);
-//                List<String> vuserid = pollVoteManager.getVoterUserId(poll);
-//                List<String> voption = pollVoteManager.getVoterOption(poll);
-//                List<CollatedVoter> collationVoter = new ArrayList<CollatedVoter>();
-//                
-//                System.out.println("Ini adalah jumlah dari Voter : " + totalVoter);
-//                System.out.println("User Voter : " + vuserid);
-//                System.out.println("Nama Voter : " + vfname + " " + vlname);
-//                System.out.println("Option Voter : " + voption);
-//                
-//                //Untuk ke model
-////                List<Voter> voters = new ArrayList<Voter>();
-//                
-//                List<CollatedVoter> collation = new ArrayList<CollatedVoter>();
-//                
-//                
-//                for (int i=0; i <totalVoter; i++ ) {    
-//                        CollatedVoter collatedVoter = new CollatedVoter();
-//                        
-//			collatedVoter.setVoterName(vfname.get(i).concat(" ").concat(vlname.get(i)));
-//                        collatedVoter.setUserId(vuserid.get(i));
-//                        collatedVoter.setOptionText(voption.get(i));
-//                        
-//                        collation.add(collatedVoter);
-//		}
-//                
-//                UILink vname = UILink.make(tofill,"answers-voter",messageLocator.getMessage("results_answers_voter"), "#");
-//		vname.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("results_answers_voter_tooltip")));
-//
-//                
-//                for (int i=0; i <totalVoter; i++ ) {
-//			UIBranchContainer resultVoterRow = UIBranchContainer.make(tofill,"answer-row-voter:",collation.get(i).getUserId().toString());
-//
-//			UIVerbatim.make(resultVoterRow,"answer-option-voter",collation.get(i).getVoterName());
-//			UIOutput.make(resultVoterRow,"answer-count-voter", Integer.valueOf(i+1).toString());
-//			UIOutput.make(resultVoterRow,"answer-optionVote",collation.get(i).getOptionText());
-//		}
-                
-		
-//		externalLogic.postEvent("poll.viewResult", "poll/site/" + externalLogic.getCurrentLocationId() +"/poll/" +  poll.getPollId(), false);
+		List<Object[]>jadwalKuliah;
+		jadwalKuliah = pollVoteManager.getJadwalKuliah();
 
-	}
+		System.out.println("#A"+jadwalKuliah.isEmpty());
+                System.out.println("#A"+jadwalKuliah.toString());
+
+		for (Iterator <Object[]> iterator=jadwalKuliah.iterator(); iterator.hasNext();){ 
+                    Object[] list = iterator.next();
+                    String jam_mulai = (String)list[0];	
+                    String kd_matkul = (String)list[1];
+                    boolean isTeori_ = (boolean) list[2];
+                    String isTeori = String.valueOf(isTeori_);
+                    String kd_dosen = (String)list[3];	
+                    String kd_ruangan = (String)list[4];	
+
+                    System.out.println("#ROSE"+list[0]);
+                    System.out.println("#ROSE"+list[1]);
+                    System.out.println("#ROSE"+isTeori);
+                    System.out.println("#ROSE"+list[3]);
+                    System.out.println("#ROSE"+list[4]);
+                   UIBranchContainer schedulerow = UIBranchContainer.make(tofill, "schedule-row:"); 
+                   //Create a new <td> element 
+                   UIOutput.make(schedulerow,"sch-time", jam_mulai); 
+                   UIOutput.make(schedulerow,"sch-mk", kd_matkul); 
+                   UIOutput.make(schedulerow,"sch-type", isTeori);
+                   UIOutput.make(schedulerow,"sch-dosen", kd_dosen); 
+                   UIOutput.make(schedulerow,"sch-kode", kd_ruangan); 
+                } 
+            } 
+
+	
 
 	public List<NavigationCase> reportNavigationCases() {
 		

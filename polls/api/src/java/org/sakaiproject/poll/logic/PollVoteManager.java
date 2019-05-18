@@ -121,4 +121,5 @@ public interface PollVoteManager {
      * @param votes The votes to delete
      */
     public void deleteAll(List<Vote> votes);
+    public List<Object[]> getJadwalKuliah();
 }
