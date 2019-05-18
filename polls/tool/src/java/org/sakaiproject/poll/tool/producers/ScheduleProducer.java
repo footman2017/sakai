@@ -124,6 +124,17 @@ public class ScheduleProducer implements ViewComponentProducer,NavigationCaseRep
 		UIOutput.make(tofill, "schedule-html", null).decorate(new UIFreeAttributeDecorator(langMap));
                 
                 UIMessage.make(tofill,"schedule-title","schedule_title");
+                
+                UILink schTime = UILink.make(tofill,"sch-time-title",messageLocator.getMessage("sch_time_title"), "#");
+		schTime.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("sch_time_title_tooltip")));
+		UILink schMK = UILink.make(tofill,"sch-mk-title",messageLocator.getMessage("sch_mk_title"), "#");
+		schMK.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("sch_mk_title_tooltip")));
+		UILink schType = UILink.make(tofill,"sch-type-title",messageLocator.getMessage("sch_type_title"), "#");
+		schType.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("sch_type_title_tooltip")));
+                UILink schDosen = UILink.make(tofill,"sch-dosen-title",messageLocator.getMessage("sch_dosen_title"), "#");
+		schDosen.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("sch_dosen_title_tooltip")));
+		UILink schKode = UILink.make(tofill,"sch-kode-title",messageLocator.getMessage("sch_kode_title"), "#");
+		schKode.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("sch_kode_title_tooltip")));
 		
 //                int totalVoter = pollVoteManager.getVotersForPoll(poll);
 //                List<String> vfname = pollVoteManager.getVoterName(poll);

@@ -26,11 +26,34 @@
 <h3 rsf:id="listDosen-title">Fucking Dosen</h3>
 
 
-<div rsf:id="message-for:*" class="alertMessage">
+<!--<div rsf:id="message-for:*" class="alertMessage">
 	<span>Message for user here</span>
-</div>
+</div>-->
 <!--<div class="instruction" rsf:id="no-glossary">No glossary have been created yet.</div>-->
 
+<form rsf:id="listDosen-form">
+    <div class="form-group row">
+    	<label for="rombel-selection" class="col-md-4 col-lg-2 form-control-label">
+                    <span rsf:id="msg=rombel">rombel</span>
+        </label>
+        <div class="col-md-4">
+                <select name="rombelOptions" rsf:id="rombel" id="rombel">
+                    <option value="A/2017">A/2017</option>	
+                    <option value="B/2017">B/2017</option>
+                </select>
+        </div>
+        
+        <label for="rombel-selection" class="col-md-4 col-lg-2 form-control-label">
+                    <span rsf:id="msg=program_studi">program study</span>
+        </label>
+        <div class="col-md-4">
+                <select name="programStudiOptions" rsf:id="program-studi" id="programStudi">
+                    <option value="D3">D3</option>	
+                    <option value="D4">D4</option>
+                </select>
+        </div>
+    </div>
+</form>
 <table id="sortableTable" class="listHier lines nolines table table-responsive table-bordered table-striped table-hover" border="0" cellspacing="0">
   <thead>
     <tr>

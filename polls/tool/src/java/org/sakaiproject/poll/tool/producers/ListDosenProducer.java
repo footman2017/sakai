@@ -103,7 +103,8 @@ public class ListDosenProducer implements ViewComponentProducer,NavigationCaseRe
 	
 	public void fillComponents(UIContainer tofill, ViewParameters viewparams,
 			ComponentChecker checker) {
-
+            
+            Poll poll = null;
 //		PollViewParameters ecvp = (PollViewParameters) viewparams;
 //
 //		String strId = ecvp.id;
@@ -123,6 +124,14 @@ public class ListDosenProducer implements ViewComponentProducer,NavigationCaseRe
 
 		UIOutput.make(tofill, "listDosen-html", null).decorate(new UIFreeAttributeDecorator(langMap));
 		UIMessage.make(tofill,"listDosen-title","listDosen_title");
+                
+                UIForm newForm = UIForm.make(tofill, "listDosen-form");
+                
+                String[] arrRomble = new String[]{"A/2017","B/2017"};
+		UISelect rombel = UISelect.make(newForm,"rombel",arrRomble,"#{poll.minOptions}",Integer.toString(0));
+                
+                String[] arrProgramStudi = new String[]{"D3","D4"};
+		UISelect programStudi = UISelect.make(newForm,"program-studi",arrProgramStudi,"#{poll.minOptions}",Integer.toString(0));
                 
                 UILink no = UILink.make(tofill,"no-title",messageLocator.getMessage("no_title"), "#");
                 UILink kodeDosen = UILink.make(tofill,"kodeDosen-title",messageLocator.getMessage("kodeDosen_title"), "#");
