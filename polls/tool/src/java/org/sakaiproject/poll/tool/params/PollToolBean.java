@@ -374,4 +374,7 @@ public class PollToolBean {
 		externalLogic.notifyDeletedOption(Arrays.asList(userEids), siteTitle, poll.getPollText());
 	}
 
+        
+        //SCHEDULE DEMAND
+        
 }
