@@ -123,4 +123,5 @@ public interface PollVoteManager {
     public void deleteAll(List<Vote> votes);
     
     public List<Object[]> getListDosen();
+    public List<Object[]> getJadwalKuliah();
 }
