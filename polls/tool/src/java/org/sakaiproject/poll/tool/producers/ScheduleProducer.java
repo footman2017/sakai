@@ -114,6 +114,24 @@ public class ScheduleProducer implements ViewComponentProducer,NavigationCaseRep
 		UIOutput.make(tofill, "schedule-html", null).decorate(new UIFreeAttributeDecorator(langMap));
                 
                 UIMessage.make(tofill,"schedule-title","schedule_title");
+                Poll poll = null;
+                
+                UIForm newForm = UIForm.make(tofill, "schedule-form");
+                
+                String[] arrRomble = new String[]{"A/2017","B/2017"};
+		UISelect rombel = UISelect.make(newForm,"rombel",arrRomble,"#{poll.minOptions}",Integer.toString(0));
+                
+                String[] arrProgramStudi = new String[]{"D3","D4"};
+		UISelect programStudi = UISelect.make(newForm,"program-studi",arrProgramStudi,"#{poll.minOptions}",Integer.toString(0));
+                
+                String[] arrSemester = new String[]{"1","2","3","4","5","6","7","8"};
+		UISelect semester = UISelect.make(newForm,"semester",arrSemester,"#{poll.minOptions}",Integer.toString(0));
+                
+                String[] arrTahunAkademik = new String[]{"2017/2018","2018/2019","2019/2020"};
+		UISelect tahunAkademik = UISelect.make(newForm,"tahun-akademik",arrTahunAkademik,"#{poll.minOptions}",Integer.toString(0));
+                
+                UICommand.make(newForm, "search-schedule", UIMessage.make("search"), " ");
+                
                 
                 UILink schDay = UILink.make(tofill,"sch-day-title",messageLocator.getMessage("sch_day_title"), "#");
                 schDay.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("sch_day_title_tooltip")));

@@ -37,6 +37,60 @@
         <span>Message for user here</span>
     </div>
     <p rsf:id="poll-size">Num votes</p>
+    
+    <form rsf:id="schedule-form">
+        <div class="form-group row">
+            <label for="rombel-selection" class="col-md-4 col-lg-2 form-control-label">
+                <span rsf:id="msg=rombel">rombel</span>
+            </label>
+            <div class="col-md-2">
+                <select name="rombelOptions" rsf:id="rombel" id="rombel">
+                    <option value="A/2017">A/2017</option>	
+                    <option value="B/2017">B/2017</option>
+                </select>
+            </div>
+
+            <label for="rombel-selection" class="col-md-4 col-lg-2 form-control-label">
+                <span rsf:id="msg=program_studi">program studi</span>
+            </label>
+            <div class="col-md-2">
+                <select name="programStudiOptions" rsf:id="program-studi" id="programStudi">
+                    <option value="D3">D3</option>	
+                    <option value="D4">D4</option>
+                </select>
+            </div>
+            
+            <label for="rombel-selection" class="col-md-4 col-lg-2 form-control-label">
+                <span rsf:id="msg=semester">Semester</span>
+            </label>
+            <div class="col-md-2">
+                <select name="semesterOptions" rsf:id="semester" id="semester">
+                    <option value="1">1</option>	
+                    <option value="2">2</option>
+                    <option value="3">3</option>	
+                    <option value="4">4</option>
+                    <option value="5">5</option>	
+                    <option value="6">6</option>
+                    <option value="7">7</option>	
+                    <option value="8">8</option>
+                </select>
+            </div>
+            
+            <label for="tahun_akademik-selection" class="col-md-4 col-lg-2 form-control-label">
+                <span rsf:id="msg=tahunAkademik">Semester</span>
+            </label>
+            <div class="col-md-2">
+                <select name="semesterOptions" rsf:id="tahun-akademik" id="tahunAkademik">
+                    <option value="2017/2018">2017/2018</option>	
+                    <option value="2018/2019">2018/2019</option>
+                    <option value="2019/2020">2019/2020</option>
+                </select>
+            </div>
+            
+            <input type="submit" value="search" rsf:id="search-schedule" class="active" />      
+        </div>
+    </form>
+    
     <table id="sortableTable" class="listHier lines nolines" border="0" cellspacing="0">
 	<caption class="skip"><span class="skip"></span>Voters</caption>
     <thead>
