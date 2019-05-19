@@ -277,7 +277,7 @@ public class PollVoteManagerImpl implements PollVoteManager {
         }
     }
 
-    public List<Object[]> getJadwalKuliah(){
-    	return dao.getJadwalKuliah();
+    public List<Object[]> getJadwalKuliah(String rombel, String prodi, String tahun_akademik, String semester){
+    	return dao.getJadwalKuliah(rombel, prodi, tahun_akademik, semester);
     }
 }

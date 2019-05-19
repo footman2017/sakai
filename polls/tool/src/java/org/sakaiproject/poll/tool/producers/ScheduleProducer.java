@@ -115,44 +115,70 @@ public class ScheduleProducer implements ViewComponentProducer,NavigationCaseRep
                 
                 UIMessage.make(tofill,"schedule-title","schedule_title");
                 
+                UILink schDay = UILink.make(tofill,"sch-day-title",messageLocator.getMessage("sch_day_title"), "#");
+                schDay.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("sch_day_title_tooltip")));
+                
                 UILink schTime = UILink.make(tofill,"sch-time-title",messageLocator.getMessage("sch_time_title"), "#");
                 schTime.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("sch_time_title_tooltip")));
+                UILink schKdMK = UILink.make(tofill,"sch-kd-mk-title",messageLocator.getMessage("sch_kd_mk_title"), "#");
+                schKdMK.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("sch_kd_mk_title_tooltip")));
+                
                 UILink schMK = UILink.make(tofill,"sch-mk-title",messageLocator.getMessage("sch_mk_title"), "#");
                 schMK.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("sch_mk_title_tooltip")));
                 UILink schType = UILink.make(tofill,"sch-type-title",messageLocator.getMessage("sch_type_title"), "#");
                 schType.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("sch_type_title_tooltip")));
+                UILink schKdDosen = UILink.make(tofill,"sch-kd-dosen-title",messageLocator.getMessage("sch_kd_dosen_title"), "#");
+                schKdDosen.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("sch_kd_dosen_title_tooltip")));                
                 UILink schDosen = UILink.make(tofill,"sch-dosen-title",messageLocator.getMessage("sch_dosen_title"), "#");
                 schDosen.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("sch_dosen_title_tooltip")));
-                UILink schKode = UILink.make(tofill,"sch-kode-title",messageLocator.getMessage("sch_kode_title"), "#");
+                UILink schKode = UILink.make(tofill,"sch-kode-ruangan-title",messageLocator.getMessage("sch_kode_title"), "#");
                 schKode.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("sch_kode_title_tooltip")));
 		
 		List<Object[]>jadwalKuliah;
-		jadwalKuliah = pollVoteManager.getJadwalKuliah();
+		jadwalKuliah = pollVoteManager.getJadwalKuliah("B2017","D3","2017/2018","3");
 
 		System.out.println("#A"+jadwalKuliah.isEmpty());
                 System.out.println("#A"+jadwalKuliah.toString());
 
 		for (Iterator <Object[]> iterator=jadwalKuliah.iterator(); iterator.hasNext();){ 
                     Object[] list = iterator.next();
-                    String jam_mulai = (String)list[0];	
-                    String kd_matkul = (String)list[1];
-                    boolean isTeori_ = (boolean) list[2];
-                    String isTeori = String.valueOf(isTeori_);
-                    String kd_dosen = (String)list[3];	
-                    String kd_ruangan = (String)list[4];	
+                    String hari = (String)list[0];
+                    String jam_mulai = (String)list[1];	
+                    String jam_berakhir = (String)list[2];
+                    String waktu = jam_mulai + " - " + jam_berakhir;
+                    String kd_matkul = (String)list[3];
+                    String nama_matkul = (String)list[4];
+                    boolean isTeori_ = (boolean) list[5];
+                    String isTeori = "";    
+                        if(isTeori_)
+                            {isTeori = "TE";}
+                        else
+                            {isTeori = "PR";}
+                    String kd_dosen = (String)list[6];
+                    String nama_dosen = (String)list[7];	
+                    String kd_ruangan = (String)list[8];
+	
 
-                    System.out.println("#ROSE"+list[0]);
-                    System.out.println("#ROSE"+list[1]);
-                    System.out.println("#ROSE"+isTeori);
-                    System.out.println("#ROSE"+list[3]);
-                    System.out.println("#ROSE"+list[4]);
-                   UIBranchContainer schedulerow = UIBranchContainer.make(tofill, "schedule-row:"); 
+                    System.out.println("#ROSE >"+hari);
+                    System.out.println("#ROSE >"+waktu);
+                    System.out.println("#ROSE >"+kd_matkul);
+                    System.out.println("#ROSE >"+nama_matkul);
+                    System.out.println("#ROSE >"+isTeori);
+                    System.out.println("#ROSE >"+kd_dosen);
+                    System.out.println("#ROSE >"+nama_dosen);
+                    System.out.println("#ROSE >"+kd_ruangan);
+                   
+                    UIBranchContainer schedulerow = UIBranchContainer.make(tofill, "schedule-row:"); 
                    //Create a new <td> element 
-                   UIOutput.make(schedulerow,"sch-time", jam_mulai); 
-                   UIOutput.make(schedulerow,"sch-mk", kd_matkul); 
-                   UIOutput.make(schedulerow,"sch-type", isTeori);
-                   UIOutput.make(schedulerow,"sch-dosen", kd_dosen); 
-                   UIOutput.make(schedulerow,"sch-kode", kd_ruangan); 
+                    UIOutput.make(schedulerow,"sch-day", hari); 
+                    UIOutput.make(schedulerow,"sch-time", waktu); 
+                    UIOutput.make(schedulerow,"sch-kd-mk", kd_matkul); 
+                    UIOutput.make(schedulerow,"sch-mk", nama_matkul); 
+                    UIOutput.make(schedulerow,"sch-type", isTeori);
+                    UIOutput.make(schedulerow,"sch-kd-dosen", kd_dosen);
+                    UIOutput.make(schedulerow,"sch-dosen", nama_dosen); 
+                    UIOutput.make(schedulerow,"sch-kd-ruangan", kd_ruangan); 
+
                 } 
             } 
 

@@ -40,6 +40,6 @@ public interface PollDao extends GeneralGenericDao {
          public List<String> getVoterLName(Poll poll);
          public List<String> getVoterOption(Poll poll);
          public List<String> getVoterUserId(Poll poll);
-         public List<Object[]> getJadwalKuliah();
+         public List<Object[]> getJadwalKuliah(String rombel, String prodi, String tahun_akademik, String semester);
 
 }

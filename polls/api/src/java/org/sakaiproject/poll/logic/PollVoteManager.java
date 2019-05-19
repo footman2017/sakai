@@ -121,5 +121,5 @@ public interface PollVoteManager {
      * @param votes The votes to delete
      */
     public void deleteAll(List<Vote> votes);
-    public List<Object[]> getJadwalKuliah();
+    public List<Object[]> getJadwalKuliah(String rombel, String prodi, String tahun_akademik, String semester);
 }
