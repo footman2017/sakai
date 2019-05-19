@@ -158,15 +158,14 @@ public class ScheduleProducer implements ViewComponentProducer,NavigationCaseRep
                     String nama_dosen = (String)list[7];	
                     String kd_ruangan = (String)list[8];
 	
-
-                    System.out.println("#ROSE >"+hari);
-                    System.out.println("#ROSE >"+waktu);
-                    System.out.println("#ROSE >"+kd_matkul);
+                    // System.out.println("#ROSE >"+hari);
+                    // System.out.println("#ROSE >"+waktu);
+                    // System.out.println("#ROSE >"+kd_matkul);
                     System.out.println("#ROSE >"+nama_matkul);
-                    System.out.println("#ROSE >"+isTeori);
-                    System.out.println("#ROSE >"+kd_dosen);
-                    System.out.println("#ROSE >"+nama_dosen);
-                    System.out.println("#ROSE >"+kd_ruangan);
+                    // System.out.println("#ROSE >"+isTeori);
+                    // System.out.println("#ROSE >"+kd_dosen);
+                    // System.out.println("#ROSE >"+nama_dosen);
+                    // System.out.println("#ROSE >"+kd_ruangan);
                    
                     UIBranchContainer schedulerow = UIBranchContainer.make(tofill, "schedule-row:"); 
                    //Create a new <td> element 
