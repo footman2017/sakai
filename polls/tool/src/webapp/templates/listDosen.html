@@ -36,7 +36,7 @@
     	<label for="rombel-selection" class="col-md-4 col-lg-2 form-control-label">
                     <span rsf:id="msg=rombel">rombel</span>
         </label>
-        <div class="col-md-4">
+        <div class="col-md-2">
                 <select name="rombelOptions" rsf:id="rombel" id="rombel">
                     <option value="A/2017">A/2017</option>	
                     <option value="B/2017">B/2017</option>
@@ -46,33 +46,34 @@
         <label for="rombel-selection" class="col-md-4 col-lg-2 form-control-label">
                     <span rsf:id="msg=program_studi">program study</span>
         </label>
-        <div class="col-md-4">
+        <div class="col-md-2">
                 <select name="programStudiOptions" rsf:id="program-studi" id="programStudi">
                     <option value="D3">D3</option>	
                     <option value="D4">D4</option>
                 </select>
         </div>
+        <input type="submit" value="search" rsf:id="search-dosen" class="active" />      
     </div>
 </form>
+
 <table id="sortableTable" class="listHier lines nolines table table-responsive table-bordered table-striped table-hover" border="0" cellspacing="0">
   <thead>
     <tr>
-      <th><a rsf:id="no-title" title="Sort by Question" href="#">No</a></th>
+      <!--<th><a rsf:id="no-title" title="Sort by Question" href="#">No</a></th>-->
       <th><a rsf:id="kodeDosen-title" title="Sort by Question" href="#">Kode Dosen</a></th>
       <th><a rsf:id="namaDosen-title" title="Sort by Question" href="#">Nama Dosen</a></th>
       <th><a rsf:id="matkul-title" title=" Sort by Opening Date" href="#">Mata Kuliah</a></th>
     </tr>
   </thead>
-  <!--<tbody id="tasks:dosenlist:tbody_element">-->
+  <tbody id="tasks:dosenlist:tbody_element">
 
-<!--    <tr rsf:id="dosen-row:"> 
-      <td rsf:id="answer-option-voter">Dosen 1</td>
-      <td rsf:id="answer-optionVote">Matkul 1</td>
-      <td rsf:id="glossary-description">closing date</td>
-      <td><a rsf:id="glossary-category">Results</a></td>
-    </tr>-->
+    <tr rsf:id="dosen-row:">
+      <td rsf:id="dosenList-kd">001</td>
+      <td rsf:id="dosenList-nama">dosen 1</td>
+      <td rsf:id="dosenList-matkul">matkul 1</td>
+    </tr>
       
-  <!--</tbody>-->
+  </tbody>
 </table>
 
 </div>

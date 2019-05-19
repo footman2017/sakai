@@ -276,4 +276,12 @@ public class PollVoteManagerImpl implements PollVoteManager {
             deleteVote(vote);
         }
     }
+    
+    
+    
+    
+    
+    public List<Object[]> getListDosen(){
+    	return dao.getListDosen();
+    }
 }
