@@ -113,6 +113,19 @@
 			ref="org.sakaiproject.tool.poll.api.PollVoteManager" />
 		<property name="externalLogic" ref="org.sakaiproject.poll.logic.ExternalLogic"/>
 	</bean>
+        
+         <bean id="listDosenProducer"
+		class="org.sakaiproject.poll.tool.producers.ListDosenProducer">
+		<property name="pollListManager"
+			ref="org.sakaiproject.poll.logic.PollListManager" />
+		<property name="localeGetter" ref="requestLocaleProxy" />
+		<property name="messageLocator" ref="messageLocator" />
+		<property name="pollVoteManager"
+			ref="org.sakaiproject.tool.poll.api.PollVoteManager" />
+		<property name="targettedMessageList"
+			ref="targettedMessageList" />
+		<property name="externalLogic" ref="org.sakaiproject.poll.logic.ExternalLogic"/>
+	</bean>
 
 
 	<bean id="pollVoteProducer"
@@ -142,6 +155,30 @@
         
         <bean id="viewVoterProducer"
 		class="org.sakaiproject.poll.tool.producers.ViewVoterProducer">
+		<property name="messageLocator" ref="messageLocator" />
+		<property name="pollListManager"
+			ref="org.sakaiproject.poll.logic.PollListManager" />
+                <property name="localeGetter" ref="requestLocaleProxy" />
+		<property name="pollVoteManager"
+			ref="org.sakaiproject.tool.poll.api.PollVoteManager" />
+		<property name="externalLogic" ref="org.sakaiproject.poll.logic.ExternalLogic"/>
+		<property name="targettedMessageList" ref="targettedMessageList" />
+	</bean>
+        
+        <bean id="examScheduleProducer"
+		class="org.sakaiproject.poll.tool.producers.ExamScheduleProducer">
+		<property name="messageLocator" ref="messageLocator" />
+		<property name="pollListManager"
+			ref="org.sakaiproject.poll.logic.PollListManager" />
+                <property name="localeGetter" ref="requestLocaleProxy" />
+		<property name="pollVoteManager"
+			ref="org.sakaiproject.tool.poll.api.PollVoteManager" />
+		<property name="externalLogic" ref="org.sakaiproject.poll.logic.ExternalLogic"/>
+		<property name="targettedMessageList" ref="targettedMessageList" />
+	</bean>
+        
+        <bean id="ScheduleProducer"
+		class="org.sakaiproject.poll.tool.producers.ScheduleProducer">
 		<property name="messageLocator" ref="messageLocator" />
 		<property name="pollListManager"
 			ref="org.sakaiproject.poll.logic.PollListManager" />

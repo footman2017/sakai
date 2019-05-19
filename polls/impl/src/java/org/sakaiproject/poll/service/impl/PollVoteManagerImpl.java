@@ -276,4 +276,13 @@ public class PollVoteManagerImpl implements PollVoteManager {
             deleteVote(vote);
         }
     }
+
+    public List<Object[]> getJadwalKuliah(String rombel, String prodi, String tahun_akademik, String semester){
+    	return dao.getJadwalKuliah(rombel, prodi, tahun_akademik, semester);
+    }
+    
+    public List<Object[]> getListDosen(){
+    	return dao.getListDosen();
+    }
+
 }

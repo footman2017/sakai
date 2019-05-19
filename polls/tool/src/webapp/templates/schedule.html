@@ -1,0 +1,123 @@
+<!DOCTYPE html      PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html rsf:id="schedule-html" xmlns="http://www.w3.org/1999/xhtml" xmlns:rsf="http://ponder.org.uk/rsf">
+<head>
+    <title>Polls : Voters</title>
+    <link rsf:id="scr=portal-matter"  href="https://vula.uct.ac.za/library/skin/tool_base.css" type="text/css" rel="stylesheet" media="all"/>
+    <link rsf:id="scr=portal-matter" href="https://vula.uct.ac.za/library/skin/default/tool.css" type="text/css" rel="stylesheet" media="all"/>
+    <script rsf:id="scr=portal-matter" type="text/javascript" src="/library/js/headscripts.js"></script>
+    <script type="text/javascript">includeLatestJQuery('polls');</script>
+    <script type="text/javascript">includeWebjarLibrary('jquery.tablesorter');</script>
+    <script type="text/javascript" src="/library/js/jquery/cookie/jquery.cookie.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() { 
+                $("#sortableTable").tablesorter({ 
+                        // sort on the first column
+                        sortList: [[0,0]]
+                }); 
+            $("#reset-order-link").click(function() { 
+                // set sorting column and direction, this will sort on the first column index starts at zero
+                                //Highlight effect to notify user of that action has been performed
+                                //$("#reset-order-link").parent().parent().effect("highlight", {}, 1000);
+                var sorting = [[0,0]]; 
+                // sort on the first column 
+                $("#sortableTable").trigger("sorton",[sorting]); 
+               // return false to stop default link action 
+                return false; 
+            }); 
+        });
+    </script>
+</head>
+    
+<body rsf:id="scr=sakai-body">
+    
+<div class="portletBody">
+    <h3 rsf:id="schedule-title">Jadwal Kuliah</h3>
+    <div rsf:id="message-for:*" class="alertMessage">
+        <span>Message for user here</span>
+    </div>
+    <p rsf:id="poll-size">Num votes</p>
+    
+    <form rsf:id="schedule-form">
+        <div class="form-group row">
+            <label for="rombel-selection" class="col-md-4 col-lg-2 form-control-label">
+                <span rsf:id="msg=rombel">rombel</span>
+            </label>
+            <div class="col-md-2">
+                <select name="rombelOptions" rsf:id="rombel" id="rombel">
+                    <option value="A/2017">A/2017</option>	
+                    <option value="B/2017">B/2017</option>
+                </select>
+            </div>
+
+            <label for="rombel-selection" class="col-md-4 col-lg-2 form-control-label">
+                <span rsf:id="msg=program_studi">program studi</span>
+            </label>
+            <div class="col-md-2">
+                <select name="programStudiOptions" rsf:id="program-studi" id="programStudi">
+                    <option value="D3">D3</option>	
+                    <option value="D4">D4</option>
+                </select>
+            </div>
+            
+            <label for="rombel-selection" class="col-md-4 col-lg-2 form-control-label">
+                <span rsf:id="msg=semester">Semester</span>
+            </label>
+            <div class="col-md-2">
+                <select name="semesterOptions" rsf:id="semester" id="semester">
+                    <option value="1">1</option>	
+                    <option value="2">2</option>
+                    <option value="3">3</option>	
+                    <option value="4">4</option>
+                    <option value="5">5</option>	
+                    <option value="6">6</option>
+                    <option value="7">7</option>	
+                    <option value="8">8</option>
+                </select>
+            </div>
+            
+            <label for="tahun_akademik-selection" class="col-md-4 col-lg-2 form-control-label">
+                <span rsf:id="msg=tahunAkademik">Semester</span>
+            </label>
+            <div class="col-md-2">
+                <select name="semesterOptions" rsf:id="tahun-akademik" id="tahunAkademik">
+                    <option value="2017/2018">2017/2018</option>	
+                    <option value="2018/2019">2018/2019</option>
+                    <option value="2019/2020">2019/2020</option>
+                </select>
+            </div>
+            
+            <input type="submit" value="search" rsf:id="search-schedule" class="active" />      
+        </div>
+    </form>
+    
+    <table id="sortableTable" class="listHier lines nolines" border="0" cellspacing="0">
+	<caption class="skip"><span class="skip"></span>Voters</caption>
+    <thead>
+      <tr>
+        <th><a title="Hari" href="#" rsf:id="sch-day-title">Hari</a></th>
+        <th><a title="Waktu" href="#" rsf:id="sch-time-title">Waktu</a></th>
+        <th><a title="Nama MK" href="#" rsf:id="sch-kd-mk-title">Kd Mata Kuliah</a></th>
+        <th><a title="Nama MK" href="#" rsf:id="sch-mk-title">Mata Kuliah</a></th>
+        <th><a title="TE/PR" href="#" rsf:id="sch-type-title">TE/PR</a></th>
+        <th><a title="Kode Dosen" href="#" rsf:id="sch-kd-dosen-title">Kode Dosen</a></th>
+        <th><a title="Nama Dosen" href="#" rsf:id="sch-dosen-title">Nama Dosen</a></th>
+        <th><a title="Kode" href="#" rsf:id="sch-kode-ruangan-title">Kode dan Nama Ruangan</a></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr rsf:id="schedule-row:">
+        <td rsf:id="sch-day">Hari</td>
+        <td rsf:id="sch-time">Waktu</td>
+        <td rsf:id="sch-kd-mk">Kd Matkul</td>
+        <td rsf:id="sch-mk">Matkul</td>
+        <td rsf:id="sch-type">TE/PR</td>
+        <td rsf:id="sch-kd-dosen">Kode Dosen</td>
+        <td rsf:id="sch-dosen">Nama Dosen</td>
+        <td rsf:id="sch-kd-ruangan">Kelas</td>
+      </tr>
+    </tbody>
+    </table>
+    </div>
+</body>
+</html>

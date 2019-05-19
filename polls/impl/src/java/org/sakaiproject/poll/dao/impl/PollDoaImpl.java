@@ -119,4 +119,34 @@ public class PollDoaImpl extends HibernateGeneralGenericDao implements PollDao {
         return null; 
     }
 
+   
+    public List<Object[]> getListDosen(){
+        Query q = null;
+        
+        Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
+        String statement = "SELECT DISTINCT sm.Kd_Dosen, sd.Nama_Dosen, smk.Nama_Matkul FROM sch_mengampu sm, sch_dosen sd, sch_mata_kuliah smk\n" +
+                           "WHERE sd.Kd_Dosen = sm.Kd_Dosen AND smk.Kd_Matkul = sm.Kd_Matkul";
+        q = session.createSQLQuery(statement);
+        List<Object[]> list = (List<Object[]>) q.list();
+        
+        if (list != null)
+            return list;
+ 
+        return null; 
+    }
+    
+    public List<Object[]> getJadwalKuliah(String rombel, String prodi, String tahun_akademik, String semester){
+        
+        Query q = null;
+        Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
+        String statement = "SELECT s_j.hari, s_j.jam_mulai, s_j.jam_berakhir, s_mk.kd_matkul, s_mk.nama_matkul, s_mk.isTeori, s_d.kd_dosen, s_d.nama_dosen, s_r.nama_ruangan "
+                        + "FROM sch_jadwal s_j, sch_mata_kuliah s_mk, sch_dosen s_d, sch_ruangan s_r, sch_rombel s_ro "
+                        + "WHERE s_j.kd_matkul = s_mk.kd_matkul AND s_j.kd_dosen = s_d.kd_dosen AND s_r.kd_ruangan = s_j.kd_ruangan AND s_j.kd_rombel = '"+rombel+"' AND s_j.tahun_akademik = '"+tahun_akademik+"' AND s_j.semester = '"+semester+"' AND s_ro.prodi = '"+prodi+"'";
+        q = session.createSQLQuery(statement);
+        List<Object[]> list = (List<Object[]>) q.list();
+        if (list != null)
+            return list;
+
+        return null; 
+    }
 }
