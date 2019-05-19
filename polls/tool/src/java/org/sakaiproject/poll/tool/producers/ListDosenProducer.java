@@ -14,6 +14,7 @@ package org.sakaiproject.poll.tool.producers;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -103,7 +104,8 @@ public class ListDosenProducer implements ViewComponentProducer,NavigationCaseRe
 	
 	public void fillComponents(UIContainer tofill, ViewParameters viewparams,
 			ComponentChecker checker) {
-
+            
+            Poll poll = null;
 //		PollViewParameters ecvp = (PollViewParameters) viewparams;
 //
 //		String strId = ecvp.id;
@@ -124,8 +126,37 @@ public class ListDosenProducer implements ViewComponentProducer,NavigationCaseRe
 		UIOutput.make(tofill, "listDosen-html", null).decorate(new UIFreeAttributeDecorator(langMap));
 		UIMessage.make(tofill,"listDosen-title","listDosen_title");
                 
-                UILink dosen = UILink.make(tofill,"dosen-title",messageLocator.getMessage("dosen_title"), "#");
+                UIForm newForm = UIForm.make(tofill, "listDosen-form");
+                
+                String[] arrRomble = new String[]{"A/2017","B/2017"};
+		UISelect rombel = UISelect.make(newForm,"rombel",arrRomble,"#{poll.minOptions}",Integer.toString(0));
+                
+                String[] arrProgramStudi = new String[]{"D3","D4"};
+		UISelect programStudi = UISelect.make(newForm,"program-studi",arrProgramStudi,"#{poll.minOptions}",Integer.toString(0));
+                
+                UICommand.make(newForm, "search-dosen", UIMessage.make("search_dosen"), " ");
+                
+                UILink no = UILink.make(tofill,"no-title",messageLocator.getMessage("no_title"), "#");
+                UILink kodeDosen = UILink.make(tofill,"kodeDosen-title",messageLocator.getMessage("kodeDosen_title"), "#");
+                UILink namaDosen = UILink.make(tofill,"namaDosen-title",messageLocator.getMessage("namaDosen_title"), "#");
                 UILink matkul = UILink.make(tofill,"matkul-title",messageLocator.getMessage("matkul_title"), "#");
+                
+                List<Object[]> listDosen;
+        	listDosen = pollVoteManager.getListDosen();
+                
+                for (Iterator <Object[]> iterator = listDosen.iterator(); iterator.hasNext();) {
+                    Object[] e = iterator.next();
+ 
+                    String kode= (String) e[0];
+                    String nama = (String) e[1]; 
+                    String matakul = (String) e[2]; 
+                    
+	            UIBranchContainer row_listDosen = UIBranchContainer.make(tofill, "dosen-row:");
+	            UIOutput.make(row_listDosen, "dosenList-kd", kode);
+	            UIOutput.make(row_listDosen, "dosenList-nama", nama);
+                    UIOutput.make(row_listDosen, "dosenList-matkul", matakul);
+                    
+                }
 //                int totalVoter = pollVoteManager.getVotersForPoll(poll);
 //                List<String> vfname = pollVoteManager.getVoterName(poll);
 //                List<String> vlname = pollVoteManager.getVoterLName(poll);
