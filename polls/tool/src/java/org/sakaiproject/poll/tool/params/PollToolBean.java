@@ -377,9 +377,12 @@ public class PollToolBean {
         
     //SCHEDULE DEMAND
     public String rombel; //A/2017
-    public String program-studi;
+    public String program_studi;
     public String semester; //1,2,3,4
-    public String tahun-akademik; //0217/2018
+    public String tahun_akademik; //0217/2018
 
+    public String seacrhJadwalKuliah(){
+        return "success";
+    }
     
 }
