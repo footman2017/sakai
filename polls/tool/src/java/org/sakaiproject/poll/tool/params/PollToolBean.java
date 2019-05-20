@@ -374,4 +374,15 @@ public class PollToolBean {
 		externalLogic.notifyDeletedOption(Arrays.asList(userEids), siteTitle, poll.getPollText());
 	}
 
+        
+    //SCHEDULE DEMAND
+    public String rombel; //A/2017
+    public String program_studi;
+    public String semester; //1,2,3,4
+    public String tahun_akademik; //0217/2018
+
+    public String seacrhJadwalKuliah(){
+        return "success";
+    }
+    
 }
