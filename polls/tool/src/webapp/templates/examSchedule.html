@@ -35,17 +35,16 @@
     <form rsf:id="exam-form">
         <div class="form-group row">
             <label for="exam-selection" class="col-md-4 col-lg-2 form-control-label">
-                <span rsf:id="msg=exam-type">Tipe Ujian</span>
+                <span>Tipe Ujian</span>
             </label>
             <div class="col-md-2">
-                <select name="examOptions" rsf:id="exam" id="exam">
+                <select name="examOptions" rsf:id="examOptions" id="exam">
                     <option value="Evaluasi Tengah Semester">Evaluasi Tengah Semester</option>	
                     <option value="Evaluasi Akhir Semester">Evaluasi Akhir Semester</option>
                 </select>
             </div>
-            <input type="submit" value="search" rsf:id="search-schedule" class="active" />      
+            <!--<input type="submit" value="search" rsf:id="search-schedule" class="active" />-->      
         </div>
-    </form>
     <h3 rsf:id="exam-schedule-title">Jadwal Ujian</h3>
     <div rsf:id="message-for:*" class="alertMessage">
         <span>Message for user here</span>
@@ -59,7 +58,7 @@
             <label>
                 <span>Prodi / Jenjang :</span>
             </label> 
-                <select name="examProdiOptions" rsf:id="exam" id="exam">
+                <select name="examProdiOptions" rsf:id="examProduOptions" id="exam">
                     <option value="Evaluasi Tengah Semester">Teknik Informatika / D-III</option>	
                     <option value="Evaluasi Akhir Semester">Teknik Informatika / D-IV</option>
                 </select>
@@ -72,7 +71,7 @@
             <label>
                 <span>Semester :</span>
             </label> 
-                <select name="examSemesterOptions" rsf:id="exam" id="exam">
+                <select name="examSemesterOptions" rsf:id="examSemesterOptions" id="exam">
                     <option value="Evaluasi Tengah Semester">Ganjil</option>	
                     <option value="Evaluasi Akhir Semester">Genap</option>
                 </select>
@@ -82,13 +81,13 @@
             <label>
                 <span>Tahun Akademik :</span>
             </label> 
-                <select name="examTahunOptions" rsf:id="exam" id="exam">
+                <select name="examTahunOptions" rsf:id="examTahunOptions" id="exam">
                     <option value="Evaluasi Tengah Semester">2018 / 2019</option>	
                     <option value="Evaluasi Akhir Semester">2019 / 2020</option>
                 </select>
         </div>
     </div>   
-    
+    </form>
     <table id="sortableTable" class="listHier lines nolines" border="0" cellspacing="0">
 	<caption class="skip"><span class="skip"></span>Voters</caption>
     <thead>

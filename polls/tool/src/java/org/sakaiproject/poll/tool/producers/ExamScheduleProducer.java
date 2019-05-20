@@ -129,29 +129,29 @@ public class ExamScheduleProducer implements ViewComponentProducer,NavigationCas
                 
                 
                 UILink schDay = UILink.make(tofill,"exam-day-title",messageLocator.getMessage("sch_day_title"), "#");
-                schDay.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("sch_day_title_tooltip")));
+//                schDay.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("sch_day_title_tooltip")));
                 
                 UILink schTime = UILink.make(tofill,"exam-time-title",messageLocator.getMessage("sch_time_title"), "#");
-                schTime.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("sch_time_title_tooltip")));
+//                schTime.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("sch_time_title_tooltip")));
                 
                 UILink schMK = UILink.make(tofill,"exam-mk-title",messageLocator.getMessage("sch_mk_title"), "#");
-                schMK.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("sch_mk_title_tooltip")));
+//                schMK.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("sch_mk_title_tooltip")));
                 UILink schType = UILink.make(tofill,"exam-type-title",messageLocator.getMessage("sch_type_title"), "#");
-                schType.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("sch_type_title_tooltip")));
+//                schType.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("sch_type_title_tooltip")));
 
                 UILink schDosen = UILink.make(tofill,"exam-dosen-title",messageLocator.getMessage("sch_dosen_title"), "#");
-                schDosen.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("sch_dosen_title_tooltip")));
+//                schDosen.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("sch_dosen_title_tooltip")));
                 UILink schKode = UILink.make(tofill,"exam-kode-ruangan-title",messageLocator.getMessage("sch_kode_title"), "#");
-                schKode.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("sch_kode_title_tooltip")));
+//                schKode.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("sch_kode_title_tooltip")));
                 
                 UILink schRombel = UILink.make(tofill,"exam-rombel-title",messageLocator.getMessage("sch_rombel_title"), "#");
-                schRombel.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("sch_rombel_title_tooltip")));
+//                schRombel.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("sch_rombel_title_tooltip")));
                 
                 UILink schPengawas = UILink.make(tofill,"exam-pengawas-title",messageLocator.getMessage("sch_pengawas_title"), "#");
-                schPengawas.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("sch_pengawas_title_tooltip")));
+//                schPengawas.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("sch_pengawas_title_tooltip")));
 		
 		List<Object[]>jadwalUjian;
-		jadwalUjian = pollVoteManager.getJadwalUjian("D3","2017/2018","EAS");
+		jadwalUjian = pollVoteManager.getJadwalUjian("D3","3","EAS");
 
 		System.out.println("#A"+jadwalUjian.isEmpty());
                 System.out.println("#A"+jadwalUjian.toString());
@@ -162,21 +162,22 @@ public class ExamScheduleProducer implements ViewComponentProducer,NavigationCas
                     String jam_mulai = (String)list[1];	
                     String jam_berakhir = (String)list[2];
                     String waktu = jam_mulai + " - " + jam_berakhir;
-                    String nama_matkul = (String)list[4];
-                    boolean isTeori_ = (boolean) list[5];
+                    String nama_matkul = (String)list[3];
+                    boolean isTeori_ = (boolean) list[4];
                     String isTeori = "";    
                         if(isTeori_)
                             {isTeori = "TE";}
                         else
                             {isTeori = "PR";}
-                    String nama_dosen = (String)list[7];	
-                    String kd_ruangan = (String)list[8];
-                    String kd_rombel = (String)list[9];
+                    String nama_dosen = (String)list[5];	
+                    String kd_ruangan = (String)list[6];
+                    String kd_rombel = (String)list[7];
 	
                     // System.out.println("#ROSE >"+hari);
                     // System.out.println("#ROSE >"+waktu);
                     // System.out.println("#ROSE >"+kd_matkul);
                     System.out.println("#ROSE >"+nama_matkul);
+                    System.out.println("#ROSE >"+kd_rombel);
                     // System.out.println("#ROSE >"+isTeori);
                     // System.out.println("#ROSE >"+kd_dosen);
                     // System.out.println("#ROSE >"+nama_dosen);
