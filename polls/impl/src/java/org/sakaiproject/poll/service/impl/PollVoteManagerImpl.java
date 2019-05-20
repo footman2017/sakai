@@ -281,6 +281,10 @@ public class PollVoteManagerImpl implements PollVoteManager {
     	return dao.getJadwalKuliah(rombel, prodi, tahun_akademik, semester);
     }
     
+    public List<Object[]> getJadwalUjian(String prodi,String semester,String tipeujian){
+        return dao.getJadwalUjian(prodi,semester,tipeujian);
+    }
+    
     public List<Object[]> getListDosen(){
     	return dao.getListDosen();
     }
