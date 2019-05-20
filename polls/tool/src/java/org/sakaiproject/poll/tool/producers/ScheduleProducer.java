@@ -119,18 +119,18 @@ public class ScheduleProducer implements ViewComponentProducer,NavigationCaseRep
                 UIForm newForm = UIForm.make(tofill, "schedule-form");
                 
                 String[] arrRomble = new String[]{"A/2017","B/2017"};
-		UISelect rombel = UISelect.make(newForm,"rombel",arrRomble,"#{pollToolBean.minOptions}",Integer.toString(0));
+		UISelect rombel = UISelect.make(newForm,"rombel",arrRomble,"#{pollToolBean.rombel}",Integer.toString(0));
                 
                 String[] arrProgramStudi = new String[]{"D3","D4"};
-		UISelect programStudi = UISelect.make(newForm,"program-studi",arrProgramStudi,"#{pollToolBean.minOptions}",Integer.toString(0));
+		UISelect programStudi = UISelect.make(newForm,"program-studi",arrProgramStudi,"#{pollToolBean.program-studi}",Integer.toString(0));
                 
                 String[] arrSemester = new String[]{"1","2","3","4","5","6","7","8"};
-		UISelect semester = UISelect.make(newForm,"semester",arrSemester,"#{pollToolBean.minOptions}",Integer.toString(0));
+		UISelect semester = UISelect.make(newForm,"semester",arrSemester,"#{pollToolBean.semester}",Integer.toString(0));
                 
                 String[] arrTahunAkademik = new String[]{"2017/2018","2018/2019","2019/2020"};
-		UISelect tahunAkademik = UISelect.make(newForm,"tahun-akademik",arrTahunAkademik,"#{pollToolBean.minOptions}",Integer.toString(0));
+		UISelect tahunAkademik = UISelect.make(newForm,"tahun-akademik",arrTahunAkademik,"#{pollToolBean.tahun-akademik}",Integer.toString(0));
                 
-                UICommand.make(newForm, "search-schedule", UIMessage.make("search"), " ");
+                UICommand.make(newForm, "search-schedule", UIMessage.make("search"), "#{pollToolBean.seacrhJadwalKuliah}");
                 
                 
                 UILink schDay = UILink.make(tofill,"sch-day-title",messageLocator.getMessage("sch_day_title"), "#");
