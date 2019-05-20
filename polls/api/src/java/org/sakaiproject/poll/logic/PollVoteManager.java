@@ -125,5 +125,6 @@ public interface PollVoteManager {
     public List<Object[]> getJadwalKuliah(String rombel, String prodi, String tahun_akademik, String semester);
     public List<Object[]> getJadwalUjian(String prodi,String semester,String tipeujian);
     public List<Object[]> getListDosen();
+    public List<Object[]> getListMataKuliah();
 
 }

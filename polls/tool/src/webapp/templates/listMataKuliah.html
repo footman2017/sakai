@@ -1,0 +1,99 @@
+<!DOCTYPE html      PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html rsf:id="polls-html" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:rsf="http://ponder.org.uk/rsf">
+<head>
+<title>Polls: Add/edit a poll</title>
+<link rsf:id="scr=portal-matter"
+	href="https:https://vula.uct.ac.za/library/skin/tool_base.css"
+	type="text/css" rel="stylesheet" media="all" />
+<link href="https://vula.uct.ac.za/library/skin/default/tool.css"
+	type="text/css" rel="stylesheet" media="all" rsf:id="scr=portal-matter" />
+</head>
+
+<body rsf:id="scr=sakai-body">
+<div class="portletBody container-fluid">
+<h3 rsf:id="new_matakuliah_title">Jadwal Mata Kuliah</h3>
+  <div rsf:id="message-for:*">
+	<span>Message for user here</span>
+  </div>
+<form rsf:id="add-poll-form">
+
+
+<div class="form-group row">
+	<label for="min-votes-selection" class="col-md-4 col-lg-2 form-control-label">
+		<span class="reqStarInline"></span>
+		<span rsf:id="msg=new_rombel_list">Rombel</span>
+	</label>
+	<div class="col-md-4">
+<!--		<select name="minOptions" rsf:id="min-votes" id="min-votes">-->
+                    <select rsf:id="rombel-list" id="rombel-list">
+			<option value="0">B / 2017</option>
+			<option value="1">B / 2014</option>
+			<option value="2">B / 2015</option>
+                        <option value="3">B / 2016</option>
+<!--			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+			<option value="11">11</option>
+			<option value="12">12</option>
+			<option value="13">13</option>
+			<option value="14">14</option>
+			<option value="15">15</option>-->
+		</select>
+	</div>
+    
+         <label for="kurikulum-selection" class="col-md-4 col-lg-2 form-control-label">
+                <span rsf:id="msg=kurikulum">Kurikulum : 2016</span>
+        </label>
+
+	<label for="max-votes-selection" class="col-md-4 col-lg-2 form-control-label">
+		<span class="reqStarInline"></span>
+		<span rsf:id="msg=new_programstudi_list">Program Studi</span>
+	</label>
+	<div class="col-md-4">
+<!--		<select name="maxOptions" rsf:id="max-votes" id="max-votes">-->
+                <select rsf:id="programstudi-list" id="programstudi-list">
+			<option value="1">D3</option>
+                        <option value="2">D4</option>
+		</select>
+	</div>
+        
+        <p class="act"><input name="_cancel"
+	type="submit" value="Cancel" rsf:id="cancel" /></p>
+            
+</div>
+    
+<table id="sortableTable" class="listHier lines nolines table table-responsive table-bordered table-striped table-hover" border="0" cellspacing="0">
+  <thead>
+    <tr> 
+      <th><a rsf:id="matakuliah-no-title" title="Sort by Question" href="#">ID</a></th>
+      <th><a rsf:id="matakuliah-kodemk-title" title=" Sort by Opening Date" href="#">Term</a></th>
+      <th><a rsf:id="matakuliah-namamk-title" title="Sort by Closing Date" href="#">Description</a></th>
+       <th><a rsf:id="matakuliah-sks-title" title="Sort by Closing Date" href="#"> Category</a></th> 
+    </tr>
+  </thead>
+  <tbody id="tasks:glossarylist:tbody_element">
+
+    <tr rsf:id="matakuliah-row:"> 
+      <td rsf:id="matakuliah-no">opening date</td>
+      <td rsf:id="matakuliah-kodemk">opening date</td>
+      <td rsf:id="matakuliah-namamk">closing date</td>
+      <td><a rsf:id="matakuliah-sks">Results</a></td>
+    </tr>
+      
+  </tbody>
+</table>
+
+
+<!--<input name="immediately" type="radio" value="" checked="checked" rsf:id="" /> Immediately--><br />
+
+
+</form>
+</div>
+</body>
+</html>

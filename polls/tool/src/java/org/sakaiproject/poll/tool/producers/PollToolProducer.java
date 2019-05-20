@@ -84,6 +84,7 @@ DefaultView,NavigationCaseReporter {
         private static final String NAVIGATE_LISTDOSEN = "actions-listDosen";
         private static final String NAVIGATE_EXAMSCHEDULE = "exam-schedule";
         private static final String NAVIGATE_SCHEDULE = "action-schedule";
+        private static final String NAVIGATE_DAFTAR_MATA_KULIAH = "actions-listmatakuliah";
 
 	public String getViewID() {
 		return VIEW_ID;
@@ -154,6 +155,7 @@ DefaultView,NavigationCaseReporter {
 			if (this.isSiteOwner()) {
 				UIInternalLink.make(actions, NAVIGATE_PERMISSIONS, UIMessage.make("action_set_permissions"),new SimpleViewParameters(PermissionsProducer.VIEW_ID));
                                 UIInternalLink.make(actions, NAVIGATE_LISTDOSEN, UIMessage.make("action_set_listdosen"),new SimpleViewParameters(ListDosenProducer.VIEW_ID));
+                                UIInternalLink.make(actions, NAVIGATE_DAFTAR_MATA_KULIAH, UIMessage.make("action_set_listmatakuliah"), new SimpleViewParameters(ListMataKuliahProducer.VIEW_ID));
 			} 
 		}
 

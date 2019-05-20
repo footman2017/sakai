@@ -189,6 +189,22 @@
 		<property name="targettedMessageList" ref="targettedMessageList" />
 	</bean>
         
+        <bean id="listMataKuliahProducer"
+		class="org.sakaiproject.poll.tool.producers.ListMataKuliahProducer">
+		<property name="voteBean" ref="voteBean" />
+		<property name="messageLocator" ref="messageLocator" />
+		<property name="localeGetter" ref="requestLocaleProxy" />
+		<property name="pollListManager"
+			ref="org.sakaiproject.poll.logic.PollListManager" />
+		<property name="richTextEvolver" ref="richTextEvolver" />
+		<property name="targettedMessageList"
+			ref="targettedMessageList" />
+		<property name="dateEvolver" ref="fieldDateInputEvolver" />
+		<property name="pollVoteManager"
+			ref="org.sakaiproject.tool.poll.api.PollVoteManager" />
+		<property name="externalLogic" ref="org.sakaiproject.poll.logic.ExternalLogic"/>
+	</bean>
+        
 	<bean id="voteCollection"
 		class="org.sakaiproject.poll.model.VoteCollection" />
 	<bean id="option" class="org.sakaiproject.poll.model.Option" />

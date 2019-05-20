@@ -164,4 +164,17 @@ public class PollDoaImpl extends HibernateGeneralGenericDao implements PollDao {
 
         return null; 
     }
+    
+    public List<Object[]> getListMataKuliah(){
+        Query q = null;
+        
+        Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
+        String statement = "SELECT kd_matkul, nama_matkul, jumlah_sks FROM sch_mata_kuliah";
+        q = session.createSQLQuery(statement);
+        List<Object[]> list = (List<Object[]>) q.list();
+        if (list != null)
+            return list;
+
+        return null;
+    }
 }
