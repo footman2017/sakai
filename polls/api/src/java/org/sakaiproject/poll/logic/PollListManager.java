@@ -187,5 +187,5 @@ public interface PollListManager extends EntityProducer {
      */
     public boolean userCanDeletePoll(Poll poll);
     
-    public boolean saveGlossary(glossary t) throws SecurityException, IllegalArgumentException;
+//    public boolean saveGlossary(glossary t) throws SecurityException, IllegalArgumentException;
 }

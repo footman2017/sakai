@@ -716,13 +716,13 @@ public class PollListManagerImpl implements PollListManager,EntityTransferrer {
 		return false;
 	}
         
-        public boolean saveGlossary(glossary t) throws SecurityException, IllegalArgumentException {
-            if(t == null || t.getCategory()== null || t.getTerm() == null || t.getDescription() == null) {
-                throw new IllegalArgumentException("You must supply glossary data");
-            } try {
-                dao.save(t);
-            } catch (DataAccessException e) {
-                log.error
-            }
-        }
+//        public boolean saveGlossary(glossary t) throws SecurityException, IllegalArgumentException {
+//            if(t == null || t.getCategory()== null || t.getTerm() == null || t.getDescription() == null) {
+//                throw new IllegalArgumentException("You must supply glossary data");
+//            } try {
+//                dao.save(t);
+//            } catch (DataAccessException e) {
+//                log.error();
+//            }
+//        }
 }
