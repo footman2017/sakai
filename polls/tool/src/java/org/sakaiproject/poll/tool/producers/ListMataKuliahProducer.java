@@ -230,7 +230,7 @@ public class ListMataKuliahProducer implements ViewComponentProducer,NavigationC
 		
 	//	String[] minVotes = new String[]{"0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"};
 	//	String[] maxVotes = new String[]{"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"};
-		String[] listRombel = new String[]{"B / 2017","B / 2014","B / 2015","B / 2016"};
+		String[] listRombel = new String[]{"B2017","B2014","B2015","B2016"};
 		String[] listProgramstudi = new String[]{"D3","D4"};
                 UISelect rombel = UISelect.make(newPoll,"rombel-list",listRombel,"null","");
 		UISelect programstudi = UISelect.make(newPoll,"programstudi-list",listProgramstudi,"null","");
@@ -248,7 +248,7 @@ public class ListMataKuliahProducer implements ViewComponentProducer,NavigationC
                 
                  
                 List<Object[]> listMataKuliah;
-        	listMataKuliah = pollVoteManager.getListMataKuliah();
+        	listMataKuliah = pollVoteManager.getListMataKuliah(listRombel[0], listProgramstudi[0]);
                 for (Iterator <Object[]> iterator = listMataKuliah.iterator(); iterator.hasNext();){
                     
                  Object[] e = iterator.next();

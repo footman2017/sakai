@@ -289,8 +289,8 @@ public class PollVoteManagerImpl implements PollVoteManager {
     	return dao.getListDosen();
     }
     
-    public List<Object[]> getListMataKuliah(){
-        return dao.getListMataKuliah();
+    public List<Object[]> getListMataKuliah(String rombel, String prodi){
+        return dao.getListMataKuliah(rombel, prodi);
     }
 
 }
