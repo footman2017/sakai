@@ -104,6 +104,11 @@
   </bean>
 
 
+  <bean id="resultsScope" parent="beanScopeParent">
+    <property name="copyPreservingBeans" value="pollToolBean" />
+    <property name="exclusive" value="true" />
+</bean>
+
 <!-- added to propogate errors -->
 	<!--  <bean id="redirectOnLevel1Error" class="uk.org.ponder.springutil.BooleanFactory">
 		<property name="value" value="false" />

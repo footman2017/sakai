@@ -376,12 +376,73 @@ public class PollToolBean {
 
         
     //SCHEDULE DEMAND
-    public String rombel; //A/2017
+    public String rombel; //A2017
     public String program_studi;
     public String semester; //1,2,3,4
     public String tahun_akademik; //0217/2018
+    
+    /**
+     * @return the rombel
+     */
+    public String getRombel() {
+        return rombel;
+    }
+
+    /**
+     * @param rombel the rombel to set
+     */
+    public void setRombel(String rombel) {
+        this.rombel = rombel;
+    }
+
+    /**
+     * @return the program_studi
+     */
+    public String getProgram_studi() {
+        return program_studi;
+    }
+
+    /**
+     * @param program_studi the program_studi to set
+     */
+    public void setProgram_studi(String program_studi) {
+        this.program_studi = program_studi;
+    }
+
+    /**
+     * @return the semester
+     */
+    public String getSemester() {
+        return semester;
+    }
+
+    /**
+     * @param semester the semester to set
+     */
+    public void setSemester(String semester) {
+        this.semester = semester;
+    }
+
+    /**
+     * @return the tahun_akademik
+     */
+    public String getTahun_akademik() {
+        return tahun_akademik;
+    }
+
+    /**
+     * @param tahun_akademik the tahun_akademik to set
+     */
+    public void setTahun_akademik(String tahun_akademik) {
+        this.tahun_akademik = tahun_akademik;
+    }
+
 
     public String seacrhJadwalKuliah(){
+        PollToolBean pollToolBean = new PollToolBean();    
+      	pollToolBean.setRombel(rombel);
+        System.out.println("#here"+rombel);
+	log.debug("#here"+rombel);
         return "success";
     }
     

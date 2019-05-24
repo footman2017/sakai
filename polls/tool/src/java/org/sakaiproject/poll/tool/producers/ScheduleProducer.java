@@ -31,6 +31,7 @@ import org.sakaiproject.poll.model.Poll;
 import org.sakaiproject.poll.model.Vote;
 import org.sakaiproject.poll.model.Voter;
 import org.sakaiproject.poll.tool.params.PollViewParameters;
+import org.sakaiproject.poll.tool.params.PollToolBean;
 
 import uk.org.ponder.localeutil.LocaleGetter;
 import uk.org.ponder.messageutil.MessageLocator;
@@ -61,8 +62,8 @@ import uk.org.ponder.rsf.components.decorators.UITooltipDecorator;
 public class ScheduleProducer implements ViewComponentProducer,NavigationCaseReporter,ViewParamsReporter {
 
 	public static final String VIEW_ID = "schedule";
-
 	
+        private PollToolBean pollToolBean;
 	private PollListManager pollListManager;
 	private PollVoteManager pollVoteManager;
 	private MessageLocator messageLocator;
@@ -116,11 +117,21 @@ public class ScheduleProducer implements ViewComponentProducer,NavigationCaseRep
                 UIMessage.make(tofill,"schedule-title","schedule_title");
                 Poll poll = null;
                 
+                
+                
+                String param_rombel = null; //A2017
+                String param_program_studi;
+                String param_semester; //1,2,3,4
+                String param_tahun_akademik; //0217/2018
+                
+                
                 UIForm newForm = UIForm.make(tofill, "schedule-form");
                 
                 String[] arrRomble = new String[]{"A2017","B2017"};
 		UISelect rombel = UISelect.make(newForm,"rombel",arrRomble,"#{pollToolBean.rombel}",Integer.toString(0));
-                
+                param_rombel=pollToolBean.getRombel();
+                System.out.println("#HEYAH "+pollToolBean==null+"#HEYAH ");
+                        
                 String[] arrProgramStudi = new String[]{"D3","D4"};
 		UISelect programStudi = UISelect.make(newForm,"program-studi",arrProgramStudi,"#{pollToolBean.program_studi}",Integer.toString(0));
                 
@@ -129,34 +140,48 @@ public class ScheduleProducer implements ViewComponentProducer,NavigationCaseRep
                 
                 String[] arrTahunAkademik = new String[]{"2017/2018","2018/2019","2019/2020"};
 		UISelect tahunAkademik = UISelect.make(newForm,"tahun-akademik",arrTahunAkademik,"#{pollToolBean.tahun_akademik}",Integer.toString(0));
-                
+                              
                 UICommand.make(newForm, "search-schedule", UIMessage.make("search"), "#{pollToolBean.seacrhJadwalKuliah}");
+
+                
+        	if(param_rombel != null){
+                    System.out.println("#here"+param_rombel);
+        	}
+        	else{
+                    System.out.println("#here NULL");
+                }
+//                param_rombel = pollToolBean.getRombel();
+//                param_program_studi = pollToolBean.getProgram_studi();
+//                param_semester = pollToolBean.getSemester();
+//                param_tahun_akademik = pollToolBean.getTahun_akademik();
+                
                 
                 
                 UILink schDay = UILink.make(tofill,"sch-day-title",messageLocator.getMessage("sch_day_title"), "#");
-                schDay.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("sch_day_title_tooltip")));
+//                schDay.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("sch_day_title_tooltip")));
                 
                 UILink schTime = UILink.make(tofill,"sch-time-title",messageLocator.getMessage("sch_time_title"), "#");
-                schTime.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("sch_time_title_tooltip")));
+//                schTime.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("sch_time_title_tooltip")));
                 UILink schKdMK = UILink.make(tofill,"sch-kd-mk-title",messageLocator.getMessage("sch_kd_mk_title"), "#");
-                schKdMK.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("sch_kd_mk_title_tooltip")));
+//                schKdMK.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("sch_kd_mk_title_tooltip")));
                 
                 UILink schMK = UILink.make(tofill,"sch-mk-title",messageLocator.getMessage("sch_mk_title"), "#");
-                schMK.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("sch_mk_title_tooltip")));
+//                schMK.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("sch_mk_title_tooltip")));
                 UILink schType = UILink.make(tofill,"sch-type-title",messageLocator.getMessage("sch_type_title"), "#");
-                schType.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("sch_type_title_tooltip")));
+//                schType.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("sch_type_title_tooltip")));
                 UILink schKdDosen = UILink.make(tofill,"sch-kd-dosen-title",messageLocator.getMessage("sch_kd_dosen_title"), "#");
-                schKdDosen.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("sch_kd_dosen_title_tooltip")));                
+//                schKdDosen.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("sch_kd_dosen_title_tooltip")));                
                 UILink schDosen = UILink.make(tofill,"sch-dosen-title",messageLocator.getMessage("sch_dosen_title"), "#");
-                schDosen.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("sch_dosen_title_tooltip")));
+//                schDosen.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("sch_dosen_title_tooltip")));
                 UILink schKode = UILink.make(tofill,"sch-kode-ruangan-title",messageLocator.getMessage("sch_kode_title"), "#");
-                schKode.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("sch_kode_title_tooltip")));
+//                schKode.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("sch_kode_title_tooltip")));
 		
+                
 		List<Object[]>jadwalKuliah;
 		jadwalKuliah = pollVoteManager.getJadwalKuliah("B2017","D3","2017/2018","3");
 
-		System.out.println("#A"+jadwalKuliah.isEmpty());
-                System.out.println("#A"+jadwalKuliah.toString());
+//		System.out.println("#A"+jadwalKuliah.isEmpty());
+//                System.out.println("#A"+jadwalKuliah.toString());
 
 		for (Iterator <Object[]> iterator=jadwalKuliah.iterator(); iterator.hasNext();){ 
                     Object[] list = iterator.next();
@@ -179,7 +204,7 @@ public class ScheduleProducer implements ViewComponentProducer,NavigationCaseRep
                     // System.out.println("#ROSE >"+hari);
                     // System.out.println("#ROSE >"+waktu);
                     // System.out.println("#ROSE >"+kd_matkul);
-                    System.out.println("#ROSE >"+nama_matkul);
+//                    System.out.println("#ROSE >"+nama_matkul);
                     // System.out.println("#ROSE >"+isTeori);
                     // System.out.println("#ROSE >"+kd_dosen);
                     // System.out.println("#ROSE >"+nama_dosen);
@@ -206,6 +231,7 @@ public class ScheduleProducer implements ViewComponentProducer,NavigationCaseRep
 		List<NavigationCase> togo = new ArrayList<NavigationCase>(); // Always navigate back to this view.
 		togo.add(new NavigationCase(null, new SimpleViewParameters(VIEW_ID)));
 		togo.add(new NavigationCase("cancel", new PollViewParameters(ResultsProducer.VIEW_ID)));
+                togo.add(new NavigationCase("success", new SimpleViewParameters(ScheduleProducer.VIEW_ID)));
 		return togo;
 	}	
 	public ViewParameters getViewParameters() {

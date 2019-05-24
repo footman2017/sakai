@@ -139,10 +139,16 @@ public class PollDoaImpl extends HibernateGeneralGenericDao implements PollDao {
         
         Query q = null;
         Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
-        String statement = "SELECT s_j.hari, s_j.jam_mulai, s_j.jam_berakhir, s_mk.kd_matkul, s_mk.nama_matkul, s_mk.isTeori, s_d.kd_dosen, s_d.nama_dosen, s_r.nama_ruangan "
-                        + "FROM sch_jadwal s_j, sch_mata_kuliah s_mk, sch_dosen s_d, sch_ruangan s_r, sch_rombel s_ro "
-                        + "WHERE s_j.kd_matkul = s_mk.kd_matkul AND s_j.kd_dosen = s_d.kd_dosen AND s_r.kd_ruangan = s_j.kd_ruangan AND s_j.kd_rombel = '"
-                        +rombel+"' AND s_j.tahun_akademik = '"+tahun_akademik+"' AND s_j.semester = '"+semester+"' AND s_ro.prodi = '"+prodi+"' AND s_j.jenis_pertemuan = 'Kuliah' ";
+        String statement = "SELECT DISTINCT s_j.hari, s_j.jam_mulai, s_j.jam_berakhir, s_mk.kd_matkul, "
+                + "s_mk.nama_matkul, s_j.isTeori, s_d.kd_dosen, s_d.nama_dosen, s_r.nama_ruangan "
+                + "FROM sch_jadwal s_j, sch_mengampu s_m, sch_mata_kuliah s_mk, sch_dosen s_d, "
+                + "sch_ruangan s_r, sch_rombel s_ro "
+                + "WHERE s_j.kd_matkul = s_m.kd_matkul AND s_m.kd_matkul = s_mk.kd_matkul "
+                + "AND s_j.isTeori = s_m.isTeori AND s_j.kd_dosen = s_m.kd_dosen "
+                + "AND s_m.kd_dosen = s_d.kd_dosen AND s_r.kd_ruangan = s_j.kd_ruangan "
+                + "AND s_j.kd_rombel = '"+rombel+"' AND s_j.tahun_akademik = '"+tahun_akademik+"' "
+                + "AND s_j.semester = '"+semester+"' AND s_ro.prodi = '"+prodi+"' "
+                + "AND s_j.jenis_pertemuan = 'Kuliah' ";
         q = session.createSQLQuery(statement);
         List<Object[]> list = (List<Object[]>) q.list();
         if (list != null)
@@ -155,9 +161,10 @@ public class PollDoaImpl extends HibernateGeneralGenericDao implements PollDao {
         
         Query q = null;
         Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
-        String statement = "SELECT s_j.hari, s_j.jam_mulai, s_j.jam_berakhir, s_mk.nama_matkul, s_mk.isTeori, s_d.nama_dosen, s_r.nama_ruangan, s_j.kd_rombel "
+        String statement = "SELECT DISTINCT s_j.hari, s_j.jam_mulai, s_j.jam_berakhir, s_mk.nama_matkul, s_mk.isTeori, s_d.nama_dosen, s_r.nama_ruangan, s_j.kd_rombel "
                         + "FROM sch_jadwal s_j, sch_mata_kuliah s_mk, sch_dosen s_d, sch_ruangan s_r, sch_rombel s_ro "
-                        + "WHERE s_j.kd_matkul = s_mk.kd_matkul AND s_j.kd_dosen = s_d.kd_dosen AND s_r.kd_ruangan = s_j.kd_ruangan AND s_j.semester = '"+semester+"' AND s_ro.prodi = '"+prodi+"' AND s_j.jenis_pertemuan = '"+tipeujian+"'";
+                        + "WHERE s_j.kd_matkul = s_mk.kd_matkul AND s_j.kd_dosen = s_d.kd_dosen AND s_r.kd_ruangan = s_j.kd_ruangan AND "
+                        + "s_j.semester = '"+semester+"' AND s_ro.prodi = '"+prodi+"' AND s_j.jenis_pertemuan = '"+tipeujian+"'";
         q = session.createSQLQuery(statement);
         List<Object[]> list = (List<Object[]>) q.list();
         if (list != null)
@@ -166,11 +173,15 @@ public class PollDoaImpl extends HibernateGeneralGenericDao implements PollDao {
         return null; 
     }
     
-    public List<Object[]> getListMataKuliah(){
+    public List<Object[]> getListMataKuliah(String rombel, String prodi){
         Query q = null;
         
         Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
-        String statement = "SELECT kd_matkul, nama_matkul, jumlah_sks FROM sch_mata_kuliah";
+        String statement = "SELECT DISTINCT s_mk.kd_matkul, s_mk.nama_matkul, s_mk.jumlah_sks, s_t.semester_ke "
+                + "FROM sch_mata_kuliah s_mk, sch_rombel s_r, sch_terdaftar s_t, sch_kurikulum s_k "
+                + "WHERE s_r.Tahun_kurikulum = s_k.Tahun_kurikulum AND "
+                + "s_k.Semester_ke = s_t.Semester_ke AND s_t.Kd_Matkul = s_mk.Kd_Matkul AND "
+                + "s_r.kd_rombel = '"+ rombel +"' AND s_r.Prodi = '"+ prodi +"' ORDER BY `semester_ke` ASC";
         q = session.createSQLQuery(statement);
         List<Object[]> list = (List<Object[]>) q.list();
         if (list != null)

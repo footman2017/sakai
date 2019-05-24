@@ -44,6 +44,6 @@ public interface PollDao extends GeneralGenericDao {
          public List<Object[]> getJadwalUjian(String prodi,String semester,String tipeujian);
 //         public List<Object[]> getListDosen(String kd_dosen, String nama_dosen, String MK);
          public List<Object[]> getListDosen();
-         public List<Object[]> getListMataKuliah();
+         public List<Object[]> getListMataKuliah(String rombel, String prodi);
 
 }
