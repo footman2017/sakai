@@ -179,6 +179,7 @@
         
         <bean id="ScheduleProducer"
 		class="org.sakaiproject.poll.tool.producers.ScheduleProducer">
+                <property name="pollToolBean" ref="pollToolBean" />
 		<property name="messageLocator" ref="messageLocator" />
 		<property name="pollListManager"
 			ref="org.sakaiproject.poll.logic.PollListManager" />

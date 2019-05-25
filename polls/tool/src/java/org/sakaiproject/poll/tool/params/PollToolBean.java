@@ -439,10 +439,6 @@ public class PollToolBean {
 
 
     public String seacrhJadwalKuliah(){
-        PollToolBean pollToolBean = new PollToolBean();    
-      	pollToolBean.setRombel(rombel);
-        System.out.println("#here"+rombel);
-	log.debug("#here"+rombel);
         return "success";
     }
     

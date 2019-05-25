@@ -73,6 +73,10 @@ public class ScheduleProducer implements ViewComponentProducer,NavigationCaseRep
 		// TODO Auto-generated method stub
 		return VIEW_ID;
 	}
+        
+        public void setPollToolBean(PollToolBean pollToolBean) {
+            this.pollToolBean = pollToolBean;	
+        }
 
 	public void setMessageLocator(MessageLocator messageLocator) {
 
@@ -117,44 +121,30 @@ public class ScheduleProducer implements ViewComponentProducer,NavigationCaseRep
                 UIMessage.make(tofill,"schedule-title","schedule_title");
                 Poll poll = null;
                 
-                
-                
                 String param_rombel = null; //A2017
-                String param_program_studi;
-                String param_semester; //1,2,3,4
-                String param_tahun_akademik; //0217/2018
-                
+                String param_program_studi = null ;
+                String param_semester = null; //1,2,3,4
+                String param_tahun_akademik = null; //0217/2018
                 
                 UIForm newForm = UIForm.make(tofill, "schedule-form");
                 
                 String[] arrRomble = new String[]{"A2017","B2017"};
 		UISelect rombel = UISelect.make(newForm,"rombel",arrRomble,"#{pollToolBean.rombel}",Integer.toString(0));
                 param_rombel=pollToolBean.getRombel();
-                System.out.println("#HEYAH "+pollToolBean==null+"#HEYAH ");
                         
                 String[] arrProgramStudi = new String[]{"D3","D4"};
 		UISelect programStudi = UISelect.make(newForm,"program-studi",arrProgramStudi,"#{pollToolBean.program_studi}",Integer.toString(0));
+                param_program_studi = pollToolBean.getProgram_studi();
                 
-                String[] arrSemester = new String[]{"1","2","3","4","5","6","7","8"};
+                String[] arrSemester = new String[]{"Ganjil","Genap"};
 		UISelect semester = UISelect.make(newForm,"semester",arrSemester,"#{pollToolBean.semester}",Integer.toString(0));
+                param_semester = pollToolBean.getSemester();
                 
                 String[] arrTahunAkademik = new String[]{"2017/2018","2018/2019","2019/2020"};
 		UISelect tahunAkademik = UISelect.make(newForm,"tahun-akademik",arrTahunAkademik,"#{pollToolBean.tahun_akademik}",Integer.toString(0));
+                param_tahun_akademik = pollToolBean.getTahun_akademik();
                               
                 UICommand.make(newForm, "search-schedule", UIMessage.make("search"), "#{pollToolBean.seacrhJadwalKuliah}");
-
-                
-        	if(param_rombel != null){
-                    System.out.println("#here"+param_rombel);
-        	}
-        	else{
-                    System.out.println("#here NULL");
-                }
-//                param_rombel = pollToolBean.getRombel();
-//                param_program_studi = pollToolBean.getProgram_studi();
-//                param_semester = pollToolBean.getSemester();
-//                param_tahun_akademik = pollToolBean.getTahun_akademik();
-                
                 
                 
                 UILink schDay = UILink.make(tofill,"sch-day-title",messageLocator.getMessage("sch_day_title"), "#");
@@ -175,11 +165,18 @@ public class ScheduleProducer implements ViewComponentProducer,NavigationCaseRep
 //                schDosen.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("sch_dosen_title_tooltip")));
                 UILink schKode = UILink.make(tofill,"sch-kode-ruangan-title",messageLocator.getMessage("sch_kode_title"), "#");
 //                schKode.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("sch_kode_title_tooltip")));
-		
-                
-		List<Object[]>jadwalKuliah;
-		jadwalKuliah = pollVoteManager.getJadwalKuliah("B2017","D3","2017/2018","3");
 
+		List<Object[]>jadwalKuliah;
+                if(param_rombel != null || param_program_studi != null || param_semester != null || param_tahun_akademik != null) {
+                    jadwalKuliah = pollVoteManager.getJadwalKuliah(param_rombel,param_program_studi,param_tahun_akademik,param_semester);
+                    System.out.println("#herefromform");
+                    System.out.println(param_rombel+"-"+param_program_studi+"-"+param_semester+"-"+param_tahun_akademik);
+                } else{ //ini query default
+                    System.out.println("#herequerydefault");
+                    System.out.println(param_rombel+"-"+param_program_studi+"-"+param_semester+"-"+param_tahun_akademik);
+                    jadwalKuliah = pollVoteManager.getJadwalKuliah("B2017","D3","2018/2019","Ganjil");
+                }
+                
 //		System.out.println("#A"+jadwalKuliah.isEmpty());
 //                System.out.println("#A"+jadwalKuliah.toString());
 

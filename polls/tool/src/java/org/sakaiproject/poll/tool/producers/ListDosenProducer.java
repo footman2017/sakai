@@ -126,6 +126,9 @@ public class ListDosenProducer implements ViewComponentProducer,NavigationCaseRe
 		UIOutput.make(tofill, "listDosen-html", null).decorate(new UIFreeAttributeDecorator(langMap));
 		UIMessage.make(tofill,"listDosen-title","listDosen_title");
                 
+                String param_rombel = null; //A2017
+                String param_program_studi = null ;
+                
                 UIForm newForm = UIForm.make(tofill, "listDosen-form");
                 
                 String[] arrRomble = new String[]{"A/2017","B/2017"};
@@ -143,6 +146,7 @@ public class ListDosenProducer implements ViewComponentProducer,NavigationCaseRe
                 
                 List<Object[]> listDosen;
         	listDosen = pollVoteManager.getListDosen();
+//        	listDosen = pollVoteManager.getListDosen(param_rombel, param_program_studi);
                 
                 for (Iterator <Object[]> iterator = listDosen.iterator(); iterator.hasNext();) {
                     Object[] e = iterator.next();
