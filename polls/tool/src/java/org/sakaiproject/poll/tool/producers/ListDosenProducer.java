@@ -30,6 +30,7 @@ import org.sakaiproject.poll.model.Poll;
 import org.sakaiproject.poll.model.Vote;
 import org.sakaiproject.poll.model.Voter;
 import org.sakaiproject.poll.tool.params.PollViewParameters;
+import org.sakaiproject.poll.tool.params.PollToolBean;
 
 import uk.org.ponder.localeutil.LocaleGetter;
 import uk.org.ponder.messageutil.MessageLocator;
@@ -61,11 +62,15 @@ public class ListDosenProducer implements ViewComponentProducer,NavigationCaseRe
 
 	public static final String VIEW_ID = "listDosen";
 
-	
+	private PollToolBean pollToolBean;
 	private PollListManager pollListManager;
 	private PollVoteManager pollVoteManager;
 	private MessageLocator messageLocator;
 	private LocaleGetter localegetter;
+
+    public void setPollToolBean(PollToolBean pollToolBean) {
+        this.pollToolBean = pollToolBean;
+    }
 
 	public String getViewID() {
 		// TODO Auto-generated method stub
@@ -106,124 +111,57 @@ public class ListDosenProducer implements ViewComponentProducer,NavigationCaseRe
 			ComponentChecker checker) {
             
             Poll poll = null;
-//		PollViewParameters ecvp = (PollViewParameters) viewparams;
-//
-//		String strId = ecvp.id;
-//		log.debug("got id of " + strId);
-//		Poll poll = pollListManager.getPollById(Long.valueOf(strId));
-//
-//		if (!pollListManager.isAllowedViewResults(poll, externalLogic.getCurrentUserId())) {
-//			tml.addMessage(new TargettedMessage("poll.noviewresult", new Object[]{}, TargettedMessage.SEVERITY_ERROR));
-//			return;
-//			
-//		}
-//
-		String locale = localegetter.get().toString();
-                Map<String, String> langMap = new HashMap<String, String>();
-                langMap.put("lang", locale);
-                langMap.put("xml:lang", locale);
+           
+            String locale = localegetter.get().toString();
+            Map<String, String> langMap = new HashMap<String, String>();
+            langMap.put("lang", locale);
+            langMap.put("xml:lang", locale);
 
-		UIOutput.make(tofill, "listDosen-html", null).decorate(new UIFreeAttributeDecorator(langMap));
-		UIMessage.make(tofill,"listDosen-title","listDosen_title");
-                
-                String param_rombel = null; //A2017
-                String param_program_studi = null ;
-                
-                UIForm newForm = UIForm.make(tofill, "listDosen-form");
-                
-                String[] arrRomble = new String[]{"A/2017","B/2017"};
-		UISelect rombel = UISelect.make(newForm,"rombel",arrRomble,"#{poll.minOptions}",Integer.toString(0));
-                
-                String[] arrProgramStudi = new String[]{"D3","D4"};
-		UISelect programStudi = UISelect.make(newForm,"program-studi",arrProgramStudi,"#{poll.minOptions}",Integer.toString(0));
-                
-                UICommand.make(newForm, "search-dosen", UIMessage.make("search_dosen"), " ");
-                
-                UILink no = UILink.make(tofill,"no-title",messageLocator.getMessage("no_title"), "#");
-                UILink kodeDosen = UILink.make(tofill,"kodeDosen-title",messageLocator.getMessage("kodeDosen_title"), "#");
-                UILink namaDosen = UILink.make(tofill,"namaDosen-title",messageLocator.getMessage("namaDosen_title"), "#");
-                UILink matkul = UILink.make(tofill,"matkul-title",messageLocator.getMessage("matkul_title"), "#");
-                
-                List<Object[]> listDosen;
-        	listDosen = pollVoteManager.getListDosen();
-//        	listDosen = pollVoteManager.getListDosen(param_rombel, param_program_studi);
-                
-                for (Iterator <Object[]> iterator = listDosen.iterator(); iterator.hasNext();) {
-                    Object[] e = iterator.next();
- 
-                    String kode= (String) e[0];
-                    String nama = (String) e[1]; 
-                    String matakul = (String) e[2]; 
-                    
-	            UIBranchContainer row_listDosen = UIBranchContainer.make(tofill, "dosen-row:");
-	            UIOutput.make(row_listDosen, "dosenList-kd", kode);
-	            UIOutput.make(row_listDosen, "dosenList-nama", nama);
-                    UIOutput.make(row_listDosen, "dosenList-matkul", matakul);
-                    
-                }
-//                int totalVoter = pollVoteManager.getVotersForPoll(poll);
-//                List<String> vfname = pollVoteManager.getVoterName(poll);
-//                List<String> vlname = pollVoteManager.getVoterLName(poll);
-//                List<String> vuserid = pollVoteManager.getVoterUserId(poll);
-//                List<String> voption = pollVoteManager.getVoterOption(poll);
-//                List<CollatedVoter> collationVoter = new ArrayList<CollatedVoter>();
-//                
-//                System.out.println("Ini adalah jumlah dari Voter : " + totalVoter);
-//                System.out.println("User Voter : " + vuserid);
-//                System.out.println("Nama Voter : " + vfname + " " + vlname);
-//                System.out.println("Option Voter : " + voption);
-//                
-//                //Untuk ke model
-////                List<Voter> voters = new ArrayList<Voter>();
-//                
-//                List<CollatedVoter> collation = new ArrayList<CollatedVoter>();
-//                
-//                // Untuk ke model
-////                for (int i=0; i <totalVoter; i++ ) {                         
-////			voters.get(i).setUserFName(vfname.get(i));
-////                        voters.get(i).setUserLName(vlname.get(i));
-////                        voters.get(i).setUserName();
-////                        voters.get(i).setUserId(vuserid.get(i));
-////                        voters.get(i).setOptionText(voption.get(i));
-////		}
-//                
-//                for (int i=0; i <totalVoter; i++ ) {    
-//                        CollatedVoter collatedVoter = new CollatedVoter();
-//                        
-//			collatedVoter.setVoterName(vfname.get(i).concat(" ").concat(vlname.get(i)));
-//                        collatedVoter.setUserId(vuserid.get(i));
-//                        collatedVoter.setOptionText(voption.get(i));
-//                        
-//                        collation.add(collatedVoter);
-//		}
-//                
-//                UILink vname = UILink.make(tofill,"answers-voter",messageLocator.getMessage("results_answers_voter"), "#");
-//		vname.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("results_answers_voter_tooltip")));
-//
-//                // Untuk ke model
-////                for (int i=0; i <totalVoter; i++ ) {
-////			UIBranchContainer resultVoterRow = UIBranchContainer.make(tofill,"answer-row-voter:",voters.get(i).getUserId().toString());
-////
-////			UIVerbatim.make(resultVoterRow,"answer-option-voter",voters.get(i).getUserName());
-////			UIOutput.make(resultVoterRow,"answer-count-voter", Integer.valueOf(i+1).toString());
-////			UIOutput.make(resultVoterRow,"answer-optionVote",voters.get(i).getOptionText());
-////		}
-//                
-//                for (int i=0; i <totalVoter; i++ ) {
-//			UIBranchContainer resultVoterRow = UIBranchContainer.make(tofill,"answer-row-voter:",collation.get(i).getUserId().toString());
-//
-//			UIVerbatim.make(resultVoterRow,"answer-option-voter",collation.get(i).getVoterName());
-//			UIOutput.make(resultVoterRow,"answer-count-voter", Integer.valueOf(i+1).toString());
-//			UIOutput.make(resultVoterRow,"answer-optionVote",collation.get(i).getOptionText());
-//		}
-//                
-//		//the cancel button
-//		UIForm form = UIForm.make(tofill,"actform");
-//		UICommand cancel = UICommand.make(form,"back",messageLocator.getMessage("voters_cancel"),"#{pollToolBean.cancel}");
-//		cancel.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("voters_cancel_tooltip"))); 
-//		
-//		externalLogic.postEvent("poll.viewResult", "poll/site/" + externalLogic.getCurrentLocationId() +"/poll/" +  poll.getPollId(), false);
+            UIOutput.make(tofill, "listDosen-html", null).decorate(new UIFreeAttributeDecorator(langMap));
+            UIMessage.make(tofill,"listDosen-title","listDosen_title");
 
+            String param_rombel = null; //A2017
+            String param_program_studi = null ;
+
+            UIForm newForm = UIForm.make(tofill, "listDosen-form");
+
+            String[] arrRomble = new String[]{"A2017","B2017"};
+            UISelect rombel = UISelect.make(newForm,"rombel",arrRomble,"#{pollToolBean.rombel}",Integer.toString(0));
+            param_rombel=pollToolBean.getRombel();
+
+            String[] arrProgramStudi = new String[]{"D3","D4"};
+            UISelect programStudi = UISelect.make(newForm,"program-studi",arrProgramStudi,"#{pollToolBean.program_studi}",Integer.toString(0));
+//            param_program_studi = pollToolBean.getProgram_studi();
+            
+            UICommand.make(newForm, "search-dosen", UIMessage.make("search_dosen"), "#{pollToolBean.seacrhListDosen}");
+
+            UILink no = UILink.make(tofill,"no-title",messageLocator.getMessage("no_title"), "#");
+            UILink kodeDosen = UILink.make(tofill,"kodeDosen-title",messageLocator.getMessage("kodeDosen_title"), "#");
+            UILink namaDosen = UILink.make(tofill,"namaDosen-title",messageLocator.getMessage("namaDosen_title"), "#");
+            UILink matkul = UILink.make(tofill,"matkul-title",messageLocator.getMessage("matkul_title"), "#");
+
+            List<Object[]> listDosen;
+//            listDosen = pollVoteManager.getListDosen();
+            if(param_rombel != null) {
+                listDosen = pollVoteManager.getListDosen(param_rombel);
+                } else{ //ini query default
+                    listDosen = pollVoteManager.getListDosen("A2017");
+            }
+
+            for (Iterator <Object[]> iterator = listDosen.iterator(); iterator.hasNext();) {
+                Object[] e = iterator.next();
+
+                String kode= (String) e[0];
+                String nama = (String) e[1]; 
+                String matakul = (String) e[2]; 
+
+                UIBranchContainer row_listDosen = UIBranchContainer.make(tofill, "dosen-row:");
+                UIOutput.make(row_listDosen, "dosenList-kd", kode);
+                UIOutput.make(row_listDosen, "dosenList-nama", nama);
+                UIOutput.make(row_listDosen, "dosenList-matkul", matakul);
+
+            }
+                
 	}
 
 	public List<NavigationCase> reportNavigationCases() {
@@ -231,6 +169,7 @@ public class ListDosenProducer implements ViewComponentProducer,NavigationCaseRe
 		List<NavigationCase> togo = new ArrayList<NavigationCase>(); // Always navigate back to this view.
 		togo.add(new NavigationCase(null, new SimpleViewParameters(VIEW_ID)));
 		togo.add(new NavigationCase("cancel", new PollViewParameters(ResultsProducer.VIEW_ID)));
+                togo.add(new NavigationCase("success", new SimpleViewParameters(ListDosenProducer.VIEW_ID)));
 		return togo;
 	}	
 	public ViewParameters getViewParameters() {
