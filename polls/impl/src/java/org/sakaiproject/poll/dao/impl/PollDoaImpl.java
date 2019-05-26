@@ -120,13 +120,15 @@ public class PollDoaImpl extends HibernateGeneralGenericDao implements PollDao {
     }
 
    
-    public List<Object[]> getListDosen(){
+    public List<Object[]> getListDosen(String rombel){
 //    public List<Object[]> getListDosen(String rombel, String prodi){
         Query q = null;
         
         Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
-        String statement = "SELECT DISTINCT sm.Kd_Dosen, sd.Nama_Dosen, smk.Nama_Matkul FROM sch_mengampu sm, sch_dosen sd, sch_mata_kuliah smk\n" +
-                           "WHERE sd.Kd_Dosen = sm.Kd_Dosen AND smk.Kd_Matkul = sm.Kd_Matkul";
+//        String statement = "SELECT DISTINCT sm.Kd_Dosen, sd.Nama_Dosen, smk.Nama_Matkul FROM sch_mengampu sm, sch_dosen sd, sch_mata_kuliah smk\n" +
+//                           "WHERE sd.Kd_Dosen = sm.Kd_Dosen AND smk.Kd_Matkul = sm.Kd_Matkul";
+        String statement = "SELECT DISTINCT sj.Kd_Dosen, sd.Nama_Dosen, smk.Nama_Matkul FROM sch_jadwal sj, sch_dosen sd, sch_mata_kuliah smk\n" +
+                           "WHERE sj.Kd_Rombel = '"+rombel+"' AND sj.Kd_Dosen = sd.Kd_Dosen AND sj.Kd_Matkul = smk.Kd_Matkul";
 //        String statement = "SELECT DISTINCT sm.Kd_Dosen, sd.Nama_Dosen, smk.Nama_Matkul FROM sch_mengampu sm, sch_dosen sd, sch_mata_kuliah smk\n" +
 //                           "WHERE sd.Kd_Dosen = sm.Kd_Dosen AND smk.Kd_Matkul = sm.Kd_Matkul AND s_r.kd_rombel = '"+rombel+"' AND s_r.Prodi = '"+prodi+"'";
         q = session.createSQLQuery(statement);

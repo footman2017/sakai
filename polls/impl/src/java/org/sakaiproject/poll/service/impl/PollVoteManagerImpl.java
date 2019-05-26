@@ -285,9 +285,9 @@ public class PollVoteManagerImpl implements PollVoteManager {
         return dao.getJadwalUjian(prodi,semester,tipeujian);
     }
     
-    public List<Object[]> getListDosen(){
+    public List<Object[]> getListDosen(String rombel){
 //    public List<Object[]> getListDosen(String rombel, String prodi){
-    	return dao.getListDosen();
+    	return dao.getListDosen(rombel);
 //    	return dao.getListDosen(rombel, prodi);
     }
     
