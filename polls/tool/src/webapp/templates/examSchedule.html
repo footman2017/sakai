@@ -27,15 +27,22 @@
             }); 
         });
     </script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#examRombel").change(function(){
+                $(".tab").hide();
+                $("#" + $(this).val()).show();
+            });
+        });
+    </script>
 </head>
     
 <body rsf:id="scr=sakai-body">
     
-<div class="portletBody">
-    <form rsf:id="exam-form">
+<div class="portletBody text-center">
         <div class="form-group row">
             <label for="exam-selection" class="col-md-4 col-lg-2 form-control-label">
-                <span>Tipe Ujian</span>
+                <span>Tipe Ujian :</span>
             </label>
             <div class="col-md-2">
                 <select name="examOptions" rsf:id="examOptions" id="exam">
@@ -50,7 +57,7 @@
         <span>Message for user here</span>
     </div>
     <p rsf:id="poll-size">Num votes</p> 
-    <div class="d-flex justify-content-center">
+    <div class="d-flex">
         <h4>Jadwal Evaluasi Tengah Semester</h4>
     </div>
     <div class="row">
@@ -58,7 +65,7 @@
             <label>
                 <span>Prodi / Jenjang :</span>
             </label> 
-                <select name="examProdiOptions" rsf:id="examProduOptions" id="exam">
+                <select name="examProdiOptions" id="exam">
                     <option value="Evaluasi Tengah Semester">Teknik Informatika / D-III</option>	
                     <option value="Evaluasi Akhir Semester">Teknik Informatika / D-IV</option>
                 </select>
@@ -71,7 +78,7 @@
             <label>
                 <span>Semester :</span>
             </label> 
-                <select name="examSemesterOptions" rsf:id="examSemesterOptions" id="exam">
+                <select name="examSemesterOptions" id="exam">
                     <option value="Evaluasi Tengah Semester">Ganjil</option>	
                     <option value="Evaluasi Akhir Semester">Genap</option>
                 </select>
@@ -81,40 +88,86 @@
             <label>
                 <span>Tahun Akademik :</span>
             </label> 
-                <select name="examTahunOptions" rsf:id="examTahunOptions" id="exam">
+                <select name="examTahunOptions" id="exam">
                     <option value="Evaluasi Tengah Semester">2018 / 2019</option>	
                     <option value="Evaluasi Akhir Semester">2019 / 2020</option>
                 </select>
         </div>
-    </div>   
-    </form>
-    <table id="sortableTable" class="listHier lines nolines" border="0" cellspacing="0">
-	<caption class="skip"><span class="skip"></span>Voters</caption>
-    <thead>
-      <tr>
-        <th><a title="Hari" href="#" rsf:id="exam-day-title">Hari</a></th>
-        <th><a title="Waktu" href="#" rsf:id="exam-time-title">Waktu</a></th>
-        <th><a title="Nama MK" href="#" rsf:id="exam-mk-title">Mata Kuliah</a></th>
-        <th><a title="TE/PR" href="#" rsf:id="exam-type-title">TE/PR</a></th>
-        <th><a title="Nama Dosen" href="#" rsf:id="exam-dosen-title">Nama Dosen</a></th>
-        <th><a title="Rombel" href="#" rsf:id="exam-rombel-title">Rombel</a></th>
-        <th><a title="Kode" href="#" rsf:id="exam-kode-ruangan-title">Kode dan Nama Ruangan</a></th>
-        <th><a title="Pengawas" href="#" rsf:id="exam-pengawas-title">Pengawas</a></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr rsf:id="exam-row:">
-        <td rsf:id="exam-day">Hari</td>
-        <td rsf:id="exam-time">Waktu</td>
-        <td rsf:id="exam-mk">Matkul</td>
-        <td rsf:id="exam-type">TE/PR</td>
-        <td rsf:id="exam-dosen">Nama Dosen</td>
-        <td rsf:id="exam-rombel">Rombel</td>
-        <td rsf:id="exam-kd-ruangan">Ruangan</td>
-        <td rsf:id="exam-pengawas">Pengawas</td>
-      </tr>
-    </tbody>
-    </table>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            <label>
+                <span>Rombel :</span>
+            </label> 
+                <select name="examRombelOptions" id="examRombel">
+                    <option value="A2017">A / 2017</option>	
+                    <option value="B2017">B / 2017</option>
+                </select>
+        </div>
+        <div class="col-md-8"></div>
+        <div class="col-md-2"></div>
+    </div> 
+    <div id="A2017" class="tab">
+        <table id="sortableTable" class="listHier lines nolines" border="0" cellspacing="0">
+            <caption class="skip"><span class="skip"></span>Voters</caption>
+            <thead>
+              <tr>
+                <th><a title="Hari" href="#" rsf:id="exam-day-title">Hari</a></th>
+                <th><a title="Waktu" href="#" rsf:id="exam-time-title">Waktu</a></th>
+                <th><a title="Nama MK" href="#" rsf:id="exam-mk-title">Mata Kuliah</a></th>
+                <th><a title="TE/PR" href="#" rsf:id="exam-type-title">TE/PR</a></th>
+                <th><a title="Nama Dosen" href="#" rsf:id="exam-dosen-title">Nama Dosen</a></th>
+                <th><a title="Rombel" href="#" rsf:id="exam-rombel-title">Rombel</a></th>
+                <th><a title="Kode" href="#" rsf:id="exam-kode-ruangan-title">Kode dan Nama Ruangan</a></th>
+                <th><a title="Pengawas" href="#" rsf:id="exam-pengawas-title">Pengawas</a></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr rsf:id="exam-row:">
+                <td rsf:id="exam-day">Hari</td>
+                <td rsf:id="exam-time">Waktu</td>
+                <td rsf:id="exam-mk">Matkul</td>
+                <td rsf:id="exam-type">TE/PR</td>
+                <td rsf:id="exam-dosen">Nama Dosen</td>
+                <td rsf:id="exam-rombel">Rombel</td>
+                <td rsf:id="exam-kd-ruangan">Ruangan</td>
+                <td rsf:id="exam-pengawas">Pengawas</td>
+              </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <div id="B2017" class="tab" style="display:none;">
+        <table id="sortableTable" class="listHier lines nolines" border="0" cellspacing="0">
+            <caption class="skip"><span class="skip"></span>Voters</caption>
+        <thead>
+          <tr>
+            <th><a title="Hari" href="#" rsf:id="exam-day-title">Hari</a></th>
+            <th><a title="Waktu" href="#" rsf:id="exam-time-title">Waktu</a></th>
+            <th><a title="Nama MK" href="#" rsf:id="exam-mk-title">Mata Kuliah</a></th>
+            <th><a title="TE/PR" href="#" rsf:id="exam-type-title">TE/PR</a></th>
+            <th><a title="Nama Dosen" href="#" rsf:id="exam-dosen-title">Nama Dosen</a></th>
+            <th><a title="Rombel" href="#" rsf:id="exam-rombel-title">Rombel</a></th>
+            <th><a title="Kode" href="#" rsf:id="exam-kode-ruangan-title">Kode dan Nama Ruangan</a></th>
+            <th><a title="Pengawas" href="#" rsf:id="exam-pengawas-title">Pengawas</a></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr rsf:id="exam-row1:">
+            <td rsf:id="exam-day1">Hari</td>
+            <td rsf:id="exam-time1">Waktu</td>
+            <td rsf:id="exam-mk1">Matkul</td>
+            <td rsf:id="exam-type1">TE/PR</td>
+            <td rsf:id="exam-dosen1">Nama Dosen</td>
+            <td rsf:id="exam-rombel1">Rombel</td>
+            <td rsf:id="exam-kd-ruangan1">Ruangan</td>
+            <td rsf:id="exam-pengawas1">Pengawas</td>
+          </tr>
+        </tbody>
+        </table>
+    </div>
+    
     </div>
 </body>
 </html>
+

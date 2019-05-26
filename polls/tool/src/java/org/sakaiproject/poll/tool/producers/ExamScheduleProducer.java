@@ -116,11 +116,17 @@ public class ExamScheduleProducer implements ViewComponentProducer,NavigationCas
 		
                 UIForm newForm = UIForm.make(tofill, "exam-form");
                 
-                String[] arrProgramStudi = new String[]{"D3","D4"};
+                String[] examType = new String[]{"Evaluasi Tengah Semester","Evaluasi Akhir Semester"};
+		UISelect typeExam = UISelect.make(newForm,"examOptions",examType,"#{poll.minOptions}",Integer.toString(0));
+                
+                String[] arrProgramStudi = new String[]{"D3-Teknik Informatika","D4-Teknik Informatika"};
 		UISelect programStudi = UISelect.make(newForm,"examProdiOptions",arrProgramStudi,"#{poll.minOptions}",Integer.toString(0));
                 
                 String[] arrSemester = new String[]{"1","2","3","4","5","6","7","8"};
 		UISelect semester = UISelect.make(newForm,"examSemesterOptions",arrSemester,"#{poll.minOptions}",Integer.toString(0));
+                
+                String[] arrRombel = new String[]{"A/2017","B/2017","A/2018","B/2018"};
+		UISelect rombel = UISelect.make(newForm,"examRombelOptions",arrRombel,"#{poll.minOptions}",Integer.toString(0));
                 
                 String[] arrTahunAkademik = new String[]{"2017/2018","2018/2019","2019/2020"};
 		UISelect tahunAkademik = UISelect.make(newForm,"examTahunOptions",arrTahunAkademik,"#{poll.minOptions}",Integer.toString(0));
@@ -182,17 +188,30 @@ public class ExamScheduleProducer implements ViewComponentProducer,NavigationCas
                     // System.out.println("#ROSE >"+kd_dosen);
                     // System.out.println("#ROSE >"+nama_dosen);
                     // System.out.println("#ROSE >"+kd_ruangan);
-                   
-                    UIBranchContainer schedulerow = UIBranchContainer.make(tofill, "exam-row:"); 
-                   //Create a new <td> element 
-                    UIOutput.make(schedulerow,"exam-day", hari); 
-                    UIOutput.make(schedulerow,"exam-time", waktu); 
-                    UIOutput.make(schedulerow,"exam-mk", nama_matkul); 
-                    UIOutput.make(schedulerow,"exam-type", isTeori);
-                    UIOutput.make(schedulerow,"exam-dosen", nama_dosen); 
-                    UIOutput.make(schedulerow,"exam-pengawas", nama_dosen); 
-                    UIOutput.make(schedulerow,"exam-kd-ruangan", kd_ruangan);
-                    UIOutput.make(schedulerow,"exam-rombel", kd_rombel);
+                   if(kd_rombel.equals("A2017")){
+                        UIBranchContainer schedulerow = UIBranchContainer.make(tofill, "exam-row:"); 
+                        //Create a new <td> element 
+                         UIOutput.make(schedulerow,"exam-day", hari); 
+                         UIOutput.make(schedulerow,"exam-time", waktu); 
+                         UIOutput.make(schedulerow,"exam-mk", nama_matkul); 
+                         UIOutput.make(schedulerow,"exam-type", isTeori);
+                         UIOutput.make(schedulerow,"exam-dosen", nama_dosen); 
+                         UIOutput.make(schedulerow,"exam-pengawas", nama_dosen); 
+                         UIOutput.make(schedulerow,"exam-kd-ruangan", kd_ruangan);
+                         UIOutput.make(schedulerow,"exam-rombel", kd_rombel);
+                   } else if(kd_rombel.equals("B2017")){
+                        UIBranchContainer schedulerow = UIBranchContainer.make(tofill, "exam-row1:"); 
+                        //Create a new <td> element 
+                         UIOutput.make(schedulerow,"exam-day1", hari); 
+                         UIOutput.make(schedulerow,"exam-time1", waktu); 
+                         UIOutput.make(schedulerow,"exam-mk1", nama_matkul); 
+                         UIOutput.make(schedulerow,"exam-type1", isTeori);
+                         UIOutput.make(schedulerow,"exam-dosen1", nama_dosen); 
+                         UIOutput.make(schedulerow,"exam-pengawas1", nama_dosen); 
+                         UIOutput.make(schedulerow,"exam-kd-ruangan1", kd_ruangan);
+                         UIOutput.make(schedulerow,"exam-rombel1", kd_rombel);
+                   }
+                    
 
                 } 
 
