@@ -445,4 +445,8 @@ public class PollToolBean {
     public String seacrhListDosen(){
         return "success";
     }
+    
+    public String searchListMataKuliah(){
+        return "success";
+    }
 }

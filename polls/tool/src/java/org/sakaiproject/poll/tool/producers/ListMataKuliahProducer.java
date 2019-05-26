@@ -38,6 +38,7 @@ import org.sakaiproject.poll.model.Vote;
 import org.sakaiproject.poll.tool.params.OptionViewParameters;
 import org.sakaiproject.poll.tool.params.PollViewParameters;
 import org.sakaiproject.poll.tool.params.VoteBean;
+import org.sakaiproject.poll.tool.params.PollToolBean;
 import org.sakaiproject.tool.api.Session;
 import org.sakaiproject.tool.api.SessionManager;
 import org.sakaiproject.util.FormattedText;
@@ -85,11 +86,16 @@ public class ListMataKuliahProducer implements ViewComponentProducer,NavigationC
 	private PollListManager pollListManager;
 	private MessageLocator messageLocator;
 	private LocaleGetter localeGetter;
+        private PollToolBean pollToolBean;
 
 	public String getViewID() {
 		return VIEW_ID;
 	}
-
+        
+        public void setPollToolBean(PollToolBean pollToolBean) {
+        this.pollToolBean = pollToolBean;
+        }
+        
 	public void setMessageLocator(MessageLocator messageLocator) {
 		this.messageLocator = messageLocator;
 	}
@@ -230,11 +236,18 @@ public class ListMataKuliahProducer implements ViewComponentProducer,NavigationC
 		
 	//	String[] minVotes = new String[]{"0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"};
 	//	String[] maxVotes = new String[]{"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"};
-		String[] listRombel = new String[]{"B2017","B2014","B2015","B2016"};
+		
+                String param_rombel = null; //A2017
+                String param_program_studi = null ;
+                
+                String[] listRombel = new String[]{"B2017","B2014","B2015","B2016"};
 		String[] listProgramstudi = new String[]{"D3","D4"};
-                UISelect rombel = UISelect.make(newPoll,"rombel-list",listRombel,"null","");
-		UISelect programstudi = UISelect.make(newPoll,"programstudi-list",listProgramstudi,"null","");
-	
+                UISelect rombel = UISelect.make(newPoll,"rombel-list",listRombel,"#{pollToolBean.rombel}",Integer.toString(0));
+		param_rombel=pollToolBean.getRombel();
+                UISelect programstudi = UISelect.make(newPoll,"programstudi-list",listProgramstudi,"#{pollToolBean.program_studi}",Integer.toString(0));
+                param_program_studi=pollToolBean.getProgram_studi();
+                
+                UICommand.make(newPoll, "search-matakuliah", UIMessage.make("search"), "#{pollToolBean.searchListMataKuliah}");
                 
                 UILink no = UILink.make(tofill,"matakuliah-no-title",messageLocator.getMessage("matakuliah_no_title"), "#");
                 no.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("matakuliah_no_title_tooltip")));
@@ -248,7 +261,12 @@ public class ListMataKuliahProducer implements ViewComponentProducer,NavigationC
                 
                  
                 List<Object[]> listMataKuliah;
-        	listMataKuliah = pollVoteManager.getListMataKuliah(listRombel[0], listProgramstudi[0]);
+//        	listMataKuliah = pollVoteManager.getListMataKuliah(listRombel[0], listProgramstudi[0]);
+                if(param_rombel != null || param_program_studi != null ) {
+                listMataKuliah = pollVoteManager.getListMataKuliah(param_rombel,param_program_studi);
+                } else{ //ini query default
+                    listMataKuliah = pollVoteManager.getListMataKuliah("B2017","D3");
+                }
                 for (Iterator <Object[]> iterator = listMataKuliah.iterator(); iterator.hasNext();){
                     
                  Object[] e = iterator.next();
