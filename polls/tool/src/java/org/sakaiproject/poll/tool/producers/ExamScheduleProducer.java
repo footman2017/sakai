@@ -157,7 +157,7 @@ public class ExamScheduleProducer implements ViewComponentProducer,NavigationCas
 //                schPengawas.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("sch_pengawas_title_tooltip")));
 		
 		List<Object[]>jadwalUjian;
-		jadwalUjian = pollVoteManager.getJadwalUjian("D3","3","EAS");
+		jadwalUjian = pollVoteManager.getJadwalUjian("D3","Ganjil","ETS");
 
 		System.out.println("#A"+jadwalUjian.isEmpty());
                 System.out.println("#A"+jadwalUjian.toString());
