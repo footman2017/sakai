@@ -121,7 +121,9 @@ public class ListDosenProducer implements ViewComponentProducer,NavigationCaseRe
             UIMessage.make(tofill,"listDosen-title","listDosen_title");
 
             String param_rombel = null; //A2017
-            String param_program_studi = null ;
+//            String param_program_studi = null ;
+            String param_tahun_ajar = null ;
+            String param_semester = null ;
 
             UIForm newForm = UIForm.make(tofill, "listDosen-form");
 
@@ -129,9 +131,17 @@ public class ListDosenProducer implements ViewComponentProducer,NavigationCaseRe
             UISelect rombel = UISelect.make(newForm,"rombel",arrRomble,"#{pollToolBean.rombel}",Integer.toString(0));
             param_rombel=pollToolBean.getRombel();
 
-            String[] arrProgramStudi = new String[]{"D3","D4"};
-            UISelect programStudi = UISelect.make(newForm,"program-studi",arrProgramStudi,"#{pollToolBean.program_studi}",Integer.toString(0));
+//            String[] arrProgramStudi = new String[]{"D3","D4"};
+//            UISelect programStudi = UISelect.make(newForm,"program-studi",arrProgramStudi,"#{pollToolBean.program_studi}",Integer.toString(0));
 //            param_program_studi = pollToolBean.getProgram_studi();
+            
+            String[] arrTahunAjar = new String[]{"2016/2017", "2017/2018", "2018/2019"};
+            UISelect tahunAjar = UISelect.make(newForm,"tahun-akademik",arrTahunAjar,"#{pollToolBean.tahun_akademik}",Integer.toString(0));
+            param_tahun_ajar=pollToolBean.getTahun_akademik();
+            
+            String[] arrSemester = new String[]{"Ganjil", "Genap"};
+            UISelect semester = UISelect.make(newForm,"semester-id",arrSemester,"#{pollToolBean.semester}",Integer.toString(0));
+            param_semester=pollToolBean.getSemester();
             
             UICommand.make(newForm, "search-dosen", UIMessage.make("search_dosen"), "#{pollToolBean.seacrhListDosen}");
 
@@ -143,9 +153,9 @@ public class ListDosenProducer implements ViewComponentProducer,NavigationCaseRe
             List<Object[]> listDosen;
 //            listDosen = pollVoteManager.getListDosen();
             if(param_rombel != null) {
-                listDosen = pollVoteManager.getListDosen(param_rombel);
+                listDosen = pollVoteManager.getListDosen(param_rombel, param_tahun_ajar, param_semester);
                 } else{ //ini query default
-                    listDosen = pollVoteManager.getListDosen("A2017");
+                    listDosen = pollVoteManager.getListDosen("A2017", "2017/2018", "Ganjil");
             }
 
             for (Iterator <Object[]> iterator = listDosen.iterator(); iterator.hasNext();) {

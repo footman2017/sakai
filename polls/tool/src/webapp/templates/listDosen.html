@@ -23,7 +23,7 @@
 </ul>
 
 	
-<h3 rsf:id="listDosen-title">Fucking Dosen</h3>
+<h3 rsf:id="listDosen-title">Dosen</h3>
 
 
 <!--<div rsf:id="message-for:*" class="alertMessage">
@@ -33,7 +33,7 @@
 
 <form rsf:id="listDosen-form">
     <div class="form-group row">
-    	<label for="rombel-selection" class="col-md-4 col-lg-2 form-control-label">
+    	<label for="rombel-selection" class="col-md-1 col-lg-2 form-control-label">
                     <span rsf:id="msg=rombel">rombel</span>
         </label>
         <div class="col-md-2">
@@ -43,13 +43,23 @@
                 </select>
         </div>
         
-        <label for="rombel-selection" class="col-md-4 col-lg-2 form-control-label">
-                    <span rsf:id="msg=program_studi">program study</span>
+        <label for="rombel-selection" class="col-md-1 col-lg-2 form-control-label">
+                    <span rsf:id="msg=tahun_ajar">tahun ajar</span>
         </label>
         <div class="col-md-2">
-                <select name="programStudiOptions" rsf:id="program-studi" id="programStudi">
-                    <option value="D3">D3</option>	
-                    <option value="D4">D4</option>
+                <select name="tahunAkademikOptions" rsf:id="tahun-akademik" id="tahunAkademik">
+                    <option value="2016/2017">2016/2017</option>	
+                    <option value="2017/2018">2017/2018</option>
+                </select>
+        </div>
+        
+        <label for="rombel-selection" class="col-md-1 col-lg-2 form-control-label">
+                    <span rsf:id="msg=semester">semserter</span>
+        </label>
+        <div class="col-md-2">
+                <select name="semesterOptions" rsf:id="semester-id" id="semesterId">
+                    <option value="Ganjil">Ganjil</option>	
+                    <option value="Genap">Genap</option>
                 </select>
         </div>
         <input type="submit" value="search" rsf:id="search-dosen" class="active" />      
