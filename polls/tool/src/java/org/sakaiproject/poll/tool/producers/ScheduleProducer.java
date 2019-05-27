@@ -174,7 +174,7 @@ public class ScheduleProducer implements ViewComponentProducer,NavigationCaseRep
                 } else{ //ini query default
                     System.out.println("#herequerydefault");
                     System.out.println(param_rombel+"-"+param_program_studi+"-"+param_semester+"-"+param_tahun_akademik);
-                    jadwalKuliah = pollVoteManager.getJadwalKuliah("B2017","D3","2018/2019","Ganjil");
+                    jadwalKuliah = pollVoteManager.getJadwalKuliah("B2017","D3","2017/2018","Ganjil");
                 }
                 
 //		System.out.println("#A"+jadwalKuliah.isEmpty());
