@@ -89,6 +89,7 @@ import org.sakaiproject.service.gradebook.shared.InvalidGradeException;
 import org.sakaiproject.service.gradebook.shared.PermissionDefinition;
 import org.sakaiproject.service.gradebook.shared.SortType;
 import org.sakaiproject.service.gradebook.shared.GradebookRankView;
+import org.sakaiproject.service.gradebook.shared.CourseGradesPerSite;
 import org.sakaiproject.site.api.Group;
 import org.sakaiproject.site.api.Site;
 import org.sakaiproject.site.api.SiteService;
@@ -352,7 +353,7 @@ public class GradebookNgBusinessService {
 	 * @param siteId the siteId
 	 * @return the gradebook for the site
 	 */
-	private Gradebook getGradebook(final String siteId) {
+	public Gradebook getGradebook(final String siteId) {
 		Gradebook gradebook = null;
 		try {
 			gradebook = (Gradebook) this.gradebookService.getGradebook(siteId);
@@ -2858,37 +2859,96 @@ public class GradebookNgBusinessService {
 	
 
 	// EDIT
-	public Map<String,String> getGradebookTitleAllSite(final String userID) {
+	public List<CourseGradesPerSite> getTranscript(final String userID) {
 		List<Site> sites = this.siteService.getUserSites(true, userID);
-		Map<String,String> courseGrades = new HashMap<String,String>(); 
-		// List<String> siteTitle = new ArrayList<String>();
+		List<CourseGradesPerSite> courseGradesPerSite = new ArrayList<CourseGradesPerSite>();
+
 		for ( final Site site : sites) {
-			courseGrades.put(site.getId(), site.getTitle());
-			// siteTitle.add(site.getTitle());
+			CourseGradesPerSite cgps = new CourseGradesPerSite();
+			cgps.setSiteId(site.getId());
+			cgps.setSiteTitle(site.getTitle());
+			final Gradebook gbs = this.getGradebook(site.getId());
+			final GbRole role;
+			try {
+				role = this.getUserRole(site.getId());
+			} catch (final GbAccessDeniedException e) {
+				log.warn("GbAccessDeniedException trying to check isCourseGradeVisible", e);
+				return null;
+			}
+
+			final CourseGradeFormatter courseGradeFormatter = new CourseGradeFormatter(
+				gbs,
+				role,
+				isCourseGradeVisible(site.getId(),userID),
+				gbs.isCoursePointsDisplayed(),
+				true);
+
+			cgps.setCourseGrade(courseGradeFormatter.format(getCourseGrade(gbs,userID)));
 			log.warn(site.getTitle() + "&"+ site.getId() +"\n");
+			courseGradesPerSite.add(cgps);
 		}
 		
-		return courseGrades;
+		return courseGradesPerSite;
 	}
 
-	// EDIT
-	 /**
-	  * Get the course grade for a student. Safe to call when logged in as a student.
-	  *
-	  * @param studentUuid
-	  * @return coursegrade. May have null fields if the coursegrade has not been released
-	  */
-	 public CourseGrade getCourseGrade(final String studentUuid, final String siteId) {
+	public CourseGrade getCourseGrade(final Gradebook gradebook,final String studentUuid) {
 
-	  final Gradebook gradebook = this.getGradebook(siteId);
-	  final CourseGrade courseGrade = this.gradebookService.getCourseGradeForStudent(gradebook.getUid(), studentUuid);
+		final CourseGrade courseGrade = this.gradebookService.getCourseGradeForStudent(gradebook.getUid(), studentUuid);
 
-	  // handle the special case in the gradebook service where totalPointsPossible = -1
-	  if (courseGrade != null && (courseGrade.getTotalPointsPossible() == null || courseGrade.getTotalPointsPossible() == -1)) {
-	   courseGrade.setTotalPointsPossible(null);
-	   courseGrade.setPointsEarned(null);
-	  }
+		// handle the special case in the gradebook service where totalPointsPossible = -1
+		if (courseGrade != null && (courseGrade.getTotalPointsPossible() == null || courseGrade.getTotalPointsPossible() == -1)) {
+			courseGrade.setTotalPointsPossible(null);
+			courseGrade.setPointsEarned(null);
+		}
 
-	  return courseGrade;
-	 }
+		return courseGrade;
+	}
+
+	public boolean isCourseGradeVisible(final String siteUuid, final String userUuid) {
+
+		GbRole role;
+		try {
+			role = this.getUserRole(siteUuid);
+		} catch (final GbAccessDeniedException e) {
+			log.warn("GbAccessDeniedException trying to check isCourseGradeVisible", e);
+			return false;
+		}
+
+		// if instructor, allowed
+		if (role == GbRole.INSTRUCTOR) {
+			return true;
+		}
+
+		// if TA, permission checks
+		if (role == GbRole.TA) {
+
+			// if no defs, implicitly allowed
+			final List<PermissionDefinition> defs = getPermissionsForUser(userUuid);
+			if (defs.isEmpty()) {
+				return true;
+			}
+
+			// if defs and one is the view course grade, explicitly allowed
+			for (final PermissionDefinition def : defs) {
+				if (StringUtils.equalsIgnoreCase(def.getFunction(), GraderPermission.VIEW_COURSE_GRADE.toString())) {
+					return true;
+				}
+			}
+			return false;
+		}
+
+		// if student, check the settings
+		// this could actually get the settings but it would be more processing
+		if (role == GbRole.STUDENT) {
+			final Gradebook gradebook = this.getGradebook(siteUuid);
+
+			if (gradebook.isCourseGradeDisplayed()) {
+				return true;
+			}
+		}
+
+		// other roles not yet catered for, catch all.
+		log.warn("User: {} does not have a valid Gradebook related role in site: {}", userUuid, siteUuid);
+		return false;
+	}
 }

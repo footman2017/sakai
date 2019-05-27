@@ -34,6 +34,7 @@ import org.sakaiproject.gradebookng.business.util.EventHelper;
 import org.sakaiproject.gradebookng.tool.panels.StudentGradeSummaryGradesPanel;
 import org.sakaiproject.rubrics.logic.RubricsConstants;
 import org.sakaiproject.user.api.User;
+import org.sakaiproject.service.gradebook.shared.CourseGradesPerSite;
 
 /**
  *
@@ -63,30 +64,15 @@ public class TranscriptPage extends BasePage {
 
 		add(new Label("heading", new StringResourceModel("heading.studentrankingpage", null, new Object[] { u.getDisplayName() })));
 //		List<String> test = this.businessService.getGradebookTitleAllSite(u.getId());
-//		test.get(0);
-		
-//---EDIT---
-	ListView<Entry<String, String>> siteList = new ListView<Entry<String, String>>("siteList", new ListView<Entry<String, String>(this.businessService.getGradebookTitleAllSite(u.getId()).entrySet()) {
-	    @Override
-	    protected void populateItem(Item item) {
-	        Entry<String, String> entry = item.getModelObject();
-	        item.add(new Label("siteTitle", entry.getKey()));
-	        item.add(new Label("courseGrades", entry.getValue()));
-	    }
-	});
-//-----
+		List<CourseGradesPerSite> courseGradesPerSite = this.businessService.getTranscript(u.getId());
 
-
-		// ListView<String> siteList = new ListView<String>("siteList", this.businessService.getGradebookTitleAllSite(u.getId())){
-
-		// 	@Override
-		// 	protected void populateItem(ListItem<String> item) {
-		// 		// TODO Auto-generated method stub
-		// 		item.add(new Label("siteTitle", item.getModel()));
-		// 	}
-			
-  //      };
-       add(siteList);
+		add(new ListView("courseList", courseGradesPerSite) {
+		    protected void populateItem(ListItem item) {
+		        CourseGradesPerSite cgps = (CourseGradesPerSite) item.getModelObject();
+		        item.add(new Label("siteTitle", cgps.getSiteTitle()));
+		        item.add(new Label("courseGrade", cgps.getCourseGrade()));
+		    }
+		});
        EventHelper.postStudentViewEvent(this.businessService.getGradebook(), u.getId());
 	}
 
