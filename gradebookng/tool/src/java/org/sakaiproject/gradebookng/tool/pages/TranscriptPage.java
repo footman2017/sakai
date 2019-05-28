@@ -63,7 +63,6 @@ public class TranscriptPage extends BasePage {
 		add(rubricsTokenHiddenField);
 
 		add(new Label("heading", new StringResourceModel("heading.studentrankingpage", null, new Object[] { u.getDisplayName() })));
-//		List<String> test = this.businessService.getGradebookTitleAllSite(u.getId());
 		List<CourseGradesPerSite> courseGradesPerSite = this.businessService.getTranscript(u.getId());
 
 		add(new ListView("courseList", courseGradesPerSite) {

@@ -23,6 +23,7 @@ import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.head.JavaScriptHeaderItem;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.HiddenField;
+import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.StringResourceModel;
@@ -32,6 +33,7 @@ import org.sakaiproject.gradebookng.business.util.EventHelper;
 import org.sakaiproject.gradebookng.tool.panels.StudentGradeSummaryGradesPanel;
 import org.sakaiproject.rubrics.logic.RubricsConstants;
 import org.sakaiproject.user.api.User;
+import org.sakaiproject.service.gradebook.shared.GradebookRankView;
 
 /**
  *
@@ -60,9 +62,18 @@ public class RankingPage extends BasePage {
 		add(rubricsTokenHiddenField);
 
 		add(new Label("heading", new StringResourceModel("heading.studentrankingpage", null, new Object[] { u.getDisplayName() })));
-		add(new Label("summary", this.businessService.getGradebookRankView().get(0).getFullname()));
-		add(new Label("summary2", this.businessService.getGradebookRankView().get(1).getFullname()));
-		add(new Label("summary3", this.businessService.getGradebookRankView().get(2).getFullname()));
+		ListView rankView = new ListView("rankList", this.businessService.getGradebookRankView()) {
+		    protected void populateItem(ListItem item) {
+		        GradebookRankView grv = (GradebookRankView) item.getModelObject();
+		        item.add(new Label("rankNumber", (item.getIndex()+1)));
+		        item.add(new Label("rankName", grv.getFullname()));
+		        item.add(new Label("rankScore", grv.getPointsEarned()));
+		    }
+		};
+		rankView.setViewSize(10);
+		add(rankView);
+		
+
 		add(new Label("currentRank", this.businessService.getCurrentRank(u.getId())));
 		
 		EventHelper.postStudentViewEvent(this.businessService.getGradebook(), u.getId());
