@@ -62,12 +62,13 @@ public class TranscriptPage extends BasePage {
 		final HiddenField<String> rubricsTokenHiddenField = new HiddenField<String>("rubricsTokenHiddenField", Model.of(rubricsService.generateJsonWebToken(RubricsConstants.RBCS_TOOL_GRADEBOOKNG)));
 		add(rubricsTokenHiddenField);
 
-		add(new Label("heading", new StringResourceModel("heading.studentrankingpage", null, new Object[] { u.getDisplayName() })));
+		add(new Label("heading", new StringResourceModel("heading.studenttranscriptpage", null, new Object[] { u.getDisplayName() })));
 		List<CourseGradesPerSite> courseGradesPerSite = this.businessService.getTranscript(u.getId());
 
 		add(new ListView("courseList", courseGradesPerSite) {
 		    protected void populateItem(ListItem item) {
 		        CourseGradesPerSite cgps = (CourseGradesPerSite) item.getModelObject();
+		        item.add(new Label("courseNumber", (item.getIndex()+1)));
 		        item.add(new Label("siteTitle", cgps.getSiteTitle()));
 		        item.add(new Label("courseGrade", cgps.getCourseGrade()));
 		    }
