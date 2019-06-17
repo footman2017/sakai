@@ -141,21 +141,23 @@ DefaultView,NavigationCaseReporter {
 		boolean renderDelete = false;
 		//populate the action links
 		if (this.isAllowedPollAdd() || this.isSiteOwner() ) {
-			UIBranchContainer actions = UIBranchContainer.make(tofill,"actions:",Integer.toString(0));
+			UIBranchContainer actions1 = UIBranchContainer.make(tofill,"actions1:",Integer.toString(0));
+                        UIBranchContainer actions2 = UIBranchContainer.make(tofill,"actions2:",Integer.toString(0));
 			log.debug("this user has some admin functions");
 			if (this.isAllowedPollAdd()) {
 				log.debug("User can add polls");
-				//UIOutput.make(tofill, "poll-add", messageLocator
-				//       .getMessage("action_add_poll"));
-//				UIInternalLink.make(actions,NAVIGATE_ADD,UIMessage.make("action_add_poll"),
-//						new PollViewParameters(AddPollProducer.VIEW_ID, "New 0"));
-                                UIInternalLink.make(actions, NAVIGATE_EXAMSCHEDULE, UIMessage.make("action_set_exam"),new SimpleViewParameters(ExamScheduleProducer.VIEW_ID));
-                                UIInternalLink.make(actions, NAVIGATE_SCHEDULE, UIMessage.make("action_set_schedule"),new SimpleViewParameters(ScheduleProducer.VIEW_ID));
+				UIOutput.make(tofill, "poll-add", messageLocator
+				       .getMessage("action_add_poll"));
+				UIInternalLink.make(actions1,NAVIGATE_ADD,UIMessage.make("action_add_poll"),
+						new PollViewParameters(AddPollProducer.VIEW_ID, "New 0"));
+                                UIInternalLink.make(actions2, NAVIGATE_EXAMSCHEDULE, UIMessage.make("action_set_exam"),new SimpleViewParameters(ExamScheduleProducer.VIEW_ID));
+                                UIInternalLink.make(actions2, NAVIGATE_SCHEDULE, UIMessage.make("action_set_schedule"),new SimpleViewParameters(ScheduleProducer.VIEW_ID));
+//                                UIInternalLink.make(actions2, NAVIGATE_SCHEDULE, UIMessage.make("action_set_add_academic"),new SimpleViewParameters(AddAcademicProducer.VIEW_ID));
 			} 
 			if (this.isSiteOwner()) {
-//				UIInternalLink.make(actions, NAVIGATE_PERMISSIONS, UIMessage.make("action_set_permissions"),new SimpleViewParameters(PermissionsProducer.VIEW_ID));
-                                UIInternalLink.make(actions, NAVIGATE_LISTDOSEN, UIMessage.make("action_set_listdosen"),new SimpleViewParameters(ListDosenProducer.VIEW_ID));
-                                UIInternalLink.make(actions, NAVIGATE_DAFTAR_MATA_KULIAH, UIMessage.make("action_set_listmatakuliah"), new SimpleViewParameters(ListMataKuliahProducer.VIEW_ID));
+				UIInternalLink.make(actions1, NAVIGATE_PERMISSIONS, UIMessage.make("action_set_permissions"),new SimpleViewParameters(PermissionsProducer.VIEW_ID));
+                                UIInternalLink.make(actions2, NAVIGATE_LISTDOSEN, UIMessage.make("action_set_listdosen"),new SimpleViewParameters(ListDosenProducer.VIEW_ID));
+                                UIInternalLink.make(actions2, NAVIGATE_DAFTAR_MATA_KULIAH, UIMessage.make("action_set_listmatakuliah"), new SimpleViewParameters(ListMataKuliahProducer.VIEW_ID));
 			} 
 		}
 

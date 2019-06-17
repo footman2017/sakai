@@ -13,15 +13,13 @@
 <body rsf:id="scr=sakai-body">
 <div class="portletBody">
 
-<ul rsf:id="actions:" class="navIntraTool">
-  <li><span><a href="examSchedule.html" rsf:id="exam-schedule">Schedule Exam</a></span></li>
-  <li><span><a href="schedule.html" rsf:id="action-schedule">Schedule Exam</a></span></li>
-  <li><span><a href="listDosen.html" rsf:id="actions-listDosen">List Dosen</a></span></li>
-  <li><span><a href="listMataKuliah.html" rsf:id="actions-listmatakuliah">Daftar Mata Kuliah</a></span></li>
+<ul rsf:id="actions1:" class="navIntraTool">
+  <li><span><a href="voteAdd.html" rsf:id="actions-add">Add</a></span></li>
+  <li><span><a href="votePermissions.html" rsf:id="actions-permissions">Permissions</a></span></li>
 </ul>
 
 	
-<h3 rsf:id="poll-list-title">Polls</h3>
+<h3>Poll List</h3>
 
 
 <div rsf:id="message-for:*" class="alertMessage">
@@ -117,5 +115,63 @@
 </p>
 </form>
 </div>
+    
+<h3>Schedule List</h3>
+
+<ul rsf:id="actions2:" class="navIntraTool">
+  <li><span><a href="examSchedule.html" rsf:id="exam-schedule">Schedule Exam</a></span></li>
+  <li><span><a href="schedule.html" rsf:id="action-schedule">Schedule Exam</a></span></li>
+  <li><span><a href="listDosen.html" rsf:id="actions-listDosen">List Dosen</a></span></li>
+  <li><span><a href="listMataKuliah.html" rsf:id="actions-listmatakuliah">Daftar Mata Kuliah</a></span></li>
+</ul>
+
+
+<div rsf:id="message-for:*" class="alertMessage">
+	<span>Message for user here</span>
+</div>
+<div class="instruction" rsf:id="no-polls">No polls have been created yet.</div>
+<div class="addItem" rsf:id="add-poll-icon">
+	<a href="voteAdd.html" rsf:id="add-poll">Add</a>
+</div>
+
+<table id="sortableTable" class="listHier lines nolines table table-responsive table-bordered table-striped table-hover" border="0" cellspacing="0">
+<caption class="skip"><span class="skip" rsf:id="msg=poll_list_summary"></span></caption>
+  <thead>
+    <tr> 
+      <th><a>Rombongan Belajar</a></th>
+      <th><a>Hari</a></th>
+      <th><a>Ruangan</a></th>
+    </tr>
+  </thead>
+  <tbody id="tasks:polllist:tbody_element">
+
+    <tr> 
+      <td>A2017 / D3 - Teknik Informatika</td>
+      <td>Senin, Selasa, Rabu, Kamis, Jumat</td>
+      <td><a>D217</a></td>      
+    </tr>
+    <tr> 
+      <td>B2017 / D3 - Teknik Informatika</td>
+      <td>Senin, Selasa, Rabu, Kamis</td>
+      <td><a>D218</a></td>      
+    </tr>
+    <tr> 
+      <td>A2017 / D4 - Teknik Informatika</td>
+      <td>Senin, Selasa, Kamis, Jumat</td>
+      <td><a>D110</a></td>      
+    </tr>
+    <tr> 
+      <td>A2018 / D3 - Teknik Informatika</td>
+      <td>Senin, Selasa, Rabu, Kamis, Jumat</td>
+      <td><a>D117</a></td>      
+    </tr>
+    <tr> 
+      <td>B2018 / D3 - Teknik Informatika</td>
+      <td>Senin, Selasa, Rabu, Kamis, Jumat</td>
+      <td><a>D105</a></td>      
+    </tr>
+  </tbody>
+</table>
+
 </body>
 </html>

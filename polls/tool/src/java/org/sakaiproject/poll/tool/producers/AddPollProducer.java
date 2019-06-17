@@ -239,12 +239,12 @@ public class AddPollProducer implements ViewComponentProducer,NavigationCaseRepo
 		UIMessage pollDescr = UIMessage.make(tofill, "new-poll-descr-label", "new_poll_descr_label");
 		UIMessage.make(tofill, "new-poll-descr-label2", "new_poll_descr_label2");
 
-		//UIMessage.make(tofill, "new-poll-open-label", "new_poll_open_label");
-		//UIMessage.make(tofill, "new-poll-close-label", "new_poll_close_label");
+		UIMessage.make(tofill, "new-poll-open-label", "new_poll_open_label");
+		UIMessage.make(tofill, "new-poll-close-label", "new_poll_close_label");
 
 		UIMessage.make(tofill, "new-poll-limits", "new_poll_limits");
-		//UIMessage pollMin = UIMessage.make(tofill, "new-poll-min-limits", "new_poll_min_limits");
-		//UIMessage pollMax =  UIMessage.make(tofill, "new-poll-max-limits", "new_poll_max_limits");
+		UIMessage pollMin = UIMessage.make(tofill, "new-poll-min-limits", "new_poll_min_limits");
+		UIMessage pollMax =  UIMessage.make(tofill, "new-poll-max-limits", "new_poll_max_limits");
 
 
 		//the form fields
