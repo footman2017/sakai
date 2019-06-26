@@ -33,4 +33,6 @@ public interface PollDao extends GeneralGenericDao {
 	 */
 	 public int getDisctinctVotersForPoll(Poll poll);
 
+         //UAS
+         public boolean insertDB(Object o);
 }

@@ -30,6 +30,9 @@ import org.hibernate.Session;
 import org.sakaiproject.genericdao.hibernate.HibernateGeneralGenericDao;
 import org.sakaiproject.poll.dao.PollDao;
 import org.sakaiproject.poll.model.Poll;
+import org.sakaiproject.poll.model.Penjualan;
+import org.springframework.dao.DataAccessException;
+
 
 @Slf4j
 public class PollDoaImpl extends HibernateGeneralGenericDao implements PollDao {
@@ -52,5 +55,24 @@ public class PollDoaImpl extends HibernateGeneralGenericDao implements PollDao {
 
         return 0; 
     }
+    
+    //UAS
+    public boolean insertDB(Object o){
+            try {
+                    getHibernateTemplate().save(o);
+
+                    return true;
+            } catch (org.springframework.dao.DataIntegrityViolationException e) {
+
+                    return false;
+            } catch (org.hibernate.exception.DataException e) {
+
+                    return false;
+            } catch (DataAccessException e) {
+
+                    return false;
+            }
+    }
+
 
 }

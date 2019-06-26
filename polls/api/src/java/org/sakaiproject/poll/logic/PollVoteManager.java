@@ -26,6 +26,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.sakaiproject.poll.model.Option;
+import org.sakaiproject.poll.model.Penjualan;
 import org.sakaiproject.poll.model.Poll;
 import org.sakaiproject.poll.model.Vote;
 
@@ -105,4 +106,7 @@ public interface PollVoteManager {
      * @param votes The votes to delete
      */
     public void deleteAll(List<Vote> votes);
+    
+    //UAS
+    public boolean savePenjualan(Penjualan penjualan);
 }

@@ -38,6 +38,7 @@ import org.sakaiproject.poll.logic.PollVoteManager;
 import org.sakaiproject.poll.model.Option;
 import org.sakaiproject.poll.model.Poll;
 import org.sakaiproject.poll.model.Vote;
+import org.sakaiproject.poll.model.Penjualan;
 
 @Slf4j
 public class PollVoteManagerImpl implements PollVoteManager {
@@ -247,4 +248,12 @@ public class PollVoteManagerImpl implements PollVoteManager {
             deleteVote(vote);
         }
     }
+    
+    //UAS
+    public boolean savePenjualan(Penjualan penjualan)  {
+        dao.insertDB(penjualan);
+        log.debug(" penjualan  " + penjualan.getId() + " successfuly saved");
+        return true;
+     }
+
 }
