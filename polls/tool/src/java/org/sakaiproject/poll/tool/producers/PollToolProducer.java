@@ -155,152 +155,32 @@ DefaultView,NavigationCaseReporter {
                                 UIInternalLink.make(actions, "actions-jenisproduk", UIMessage.make("action_set_jenisproduk"),new SimpleViewParameters(PollToolProducer.VIEW_ID));
 			} 
 		}
+                
+                UIOutput.make(tofill, "input-penjualan-title", messageLocator.getMessage("input_penjualan_title"));	
 
+                UIForm newForm = UIForm.make(tofill, "input-penjualan-form");
+                
+                UILink namaInputLabel = UILink.make(tofill,"input-nama-title",messageLocator.getMessage("input_nama_title"), "#");
+                String[] namaCustomer = new String[]{"Mazid Ahmad","Kiki Pratiwi"};
+		UISelect namaInput = UISelect.make(newForm,"nama-penjual",namaCustomer,"#",Integer.toString(0));
+                
+                UILink jenisiProdukLabel = UILink.make(tofill,"input-jenisproduk-title",messageLocator.getMessage("input_jenisproduk_title"), "#");
+                String[] jenisProduk = new String[]{"Electronic","HomeAppliance"};
+		UISelect jenisProdukInput = UISelect.make(newForm,"jenis-produk",jenisProduk,"#",Integer.toString(0));
 
-		List<Poll> polls = new ArrayList<Poll>();
-
-		String siteId = externalLogic.getCurrentLocationId();
-		if (siteId != null) {
-			polls = pollListManager.findAllPolls(siteId);
-		} else {
-			log.warn("Unable to get siteid!");
-
-		}
-
-		if(polls.isEmpty()){
-			UIOutput.make(tofill, "no-polls", messageLocator.getMessage("poll_list_empty"));
-			UIOutput.make(tofill, "add-poll-icon");
-			if (this.isAllowedPollAdd()) {
-//				UIInternalLink.make(tofill,"add-poll",UIMessage.make("new_poll_title"),
-//						new PollViewParameters(AddPollProducer.VIEW_ID, "New 0"));
-			} 
-		}
-		else{
-		// fix for broken en_ZA locale in JRE http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6488119
-		Locale M_locale = null;
-		String langLoc[] = localegetter.get().toString().split("_");
-		if ( langLoc.length >= 2 ) {
-			if ("en".equals(langLoc[0]) && "ZA".equals(langLoc[1]))
-				M_locale = new Locale("en", "GB");
-			else
-				M_locale = new Locale(langLoc[0], langLoc[1]);
-		} else{
-			M_locale = new Locale(langLoc[0]);
-		}
-
-		DateFormat df = DateFormat.getDateTimeInstance(DateFormat.MEDIUM,
-				DateFormat.SHORT, M_locale);
-		TimeZone tz = externalLogic.getLocalTimeZone();
-		df.setTimeZone(tz);
-		//m_log.debug("got timezone: " + tz.getDisplayName());
-
-		UIOutput.make(tofill, "poll_list_remove_confirm", messageLocator.getMessage("poll_list_remove_confirm"));
-		UIOutput.make(tofill, "poll_list_reset_confirm", messageLocator.getMessage("poll_list_reset_confirm"));
-
-		UIForm deleteForm = UIForm.make(tofill, "delete-poll-form");
-		// Create a multiple selection control for the tasks to be deleted.
-		// We will fill in the options at the loop end once we have collected them.
-		UISelect deleteselect = UISelect.makeMultiple(deleteForm, "delete-poll",
-				null, "#{pollToolBean.deleteids}", new String[] {});
-
-		//get the headers for the table
-		/*UIMessage.make(deleteForm, "poll-question-title","poll_question_title");
-		UIMessage.make(deleteForm, "poll-open-title", "poll_open_title");
-		UIMessage.make(deleteForm, "poll-close-title", "poll_close_title");*/
-		UIMessage.make(deleteForm, "poll-result-title", "poll_result_title");
-		UIMessage.make(deleteForm, "poll_select_title_all", "poll_select_title_all");
-		
-		UILink question = UILink.make(tofill,"poll-question-title",messageLocator.getMessage("poll_question_title"), "#");
-		question.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("poll_question_title_tooltip")));
-		UILink open = UILink.make(tofill,"poll-open-title",messageLocator.getMessage("poll_open_title"), "#");
-		open.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("poll_open_title_tooltip")));
-		UILink close = UILink.make(tofill,"poll-close-title",messageLocator.getMessage("poll_close_title"), "#");
-		close.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("poll_close_title_tooltip")));
-
-		UIInput removeAll = UIInput.make(deleteForm, "remove-all", null);
- 		removeAll.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("poll_select_title_all")));
-		
-		StringList deletable = new StringList();
-		
-		
-		
-		for (int i = 0 ; i < polls.size(); i++) {
-			Poll poll = (Poll)polls.get(i);
-			
-			boolean canVote = pollVoteManager.pollIsVotable(poll);
-			UIBranchContainer pollrow = UIBranchContainer.make(deleteForm,
-					canVote ? "poll-row:votable"
-							: "poll-row:nonvotable", poll.getPollId().toString());
-			log.debug("adding poll row for " + poll.getText());
-
-			if (canVote) {
-//				UIInternalLink voteLink = UIInternalLink.make(pollrow, NAVIGATE_VOTE, poll.getText(),
-//						new PollViewParameters(PollVoteProducer.VIEW_ID, poll.getPollId().toString()));
-//				//we need to add a decorator for the alt text
-//				voteLink.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("poll_vote_title") +":" + poll.getText()));
-
-			} else {
-				//the poll is lazily loaded so get the options
-				poll.setOptions(pollListManager.getOptionsForPoll(poll.getPollId()));
+                UILink namaProdukLabel = UILink.make(tofill,"input-namaproduk-title",messageLocator.getMessage("input_namaproduk_title"), "#");
+                String[] namaProduk = new String[]{"Asus Zenbook 15","Acer Predator 5","Macbook Pro 15"};
+		UISelect namaProdukInput = UISelect.make(newForm,"nama-produk",namaProduk,"#",Integer.toString(0));
+                
+                UILink jumlahBarangLabel = UILink.make(tofill,"jumlah-barang-title",messageLocator.getMessage("input_jumlahbarang_title"), "#");
+                String[] jumlahBarang = new String[]{"1","2","3"};
+		UISelect jumlahBarangInput = UISelect.make(newForm,"jumlah-barang",jumlahBarang,"#",Integer.toString(0));
+                
+//                UIInput.make(newForm, "jumlah-total", "#");
+                
+                UICommand.make(newForm, "input-penjualan-barang", UIMessage.make("input_penjualan_barang"), "#{pollToolBean.seacrhListDosen}");
+                
 				
-				//is this not votable because of no options?
-				if (poll.getPollOptions().size() == 0 )
-					UIOutput.make(pollrow,"poll-text",poll.getText() + " (" + messageLocator.getMessage("poll_no_options") + ")");
-				else
-					UIOutput.make(pollrow,"poll-text",poll.getText());
-			}
-
-
-
-			if (pollListManager.isAllowedViewResults(poll, externalLogic.getCurrentUserId())) {
-//				UIInternalLink resultsLink =  UIInternalLink.make(pollrow, "poll-results", messageLocator.getMessage("action_view_results"),
-//						new PollViewParameters(ResultsProducer.VIEW_ID, poll.getPollId().toString()));
-//				resultsLink.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("action_view_results")+ ":" + poll.getText()));
-
-			}
-
-			if (poll.getVoteOpen()!=null)
-				UIOutput.make(pollrow,"poll-open-date",df.format(poll.getVoteOpen()))
-					.decorators = new DecoratorList(new UIFreeAttributeDecorator("name", "realDate:"+poll.getVoteOpen().toString()));
-			else 
-				UIVerbatim.make(pollrow,"poll-open-date","  ");
-
-			if (poll.getVoteClose()!=null)
-				UIOutput.make(pollrow,"poll-close-date",df.format(poll.getVoteClose()))
-					.decorators = new DecoratorList(new UIFreeAttributeDecorator("name", "realDate:"+poll.getVoteClose().toString()));
-			else 
-				UIVerbatim.make(pollrow,"poll-close-date","  ");
-
-			if (pollCanEdit(poll)) {
-//				UIInternalLink editLink = UIInternalLink.make(pollrow,"poll-revise",messageLocator.getMessage("action_revise_poll"),
-//						new PollViewParameters(AddPollProducer.VIEW_ID,poll.getPollId().toString()));
-//				editLink.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("action_revise_poll")+ ":" + poll.getText()));
-
-			}
-			if (pollCanDelete(poll)) {
-				deletable.add(poll.getPollId().toString());
-				UISelectChoice delete =  UISelectChoice.make(pollrow, "poll-select", deleteselect.getFullID(), (deletable.size()-1));
-				delete.decorators = new DecoratorList(new UITooltipDecorator(UIMessage.make("delete_poll_tooltip", new String[] {poll.getText()})));
-				UIMessage message = UIMessage.make(pollrow,"delete-label","delete_poll_tooltip", new String[] {poll.getText()});
-				UILabelTargetDecorator.targetLabel(message,delete);
-				log.debug("this poll can be deleted");
-				renderDelete = true;
-
-			}
-		}
-
-
-
-		deleteselect.optionlist.setValue(deletable.toStringArray());
-		deleteForm.parameters.add(new UIELBinding("#{pollToolBean.siteID}", siteId));
-
-		if (renderDelete) {
-			UICommand.make(deleteForm, "delete-polls",  UIMessage.make("poll_list_delete"),
-					"#{pollToolBean.processActionDelete}").decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("poll_list_delete_tooltip")));
-			UICommand.make(deleteForm, "reset-polls-votes",  UIMessage.make("poll_list_reset"),
-					"#{pollToolBean.processActionResetVotes}").decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("poll_list_reset_tooltip")));
-		}
-		}
 	}
 
 

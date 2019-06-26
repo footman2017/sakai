@@ -13,6 +13,8 @@
 <body rsf:id="scr=sakai-body">
 <div class="portletBody">
 
+<h3 rsf:id="poll-list-title">Polls</h3>
+    
 <ul rsf:id="actions:" class="navIntraTool">
   <li><span><a href="voteAdd.html" rsf:id="actions-penjualan">Penjualan</a></span></li>
   <li><span><a href="voteAdd.html" rsf:id="actions-produk">Produk</a></span></li>
@@ -20,9 +22,7 @@
   <li><span><a href="voteAdd.html" rsf:id="actions-penjualan">Jenis Produk</a></span></li>
 </ul>
 
-	
-<h3 rsf:id="poll-list-title">Polls</h3>
-
+<h3 rsf:id="input-penjualan-title">Input Penjualan</h3>
 
 <div rsf:id="message-for:*" class="alertMessage">
 	<span>Message for user here</span>
@@ -71,51 +71,67 @@
 	});
 </script>
 
-<form rsf:id="delete-poll-form">
-<!-- This span is needed here to guide the renderer away to the checkboxes -->
-<span rsf:id="delete-poll"/>
-
-<table id="sortableTable" class="listHier lines nolines table table-responsive table-bordered table-striped table-hover" border="0" cellspacing="0">
-<caption class="skip"><span class="skip" rsf:id="msg=poll_list_summary"></span></caption>
-  <thead>
-    <tr> 
-      <th><a rsf:id="poll-question-title" title="Sort by Question" href="#">Question</a></th>
-      <th><a rsf:id="poll-open-title" title=" Sort by Opening Date" href="#">Opening</a></th>
-      <th><a rsf:id="poll-close-title" title="Sort by Closing Date" href="#">Closing</a></th>
-       <th><label rsf:id="poll-result-title"> Results</label></th> 
-	  <th ><input type="checkbox" rsf:id="remove-all" id="remove-all" title="Select to remove"/> <label for="remove-all" rsf:id="poll_select_title_all">Select all</label></th>
-    </tr>
-  </thead>
-  <tbody id="tasks:polllist:tbody_element">
-
-    <tr rsf:id="poll-row:votable"> 
-          <td><a href="voteQuestion.html" target="_self" rsf:id="poll-vote">Votable Poll Question</a>
-          <div class="itemAction"><a href="voteAdd.html" target="_self"  rsf:id="poll-revise">Edit</a></div>
-       </td>
-      <td rsf:id="poll-open-date">opening date</td>
-      <td rsf:id="poll-close-date">closing date</td>
-      <td><a rsf:id="poll-results">Results</a></td>
-      <td class="checkbox-cell"><label rsf:id="delete-label" id="check-2" class="skip">Label for element</label><input rsf:id="poll-select" title="Select to remove" type="checkbox" id="check-2" name="deletePoll" value="" /> 
-      </td>
-    </tr>
-    <tr rsf:id="poll-row:nonvotable">
-      <td><span rsf:id="poll-text">Non Votable Question</span>
-         <div class="itemAction"><a href="voteAdd.html" target="_self" rsf:id="poll-revise">Edit</a></div>
-        </td>
-      <td rsf:id="poll-open-date">opening date</td>
-      <td rsf:id="poll-close-date">closing date</td>
-      <td><a href="voteResults.html" target="_self" rsf:id="poll-results">Results</a></td>
-      <td class="checkbox-cell"><label rsf:id="delete-label" id="check-2" class="skip">Label for element</label><input rsf:id="poll-select" title="Select to remove" type="checkbox" id="check-2" name="deletePoll" value="" /> 
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-<p class="act">
-<input type="submit" rsf:id="delete-polls" id="delete-polls" name="deleteSelectPoll" value="Update"  accesskey="s" disabled="disabled" />
-<input type="submit" rsf:id="reset-polls-votes" id="reset-polls-votes" name="resetSelectPoll" value="Reset"  accesskey="r" disabled="disabled" />
-</p>
-</form>
+<form rsf:id="input-penjualan-form"> 
+        <div class="form-group row"> 
+            <label for="rombel-selection" class="col-md-4 col-lg-2 form-control-label"> 
+                <span rsf:id="input-nama-title">Nama :</span> 
+            </label> 
+            <div class="col-md-2"> 
+                <select name="namaOptions" rsf:id="nama-penjual" id="nama-penjual"> 
+                    <option value="Mazid Ahmad">Mazid Ahmad</option>	 
+                    <option value="Kiki Pratiwi">Kiki Pratiwi</option> 
+                </select> 
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="jenisproduk-selection" class="col-md-4 col-lg-2 form-control-label"> 
+                <span rsf:id="input-jenisproduk-title">Jenis Produk :</span> 
+            </label> 
+            <div class="col-md-2"> 
+                <select name="jenisProdukOptions" rsf:id="jenis-produk" id="jenisProduk"> 
+                    <option value="Electronic">Electronic</option>	 
+                    <option value="Home Appliance">Home Appliance</option> 
+                </select> 
+            </div> 
+        </div>
+        <div class="form-group row"> 
+            <label for="rombel-selection" class="col-md-4 col-lg-2 form-control-label"> 
+                <span rsf:id="input-namaproduk-title">Nama Produk :</span> 
+            </label> 
+            <div class="col-md-2"> 
+                <select name="namaprodukOptions" rsf:id="nama-produk" id="nama-produk"> 
+                    <option value="Asus Zenbook 15">Asus Zenbook 15</option>	 
+                    <option value="Acer Predator 5">Acer Predator 5</option> 
+                    <option value="Macbook Pro 15">Macbook Pro 15</option>	 
+                </select> 
+            </div> 
+        </div>
+        <div class="form-group row"> 
+            <label for="tahun_akademik-selection" class="col-md-4 col-lg-2 form-control-label"> 
+                <span rsf:id="jumlah-barang-title">Jumlah Barang</span> 
+            </label> 
+            <div class="col-md-2"> 
+                <select name="jumlahbarangOptions" rsf:id="jumlah-barang" id="jumlahBarang"> 
+                    <option value="1">1</option>	 
+                    <option value="2">2</option> 
+                    <option value="3">3</option> 
+                </select> 
+            </div>
+        </div>
+        <div class="form-group row"> 
+            <div class="col-md-2"> 
+                <label for="tahun_akademik-selection" class="col-md-4 col-lg-2 form-control-label"> 
+                    <span rsf:id="total-biaya-title">Total Biaya</span> 
+                </label> 
+                <!--<input type="text" name="jumlah" value="12.000.000" rsf:id="jumlah-total" readonly/>-->
+            </div> 
+        </div>
+        <div class="form-group row">
+            <div class="col-md-2"> 
+                <input type="submit" value="search" rsf:id="input-penjualan-barang" class="active" />       
+            </div>
+        </div> 
+    </form>
 </div>
 </body>
 </html>
