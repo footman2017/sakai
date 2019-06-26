@@ -132,6 +132,7 @@
 					</span>
 				</li></f:verbatim>
 				</c:if>
+				
 				<c:if test="${SyllabusTool.bulkAddItem}">
 				<f:verbatim>
 				<li>
@@ -145,6 +146,54 @@
 				</li>
 				</f:verbatim>
 				</c:if>
+
+				<!-- TAMBAHAN TOOLBAR  -->
+
+
+				<c:if test="${SyllabusTool.addItem}">
+				<f:verbatim>
+				<li>
+					<span>
+					</f:verbatim>
+						<h:commandLink action="#{SyllabusTool.processListNewInputForm}">
+							<h:outputText value="#{msgs.inputGlo}"/>
+						</h:commandLink>
+					<f:verbatim>
+					</span>
+				</li>
+				</f:verbatim>
+				</c:if>
+
+				<c:if test="${SyllabusTool.addItem}">
+				<f:verbatim>
+				<li>
+					<span>
+					</f:verbatim>
+						<h:commandLink action="#{SyllabusTool.processListNewViewData}">
+							<h:outputText value="#{msgs.viewGlo}"/>
+						</h:commandLink>
+					<f:verbatim>
+					</span>
+				</li>
+				</f:verbatim>
+				</c:if>
+
+				<c:if test="${SyllabusTool.addItem}">
+				<f:verbatim>
+				<li>
+					<span>
+					</f:verbatim>
+						<h:commandLink action="#{SyllabusTool.processNewRps}">
+							<h:outputText value="#{msgs.Rps}"/>
+						</h:commandLink>
+					<f:verbatim>
+					</span>
+				</li>
+				</f:verbatim>
+				</c:if>
+
+				<!-- ========================== -->
+
 				<c:if test="${SyllabusTool.bulkEdit}">
 				<f:verbatim>
 				<li>
@@ -205,6 +254,25 @@
 				</li>
 				</f:verbatim>
 				</c:if>
+
+				<!-- TAMBAHAN TOOLBAR UAS PROYEK 4 - PENJUALAN  -->
+
+				<c:if test="${SyllabusTool.addItem}">
+				<f:verbatim>
+				<li>
+					<span>
+					</f:verbatim>
+						<h:commandLink action="#{SyllabusTool.processNewInputProduk}">
+							<h:outputText value="#{msgs.penjualanTitle}"/>
+						</h:commandLink>
+					<f:verbatim>
+					</span>
+				</li>
+				</f:verbatim>
+				</c:if>
+
+				<!-- =============== -->
+
 				<f:verbatim>
 				<li>
 					<span>

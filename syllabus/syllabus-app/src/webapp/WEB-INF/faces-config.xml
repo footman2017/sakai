@@ -128,8 +128,163 @@
       <to-view-id>/syllabus/permission_error.jsp</to-view-id>
       <redirect/>
     </navigation-case>
+
+    <!-- Tambahan -->
+
+    <navigation-case>
+      <from-outcome>input_form</from-outcome>
+      <to-view-id>/syllabus/input_form.jsp</to-view-id>
+      <redirect/>
+    </navigation-case>
+    <navigation-case>
+      <from-outcome>view_data</from-outcome>
+      <to-view-id>/syllabus/view_data.jsp</to-view-id>
+      <redirect/>
+    </navigation-case>
+
+    <!-- RPS -->
+    <navigation-case>
+      <from-outcome>input_rps</from-outcome>
+      <to-view-id>/syllabus/input_rps.jsp</to-view-id>
+      <redirect/>
+    </navigation-case>
+
+    <!-- RPS_Main -->
+     <navigation-case>
+      <from-outcome>main_rps</from-outcome>
+      <to-view-id>/syllabus/main_rps.jsp</to-view-id>
+      <redirect/>
+    </navigation-case>
+    <navigation-case>
+      <from-outcome>view_rps</from-outcome>
+      <to-view-id>/syllabus/view_rps.jsp</to-view-id>
+      <redirect/>
+    </navigation-case>
+
+    <!-- UAS Proyek 4 - Penjualan  -->
+    <navigation-case>
+      <from-outcome>input_produk</from-outcome>
+      <to-view-id>/syllabus/input_produk.jsp</to-view-id>
+      <redirect/>
+    </navigation-case>
+
+    <!-- =================== -->
   </navigation-rule>
-  
+ 
+     <!-- New rule --> 
+  <!-- TAMBAHAN -->
+
+   <navigation-rule>
+    <from-view-id>/syllabus/input_form.jsp</from-view-id>
+    <navigation-case>
+      <from-outcome>main</from-outcome>
+      <to-view-id>/syllabus/main.jsp</to-view-id>
+      <redirect/>
+    </navigation-case>
+    <navigation-case>
+      <from-outcome>edit_bulk</from-outcome>
+      <to-view-id>/syllabus/edit_bulk.jsp</to-view-id>
+      <redirect/>
+    </navigation-case>
+  </navigation-rule>
+
+  <navigation-rule>
+    <from-view-id>/syllabus/view_data.jsp</from-view-id>
+    <navigation-case>
+      <from-outcome>main</from-outcome>
+      <to-view-id>/syllabus/main.jsp</to-view-id>
+      <redirect/>
+    </navigation-case>
+    <navigation-case>
+      <from-outcome>edit_bulk</from-outcome>
+      <to-view-id>/syllabus/edit_bulk.jsp</to-view-id>
+      <redirect/>
+    </navigation-case>
+  </navigation-rule>
+
+  <navigation-rule>
+    <from-view-id>/syllabus/input_rps.jsp</from-view-id>
+    <navigation-case>
+      <from-outcome>main</from-outcome>
+      <to-view-id>/syllabus/main.jsp</to-view-id>
+      <redirect/>
+    </navigation-case>
+    <navigation-case>
+      <from-outcome>edit_bulk</from-outcome>
+      <to-view-id>/syllabus/edit_bulk.jsp</to-view-id>
+      <redirect/>
+    </navigation-case>
+    <navigation-case>
+      <from-outcome>main_rps</from-outcome>
+      <to-view-id>/syllabus/main_rps.jsp</to-view-id>
+      <redirect/>
+    </navigation-case>
+    <navigation-case>
+      <from-outcome>main_rps2</from-outcome>
+      <to-view-id>/syllabus/main_rps2.jsp</to-view-id>
+      <redirect/>
+    </navigation-case>
+    <navigation-case>
+      <from-outcome>view_rps</from-outcome>
+      <to-view-id>/syllabus/view_rps.jsp</to-view-id>
+      <redirect/>
+    </navigation-case>
+  </navigation-rule>
+
+  <navigation-rule>
+    <from-view-id>/syllabus/main_rps.jsp</from-view-id>
+    <navigation-case>
+      <from-outcome>main</from-outcome>
+      <to-view-id>/syllabus/main.jsp</to-view-id>
+      <redirect/>
+    </navigation-case>
+    <navigation-case>
+      <from-outcome>init_rps</from-outcome>
+      <to-view-id>/syllabus/init_rps.jsp</to-view-id>
+      <redirect/>
+    </navigation-case>
+    <navigation-case>
+      <from-outcome>input_rps</from-outcome>
+      <to-view-id>/syllabus/input_rps.jsp</to-view-id>
+      <redirect/>
+    </navigation-case>
+    <navigation-case>
+      <from-outcome>edit_rps</from-outcome>
+      <to-view-id>/syllabus/edit_rps.jsp</to-view-id>
+      <redirect/>
+    </navigation-case>
+    <navigation-case>
+      <from-outcome>print_rps</from-outcome>
+      <to-view-id>/syllabus/print_rps.jsp</to-view-id>
+      <redirect/>
+    </navigation-case>
+    <navigation-case>
+      <from-outcome>main_rps2</from-outcome>
+      <to-view-id>/syllabus/main_rps2.jsp</to-view-id>
+      <redirect/>
+    </navigation-case>
+    <navigation-case>
+      <from-outcome>view_rps</from-outcome>
+      <to-view-id>/syllabus/view_rps.jsp</to-view-id>
+      <redirect/>
+    </navigation-case>
+  </navigation-rule>
+
+  <navigation-rule>
+    <from-view-id>/syllabus/init_rps.jsp</from-view-id>
+    <navigation-case>
+      <from-outcome>main</from-outcome>
+      <to-view-id>/syllabus/main.jsp</to-view-id>
+      <redirect/>
+    </navigation-case>
+    <navigation-case>
+      <from-outcome>input_rps</from-outcome>
+      <to-view-id>/syllabus/input_rps.jsp</to-view-id>
+      <redirect/>
+    </navigation-case>
+  </navigation-rule>
+  <!-- ================= -->
+
   <navigation-rule>
     <from-view-id>/syllabus/main_edit.jsp</from-view-id>
     <navigation-case>

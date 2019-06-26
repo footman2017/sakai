@@ -40,6 +40,9 @@ import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 import org.sakaiproject.api.app.syllabus.SyllabusAttachment;
 import org.sakaiproject.api.app.syllabus.SyllabusData;
 import org.sakaiproject.api.app.syllabus.SyllabusItem;
+// TAMBAHAN 
+import org.sakaiproject.api.app.syllabus.InputForm;
+//======
 import org.sakaiproject.api.app.syllabus.SyllabusManager;
 import org.sakaiproject.calendar.api.Calendar;
 import org.sakaiproject.calendar.api.CalendarEvent;
@@ -147,6 +150,21 @@ public class SyllabusManagerImpl extends HibernateDaoSupport implements Syllabus
     }
   }  
   
+//  TAMBAHAN 
+  /**
+   * getSyllabiForSyllabusItem returns the collection of syllabi
+   * @param syllabusItem
+   */
+  public List getFormData()
+  {               
+      final HibernateCallback<List<InputFormImpl>> hcb = session -> 
+              session.createQuery("from InputFormImpl").list();
+
+      return getHibernateTemplate().execute(hcb);
+  }
+  
+//  =====
+  
   /**
    * createSyllabusData creates a persistent SyllabusData object
    * @param title
@@ -188,6 +206,56 @@ public class SyllabusManagerImpl extends HibernateDaoSupport implements Syllabus
       return data;
     }
   }
+  
+//  TAMBAHAN 
+  
+   /**
+   * createFormDataObject creates a persistent SyllabusData object
+   * @param nim
+   * @param nama
+   * @param kelas
+   */
+  
+  public void createFormDataObject(String nim, String nama, String kelas) {
+      InputForm data = new InputFormImpl(); 
+      data.setNim(nim);
+      data.setNama(nama);
+      data.setKelas(kelas);
+      saveFormData(data);
+  }
+  
+   public void createFormDataObjectGlo(String glo, String term, String desc, String kat) {
+      InputForm data = new InputFormImpl(); 
+      data.setGlo(glo);
+      data.setTerm(term);
+      data.setDesc(desc);
+      data.setKat(kat);
+      saveFormData(data);
+  }
+   
+   public void createFormDataObjectRps(String kodeMK, String namaMK, String semester, String statusMK, String bentukPmbljr, 
+          String dosen, String descMK, String prasyarat, String Referensi, String capaian, String peta, String hasilBljr, 
+          String topic, String metodePmbljr, String jadwal) {
+      InputForm data = new InputFormImpl(); 
+      data.setkodeMK(kodeMK);
+      data.setNamaMK(namaMK);
+      data.setSemester(semester);
+      data.setStatusMK(statusMK);
+      data.setBentukPmbljr(bentukPmbljr);
+      data.setDosen(dosen);
+      data.setDescMK(descMK);
+      data.setPrasyarat(prasyarat);
+      data.setReferensi(Referensi);
+      data.setCapaian(capaian);
+      data.setPeta(peta);
+      data.setHasilBljr(hasilBljr);
+      data.setTopic(topic);
+      data.setMetodePmbljr(metodePmbljr);
+      data.setJadwal(jadwal);
+      saveFormData(data);
+  }
+  
+//  ================
   
   public SyllabusData createSyllabusDataObject(String title, Integer position,
 	        String asset, String view, String status, String emailNotification,
@@ -481,6 +549,14 @@ public class SyllabusManagerImpl extends HibernateDaoSupport implements Syllabus
   {
 	  saveSyllabus(data, true);
   }
+  
+//  Tambahan
+  
+  public void saveFormData(InputForm data) {
+      getHibernateTemplate().merge(data);
+  }
+  
+//  =====
   
   public void saveSyllabus(SyllabusData data, boolean updateCalendar){
 	  if(updateCalendar){

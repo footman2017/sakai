@@ -49,7 +49,9 @@ public interface SyllabusManager
   public void removeSyllabusDataObject(SyllabusData o);
   
   public Set getSyllabiForSyllabusItem(final SyllabusItem syllabusItem);
-  
+//  TAMBAHAN
+  public List getFormData();
+//======  
   public void swapSyllabusDataPositions(final SyllabusItem syllabusItem, final SyllabusData d1, final SyllabusData d2);
   
   public void saveSyllabus(SyllabusData data);
@@ -90,6 +92,17 @@ public interface SyllabusManager
   public SyllabusData createSyllabusDataObject(String title, Integer position, String asset, String view, String status, String emailNotification, Date startDate, Date endDate, 
 		  boolean linkCalendar, String calendarEventIdStartDate, String calendarEventIdEndDate, SyllabusItem syllabusItem, String method, String author);
 
+//  TAMBAHAN 
+  
+  public void createFormDataObject(String nim, String nama, String kelas);
+  
+  public void createFormDataObjectGlo(String glo, String term, String desc, String kat);
+  
+  public void createFormDataObjectRps(String kodeMK, String namaMK, String semester, String statusMK, String bentukPmbljr, 
+          String dosen, String descMK, String prasyarat, String Referensi, String capaian, String peta, String hasilBljr, 
+          String topic, String metodePmbljr, String jadwal);
+//  ============
+  
   public void updateSyllabudDataPosition(final SyllabusData d, final Integer position);
 
   public SyllabusItem getSyllabusItem(final Long itemId);

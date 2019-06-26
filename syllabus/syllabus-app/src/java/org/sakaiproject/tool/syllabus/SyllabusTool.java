@@ -48,6 +48,9 @@ import org.sakaiproject.content.api.ContentResourceEdit;
 import org.sakaiproject.api.app.syllabus.SyllabusAttachment;
 import org.sakaiproject.api.app.syllabus.SyllabusData;
 import org.sakaiproject.api.app.syllabus.SyllabusItem;
+//TAMBAHAN 
+import org.sakaiproject.api.app.syllabus.InputForm;
+//=========
 import org.sakaiproject.api.app.syllabus.SyllabusManager;
 import org.sakaiproject.api.app.syllabus.SyllabusService;
 import org.sakaiproject.calendar.api.CalendarService;
@@ -96,6 +99,8 @@ public class SyllabusTool
   private static final String DATEPICKER_DATE_FORMAT = "yyyy-MM-dd";
   private static final String DATEPICKER_DATETIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
   
+  private boolean rpsTelahDibuat=false;
+
   public class DecoratedSyllabusEntry
   {
     protected SyllabusData in_entry = null;
@@ -339,17 +344,67 @@ public class SyllabusTool
 	}
   }
 
+  
+//  TAMBAHAN 
+  
+  public class DecoratedFormDataEntry
+  {
+    protected InputForm in_entryFD = null;
+    protected String orig_nim;
+    protected String orig_nama;
+    protected String orig_kelas;
+    //tambahan QUIZZ
+    protected String orig_Glo;
+    protected String orig_term;
+    protected String orig_desc;
+    protected String orig_kat;
+    
+    public DecoratedFormDataEntry(InputForm en)
+    {
+      in_entryFD = en;
+      //b/c of pass by reference, we need to clone the values we want to check
+      //against
+      this.orig_nim = en.getNim();
+      this.orig_nama = en.getNama();
+      this.orig_kelas = en.getKelas();
+      //tambah quizz
+      this.orig_Glo = en.getGlo();
+      this.orig_term = en.getTerm();
+      this.orig_desc = en.getDesc();
+      this.orig_kat = en.getKat();
+      
+    }
+
+        public InputForm getEntryFD() {
+            return in_entryFD;
+        } 
+  }
+
+  
+//  =======
+  
   protected SyllabusManager syllabusManager;
 
   protected SyllabusItem syllabusItem;
 
   protected ArrayList entries;
 
+  //tambahan
+  
+   protected ArrayList formEntries;
+
   protected String userId;
 
   protected DecoratedSyllabusEntry entry = null;
   
   protected BulkSyllabusEntry bulkEntry = null;
+  
+  //  TAMBAHAN
+  protected DecoratedFormDataEntry entryFD = null;
+  
+  protected FormDataEntry formData = null;
+  
+//  ============
 
   protected String filename = null;
 
@@ -404,6 +459,8 @@ public class SyllabusTool
   private Map<String, Boolean> calendarExistCache = new HashMap<>();
   
   private String alertMessage = null;
+
+  
   
   public String getAlertMessage() {
 	return (alertMessage == null || alertMessage.length() == 0) ? null:alertMessage;
@@ -458,7 +515,7 @@ public class SyllabusTool
         if (syllabusItem != null) {
             Set tempEntries = syllabusManager
             .getSyllabiForSyllabusItem(syllabusItem);
-
+            //checkpoint
             if (tempEntries != null)
             {
                 Iterator iter = tempEntries.iterator();
@@ -481,6 +538,23 @@ public class SyllabusTool
                 }
             }
         }
+        
+//        TAMBAHAN : input FormData
+        if (formEntries == null)
+          formEntries = new ArrayList();
+        else
+          formEntries.clear();
+
+            List tempEntriesFD = syllabusManager
+            .getFormData();
+            Iterator iter = tempEntriesFD.iterator();
+                while (iter.hasNext())
+                {
+                    InputForm en = (InputForm) iter.next();
+                        DecoratedFormDataEntry den = new DecoratedFormDataEntry(en);
+                        formEntries.add(den);
+                }
+
       }
       catch (Exception e)
       {
@@ -608,12 +682,219 @@ public class SyllabusTool
     
     return entries;
   }
+  
+  //Tambahan
+    public ArrayList getEntries1() throws PermissionException
+  {
+    if (userId == null) userId = UserDirectoryService.getCurrentUser().getId();
+    //sakai2 - use Placement to get context instead of getting currentSitePageId from PortalService in sakai.
+    Placement placement = ToolManager.getCurrentPlacement();
+	String currentSiteId = placement.getContext();
+
+
+    if ((entries == null) || (entries.isEmpty())
+        || ((currentSiteId != null) && (!currentSiteId.equals(siteId))))
+    {
+      //log.info(this + ".getEntries() in SyllabusTool");
+
+      siteId = currentSiteId;
+      try
+      {
+        if (entries == null)
+          entries = new ArrayList();
+        else
+          entries.clear();
+        
+                
+        syllabusItem = getSyllabusItem();            
+
+        if (syllabusItem != null) {
+            Set tempEntries = syllabusManager
+            .getSyllabiForSyllabusItem(syllabusItem);
+//checkpoint
+            if (tempEntries != null)
+            {
+                Iterator iter = tempEntries.iterator();
+                while (iter.hasNext())
+                {
+                    SyllabusData en = (SyllabusData) iter.next();
+                    if (isAddOrEdit())
+                    {
+                        //Koentji view
+                        DecoratedSyllabusEntry den = new DecoratedSyllabusEntry(en);
+                        entries.add(den);
+                    }
+                    else
+                    {
+                        if (en.getStatus().equalsIgnoreCase(SyllabusData.ITEM_POSTED))
+                        {
+                            DecoratedSyllabusEntry den = new DecoratedSyllabusEntry(en);
+                            entries.add(den);
+                        }
+                    }
+                }
+            }
+        }
+        
+//        TAMBAHAN : input FormData
+        if (formEntries == null)
+          formEntries = new ArrayList();
+        else
+          formEntries.clear();
+
+            List tempEntriesFD = syllabusManager
+            .getFormData();
+            Iterator iter = tempEntriesFD.iterator();
+                while (iter.hasNext())
+                {
+                    InputForm en = (InputForm) iter.next();
+                        DecoratedFormDataEntry den = new DecoratedFormDataEntry(en);
+                        formEntries.add(den);
+                }
+
+      }
+      catch (Exception e)
+      {
+        log.info(this + ".getEntries() in SyllabusTool " + e);
+        FacesContext.getCurrentInstance().addMessage(
+            null,
+            MessageFactory.getMessage(FacesContext.getCurrentInstance(),
+                "error_general", (new Object[] { e.toString() })));
+      }
+    }
+    else
+    {
+      try
+      {
+        siteId = currentSiteId;
+        if ((userId != null) && (siteId != null))
+        {
+          syllabusItem = syllabusManager.getSyllabusItemByContextId(siteId);
+        }
+
+        boolean getFromDbAgain = true;
+        if(dontUpdateEntries){
+        	getFromDbAgain = false;
+        	//reset to false:
+        	dontUpdateEntries = false;
+        }else{
+	        for(int i=0; i<entries.size(); i++)
+	        {
+	          DecoratedSyllabusEntry thisDecEn = (DecoratedSyllabusEntry) entries.get(i);
+	          if(thisDecEn.isSelected())
+	          {
+	            getFromDbAgain = false;
+	            break;
+	          }
+	        }
+        }
+        
+        if(getFromDbAgain)
+        {
+          entries.clear();
+          Set tempEntries = syllabusManager
+          .getSyllabiForSyllabusItem(syllabusItem);
+          
+          if (tempEntries != null)
+          {
+            Iterator iter = tempEntries.iterator();
+            while (iter.hasNext())
+            {
+              SyllabusData en = (SyllabusData) iter.next();
+              if (isAddOrEdit())
+              {
+                DecoratedSyllabusEntry den = new DecoratedSyllabusEntry(en);
+                entries.add(den);
+              }
+              else
+              {
+                if (en.getStatus().equalsIgnoreCase(SyllabusData.ITEM_POSTED))
+                {
+                  DecoratedSyllabusEntry den = new DecoratedSyllabusEntry(en);
+                  entries.add(den);
+                }
+              }
+            }
+          }
+        }
+      }
+      catch (Exception e)
+      {
+        log.info(this + ".getEntries() in SyllabusTool for redirection" + e);
+        FacesContext.getCurrentInstance().addMessage(
+            null,
+            MessageFactory.getMessage(FacesContext.getCurrentInstance(),
+                "error_general", (new Object[] { e.toString() })));
+      }
+    }
+	this.displayNoEntryMsg = entries == null || entries.isEmpty();
+
+    //Check if the instructor added an attachment to an item:
+    //Clear out list first, then call get attachment(), which will check the 
+    //session to see if the file picker selected any
+    attachments = new ArrayList();
+    attachments = getAttachments();
+    if(attachments.size() > 0){
+    	//user selected attachments, let's find which item it is for and add 
+    	ToolSession session = SessionManager.getCurrentToolSession();
+    	if(session.getAttribute(SESSION_ATTACHMENT_DATA_ID) != null){
+    		String dataIdStr = (String) session.getAttribute(SESSION_ATTACHMENT_DATA_ID);
+    		try{
+    			Long dataId = Long.parseLong(dataIdStr);
+    			//find data entry:
+    			for(DecoratedSyllabusEntry entry : (List<DecoratedSyllabusEntry>) entries){
+    				if(entry.getEntry().getSyllabusId().equals(dataId)){
+    					boolean added = false;
+    					for(int i=0; i<attachments.size(); i++)
+    					{
+    						syllabusManager.addSyllabusAttachToSyllabusData(entry.getEntry(), (SyllabusAttachment)attachments.get(i));
+    						added = true;
+    					}
+    					//update the calendar data for this item since the attachments have chnaged:
+    					if(added){
+    						 //update calendar attachments
+    				          if(entry.getEntry().getCalendarEventIdStartDate() != null
+    				        		  && !"".equals(entry.getEntry().getCalendarEventIdStartDate())){
+    				        	  syllabusManager.addCalendarAttachments(siteId, entry.getEntry().getCalendarEventIdStartDate(), attachments);
+    				          }
+    				          if(entry.getEntry().getCalendarEventIdEndDate() != null
+    				        		  && !"".equals(entry.getEntry().getCalendarEventIdEndDate())){
+    				        	  syllabusManager.addCalendarAttachments(siteId, entry.getEntry().getCalendarEventIdEndDate(), attachments);
+    				          }
+    					}
+    					break;
+    				}
+    			}
+    		}catch(Exception e){
+    			log.error(e.getMessage(), e);
+    		}
+    	}
+    	session.removeAttribute(SESSION_ATTACHMENT_DATA_ID);
+    }
+    
+    //Registramos el evento de que se ha accedido a Syllabus
+    //Register the event when the syllabus is accessed
+    Event event = EventTrackingService.newEvent("syllabus.read","/syllabus/"+currentSiteId+"/1", false, 0);
+    EventTrackingService.post(event);
+    
+    return formEntries;
+  }
+  
+  
 
   public DecoratedSyllabusEntry getEntry()
   {
     return entry;
   }
+  
+//  TAMBAHAN 
+  
+  public DecoratedFormDataEntry getEntryFD()
+  {
+    return entryFD;
+  }
 
+//  ==========
   public ArrayList getSelectedEntries()
   {
     ArrayList rv = new ArrayList();
@@ -1188,6 +1469,27 @@ public class SyllabusTool
 		}
 		return null;
   }
+
+  // TAMBAHAN
+
+  public String processInputForm(){
+//        syllabusManager.createFormDataObject(formData.getNim(),formData.getNama(),formData.getKelas());
+//        syllabusManager.createFormDataObjectGlo(formData.getGlo(),formData.getTerm(),formData.getDesc(),formData.getKat());
+        syllabusManager.createFormDataObjectRps(formData.getKodeMK(),formData.getNamaMK(),formData.getSemester(),formData.getStatusMK(),
+                formData.getBentukPmbljr(),formData.getDosen(),formData.getDescMK(),formData.getPrasyarat(),formData.getReferensi(),
+                formData.getCapaian(),formData.getPeta(),formData.getHasilBljr(),formData.getTopic(),formData.getMetodePmbljr(),formData.getJadwal());
+//        formData.setNim("");
+//        formData.setNama("");
+//        formData.setKelas("");
+        this.rpsTelahDibuat = true;   
+        return "view_rps";
+//    }
+    
+
+//    return "edit_bulk";
+  }
+
+  // =============
   
   public String processEditPost() throws PermissionException
   {
@@ -1422,7 +1724,156 @@ public class SyllabusTool
       return null;
     }
   }
+
+  //TAMBAHAN//
+
+   //Buat toolbar Input Form
+  public String processListNewInputForm() throws PermissionException
+  {
+    try
+    {
+      if (!syllabusService.checkPermission(SyllabusService.SECURE_BULK_EDIT_ITEM))
+      {
+        return "permission_error";
+      }
+      else
+      {
+        formData = new FormDataEntry();
+
+        return "input_form";
+      }
+    }
+    catch (Exception e)
+    {
+      log.info(this + ".processListNewBulk in SyllabusTool: " + e);
+      FacesContext.getCurrentInstance().addMessage(
+          null,
+          MessageFactory.getMessage(FacesContext.getCurrentInstance(),
+              "error_general", (new Object[] { e.toString() })));
+
+      return null;
+    }
+  }
   
+  //Buat toolbar View Data
+  public String processListNewViewData() throws PermissionException
+  {
+    try
+    {
+      if (!syllabusService.checkPermission(SyllabusService.SECURE_BULK_EDIT_ITEM))
+      {
+        return "permission_error";
+      }
+      else
+      {
+//        formData = new FormDataEntry();
+
+        return "view_data";
+      }
+    }
+    catch (Exception e)
+    {
+      log.info(this + ".processListNewBulk in SyllabusTool: " + e);
+      FacesContext.getCurrentInstance().addMessage(
+          null,
+          MessageFactory.getMessage(FacesContext.getCurrentInstance(),
+              "error_general", (new Object[] { e.toString() })));
+
+      return null;
+    }
+  }
+  
+   //Buat toolbar Input Form
+  public String processNewInputRps() throws PermissionException
+  {
+    try
+    {
+      if (!syllabusService.checkPermission(SyllabusService.SECURE_BULK_EDIT_ITEM))
+      {
+        return "permission_error";
+      }
+      else
+      {
+        formData = new FormDataEntry();
+
+        return "input_rps";
+      }
+    }
+    catch (Exception e)
+    {
+      log.info(this + ".processListNewBulk in SyllabusTool: " + e);
+      FacesContext.getCurrentInstance().addMessage(
+          null,
+          MessageFactory.getMessage(FacesContext.getCurrentInstance(),
+              "error_general", (new Object[] { e.toString() })));
+
+      return null;
+    }
+  }
+
+
+  // Buat RPS_Main
+    public String processNewRps() throws PermissionException
+  {
+    try
+    {
+      if (!syllabusService.checkPermission(SyllabusService.SECURE_BULK_EDIT_ITEM))
+      {
+        return "permission_error";
+      }
+      else if (rpsTelahDibuat == true)
+      {
+        return "view_rps";
+      }
+      else {
+        return "main_rps";
+      }
+    }
+    catch (Exception e)
+    {
+      log.info(this + ".processListNewBulk in SyllabusTool: " + e);
+      FacesContext.getCurrentInstance().addMessage(
+          null,
+          MessageFactory.getMessage(FacesContext.getCurrentInstance(),
+              "error_general", (new Object[] { e.toString() })));
+
+      return null;
+    }
+  }
+
+
+  // Tambahan Buat UAS PROYEK 4 - Penujualan 
+   //Buat toolbar Input Produk
+  public String processNewInputProduk() throws PermissionException
+  {
+    try
+    {
+      if (!syllabusService.checkPermission(SyllabusService.SECURE_BULK_EDIT_ITEM))
+      {
+        return "permission_error";
+      }
+      else
+      {
+        formData = new FormDataEntry();
+
+        return "input_produk";
+      }
+    }
+    catch (Exception e)
+    {
+      log.info(this + ".processListNewBulk in SyllabusTool: " + e);
+      FacesContext.getCurrentInstance().addMessage(
+          null,
+          MessageFactory.getMessage(FacesContext.getCurrentInstance(),
+              "error_general", (new Object[] { e.toString() })));
+
+      return null;
+    }
+  }
+  
+
+  // ========================================
+
   public String processListEditBulk() throws PermissionException
   {
 	  try
@@ -2893,6 +3344,223 @@ public class SyllabusTool
       }
   }
   
+//  TAMBAHAN
+  
+  public class FormDataEntry {
+      private String nim = "";
+      private String nama = "";
+      private String kelas = "";
+      
+      //kebutuhan Quiz project4 smt 4
+      private String glo = "";
+      private String term = "";
+      private String desc = "";
+      private String kat = "";
+      
+      //Kebutuhan RPS
+      private String kodeMK="16TKO1063/4SKS";
+      private String namaMK="Analisa Perancangan Sistem Perangkat Lunak";
+      private String semester="Genap/IV";
+      private String statusMK="Mata Kuliah Program Studi D3";
+      private String bentukPmbljr="";
+      private String dosen="Suprihanto, BSEE, M.Sc.";
+      private String descMK="Adalah Matakuliah ...";
+      private String prasyarat="";
+      private String Referensi="";
+      private String capaian="";
+      private String peta="";
+      private String hasilBljr="";
+      private String topic="";
+      private String metodePmbljr="";
+      private String jadwal="-";
+
+        public String getNim() {
+            return nim;
+        }
+
+        public void setNim(String nim) {
+            this.nim = nim;
+        }
+
+        public String getNama() {
+            return nama;
+        }
+
+        public void setNama(String nama) {
+            this.nama = nama;
+        }
+
+        public String getKelas() {
+            return kelas;
+        }
+
+        public void setKelas(String kelas) {
+            this.kelas = kelas;
+        }
+      
+     //kebutuhan Quiz project4 smt 4
+
+        public String getGlo() {
+            return glo;
+        }
+
+        public void setGlo(String glo) {
+            this.glo = glo;
+        }
+
+        public String getTerm() {
+            return term;
+        }
+
+        public void setTerm(String term) {
+            this.term = term;
+        }
+
+        public String getDesc() {
+            return desc;
+        }
+
+        public void setDesc(String desc) {
+            this.desc = desc;
+        }
+
+        public String getKat() {
+            return kat;
+        }
+
+        public void setKat(String kat) {
+            this.kat = kat;
+        }
+        
+        //kebutuhan RPS
+
+        public String getKodeMK() {
+            return kodeMK;
+        }
+
+        public void setKodeMK(String kodeMK) {
+            this.kodeMK = kodeMK;
+        }
+
+        public String getNamaMK() {
+            return namaMK;
+        }
+
+        public void setNamaMK(String namaMK) {
+            this.namaMK = namaMK;
+        }
+
+        public String getSemester() {
+            return semester;
+        }
+
+        public void setSemester(String semester) {
+            this.semester = semester;
+        }
+
+        public String getStatusMK() {
+            return statusMK;
+        }
+
+        public void setStatusMK(String statusMK) {
+            this.statusMK = statusMK;
+        }
+
+        public String getBentukPmbljr() {
+            return bentukPmbljr;
+        }
+
+        public void setBentukPmbljr(String bentukPmbljr) {
+            this.bentukPmbljr = bentukPmbljr;
+        }
+
+        public String getDosen() {
+            return dosen;
+        }
+
+        public void setDosen(String dosen) {
+            this.dosen = dosen;
+        }
+
+        public String getDescMK() {
+            return descMK;
+        }
+
+        public void setDescMK(String descMK) {
+            this.descMK = descMK;
+        }
+
+        public String getPrasyarat() {
+            return prasyarat;
+        }
+
+        public void setPrasyarat(String prasyarat) {
+            this.prasyarat = prasyarat;
+        }
+
+        public String getReferensi() {
+            return Referensi;
+        }
+
+        public void setReferensi(String Referensi) {
+            this.Referensi = Referensi;
+        }
+
+        public String getCapaian() {
+            return capaian;
+        }
+
+        public void setCapaian(String capaian) {
+            this.capaian = capaian;
+        }
+
+        public String getPeta() {
+            return peta;
+        }
+
+        public void setPeta(String peta) {
+            this.peta = peta;
+        }
+
+        public String getHasilBljr() {
+            return hasilBljr;
+        }
+
+        public void setHasilBljr(String hasilBljr) {
+            this.hasilBljr = hasilBljr;
+        }
+
+        public String getTopic() {
+            return topic;
+        }
+
+        public void setTopic(String topic) {
+            this.topic = topic;
+        }
+
+        public String getMetodePmbljr() {
+            return metodePmbljr;
+        }
+
+        public void setMetodePmbljr(String metodePmbljr) {
+            this.metodePmbljr = metodePmbljr;
+        }
+
+        public String getJadwal() {
+            return jadwal;
+        }
+
+        public void setJadwal(String jadwal) {
+            this.jadwal = jadwal;
+        }
+        
+        
+      
+  }
+  
+  
+//  ===========
+  
   public class BulkSyllabusEntry{
 	  public final SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm a");
 	  private String title = "";
@@ -3122,6 +3790,18 @@ public BulkSyllabusEntry getBulkEntry() {
 	return bulkEntry;
 }
 
+//TAMBAHAN 
+
+public FormDataEntry getFormData() {
+    return formData;
+}
+
+public void setFormData(FormDataEntry formData) {
+	this.formData = formData;
+}
+
+//==================
+
 public void setBulkEntry(BulkSyllabusEntry bulkEntry) {
 	this.bulkEntry = bulkEntry;
 }
@@ -3146,4 +3826,13 @@ public void setOpenDataId(String openDataId) {
 	public void setDisplayCalendarError(boolean displayCalendarError) {
 		this.displayCalendarError = displayCalendarError;
 	}
+  
+//Tambahan        
+        
+public String processBackToMain() {
+    return "main";
 }
+
+//==================
+}
+

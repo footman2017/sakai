@@ -16,6 +16,9 @@
 				<value>
 					org/sakaiproject/component/app/syllabus/SyllabusAttachment.hbm.xml
 				</value>
+				<value>
+					org/sakaiproject/component/app/syllabus/InputFormImpl.hbm.xml
+				</value>
 			</list>
 		</property>
 	</bean>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="org.sakaiproject.component.app.syllabus">
+
+    <class
+        name="org.sakaiproject.component.app.syllabus.InputFormImpl"
+        table="RPS" optimistic-lock="version">
+        
+<!--       <id name="glo" type="string" unsaved-value="0">
+            <column name="gloID" not-null="true" length="20" />
+        </id>        
+
+        <property name="term">
+            <column name="term" length="50" not-null="false"/>
+        </property>
+
+        <property name="desc">
+            <column name="description" length="255" not-null="false"/>
+        </property>
+        
+        <property name="kat">
+            <column name="kategori" length="50" not-null="false"/>
+        </property>-->
+        
+        <id name="kodeMK" type="string" unsaved-value="0">
+            <column name="kodeMK" not-null="true" length="20" />
+        </id>        
+
+        <property name="namaMK">
+            <column name="namaMK" length="50" not-null="false"/>
+        </property>
+        
+        <property name="semester">
+            <column name="semester" length="50" not-null="false"/>
+        </property>
+        
+        <property name="statusMK">
+            <column name="statusMK" length="50" not-null="false"/>
+        </property>
+        
+        <property name="bentukPmbljr">
+            <column name="bentukPmbljr" length="50" not-null="false"/>
+        </property>
+        
+        <property name="dosen">
+            <column name="dosen" length="50" not-null="false"/>
+        </property>
+        
+        <property name="descMK">
+            <column name="descMK" length="50" not-null="false"/>
+        </property>
+        
+        <property name="prasyarat">
+            <column name="prasyarat" length="50" not-null="false"/>
+        </property>
+        
+        <property name="referensi">
+            <column name="referensi" length="50" not-null="false"/>
+        </property>
+        
+        <property name="capaian">
+            <column name="capaian" length="50" not-null="false"/>
+        </property>
+        
+        <property name="peta">
+            <column name="peta" length="50" not-null="false"/>
+        </property>
+        
+        <property name="hasilBljr">
+            <column name="hasilBljr" length="50" not-null="false"/>
+        </property>
+        
+        <property name="topic">
+            <column name="topic" length="50" not-null="false"/>
+        </property>
+        
+        <property name="metodePmbljr">
+            <column name="metodePmbljr" length="50" not-null="false"/>
+        </property>
+        
+        <property name="jadwal">
+            <column name="jadwal" length="50" not-null="false"/>
+        </property>
+
+    </class>
+    
+</hibernate-mapping>
