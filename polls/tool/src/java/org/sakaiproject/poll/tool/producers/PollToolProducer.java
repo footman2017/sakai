@@ -150,7 +150,7 @@ DefaultView,NavigationCaseReporter {
 			} 
 			if (this.isSiteOwner()) {
 				UIInternalLink.make(actions, "actions-penjualan", UIMessage.make("action_set_penjualan"),new SimpleViewParameters(PollToolProducer.VIEW_ID));
-                                UIInternalLink.make(actions, "actions-produk", UIMessage.make("action_set_produk"),new SimpleViewParameters(PollToolProducer.VIEW_ID));
+                                UIInternalLink.make(actions, "actions-produk", UIMessage.make("action_set_produk"),new SimpleViewParameters(produkProducer.VIEW_ID));
                                 UIInternalLink.make(actions, "actions-customer", UIMessage.make("action_set_customer"),new SimpleViewParameters(PollToolProducer.VIEW_ID));
                                 UIInternalLink.make(actions, "actions-jenisproduk", UIMessage.make("action_set_jenisproduk"),new SimpleViewParameters(PollToolProducer.VIEW_ID));
 			} 
