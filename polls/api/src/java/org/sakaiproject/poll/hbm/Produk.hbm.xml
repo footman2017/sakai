@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="org.sakaiproject.poll.model">
+
+    <class name="org.sakaiproject.poll.model.Penjualan"
+            table="UAS_PENJUALAN">
+
+        <id name="Id" type="long" column="UAS_PENJUALAN_ID">
+            <generator class="native">
+                <param name="sequence">UAS_PENJUALAN_ID_SEQ</param>
+            </generator>
+        </id>
+        
+        <property name="Kd_Penjualan" type="string" length="255" not-null="true">
+            <column name="Kd_Penjualan"/>
+        </property>
+        
+        <property name="Kd_Customer" type="string" length="255" not-null="true">
+            <column name="Kd_Customer"/>
+        </property>
+        
+        <property name="Kd_Produk" type="string" length="255" not-null="true">
+            <column name="Kd_Produk"/>
+        </property>
+        
+        <property name="Jumlah_Barang" type="long" not-null="true">
+            <column name="Jumlah_Barang"/>
+        </property>
+        
+        <property name="Total_Biaya" type="long" not-null="true">
+            <column name="Total_Biaya"/>
+        </property>
+
+    </class>
+	
+</hibernate-mapping>
