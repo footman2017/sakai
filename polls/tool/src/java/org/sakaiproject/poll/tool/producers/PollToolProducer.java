@@ -143,11 +143,16 @@ DefaultView,NavigationCaseReporter {
 				log.debug("User can add polls");
 				//UIOutput.make(tofill, "poll-add", messageLocator
 				//       .getMessage("action_add_poll"));
-				UIInternalLink.make(actions,NAVIGATE_ADD,UIMessage.make("action_add_poll"),
-						new PollViewParameters(AddPollProducer.VIEW_ID, "New 0"));
+//				UIInternalLink.make(actions,NAVIGATE_ADD,UIMessage.make("action_add_poll"),
+//						new PollViewParameters(AddPollProducer.VIEW_ID, "New 0"));
+//                                UIOutput.make(tofill, "poll-add", messageLocator
+//				       .getMessage("action_add_poll"));
 			} 
 			if (this.isSiteOwner()) {
-				UIInternalLink.make(actions, NAVIGATE_PERMISSIONS, UIMessage.make("action_set_permissions"),new SimpleViewParameters(PermissionsProducer.VIEW_ID));
+				UIInternalLink.make(actions, "actions-penjualan", UIMessage.make("action_set_penjualan"),new SimpleViewParameters(PollToolProducer.VIEW_ID));
+                                UIInternalLink.make(actions, "actions-produk", UIMessage.make("action_set_produk"),new SimpleViewParameters(PollToolProducer.VIEW_ID));
+                                UIInternalLink.make(actions, "actions-customer", UIMessage.make("action_set_customer"),new SimpleViewParameters(PollToolProducer.VIEW_ID));
+                                UIInternalLink.make(actions, "actions-jenisproduk", UIMessage.make("action_set_jenisproduk"),new SimpleViewParameters(PollToolProducer.VIEW_ID));
 			} 
 		}
 
@@ -166,8 +171,8 @@ DefaultView,NavigationCaseReporter {
 			UIOutput.make(tofill, "no-polls", messageLocator.getMessage("poll_list_empty"));
 			UIOutput.make(tofill, "add-poll-icon");
 			if (this.isAllowedPollAdd()) {
-				UIInternalLink.make(tofill,"add-poll",UIMessage.make("new_poll_title"),
-						new PollViewParameters(AddPollProducer.VIEW_ID, "New 0"));
+//				UIInternalLink.make(tofill,"add-poll",UIMessage.make("new_poll_title"),
+//						new PollViewParameters(AddPollProducer.VIEW_ID, "New 0"));
 			} 
 		}
 		else{
@@ -229,10 +234,10 @@ DefaultView,NavigationCaseReporter {
 			log.debug("adding poll row for " + poll.getText());
 
 			if (canVote) {
-				UIInternalLink voteLink = UIInternalLink.make(pollrow, NAVIGATE_VOTE, poll.getText(),
-						new PollViewParameters(PollVoteProducer.VIEW_ID, poll.getPollId().toString()));
-				//we need to add a decorator for the alt text
-				voteLink.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("poll_vote_title") +":" + poll.getText()));
+//				UIInternalLink voteLink = UIInternalLink.make(pollrow, NAVIGATE_VOTE, poll.getText(),
+//						new PollViewParameters(PollVoteProducer.VIEW_ID, poll.getPollId().toString()));
+//				//we need to add a decorator for the alt text
+//				voteLink.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("poll_vote_title") +":" + poll.getText()));
 
 			} else {
 				//the poll is lazily loaded so get the options
@@ -248,9 +253,9 @@ DefaultView,NavigationCaseReporter {
 
 
 			if (pollListManager.isAllowedViewResults(poll, externalLogic.getCurrentUserId())) {
-				UIInternalLink resultsLink =  UIInternalLink.make(pollrow, "poll-results", messageLocator.getMessage("action_view_results"),
-						new PollViewParameters(ResultsProducer.VIEW_ID, poll.getPollId().toString()));
-				resultsLink.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("action_view_results")+ ":" + poll.getText()));
+//				UIInternalLink resultsLink =  UIInternalLink.make(pollrow, "poll-results", messageLocator.getMessage("action_view_results"),
+//						new PollViewParameters(ResultsProducer.VIEW_ID, poll.getPollId().toString()));
+//				resultsLink.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("action_view_results")+ ":" + poll.getText()));
 
 			}
 
@@ -267,9 +272,9 @@ DefaultView,NavigationCaseReporter {
 				UIVerbatim.make(pollrow,"poll-close-date","  ");
 
 			if (pollCanEdit(poll)) {
-				UIInternalLink editLink = UIInternalLink.make(pollrow,"poll-revise",messageLocator.getMessage("action_revise_poll"),
-						new PollViewParameters(AddPollProducer.VIEW_ID,poll.getPollId().toString()));
-				editLink.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("action_revise_poll")+ ":" + poll.getText()));
+//				UIInternalLink editLink = UIInternalLink.make(pollrow,"poll-revise",messageLocator.getMessage("action_revise_poll"),
+//						new PollViewParameters(AddPollProducer.VIEW_ID,poll.getPollId().toString()));
+//				editLink.decorators = new DecoratorList(new UITooltipDecorator(messageLocator.getMessage("action_revise_poll")+ ":" + poll.getText()));
 
 			}
 			if (pollCanDelete(poll)) {
