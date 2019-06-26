@@ -24,6 +24,7 @@ package org.sakaiproject.poll.tool.producers;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -180,6 +181,34 @@ DefaultView,NavigationCaseReporter {
                 
                 UICommand.make(newForm, "input-penjualan-barang", UIMessage.make("input_penjualan_barang"), "#{pollToolBean.seacrhListDosen}");
                 
+                UIOutput.make(tofill, "data-penjualan-title", messageLocator.getMessage("data_penjualan_title"));
+                List<Object[]>dataPenjualan;
+		dataPenjualan = pollVoteManager.getDataPenjualan();
+
+		System.out.println("#A"+dataPenjualan.isEmpty());
+                System.out.println("#A"+dataPenjualan.toString());
+
+		for (Iterator <Object[]> iterator=dataPenjualan.iterator(); iterator.hasNext();){ 
+                    Object[] list = iterator.next();
+                    Integer kd_penjualan = (Integer)list[0];	
+                    String nama_produk = (String)list[1];
+                    String nama_customer = (String)list[2];
+                    Integer jumlah_barang = (Integer)list[3];
+                    Integer total_harga = (Integer)list[4];	
+
+                    System.out.println("#ROSE"+list[0]);
+                    System.out.println("#ROSE"+list[1]);
+                    System.out.println("#ROSE"+list[2]);
+                    System.out.println("#ROSE"+list[3]);
+                    System.out.println("#ROSE"+list[4]);
+                   UIBranchContainer penjualanrow = UIBranchContainer.make(tofill, "penjualan-row:"); 
+                   //Create a new <td> element 
+                   UIOutput.make(penjualanrow,"kd-penjualan", kd_penjualan.toString()); 
+                   UIOutput.make(penjualanrow,"nama-produk", nama_produk); 
+                   UIOutput.make(penjualanrow,"nama-customer", nama_customer);
+                   UIOutput.make(penjualanrow,"jml-barang", jumlah_barang.toString()); 
+                   UIOutput.make(penjualanrow,"total-harga", total_harga.toString()); 
+                } 
 				
 	}
 
