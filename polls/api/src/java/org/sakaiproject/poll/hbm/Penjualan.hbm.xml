@@ -12,19 +12,19 @@
             </generator>
         </id>
         
-        <property name="Kd_Penjualan" type="string" length="255" not-null="true">
+        <property name="Kd_Penjualan" type="int" not-null="true">
             <column name="Kd_Penjualan"/>
         </property>
         
-        <property name="Kd_Customer" type="string" length="255" not-null="true">
+        <property name="Kd_Customer" type="int" not-null="true">
             <column name="Kd_Customer"/>
         </property>
         
-        <property name="Kd_Produk" type="string" length="255" not-null="true">
+        <property name="Kd_Produk" type="int" not-null="true">
             <column name="Kd_Produk"/>
         </property>
         
-        <property name="Jumlah_Barang" type="long" not-null="true">
+        <property name="Jumlah_Barang" type="int" not-null="true">
             <column name="Jumlah_Barang"/>
         </property>
         
