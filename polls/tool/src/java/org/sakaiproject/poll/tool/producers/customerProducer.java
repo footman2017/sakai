@@ -58,9 +58,9 @@ import uk.org.ponder.rsf.components.decorators.UIFreeAttributeDecorator;
 import uk.org.ponder.rsf.components.decorators.UITooltipDecorator;
 
 @Slf4j
-public class produkProducer implements ViewComponentProducer,NavigationCaseReporter,ViewParamsReporter {
+public class customerProducer implements ViewComponentProducer,NavigationCaseReporter,ViewParamsReporter {
 
-	public static final String VIEW_ID = "produk";
+	public static final String VIEW_ID = "customer";
 
 	private PollToolBean pollToolBean;
 	private PollListManager pollListManager;
@@ -117,34 +117,14 @@ public class produkProducer implements ViewComponentProducer,NavigationCaseRepor
             langMap.put("lang", locale);
             langMap.put("xml:lang", locale);
 
-            UIOutput.make(tofill, "produk-html", null).decorate(new UIFreeAttributeDecorator(langMap));
-            
-            UIMessage.make(tofill,"inputProduk-title","inputProduk_title");
-            
-            UIForm newForm = UIForm.make(tofill, "input-produk-form");
-            
-            UILink jenisProdukLabel = UILink.make(tofill,"jenis-produk-title",messageLocator.getMessage("jenisProduk_title"), "#");
-            String[] jenisProdukArr = new String[]{"Electronic","HomeAppliance"};
-            UISelect jenisProdukInput = UISelect.make(newForm,"jenis-produk",jenisProdukArr,"#",Integer.toString(0));
-            
-            UILink inputNamaLabel = UILink.make(tofill,"input-nama-label",messageLocator.getMessage("namaProduk_title"), "#");
-            
-            UILink inputHargaLabel = UILink.make(tofill,"harga-produk-label",messageLocator.getMessage("hargaProduk_title"), "#");
-            
-            UILink stokLabel = UILink.make(tofill,"stok-produk-title",messageLocator.getMessage("stok_produk_title"), "#");
-            String[] stokArr = new String[]{"1","2","3"};
-            UISelect stok = UISelect.make(newForm,"jumlah-barang",stokArr,"#",Integer.toString(0));
-            
-            UICommand.make(newForm, "input-produk", UIMessage.make("input_penjualan_barang"), "#{pollToolBean.seacrhListDosen}");
-    
-            UIMessage.make(tofill,"dataProduk-title","dataProduk_title");
+            UIOutput.make(tofill, "customer-html", null).decorate(new UIFreeAttributeDecorator(langMap));
+            UIMessage.make(tofill,"customer-title","customer_title");
 
 //            UILink no = UILink.make(tofill,"no-title",messageLocator.getMessage("no_title"), "#");
-            UILink kodeProduk = UILink.make(tofill,"kodeProduk-title",messageLocator.getMessage("kodeProduk_title"), "#");
-            UILink jenisProduk = UILink.make(tofill,"jenisProduk-title",messageLocator.getMessage("jenisProduk_title"), "#");
-            UILink namaProduk = UILink.make(tofill,"namaProduk-title",messageLocator.getMessage("namaProduk_title"), "#");
-            UILink hargaProduk = UILink.make(tofill,"hargaProduk-title",messageLocator.getMessage("hargaProduk_title"), "#");
-            UILink jumlahStok = UILink.make(tofill,"jumlahStok-title",messageLocator.getMessage("jumlahStok_title"), "#");
+            UILink kodeProduk = UILink.make(tofill,"kodeCustomer-title",messageLocator.getMessage("kodeCustomer_title"), "#");
+            UILink jenisProduk = UILink.make(tofill,"namaCustomer-title",messageLocator.getMessage("namaCustomer_title"), "#");
+            UILink namaProduk = UILink.make(tofill,"alamatCustomer-title",messageLocator.getMessage("alamatCustomer_title"), "#");
+            UILink hargaProduk = UILink.make(tofill,"noHpCustomer-title",messageLocator.getMessage("noHpCustomer_title"), "#");
 
 //            List<Object[]> listDosen;
 //            listDosen = pollVoteManager.getListDosen();

@@ -12,6 +12,7 @@
 				<value>org/sakaiproject/poll/hbm/Vote.hbm.xml</value>
 				<value>org/sakaiproject/poll/hbm/Penjualan.hbm.xml</value>
                                 <value>org/sakaiproject/poll/hbm/Produk.hbm.xml</value>
+                                <value>org/sakaiproject/poll/hbm/KategoriBarang.hbm.xml</value>
             </list>
         </constructor-arg>
     </bean>
@@ -27,6 +28,7 @@
             <value>org.sakaiproject.poll.model.Vote</value>
             <value>org.sakaiproject.poll.model.Penjualan</value>
             <value>org.sakaiproject.poll.model.Produk</value>
+            <value>org.sakaiproject.poll.model.KategoriBarang</value>
          </list>
       </property>
    </bean>

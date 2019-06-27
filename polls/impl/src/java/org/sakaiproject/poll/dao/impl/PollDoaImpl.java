@@ -32,6 +32,8 @@ import org.sakaiproject.poll.dao.PollDao;
 import org.sakaiproject.poll.model.Poll;
 import org.sakaiproject.poll.model.Produk;
 import org.sakaiproject.poll.model.Penjualan;
+import org.sakaiproject.poll.model.Produk;
+import org.sakaiproject.poll.model.KategoriBarang;
 import org.springframework.dao.DataAccessException;
 
 
@@ -73,6 +75,50 @@ public class PollDoaImpl extends HibernateGeneralGenericDao implements PollDao {
 
                     return false;
             }
+    }
+    
+     public List<Object[]> getDataPenjualan(){
+        Query q = null;
+        
+        Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
+        String statement = "SELECT uas_penjualan.Kd_Penjualan, uas_produk.Nama_Produk, uas_customer.Nama_Customer, uas_penjualan.Jumlah_Barang, uas_penjualan.Total_Biaya\n" +
+                           "FROM `uas_penjualan`,`uas_produk`,`uas_customer`\n" +
+                           "WHERE uas_penjualan.Kd_Customer = uas_customer.Kd_Customer AND uas_penjualan.Kd_Produk = uas_produk.Kd_Produk";
+        q = session.createSQLQuery(statement);
+        List<Object[]> list = (List<Object[]>) q.list();
+        
+        if (list != null)
+            return list;
+
+        return null; 
+    }
+    
+    public List<Object[]> getNamaCustomer(){
+        Query q = null;
+        
+        Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
+        String statement = "SELECT Kd_customer, Nama_Customer FROM uas_customer";
+        q = session.createSQLQuery(statement);
+        List<Object[]> list = (List<Object[]>) q.list();
+        
+        if (list != null)
+            return list;
+
+        return null; 
+    }
+    
+    public List<Object[]> getDataProduk(){
+        Query q = null;
+        
+        Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
+        String statement = "SELECT * FROM uas_produk";
+        q = session.createSQLQuery(statement);
+        List<Object[]> list = (List<Object[]>) q.list();
+        
+        if (list != null)
+            return list;
+
+        return null; 
     }
 
 

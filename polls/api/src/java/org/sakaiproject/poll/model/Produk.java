@@ -13,8 +13,8 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  */
 public class Produk {
     private long id;
-    private String Kd_Produk;
-    private String Kd_Jenis;
+    private int Kd_Produk;
+    private int Kd_Jenis;
     private String Nama_Produk;
     private int Harga_Produk;
     private int Stok_Produk;
@@ -36,28 +36,28 @@ public class Produk {
     /**
      * @return the Kd_Produk
      */
-    public String getKd_Produk() {
+    public int getKd_Produk() {
         return Kd_Produk;
     }
 
     /**
      * @param Kd_Produk the Kd_Produk to set
      */
-    public void setKd_Produk(String Kd_Produk) {
+    public void setKd_Produk(int Kd_Produk) {
         this.Kd_Produk = Kd_Produk;
     }
 
     /**
      * @return the Kd_Jenis
      */
-    public String getKd_Jenis() {
+    public int getKd_Jenis() {
         return Kd_Jenis;
     }
 
     /**
      * @param Kd_Jenis the Kd_Jenis to set
      */
-    public void setKd_Jenis(String Kd_Jenis) {
+    public void setKd_Jenis(int Kd_Jenis) {
         this.Kd_Jenis = Kd_Jenis;
     }
 

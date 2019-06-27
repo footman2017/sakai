@@ -109,4 +109,7 @@ public interface PollVoteManager {
     
     //UAS
     public boolean savePenjualan(Penjualan penjualan);
+    public List<Object[]> getDataPenjualan();
+    public List<Object[]> getNamaCustomer();
+    public List<Object[]> getDataProduk();
 }

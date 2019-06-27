@@ -5,18 +5,18 @@
 
     <class name="org.sakaiproject.poll.model.Produk"
             table="UAS_PRODUK">
-<!--
-        <id name="Id" type="long" column="UAS_PENJUALAN_ID">
+
+        <id name="Id" type="long" column="KD_PRODUK">
             <generator class="native">
-                <param name="sequence">UAS_PENJUALAN_ID_SEQ</param>
+                <param name="sequence">KD_PRODUK</param>
             </generator>
-        </id>-->
+        </id>
         
-        <property name="Kd_Produk" type="string" length="255" not-null="true">
+        <property name="Kd_Produk" type="int" length="255" not-null="true">
             <column name="Kd_Produk"/>
         </property>
         
-        <property name="Kd_Jenis" type="string" length="255" not-null="true">
+        <property name="Kd_Jenis" type="int" length="255" not-null="true">
             <column name="Kd_Jenis"/>
         </property>
         

@@ -36,6 +36,7 @@ import org.sakaiproject.poll.logic.ExternalLogic;
 import org.sakaiproject.poll.logic.PollListManager;
 import org.sakaiproject.poll.logic.PollVoteManager;
 import org.sakaiproject.poll.model.Option;
+import org.sakaiproject.poll.model.Penjualan;
 import org.sakaiproject.poll.model.Poll;
 import org.sakaiproject.poll.model.Vote;
 import org.sakaiproject.poll.model.VoteCollection;
@@ -373,5 +374,37 @@ public class PollToolBean {
 		String siteTitle = externalLogic.getSiteTile(poll.getSiteId());
 		externalLogic.notifyDeletedOption(Arrays.asList(userEids), siteTitle, poll.getPollText());
 	}
+        
+        //UAS
+        private Penjualan penjualan;
+	public void setPenjualan(Penjualan p) {
+		penjualan = p;       
+        }
+        
+        public String Kd_Penjualan;
+        public String Kd_Customer;
+        public String Kd_Produk;
+        public String Kd_Jenis;
+        public int Jumlah_Barang;
+        public long Total_Biaya;
+        
+        public String processActionAddPenjualan() {
+            System.out.println("#penjualan "+Kd_Penjualan.isEmpty());
+            Penjualan p = new Penjualan();
+//                p.setKd_Penjualan(Kd_Penjualan);
+                p.setKd_Customer(Kd_Customer);
+                p.setKd_Produk(Kd_Produk);
+                p.setJumlah_Barang(Jumlah_Barang);
+                p.setTotal_Biaya(Total_Biaya);
+                
+//		log.debug("about to save mahasiswa " + mahasiswa);
+                System.out.println("#penjualan "+p);
+		pollVoteManager.savePenjualan(p);
+//
+//		log.info("mahasiswa saved with id of " + mahasiswa.getId());
+		
+		return "success";
+	}
+
 
 }

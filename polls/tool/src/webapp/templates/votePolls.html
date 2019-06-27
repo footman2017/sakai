@@ -18,7 +18,7 @@
 <ul rsf:id="actions:" class="navIntraTool">
   <li><span><a href="voteAdd.html" rsf:id="actions-penjualan">Penjualan</a></span></li>
   <li><span><a href="produk.html" rsf:id="actions-produk">Produk</a></span></li>
-  <li><span><a href="voteAdd.html" rsf:id="actions-customer">Customer</a></span></li>
+  <li><span><a href="customer.html" rsf:id="actions-customer">Customer</a></span></li>
   <li><span><a href="voteAdd.html" rsf:id="actions-penjualan">Jenis Produk</a></span></li>
 </ul>
 
@@ -83,17 +83,6 @@
                 </select> 
             </div>
         </div>
-        <div class="form-group row">
-            <label for="jenisproduk-selection" class="col-md-4 col-lg-2 form-control-label"> 
-                <span rsf:id="input-jenisproduk-title">Jenis Produk :</span> 
-            </label> 
-            <div class="col-md-2"> 
-                <select name="jenisProdukOptions" rsf:id="jenis-produk" id="jenisProduk"> 
-                    <option value="Electronic">Electronic</option>	 
-                    <option value="Home Appliance">Home Appliance</option> 
-                </select> 
-            </div> 
-        </div>
         <div class="form-group row"> 
             <label for="rombel-selection" class="col-md-4 col-lg-2 form-control-label"> 
                 <span rsf:id="input-namaproduk-title">Nama Produk :</span> 
@@ -132,6 +121,32 @@
             </div>
         </div> 
     </form>
+    
+<div class="portletBody">
+    <h3 rsf:id="data-penjualan-title">Data Penjualan</h3>
+    <table id="sortableTable" class="listHier lines nolines" border="0" cellspacing="0">
+	<caption class="skip"><span class="skip"></span>Penjualan</caption>
+    <thead>
+      <tr>
+        <th><a title="Kode Penjualan" href="#" rsf:id="kd-penjualan-title">Kode Penjualan</a></th>
+        <th><a title="Nama Produk" href="#" rsf:id="nama-produk-title">Nama Produk</a></th>
+         <th><a title="Nama Customer" href="#" rsf:id="nama-customer-title">Nama Customer</a></th> 
+        <th><a title="Jumlah Barang" href="#" rsf:id="jml-barang-title">Jumlah Barang</a></th>
+        <th><a title="Total Harga" href="#" rsf:id="total-harga-title">Total Harga</a></th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr></tr>
+      <tr rsf:id="penjualan-row:">
+        <td rsf:id="kd-penjualan">Kd Penjualan</td>
+        <td rsf:id="nama-produk">Nama Produk</td>
+         <td rsf:id="nama-customer">Nama Customer</td> 
+        <td rsf:id="jml-barang">Jumlah Barang</td>
+        <td rsf:id="total-harga">Kelas</td>
+      </tr>
+    </tbody>
+    </table>
+    </div>
 </div>
 </body>
 </html>
