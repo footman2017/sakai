@@ -24,6 +24,7 @@ package org.sakaiproject.poll.tool.producers;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -151,7 +152,7 @@ DefaultView,NavigationCaseReporter {
 			if (this.isSiteOwner()) {
 				UIInternalLink.make(actions, "actions-penjualan", UIMessage.make("action_set_penjualan"),new SimpleViewParameters(PollToolProducer.VIEW_ID));
                                 UIInternalLink.make(actions, "actions-produk", UIMessage.make("action_set_produk"),new SimpleViewParameters(produkProducer.VIEW_ID));
-                                UIInternalLink.make(actions, "actions-customer", UIMessage.make("action_set_customer"),new SimpleViewParameters(PollToolProducer.VIEW_ID));
+                                UIInternalLink.make(actions, "actions-customer", UIMessage.make("action_set_customer"),new SimpleViewParameters(customerProducer.VIEW_ID));
                                 UIInternalLink.make(actions, "actions-jenisproduk", UIMessage.make("action_set_jenisproduk"),new SimpleViewParameters(PollToolProducer.VIEW_ID));
 			} 
 		}
@@ -160,26 +161,76 @@ DefaultView,NavigationCaseReporter {
 
                 UIForm newForm = UIForm.make(tofill, "input-penjualan-form");
                 
-                UILink namaInputLabel = UILink.make(tofill,"input-nama-title",messageLocator.getMessage("input_nama_title"), "#");
-                String[] namaCustomer = new String[]{"Mazid Ahmad","Kiki Pratiwi"};
-		UISelect namaInput = UISelect.make(newForm,"nama-penjual",namaCustomer,"#",Integer.toString(0));
+
+                // Untuk dropdown nama get dari db
+                List<Object[]>namaCust;
+		namaCust = pollVoteManager.getNamaCustomer();
+                int size = 0;
+                for (Iterator <Object[]> iterator=namaCust.iterator(); iterator.hasNext();){ 
+                    Object[] list = iterator.next();
+                    size++;               
+                }
+                String[] kodeCustomer = new String[size];
+                String[] namaCustomer = new String[size];
+
+		System.out.println("#B"+namaCust.isEmpty());
+                System.out.println("#B"+namaCust.toString());
+                int count=0;
+		for (Iterator <Object[]> iterator=namaCust.iterator(); iterator.hasNext();){ 
+                    Object[] list = iterator.next();
+                    namaCustomer[count] = (String)list[1];	
+                    kodeCustomer[count] = (String)list[0].toString();  
+                    count++;                    
+
+                    System.out.println("#ROSE"+list[0]);
+                    System.out.println("#ROSE"+list[1]);
+                }                 
+		UISelect namaInput = UISelect.make(newForm,"nama-penjual",kodeCustomer,namaCustomer,Integer.toString(0));
                 
                 UILink jenisiProdukLabel = UILink.make(tofill,"input-jenisproduk-title",messageLocator.getMessage("input_jenisproduk_title"), "#");
                 String[] jenisProduk = new String[]{"Electronic","HomeAppliance"};
-		UISelect jenisProdukInput = UISelect.make(newForm,"jenis-produk",jenisProduk,"#",Integer.toString(0));
+		UISelect jenisProdukInput = UISelect.make(newForm,"jenis-produk",jenisProduk,"#{pollToolBean.Kd_Jenis}",Integer.toString(0));
 
                 UILink namaProdukLabel = UILink.make(tofill,"input-namaproduk-title",messageLocator.getMessage("input_namaproduk_title"), "#");
                 String[] namaProduk = new String[]{"Asus Zenbook 15","Acer Predator 5","Macbook Pro 15"};
-		UISelect namaProdukInput = UISelect.make(newForm,"nama-produk",namaProduk,"#",Integer.toString(0));
+		UISelect namaProdukInput = UISelect.make(newForm,"nama-produk",namaProduk,"#{pollToolBean.Kd_Produk}",Integer.toString(0));
                 
                 UILink jumlahBarangLabel = UILink.make(tofill,"jumlah-barang-title",messageLocator.getMessage("input_jumlahbarang_title"), "#");
                 String[] jumlahBarang = new String[]{"1","2","3"};
-		UISelect jumlahBarangInput = UISelect.make(newForm,"jumlah-barang",jumlahBarang,"#",Integer.toString(0));
+		UISelect jumlahBarangInput = UISelect.make(newForm,"jumlah-barang",jumlahBarang,"#{pollToolBean.Jumlah_Barang}",Integer.toString(0));
                 
 //                UIInput.make(newForm, "jumlah-total", "#");
                 
-                UICommand.make(newForm, "input-penjualan-barang", UIMessage.make("input_penjualan_barang"), "#{pollToolBean.seacrhListDosen}");
+                UICommand.make(newForm, "input-penjualan-barang", UIMessage.make("input_penjualan_barang"), "#{pollToolBean.processActionAddPenjualan}");
                 
+                UIOutput.make(tofill, "data-penjualan-title", messageLocator.getMessage("data_penjualan_title"));
+                List<Object[]>dataPenjualan;
+		dataPenjualan = pollVoteManager.getDataPenjualan();
+
+		System.out.println("#A"+dataPenjualan.isEmpty());
+                System.out.println("#A"+dataPenjualan.toString());
+
+		for (Iterator <Object[]> iterator=dataPenjualan.iterator(); iterator.hasNext();){ 
+                    Object[] list = iterator.next();
+                    Integer kd_penjualan = (Integer)list[0];	
+                    String nama_produk = (String)list[1];
+                    String nama_customer = (String)list[2];
+                    Integer jumlah_barang = (Integer)list[3];
+                    Integer total_harga = (Integer)list[4];	
+
+                    System.out.println("#ROSE"+list[0]);
+                    System.out.println("#ROSE"+list[1]);
+                    System.out.println("#ROSE"+list[2]);
+                    System.out.println("#ROSE"+list[3]);
+                    System.out.println("#ROSE"+list[4]);
+                   UIBranchContainer penjualanrow = UIBranchContainer.make(tofill, "penjualan-row:"); 
+                   //Create a new <td> element 
+                   UIOutput.make(penjualanrow,"kd-penjualan", kd_penjualan.toString()); 
+                   UIOutput.make(penjualanrow,"nama-produk", nama_produk); 
+                   UIOutput.make(penjualanrow,"nama-customer", nama_customer);
+                   UIOutput.make(penjualanrow,"jml-barang", jumlah_barang.toString()); 
+                   UIOutput.make(penjualanrow,"total-harga", total_harga.toString()); 
+                } 
 				
 	}
 
@@ -206,6 +257,7 @@ DefaultView,NavigationCaseReporter {
 	public List<NavigationCase> reportNavigationCases() {
 		List<NavigationCase> togo = new ArrayList<NavigationCase>(); // Always navigate back to this view.
 		togo.add(new NavigationCase(null, new SimpleViewParameters(VIEW_ID)));
+                togo.add(new NavigationCase("success", new SimpleViewParameters(PollToolProducer.VIEW_ID)));
 		return togo;
 	}
 
