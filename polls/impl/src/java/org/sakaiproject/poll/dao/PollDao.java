@@ -24,6 +24,7 @@ package org.sakaiproject.poll.dao;
 import java.util.List;
 import org.sakaiproject.genericdao.api.GeneralGenericDao;
 import org.sakaiproject.poll.model.Poll;
+import org.sakaiproject.poll.model.Customer;
 
 public interface PollDao extends GeneralGenericDao {
 	
@@ -40,4 +41,5 @@ public interface PollDao extends GeneralGenericDao {
          public List<Object[]> getNamaCustomer();
          public List<Object[]> getDataProduk();
          public List<Object[]> getJenisProduk();
+         public List<Object[]> getDataCustomer();
 }
