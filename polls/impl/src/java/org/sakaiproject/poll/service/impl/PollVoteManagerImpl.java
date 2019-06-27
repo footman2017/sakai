@@ -255,5 +255,13 @@ public class PollVoteManagerImpl implements PollVoteManager {
         log.debug(" penjualan  " + penjualan.getId() + " successfuly saved");
         return true;
      }
+    
+    public List<Object[]> getDataPenjualan(){       
+    	return dao.getDataPenjualan();
+    }
+    
+    public List<Object[]> getNamaCustomer(){       
+    	return dao.getNamaCustomer();
+    }
 
 }
