@@ -267,5 +267,9 @@ public class PollVoteManagerImpl implements PollVoteManager {
     public List<Object[]> getDataProduk(){       
     	return dao.getDataProduk();
     }
+    
+    public List<Object[]> getJenisProduk(){       
+    	return dao.getJenisProduk();
+    }
 
 }

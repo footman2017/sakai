@@ -40,6 +40,7 @@ import uk.org.ponder.rsf.components.UIBranchContainer;
 import uk.org.ponder.rsf.components.UICommand;
 import uk.org.ponder.rsf.components.UIContainer;
 import uk.org.ponder.rsf.components.UIForm;
+import uk.org.ponder.rsf.components.UIInput;
 import uk.org.ponder.rsf.components.UIInternalLink;
 import uk.org.ponder.rsf.components.UILink;
 import uk.org.ponder.rsf.components.UIMessage;
@@ -123,17 +124,45 @@ public class produkProducer implements ViewComponentProducer,NavigationCaseRepor
             
             UIForm newForm = UIForm.make(tofill, "input-produk-form");
             
-            UILink jenisProdukLabel = UILink.make(tofill,"jenis-produk-title",messageLocator.getMessage("jenisProduk_title"), "#");
-            String[] jenisProdukArr = new String[]{"Electronic","HomeAppliance"};
-            UISelect jenisProdukInput = UISelect.make(newForm,"jenis-produk",jenisProdukArr,"#",Integer.toString(0));
+//            UILink jenisProdukLabel = UILink.make(tofill,"jenis-produk-title",messageLocator.getMessage("jenisProduk_title"), "#");
+//            String[] jenisProdukArr = new String[]{"Electronic","HomeAppliance"};
+//            UISelect jenisProdukInput = UISelect.make(newForm,"jenis-produk",jenisProdukArr,"#",Integer.toString(0));
+            
+            List<Object[]>jenisProduk;
+		jenisProduk = pollVoteManager.getJenisProduk();
+                int size = 0;
+                
+                for (Iterator <Object[]> iterator=jenisProduk.iterator(); iterator.hasNext();){ 
+                    Object[] list = iterator.next();
+                    size++;               
+                }
+                String[] kodeJenis = new String[size];
+                String[] namaJenis = new String[size];
+
+//		System.out.println("#B"+namaCust.isEmpty());
+//                System.out.println("#B"+namaCust.toString());
+                int count = 0;
+		
+                for (Iterator <Object[]> iterator=jenisProduk.iterator(); iterator.hasNext();){ 
+                    Object[] list = iterator.next();
+                    namaJenis[count] = (String)list[1];	
+                    kodeJenis[count] = (String)list[0].toString();  
+                    count++;                    
+
+//                    System.out.println("#ROSE"+list[0]);
+//                    System.out.println("#ROSE"+list[1]);
+                }
+		UILink jenisProdukLabel = UILink.make(tofill,"jenis-produk-title",messageLocator.getMessage("jenisProduk_title"), "#");
+                UISelect jenisProdukInput = UISelect.make(newForm,"jenis-produk",kodeJenis,namaJenis,Integer.toString(0));
             
             UILink inputNamaLabel = UILink.make(tofill,"input-nama-label",messageLocator.getMessage("namaProduk_title"), "#");
+            UIInput.make(newForm, "nama-produk-text", "#");
             
             UILink inputHargaLabel = UILink.make(tofill,"harga-produk-label",messageLocator.getMessage("hargaProduk_title"), "#");
+            UIInput.make(newForm, "harga-produk-text", "#");
             
             UILink stokLabel = UILink.make(tofill,"stok-produk-title",messageLocator.getMessage("stok_produk_title"), "#");
-            String[] stokArr = new String[]{"1","2","3"};
-            UISelect stok = UISelect.make(newForm,"jumlah-barang",stokArr,"#",Integer.toString(0));
+            UIInput.make(newForm, "stok-text", "#");
             
             UICommand.make(newForm, "input-produk", UIMessage.make("input_penjualan_barang"), "#{pollToolBean.seacrhListDosen}");
     
@@ -141,11 +170,39 @@ public class produkProducer implements ViewComponentProducer,NavigationCaseRepor
 
 //            UILink no = UILink.make(tofill,"no-title",messageLocator.getMessage("no_title"), "#");
             UILink kodeProduk = UILink.make(tofill,"kodeProduk-title",messageLocator.getMessage("kodeProduk_title"), "#");
-            UILink jenisProduk = UILink.make(tofill,"jenisProduk-title",messageLocator.getMessage("jenisProduk_title"), "#");
+            UILink jenisProdukTitle = UILink.make(tofill,"jenisProduk-title",messageLocator.getMessage("jenisProduk_title"), "#");
             UILink namaProduk = UILink.make(tofill,"namaProduk-title",messageLocator.getMessage("namaProduk_title"), "#");
             UILink hargaProduk = UILink.make(tofill,"hargaProduk-title",messageLocator.getMessage("hargaProduk_title"), "#");
             UILink jumlahStok = UILink.make(tofill,"jumlahStok-title",messageLocator.getMessage("jumlahStok_title"), "#");
+            
+             List<Object[]>dataProduk;
+            dataProduk = pollVoteManager.getDataProduk();
 
+            System.out.println("#A"+dataProduk.isEmpty());
+            System.out.println("#A"+dataProduk.toString());
+
+            for (Iterator <Object[]> iterator=dataProduk.iterator(); iterator.hasNext();){ 
+                Object[] list = iterator.next();
+                Integer kd_produk = (Integer)list[0];	
+                String nama_jenis_produk = (String)list[1];
+                String nama_produk = (String)list[2];
+                Integer harga_produk = (Integer)list[3];
+                Integer jumlah_stok = (Integer)list[4];	
+
+                System.out.println("#ROSE"+list[0]);
+                System.out.println("#ROSE"+list[1]);
+                System.out.println("#ROSE"+list[2]);
+                System.out.println("#ROSE"+list[3]);
+                System.out.println("#ROSE"+list[4]);
+                
+               UIBranchContainer produkrow = UIBranchContainer.make(tofill, "produk-row:"); 
+               //Create a new <td> element 
+               UIOutput.make(produkrow,"kodeProduk", kd_produk.toString()); 
+               UIOutput.make(produkrow,"jenisProduk", nama_jenis_produk); 
+               UIOutput.make(produkrow,"namaProduk", nama_produk);
+               UIOutput.make(produkrow,"hargaProduk", harga_produk.toString()); 
+               UIOutput.make(produkrow,"jumlahStok", jumlah_stok.toString()); 
+            }
 //            List<Object[]> listDosen;
 //            listDosen = pollVoteManager.getListDosen();
 

@@ -104,11 +104,14 @@ public class PollDoaImpl extends HibernateGeneralGenericDao implements PollDao {
         return null; 
     }
     
-    public List<Object[]> getDataProduk(){
+     public List<Object[]> getDataProduk(){
         Query q = null;
         
         Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
-        String statement = "SELECT * FROM uas_produk";
+        String statement = "SELECT uas_produk.Kd_Produk, uas_jenis_produk.Nama_Jenis_Produk, uas_produk.Nama_Produk, uas_produk.Harga_Produk, uas_produk.Stok_Produk"
+                         + " FROM uas_produk, uas_jenis_produk"
+                         + " WHERE uas_produk.Kd_Jenis = uas_jenis_produk.Kd_Jenis";
+        
         q = session.createSQLQuery(statement);
         List<Object[]> list = (List<Object[]>) q.list();
         
@@ -118,5 +121,17 @@ public class PollDoaImpl extends HibernateGeneralGenericDao implements PollDao {
         return null; 
     }
 
+    public List<Object[]> getJenisProduk(){
+        Query q = null;
+        
+        Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
+        String statement = "SELECT Kd_Jenis, Nama_Jenis_Produk FROM uas_jenis_produk";
+        q = session.createSQLQuery(statement);
+        List<Object[]> list = (List<Object[]>) q.list();
+        
+        if (list != null)
+            return list;
 
+        return null; 
+    }
 }

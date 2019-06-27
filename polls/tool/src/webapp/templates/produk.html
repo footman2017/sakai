@@ -13,6 +13,13 @@
 <body rsf:id="scr=sakai-body">
 <div class="portletBody">
     
+    <ul rsf:id="actions:" class="navIntraTool">
+        <li><span><a href="voteAdd.html" rsf:id="actions-penjualan">Penjualan</a></span></li>
+        <li><span><a href="produk.html" rsf:id="actions-produk">Produk</a></span></li>
+        <li><span><a href="customer.html" rsf:id="actions-customer">Customer</a></span></li>
+        <li><span><a href="voteAdd.html" rsf:id="actions-penjualan">Jenis Produk</a></span></li>
+    </ul>
+    
     <h3 rsf:id="inputProduk-title">Input Produk</h3>
     
     <form rsf:id="input-produk-form"> 
@@ -34,7 +41,7 @@
                     <span rsf:id="input-nama-label">Nama</span>
             </label>
             <div class="col-md-2">
-                    <!--<input name="namaP" type="text" size="50" rsf:id="nama-produk-text" id="PName" />-->
+                    <input name="namaP" type="text" size="50" rsf:id="nama-produk-text" id="PName" />
             </div>
        </div>
         
@@ -44,7 +51,7 @@
                     <span rsf:id="harga-produk-label">Harga Produk</span>
             </label>
             <div class="col-md-2">
-                    <!--<input name="Question" type="text" size="50" rsf:id="harga-produk-text" id="PHarga" />-->
+                    <input name="harga" type="text" size="50" rsf:id="harga-produk-text" id="PHarga" />
             </div>
        </div>        
         
@@ -53,13 +60,10 @@
                 <span rsf:id="stok-produk-title">Stok produk</span> 
             </label> 
             <div class="col-md-2"> 
-                <select name="jumlahbarangOptions" rsf:id="jumlah-barang" id="stok"> 
-                    <option value="1">1</option>	 
-                    <option value="2">2</option> 
-                    <option value="3">3</option> 
-                </select> 
+                <input name="stok" type="text" size="5" rsf:id="stok-text" id="stok" /> 
             </div>
         </div>
+        
         <div class="form-group row">
             <div class="col-md-2"> 
                 <input type="submit" value="search" rsf:id="input-produk" class="active" />       
@@ -82,15 +86,17 @@
       <th><a rsf:id="jumlahStok-title" title=" Sort by Opening Date" href="#">Jumlah Stok</a></th>
     </tr>
   </thead>
-<!--  <tbody id="tasks:dosenlist:tbody_element">
+  <tbody id="tasks:dosenlist:tbody_element">
 
-    <tr rsf:id="dosen-row:">
-      <td rsf:id="dosenList-kd">001</td>
-      <td rsf:id="dosenList-nama">dosen 1</td>
-      <td rsf:id="dosenList-matkul">matkul 1</td>
+    <tr rsf:id="produk-row:">
+      <td rsf:id="kodeProduk">001</td>
+      <td rsf:id="jenisProduk">jenis 1</td>
+      <td rsf:id="namaProduk">nama 1</td>
+      <td rsf:id="hargaProduk">harga 1</td>
+      <td rsf:id="jumlahStok">jumlah 1</td>
     </tr>
       
-  </tbody>-->
+  </tbody>
 </table>
 
 </div>
