@@ -4,7 +4,7 @@
   "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
-<hibernate-mapping package="org.sakaiproject.poll.model">
+<hibernate-mapping package="org.sakaiproject.poll.model.KategoriBarang">
 
     <class name="org.sakaiproject.poll.model.KategoriBarang" table="uas_Jenis_Produk">
 
