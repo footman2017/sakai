@@ -12,7 +12,63 @@
 
 <body rsf:id="scr=sakai-body">
 <div class="portletBody">
-	
+    
+    <h3 rsf:id="inputProduk-title">Input Produk</h3>
+    
+    <form rsf:id="input-produk-form"> 
+        <div class="form-group row"> 
+            <label for="rombel-selection" class="col-md-4 col-lg-2 form-control-label"> 
+                <span rsf:id="jenis-produk-title">jenis produk</span> 
+            </label> 
+            <div class="col-md-2"> 
+                <select name="jenisProdukOptions" rsf:id="jenis-produk" id="jenis-produk"> 
+                    <option value="Elektronik">Elektronik</option>	 
+                    <option value="Non Elektronik">Non Elektronik</option> 
+                </select> 
+            </div>
+        </div>
+        
+       <div class="form-group row"> 
+            <label for="PName" class="col-md-4 col-lg-2 form-control-label">
+                    <!--<span class="reqStarInline">*</span>-->
+                    <span rsf:id="input-nama-label">Nama</span>
+            </label>
+            <div class="col-md-2">
+                    <!--<input name="namaP" type="text" size="50" rsf:id="nama-produk-text" id="PName" />-->
+            </div>
+       </div>
+        
+        <div class="form-group row"> 
+            <label for="PHarga" class="col-md-4 col-lg-2 form-control-label">
+                    <!--<span class="reqStarInline">*</span>-->
+                    <span rsf:id="harga-produk-label">Harga Produk</span>
+            </label>
+            <div class="col-md-2">
+                    <!--<input name="Question" type="text" size="50" rsf:id="harga-produk-text" id="PHarga" />-->
+            </div>
+       </div>        
+        
+        <div class="form-group row"> 
+            <label for="stok" class="col-md-4 col-lg-2 form-control-label"> 
+                <span rsf:id="stok-produk-title">Stok produk</span> 
+            </label> 
+            <div class="col-md-2"> 
+                <select name="jumlahbarangOptions" rsf:id="jumlah-barang" id="stok"> 
+                    <option value="1">1</option>	 
+                    <option value="2">2</option> 
+                    <option value="3">3</option> 
+                </select> 
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-2"> 
+                <input type="submit" value="search" rsf:id="input-produk" class="active" />       
+            </div>
+        </div>
+        
+    </form>
+    
+    <hr></hr>
 <h3 rsf:id="dataProduk-title">Data Produk</h3>
 
 <table id="sortableTable" class="listHier lines nolines table table-responsive table-bordered table-striped table-hover" border="0" cellspacing="0">

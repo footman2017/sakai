@@ -118,6 +118,25 @@ public class produkProducer implements ViewComponentProducer,NavigationCaseRepor
             langMap.put("xml:lang", locale);
 
             UIOutput.make(tofill, "produk-html", null).decorate(new UIFreeAttributeDecorator(langMap));
+            
+            UIMessage.make(tofill,"inputProduk-title","inputProduk_title");
+            
+            UIForm newForm = UIForm.make(tofill, "input-produk-form");
+            
+            UILink jenisProdukLabel = UILink.make(tofill,"jenis-produk-title",messageLocator.getMessage("jenisProduk_title"), "#");
+            String[] jenisProdukArr = new String[]{"Electronic","HomeAppliance"};
+            UISelect jenisProdukInput = UISelect.make(newForm,"jenis-produk",jenisProdukArr,"#",Integer.toString(0));
+            
+            UILink inputNamaLabel = UILink.make(tofill,"input-nama-label",messageLocator.getMessage("namaProduk_title"), "#");
+            
+            UILink inputHargaLabel = UILink.make(tofill,"harga-produk-label",messageLocator.getMessage("hargaProduk_title"), "#");
+            
+            UILink stokLabel = UILink.make(tofill,"stok-produk-title",messageLocator.getMessage("stok_produk_title"), "#");
+            String[] stokArr = new String[]{"1","2","3"};
+            UISelect stok = UISelect.make(newForm,"jumlah-barang",stokArr,"#",Integer.toString(0));
+            
+            UICommand.make(newForm, "input-produk", UIMessage.make("input_penjualan_barang"), "#{pollToolBean.seacrhListDosen}");
+    
             UIMessage.make(tofill,"dataProduk-title","dataProduk_title");
 
 //            UILink no = UILink.make(tofill,"no-title",messageLocator.getMessage("no_title"), "#");
