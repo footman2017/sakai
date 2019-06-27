@@ -184,18 +184,38 @@ DefaultView,NavigationCaseReporter {
                     System.out.println("#ROSE"+list[0]);
                     System.out.println("#ROSE"+list[1]);
                 }                 
-		UISelect namaInput = UISelect.make(newForm,"nama-penjual",kodeCustomer,namaCustomer,Integer.toString(0));
+		UILink namaCustomerLabel = UILink.make(tofill,"input-nama-title",messageLocator.getMessage("input_nama_title"), "#");
+                UISelect namaInput = UISelect.make(newForm,"nama-penjual",kodeCustomer,namaCustomer,Integer.toString(0));
                 
-                UILink jenisiProdukLabel = UILink.make(tofill,"input-jenisproduk-title",messageLocator.getMessage("input_jenisproduk_title"), "#");
-                String[] jenisProduk = new String[]{"Electronic","HomeAppliance"};
-		UISelect jenisProdukInput = UISelect.make(newForm,"jenis-produk",jenisProduk,"#",Integer.toString(0));
+                 // Untuk dropdown nama get dari db
+                List<Object[]>dataProduk;
+		dataProduk = pollVoteManager.getDataProduk();
+                size = 0;
+                for (Iterator <Object[]> iterator=dataProduk.iterator(); iterator.hasNext();){ 
+                    Object[] list = iterator.next();
+                    size++;               
+                }
+                String[] namaProduk = new String[size];
+                String[] kodeProduk = new String[size];
 
+		System.out.println("#B"+namaCust.isEmpty());
+                System.out.println("#B"+namaCust.toString());
+                count=0;
+		for (Iterator <Object[]> iterator=dataProduk.iterator(); iterator.hasNext();){ 
+                    Object[] list = iterator.next();
+                    namaProduk[count] = (String)list[2];	
+                    kodeProduk[count] = (String)list[0].toString();  
+                    count++;                    
+
+                    System.out.println("#ROSE"+list[0]);
+                    System.out.println("#ROSE"+list[1]);
+                }
+                
                 UILink namaProdukLabel = UILink.make(tofill,"input-namaproduk-title",messageLocator.getMessage("input_namaproduk_title"), "#");
-                String[] namaProduk = new String[]{"Asus Zenbook 15","Acer Predator 5","Macbook Pro 15"};
-		UISelect namaProdukInput = UISelect.make(newForm,"nama-produk",namaProduk,"#",Integer.toString(0));
+		UISelect namaProdukInput = UISelect.make(newForm,"nama-produk",kodeProduk,namaProduk,Integer.toString(0));
                 
                 UILink jumlahBarangLabel = UILink.make(tofill,"jumlah-barang-title",messageLocator.getMessage("input_jumlahbarang_title"), "#");
-                String[] jumlahBarang = new String[]{"1","2","3"};
+                String[] jumlahBarang = new String[]{"1","2","3","4","5","6","7","8","9","10"};
 		UISelect jumlahBarangInput = UISelect.make(newForm,"jumlah-barang",jumlahBarang,"#",Integer.toString(0));
                 
 //                UIInput.make(newForm, "jumlah-total", "#");

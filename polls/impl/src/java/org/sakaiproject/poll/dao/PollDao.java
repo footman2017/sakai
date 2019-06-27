@@ -38,4 +38,5 @@ public interface PollDao extends GeneralGenericDao {
          public boolean insertDB(Object o);
          public List<Object[]> getDataPenjualan();
          public List<Object[]> getNamaCustomer();
+         public List<Object[]> getDataProduk();
 }
