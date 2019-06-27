@@ -4,12 +4,35 @@
 
     <class
         name="org.sakaiproject.component.app.syllabus.InputFormImpl"
-        table="RPS" optimistic-lock="version">
+        table="produk" optimistic-lock="version">
         
+        <!-- UAS Project 4 - Penjualan -->
+        <id name="kodeProduk" type="string" unsaved-value="0">
+            <column name="kode_produk" not-null="true" length="20" />
+        </id>        
+
+        <property name="namaProduk">
+            <column name="nama_produk" length="50" not-null="false"/>
+        </property>
+        
+        <property name="hargaProduk">
+            <column name="harga_produk" length="50" not-null="false"/>
+        </property>
+
+        <property name="kodeJenisProduk">
+            <column name="kode_jenis_produk" length="50" not-null="false"/>
+        </property>
+
+
+
+        <!-- =================== -->
+
+        <!-- Glossary -->
+        <!-- Tabel name : RPS -->
 <!--       <id name="glo" type="string" unsaved-value="0">
             <column name="gloID" not-null="true" length="20" />
         </id>        
-
+        
         <property name="term">
             <column name="term" length="50" not-null="false"/>
         </property>
@@ -22,7 +45,11 @@
             <column name="kategori" length="50" not-null="false"/>
         </property>-->
         
-        <id name="kodeMK" type="string" unsaved-value="0">
+        <!-- =================== -->
+
+
+        <!-- RPS -->
+       <!--  <id name="kodeMK" type="string" unsaved-value="0">
             <column name="kodeMK" not-null="true" length="20" />
         </id>        
 
@@ -80,7 +107,9 @@
         
         <property name="jadwal">
             <column name="jadwal" length="50" not-null="false"/>
-        </property>
+        </property> -->
+
+        <!-- ======================== -->
 
     </class>
     

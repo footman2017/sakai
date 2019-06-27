@@ -350,6 +350,17 @@ public class SyllabusTool
   public class DecoratedFormDataEntry
   {
     protected InputForm in_entryFD = null;
+
+    // UAS Proyek 4 - Penujualan
+
+    protected String orig_kodeProduk;
+    protected String orig_namaProduk;
+    protected String orig_hargaProduk;
+    protected String orig_kodeJenisProduk;
+
+    // =====================
+
+
     protected String orig_nim;
     protected String orig_nama;
     protected String orig_kelas;
@@ -364,6 +375,16 @@ public class SyllabusTool
       in_entryFD = en;
       //b/c of pass by reference, we need to clone the values we want to check
       //against
+
+      // UAS Proyek 4 - Penujualan 
+
+      this.orig_kodeProduk = en.getKodeProduk();
+      this.orig_namaProduk = en.getNamaProduk();
+      this.orig_hargaProduk = en.getHargaProduk();
+      this.orig_kodeJenisProduk = en.getKodeJenisProduk();
+
+      // =================
+
       this.orig_nim = en.getNim();
       this.orig_nama = en.getNama();
       this.orig_kelas = en.getKelas();
@@ -1473,16 +1494,24 @@ public class SyllabusTool
   // TAMBAHAN
 
   public String processInputForm(){
+
+    //UAS Proyek 4 - Penjualan 
+    syllabusManager.createFormDataObjectProduk(formData.getKodeProduk(), 
+          formData.getNamaProduk(), formData.getHargaProduk(), formData.getKodeJenisProduk());
+
+    return "view_produk";
+
 //        syllabusManager.createFormDataObject(formData.getNim(),formData.getNama(),formData.getKelas());
 //        syllabusManager.createFormDataObjectGlo(formData.getGlo(),formData.getTerm(),formData.getDesc(),formData.getKat());
-        syllabusManager.createFormDataObjectRps(formData.getKodeMK(),formData.getNamaMK(),formData.getSemester(),formData.getStatusMK(),
-                formData.getBentukPmbljr(),formData.getDosen(),formData.getDescMK(),formData.getPrasyarat(),formData.getReferensi(),
-                formData.getCapaian(),formData.getPeta(),formData.getHasilBljr(),formData.getTopic(),formData.getMetodePmbljr(),formData.getJadwal());
-//        formData.setNim("");
-//        formData.setNama("");
-//        formData.setKelas("");
-        this.rpsTelahDibuat = true;   
-        return "view_rps";
+        
+      //Input RPS
+        // syllabusManager.createFormDataObjectRps(formData.getKodeMK(),formData.getNamaMK(),formData.getSemester(),formData.getStatusMK(),
+        //         formData.getBentukPmbljr(),formData.getDosen(),formData.getDescMK(),formData.getPrasyarat(),formData.getReferensi(),
+        //         formData.getCapaian(),formData.getPeta(),formData.getHasilBljr(),formData.getTopic(),formData.getMetodePmbljr(),formData.getJadwal());
+
+        // this.rpsTelahDibuat = true;   
+        // return "view_rps";
+      // =============
 //    }
     
 
@@ -1870,7 +1899,34 @@ public class SyllabusTool
       return null;
     }
   }
-  
+
+  //Buat toolbar Input Produk
+  public String processNewViewProduk() throws PermissionException
+  {
+    try
+    {
+      if (!syllabusService.checkPermission(SyllabusService.SECURE_BULK_EDIT_ITEM))
+      {
+        return "permission_error";
+      }
+      else
+      {
+        formData = new FormDataEntry();
+
+        return "view_produk";
+      }
+    }
+    catch (Exception e)
+    {
+      log.info(this + ".processListNewBulk in SyllabusTool: " + e);
+      FacesContext.getCurrentInstance().addMessage(
+          null,
+          MessageFactory.getMessage(FacesContext.getCurrentInstance(),
+              "error_general", (new Object[] { e.toString() })));
+
+      return null;
+    }
+  }
 
   // ========================================
 
@@ -3347,6 +3403,14 @@ public class SyllabusTool
 //  TAMBAHAN
   
   public class FormDataEntry {
+      // UAS Proyek 4 - Penjualan 
+      private String kodeProduk = "";
+      private String namaProduk = "";
+      private String hargaProduk = "";
+      private String kodeJenisProduk = "";
+
+      // ==============
+
       private String nim = "";
       private String nama = "";
       private String kelas = "";
@@ -3373,6 +3437,40 @@ public class SyllabusTool
       private String topic="";
       private String metodePmbljr="";
       private String jadwal="-";
+
+      // UAS Proyek 4 - Penjualan 
+
+        public String getKodeProduk() {
+            return kodeProduk;
+        }
+
+        public void setKodeProduk(String kodeProduk) {
+            this.kodeProduk = kodeProduk;
+        }
+        public String getNamaProduk() {
+            return namaProduk;
+        }
+
+        public void setNamaProduk(String namaProduk) {
+            this.namaProduk = namaProduk;
+        }
+        public String getHargaProduk() {
+            return hargaProduk;
+        }
+
+        public void setHargaProduk(String hargaProduk) {
+            this.hargaProduk = hargaProduk;
+        }
+
+        public String getKodeJenisProduk() {
+            return kodeJenisProduk;
+        }
+
+        public void setKodeJenisProduk(String kodeJenisProduk) {
+            this.kodeJenisProduk = kodeJenisProduk;
+        }
+
+      // =========
 
         public String getNim() {
             return nim;

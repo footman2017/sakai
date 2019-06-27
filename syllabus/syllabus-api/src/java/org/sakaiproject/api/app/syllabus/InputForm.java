@@ -23,6 +23,55 @@ package org.sakaiproject.api.app.syllabus;
 public interface InputForm
 {
   
+  // UAS Proyek 4 - Penjualan 
+
+  //produk
+  /**
+   * @return Returns the NIM.
+   */
+  public String getKodeProduk();
+
+  /**
+   * @param kodeProduk The status to set.
+   */
+  public void setKodeProduk(String kodeProduk);
+
+  /**
+   * @return Returns the NIM.
+   */
+  public String getNamaProduk();
+
+  /**
+   * @param namaProduk The status to set.
+   */
+  public void setNamaProduk(String namaProduk);
+
+  /**
+   * @return Returns the NIM.
+   */
+  public String getHargaProduk();
+
+  /**
+   * @param hargaProduk The status to set.
+   */
+  public void setHargaProduk(String hargaProduk);
+
+  /**
+   * @return Returns the NIM.
+   */
+  public String getKodeJenisProduk();
+
+  /**
+   * @param kodeJenisProduk The status to set.
+   */
+  public void setKodeJenisProduk(String kodeJenisProduk);
+
+  // ============
+
+
+
+
+  
   /**
    * @return Returns the NIM.
    */

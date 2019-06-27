@@ -141,9 +141,9 @@
 	</style>
 			<h:outputText value="#{SyllabusTool.alertMessage}" styleClass="alertMessage" rendered="#{SyllabusTool.alertMessage != null}" />
 				
-			<sakai:tool_bar_message value="#{msgs.inputFormTitle}" /> 
+			<sakai:tool_bar_message value="#{msgs.inputProdukTitle}" /> 
 			<sakai:doc_section>
-				<h:outputText value="#{msgs.inputForm_desc}"/>
+				<h:outputText value="#{msgs.inputProduk_desc}"/>
 			</sakai:doc_section>
 			<h:form id="syllabusEdit">
 			<h:panelGrid columns="1" styleClass="jsfFormTable">
@@ -151,7 +151,7 @@
 					<h:outputLabel for="kodeProduk">
 						<h:outputText value="#{msgs.kodeProduk}"/>
 					</h:outputLabel>
-					<h:inputText value="#{SyllabusTool.formData.glo}" id="glo"/>
+					<h:inputText value="#{SyllabusTool.formData.kodeProduk}" id="glo"/>
 				</h:panelGroup>
 
 				<h:panelGroup styleClass="shorttext">
@@ -159,7 +159,7 @@
 						<!-- <h:outputText value="*" styleClass="reqStar"/> -->
 						<h:outputText value="#{msgs.namaProduk}"/>
 					</h:outputLabel>
-					<h:inputText value="#{SyllabusTool.formData.term}" id="term"/>
+					<h:inputText value="#{SyllabusTool.formData.namaProduk}" id="term"/>
 					<!-- <h:inputText value="#{SyllabusTool.bulkEntry.title}" id="title"/> -->
 				</h:panelGroup>
 
@@ -167,17 +167,17 @@
 					<h:outputLabel for="hargaProduk">
 						<h:outputText value="#{msgs.hargaProduk}"/>
 					</h:outputLabel>
-					<h:inputText value="#{SyllabusTool.formData.desc}" id="desc"/>
+					<h:inputText value="#{SyllabusTool.formData.hargaProduk}" id="desc"/>
 				</h:panelGroup>
 
 				<h:panelGroup styleClass="shorttext">
 					<h:outputLabel for="kodeJenisProduk">
 						<h:outputText value="#{msgs.kodeJenisProduk}"/>
 					</h:outputLabel>
-					<h:selectOneMenu value="#{SyllabusTool.formData.kat}">
-							   	<f:selectItem itemValue="Pemrograman" itemLabel="Pemrograman" />
-							   	<f:selectItem itemValue="Komputer" itemLabel="Komputer" />
-							   	<f:selectItem itemValue="Multimedia" itemLabel="Multimedia" />
+					<h:selectOneMenu value="#{SyllabusTool.formData.kodeJenisProduk}">
+							   	<f:selectItem itemValue="Elektronik" itemLabel="Elektronik" />
+							   	<f:selectItem itemValue="Furniture" itemLabel="Furniture" />
+							   	<f:selectItem itemValue="Otomotif" itemLabel="Otomotif" />
 					</h:selectOneMenu>
 				</h:panelGroup>
 			</h:panelGrid>

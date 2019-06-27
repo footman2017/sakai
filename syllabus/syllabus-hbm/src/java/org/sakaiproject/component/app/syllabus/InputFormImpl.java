@@ -39,9 +39,52 @@ import org.sakaiproject.api.app.syllabus.SyllabusItem;
 
 @Data
 @EqualsAndHashCode(of = "kodeMK")
-@ToString(of = {"kodeMK","namaMK", "semester", "statusMK","bentukPmbljr","dosen","descMK","prasyarat", 
-    "Referensi","capaian","peta","hasilBljr","topic","metodePmbljr","jadwal"})
+@ToString(of = {"kodeProduk","namaProduk","hargaProduk","kodeJenisProduk"})
 public class InputFormImpl implements InputForm {
+    // UAS Proyek 4 - Penjualan ( attribut )
+
+    private String kodeProduk;
+    private String namaProduk;
+    private String hargaProduk;
+    private String kodeJenisProduk;
+
+    // --- tambahanin variabel kalian disini ---
+
+    // ==========
+
+    // UAS Proyek 4 - Penjualan ( method )
+        public String getKodeProduk() {
+            return kodeProduk;
+        }
+        public void setKodeProduk(String kodeProduk) {
+            this.kodeProduk = kodeProduk;
+        }
+
+        public String getNamaProduk() {
+            return namaProduk;
+        }
+        public void setNamaProduk(String namaProduk) {
+            this.namaProduk = namaProduk;
+        }
+
+        public String getHargaProduk() {
+            return hargaProduk;
+        }
+        public void setHargaProduk(String hargaProduk) {
+            this.hargaProduk = hargaProduk;
+        }
+
+        public String getKodeJenisProduk() {
+            return kodeJenisProduk;
+        }
+        public void setKodeJenisProduk(String kodeJenisProduk) {
+            this.kodeJenisProduk = kodeJenisProduk;
+        }
+
+    // =============
+
+
+
     private String nim;
     private String nama;
     private String kelas;

@@ -101,6 +101,10 @@ public interface SyllabusManager
   public void createFormDataObjectRps(String kodeMK, String namaMK, String semester, String statusMK, String bentukPmbljr, 
           String dosen, String descMK, String prasyarat, String Referensi, String capaian, String peta, String hasilBljr, 
           String topic, String metodePmbljr, String jadwal);
+
+  //UAS Proyek 4 - Penjualan 
+   public void createFormDataObjectProduk(String kodeProduk, String namaProduk, 
+          String hargaProduk, String kodeJenisProduk);
 //  ============
   
   public void updateSyllabudDataPosition(final SyllabusData d, final Integer position);

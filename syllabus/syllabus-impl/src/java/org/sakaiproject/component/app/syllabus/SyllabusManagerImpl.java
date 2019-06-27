@@ -224,7 +224,22 @@ public class SyllabusManagerImpl extends HibernateDaoSupport implements Syllabus
       saveFormData(data);
   }
   
-   public void createFormDataObjectGlo(String glo, String term, String desc, String kat) {
+  // UAS Proyek - Penjualan 
+  //tambahan
+
+  public void createFormDataObjectProduk(String kodeProduk, String namaProduk, 
+    String hargaProduk, String kodeJenisProduk) {
+      InputForm data = new InputFormImpl(); 
+      data.setGlo(kodeProduk);
+      data.setTerm(namaProduk);
+      data.setDesc(hargaProduk);
+      data.setKat(kodeJenisProduk);
+      saveFormData(data);
+  }
+
+  // =========
+
+  public void createFormDataObjectGlo(String glo, String term, String desc, String kat) {
       InputForm data = new InputFormImpl(); 
       data.setGlo(glo);
       data.setTerm(term);

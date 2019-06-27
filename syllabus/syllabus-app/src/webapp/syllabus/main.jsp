@@ -262,7 +262,7 @@
 				<li>
 					<span>
 					</f:verbatim>
-						<h:commandLink action="#{SyllabusTool.processNewInputProduk}">
+						<h:commandLink action="#{SyllabusTool.processNewViewProduk}">
 							<h:outputText value="#{msgs.penjualanTitle}"/>
 						</h:commandLink>
 					<f:verbatim>

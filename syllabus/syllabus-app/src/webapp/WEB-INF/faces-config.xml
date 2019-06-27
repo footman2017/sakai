@@ -163,8 +163,8 @@
 
     <!-- UAS Proyek 4 - Penjualan  -->
     <navigation-case>
-      <from-outcome>input_produk</from-outcome>
-      <to-view-id>/syllabus/input_produk.jsp</to-view-id>
+      <from-outcome>view_produk</from-outcome>
+      <to-view-id>/syllabus/view_produk.jsp</to-view-id>
       <redirect/>
     </navigation-case>
 
@@ -283,6 +283,38 @@
       <redirect/>
     </navigation-case>
   </navigation-rule>
+
+
+  <!-- UAS Proyek 4 - Penjualan  -->
+
+  <navigation-rule>
+    <from-view-id>/syllabus/view_produk.jsp</from-view-id>
+    <navigation-case>
+      <from-outcome>main</from-outcome>
+      <to-view-id>/syllabus/main.jsp</to-view-id>
+      <redirect/>
+    </navigation-case>
+    <navigation-case>
+      <from-outcome>input_produk</from-outcome>
+      <to-view-id>/syllabus/input_produk.jsp</to-view-id>
+      <redirect/>
+    </navigation-case>
+  </navigation-rule>
+
+   <navigation-rule>
+    <from-view-id>/syllabus/input_produk.jsp</from-view-id>
+    <navigation-case>
+      <from-outcome>main</from-outcome>
+      <to-view-id>/syllabus/main.jsp</to-view-id>
+      <redirect/>
+    </navigation-case>
+    <navigation-case>
+      <from-outcome>view_produk</from-outcome>
+      <to-view-id>/syllabus/view_produk.jsp</to-view-id>
+      <redirect/>
+    </navigation-case>
+  </navigation-rule>
+  <!-- ===== ///// -->
   <!-- ================= -->
 
   <navigation-rule>
