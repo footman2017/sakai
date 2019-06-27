@@ -6,7 +6,7 @@
 
 <hibernate-mapping>
 
-    <class name="org.sakaiproject.poll.model.Vote" table="uas_jenis_produk">
+    <class name="org.sakaiproject.poll.model.KategoriBarang" table="uas_jenis_produk">
 
 		<id name="id" type="long" column="KATEGORIBARANG_ID">
                     <generator class="native">
