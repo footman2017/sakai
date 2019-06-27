@@ -8,11 +8,12 @@
         <constructor-arg>
             <list>
             	<value>org/sakaiproject/poll/hbm/Poll.hbm.xml</value>
-				<value>org/sakaiproject/poll/hbm/Option.hbm.xml</value>
-				<value>org/sakaiproject/poll/hbm/Vote.hbm.xml</value>
-				<value>org/sakaiproject/poll/hbm/Penjualan.hbm.xml</value>
-                                <value>org/sakaiproject/poll/hbm/Produk.hbm.xml</value>
-                                <value>org/sakaiproject/poll/hbm/KategoriBarang.hbm.xml</value>
+                <value>org/sakaiproject/poll/hbm/Option.hbm.xml</value>
+                <value>org/sakaiproject/poll/hbm/Vote.hbm.xml</value>
+                <value>org/sakaiproject/poll/hbm/Penjualan.hbm.xml</value>
+                <value>org/sakaiproject/poll/hbm/Produk.hbm.xml</value>
+                <value>org/sakaiproject/poll/hbm/KategoriBarang.hbm.xml</value>     
+                <value>org/sakaiproject/poll/hbm/Customer.hbm.xml</value>
             </list>
         </constructor-arg>
     </bean>
@@ -29,6 +30,7 @@
             <value>org.sakaiproject.poll.model.Penjualan</value>
             <value>org.sakaiproject.poll.model.Produk</value>
             <value>org.sakaiproject.poll.model.KategoriBarang</value>
+            <value>org.sakaiproject.poll.model.Customer</value>
          </list>
       </property>
    </bean>
