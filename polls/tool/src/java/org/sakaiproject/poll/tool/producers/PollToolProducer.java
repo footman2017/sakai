@@ -213,7 +213,6 @@ DefaultView,NavigationCaseReporter {
                 }
                 
                 UILink namaProdukLabel = UILink.make(tofill,"input-namaproduk-title",messageLocator.getMessage("input_namaproduk_title"), "#");
-                String[] namaProduk = new String[]{"Asus Zenbook 15","Acer Predator 5","Macbook Pro 15"};
 		UISelect namaProdukInput = UISelect.make(newForm,"nama-produk",namaProduk,"#",Integer.toString(0));
                 
                 UILink jumlahBarangLabel = UILink.make(tofill,"jumlah-barang-title",messageLocator.getMessage("input_jumlahbarang_title"), "#");
