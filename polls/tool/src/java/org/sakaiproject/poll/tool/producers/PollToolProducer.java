@@ -214,7 +214,7 @@ DefaultView,NavigationCaseReporter {
                 }
                 
                 UILink namaProdukLabel = UILink.make(tofill,"input-namaproduk-title",messageLocator.getMessage("input_namaproduk_title"), "#");
-		UISelect namaProdukInput = UISelect.make(newForm,"nama-produk",namaProduk,kodeProduk,"#{pollToolBean.Kd_Produk}",Integer.toString(0));
+		UISelect namaProdukInput = UISelect.make(newForm,"nama-produk",kodeProduk,namaProduk,"#{pollToolBean.Kd_Produk}",Integer.toString(0));
                 
                 UILink jumlahBarangLabel = UILink.make(tofill,"jumlah-barang-title",messageLocator.getMessage("input_jumlahbarang_title"), "#");
                 String[] jumlahBarang = new String[]{"1","2","3"};

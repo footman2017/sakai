@@ -120,28 +120,30 @@ public class customerProducer implements ViewComponentProducer,NavigationCaseRep
             UIOutput.make(tofill, "customer-html", null).decorate(new UIFreeAttributeDecorator(langMap));
             UIMessage.make(tofill,"customer-title","customer_title");
 
-//            UILink no = UILink.make(tofill,"no-title",messageLocator.getMessage("no_title"), "#");
             UILink kodeProduk = UILink.make(tofill,"kodeCustomer-title",messageLocator.getMessage("kodeCustomer_title"), "#");
             UILink jenisProduk = UILink.make(tofill,"namaCustomer-title",messageLocator.getMessage("namaCustomer_title"), "#");
             UILink namaProduk = UILink.make(tofill,"alamatCustomer-title",messageLocator.getMessage("alamatCustomer_title"), "#");
             UILink hargaProduk = UILink.make(tofill,"noHpCustomer-title",messageLocator.getMessage("noHpCustomer_title"), "#");
 
-//            List<Object[]> listDosen;
-//            listDosen = pollVoteManager.getListDosen();
+            List<Object[]> dataCustomer;
+            dataCustomer = pollVoteManager.getDataCustomer();
+            
+            for (Iterator <Object[]> iterator = dataCustomer.iterator(); iterator.hasNext();) {
+                Object[] list = iterator.next();
 
-//            for (Iterator <Object[]> iterator = listDosen.iterator(); iterator.hasNext();) {
-//                Object[] e = iterator.next();
-//
-//                String kode= (String) e[0];
-//                String nama = (String) e[1]; 
-//                String matakul = (String) e[2]; 
-//
-//                UIBranchContainer row_listDosen = UIBranchContainer.make(tofill, "dosen-row:");
-//                UIOutput.make(row_listDosen, "dosenList-kd", kode);
-//                UIOutput.make(row_listDosen, "dosenList-nama", nama);
-//                UIOutput.make(row_listDosen, "dosenList-matkul", matakul);
-//
-//            }
+                System.out.println("#ROSE"+list[1]);
+                
+                Integer kd_customer = (Integer) list[0];
+                String nama_customer = (String) list[1]; 
+                String alamat_customer = (String) list[2]; 
+                String no_hp_customer = (String) list[3]; 
+
+                UIBranchContainer row_dataCustomer = UIBranchContainer.make(tofill, "customer-row:");
+                UIOutput.make(row_dataCustomer, "customer-kd", kd_customer.toString());
+                UIOutput.make(row_dataCustomer, "customer-nama", nama_customer);
+                UIOutput.make(row_dataCustomer, "customer-alamat", alamat_customer);
+                UIOutput.make(row_dataCustomer, "customer-nohp", no_hp_customer);
+            }
                 
 	}
 
