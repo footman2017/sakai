@@ -389,13 +389,15 @@ public class PollToolBean {
         public long Total_Biaya;
         
         public String processActionAddPenjualan() {
-            System.out.println("#penjualan "+Kd_Penjualan);
+            System.out.println("#penjualan "+Kd_Customer);
+            System.out.println("#penjualan "+Kd_Produk);
+            System.out.println("#penjualan "+Jumlah_Barang);
             Penjualan p = new Penjualan();
-//                p.setKd_Penjualan(Kd_Penjualan);
+////                p.setKd_Penjualan(Kd_Penjualan);
                 p.setKd_Customer(Kd_Customer);
                 p.setKd_Produk(Kd_Produk);
                 p.setJumlah_Barang(Jumlah_Barang);
-                p.setTotal_Biaya(Total_Biaya);
+//                p.setTotal_Biaya(Total_Biaya);
                 
 //		log.debug("about to save mahasiswa " + mahasiswa);
                 System.out.println("#penjualan "+p);

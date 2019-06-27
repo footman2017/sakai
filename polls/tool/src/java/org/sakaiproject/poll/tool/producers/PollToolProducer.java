@@ -187,7 +187,7 @@ DefaultView,NavigationCaseReporter {
                     System.out.println("#ROSE"+list[1]);
                 }                 
 		UILink namaCustomerLabel = UILink.make(tofill,"input-nama-title",messageLocator.getMessage("input_nama_title"), "#");
-                UISelect namaInput = UISelect.make(newForm,"nama-penjual",kodeCustomer,namaCustomer,Integer.toString(0));
+                UISelect namaInput = UISelect.make(newForm,"nama-penjual",kodeCustomer,namaCustomer,"#{pollToolBean.Kd_Customer}",Integer.toString(0));
                 
                  // Untuk dropdown nama get dari db
                 List<Object[]>dataProduk;
@@ -214,11 +214,11 @@ DefaultView,NavigationCaseReporter {
                 }
                 
                 UILink namaProdukLabel = UILink.make(tofill,"input-namaproduk-title",messageLocator.getMessage("input_namaproduk_title"), "#");
-		UISelect namaProdukInput = UISelect.make(newForm,"nama-produk",namaProduk,"#",Integer.toString(0));
+		UISelect namaProdukInput = UISelect.make(newForm,"nama-produk",kodeProduk,namaProduk,"#{pollToolBean.Kd_Produk}",Integer.toString(0));
                 
                 UILink jumlahBarangLabel = UILink.make(tofill,"jumlah-barang-title",messageLocator.getMessage("input_jumlahbarang_title"), "#");
                 String[] jumlahBarang = new String[]{"1","2","3"};
-		UISelect jumlahBarangInput = UISelect.make(newForm,"jumlah-barang",jumlahBarang,"#",Integer.toString(0));
+		UISelect jumlahBarangInput = UISelect.make(newForm,"jumlah-barang",jumlahBarang,"#{pollToolBean.Jumlah_Barang}",Integer.toString(0));
                 
 //                UIInput.make(newForm, "jumlah-total", "#");
                 
