@@ -139,8 +139,9 @@ public class PollDoaImpl extends HibernateGeneralGenericDao implements PollDao {
         
         Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
         
-        int price = (int) session.createQuery("SELECT Harga_Produk FROM uas_produk where Kd_produk = :kodeProduk").setInteger("kodeProduk",kodeProduk).uniqueResult();
-    
+//        int price = (int) session.createQuery("SELECT Harga_Produk FROM uas_produk where Kd_produk = :kodeProduk").setInteger("kodeProduk",kodeProduk).uniqueResult();
+        Query query = session.createSQLQuery("SELECT Harga_Produk FROM uas_produk where Kd_produk = " + kodeProduk);
+        int price = (int) query.uniqueResult();
         return price; 
     }
 
