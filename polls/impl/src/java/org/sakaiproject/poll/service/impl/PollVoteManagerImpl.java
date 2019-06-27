@@ -40,6 +40,7 @@ import org.sakaiproject.poll.model.Poll;
 import org.sakaiproject.poll.model.Vote;
 import org.sakaiproject.poll.model.Penjualan;
 import org.sakaiproject.poll.model.Produk;
+import org.sakaiproject.poll.model.Customer;
 
 @Slf4j
 public class PollVoteManagerImpl implements PollVoteManager {
@@ -267,6 +268,10 @@ public class PollVoteManagerImpl implements PollVoteManager {
     
     public List<Object[]> getDataProduk(){       
     	return dao.getDataProduk();
+    }
+    
+    public List<Object[]> getDataCustomer(){       
+    	return dao.getDataCustomer();
     }
 
 }
