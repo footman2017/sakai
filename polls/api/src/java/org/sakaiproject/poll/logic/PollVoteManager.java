@@ -114,4 +114,5 @@ public interface PollVoteManager {
     public List<Object[]> getNamaCustomer();
     public List<Object[]> getDataProduk();
     public List<Object[]> getDataCustomer();
+    public int getHargaProduk(int kodeProduk);
 }

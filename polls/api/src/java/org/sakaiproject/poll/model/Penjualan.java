@@ -21,7 +21,7 @@ public class Penjualan {
 
     public String toString() {
         return new ToStringBuilder(this)
-        .append(this.getId())
+//        .append(this.getId())
         .append(this.getKd_Penjualan())
         .append(this.getKd_Customer())
         .append(this.getKd_Produk())

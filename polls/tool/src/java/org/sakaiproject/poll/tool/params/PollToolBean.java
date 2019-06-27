@@ -397,7 +397,10 @@ public class PollToolBean {
                 p.setKd_Customer(Kd_Customer);
                 p.setKd_Produk(Kd_Produk);
                 p.setJumlah_Barang(Jumlah_Barang);
-//                p.setTotal_Biaya(Total_Biaya);
+                
+                int hargaProduk = pollVoteManager.getHargaProduk(Kd_Produk);
+                Total_Biaya = hargaProduk * Jumlah_Barang;
+                p.setTotal_Biaya(Total_Biaya);
                 
 //		log.debug("about to save mahasiswa " + mahasiswa);
                 System.out.println("#penjualan "+p);

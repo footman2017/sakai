@@ -254,7 +254,7 @@ public class PollVoteManagerImpl implements PollVoteManager {
     //UAS
     public boolean savePenjualan(Penjualan penjualan)  {
         dao.insertDB(penjualan);
-        log.debug(" penjualan  " + penjualan.getId() + " successfuly saved");
+        log.debug(" penjualan  " + penjualan.getKd_Penjualan()+ " successfuly saved");
         return true;
      }
     
@@ -272,6 +272,10 @@ public class PollVoteManagerImpl implements PollVoteManager {
     
     public List<Object[]> getDataCustomer(){       
     	return dao.getDataCustomer();
+    }
+    
+    public int getHargaProduk(int kodeProduk){
+        return dao.getHargaProduk(kodeProduk);
     }
 
 }
