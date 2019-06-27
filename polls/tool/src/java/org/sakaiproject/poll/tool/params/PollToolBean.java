@@ -438,7 +438,7 @@ public class PollToolBean {
                 
 //		log.debug("about to save mahasiswa " + mahasiswa);
             System.out.println("#Customer s "+c);
-            pollVoteManager.savePenjualan(c);
+            pollVoteManager.saveCustomer(c);
 //
 //		log.info("mahasiswa saved with id of " + mahasiswa.getId());
 		
