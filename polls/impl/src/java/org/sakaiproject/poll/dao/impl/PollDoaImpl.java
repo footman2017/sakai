@@ -30,6 +30,7 @@ import org.hibernate.Session;
 import org.sakaiproject.genericdao.hibernate.HibernateGeneralGenericDao;
 import org.sakaiproject.poll.dao.PollDao;
 import org.sakaiproject.poll.model.Poll;
+import org.sakaiproject.poll.model.Produk;
 import org.sakaiproject.poll.model.Penjualan;
 import org.springframework.dao.DataAccessException;
 

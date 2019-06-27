@@ -13,11 +13,11 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  */
 public class Produk {
     private long id;
-    private String Kd_Penjualan;
-    private String Kd_Customer;
     private String Kd_Produk;
-    private int Jumlah_Barang;
-    private long Total_Biaya;
+    private String Kd_Jenis;
+    private String Nama_Produk;
+    private int Harga_Produk;
+    private int Stok_Produk;
 
     /**
      * @return the id
@@ -31,34 +31,6 @@ public class Produk {
      */
     public void setId(long id) {
         this.id = id;
-    }
-
-    /**
-     * @return the Kd_Penjualan
-     */
-    public String getKd_Penjualan() {
-        return Kd_Penjualan;
-    }
-
-    /**
-     * @param Kd_Penjualan the Kd_Penjualan to set
-     */
-    public void setKd_Penjualan(String Kd_Penjualan) {
-        this.Kd_Penjualan = Kd_Penjualan;
-    }
-
-    /**
-     * @return the Kd_Customer
-     */
-    public String getKd_Customer() {
-        return Kd_Customer;
-    }
-
-    /**
-     * @param Kd_Customer the Kd_Customer to set
-     */
-    public void setKd_Customer(String Kd_Customer) {
-        this.Kd_Customer = Kd_Customer;
     }
 
     /**
@@ -76,41 +48,69 @@ public class Produk {
     }
 
     /**
-     * @return the Jumlah_Barang
+     * @return the Kd_Jenis
      */
-    public int getJumlah_Barang() {
-        return Jumlah_Barang;
+    public String getKd_Jenis() {
+        return Kd_Jenis;
     }
 
     /**
-     * @param Jumlah_Barang the Jumlah_Barang to set
+     * @param Kd_Jenis the Kd_Jenis to set
      */
-    public void setJumlah_Barang(int Jumlah_Barang) {
-        this.Jumlah_Barang = Jumlah_Barang;
+    public void setKd_Jenis(String Kd_Jenis) {
+        this.Kd_Jenis = Kd_Jenis;
     }
 
     /**
-     * @return the Total_Biaya
+     * @return the Nama_Produk
      */
-    public long getTotal_Biaya() {
-        return Total_Biaya;
+    public String getNama_Produk() {
+        return Nama_Produk;
     }
 
     /**
-     * @param Total_Biaya the Total_Biaya to set
+     * @param Nama_Produk the Nama_Produk to set
      */
-    public void setTotal_Biaya(long Total_Biaya) {
-        this.Total_Biaya = Total_Biaya;
+    public void setNama_Produk(String Nama_Produk) {
+        this.Nama_Produk = Nama_Produk;
+    }
+
+    /**
+     * @return the Harga_Produk
+     */
+    public int getHarga_Produk() {
+        return Harga_Produk;
+    }
+
+    /**
+     * @param Harga_Produk the Harga_Produk to set
+     */
+    public void setHarga_Produk(int Harga_Produk) {
+        this.Harga_Produk = Harga_Produk;
+    }
+
+    /**
+     * @return the Stok_Produk
+     */
+    public long getStok_Produk() {
+        return Stok_Produk;
+    }
+
+    /**
+     * @param Stok_Produk the Stok_Produk to set
+     */
+    public void setStok_Produk(int Stok_Produk) {
+        this.Stok_Produk = Stok_Produk;
     }
     
         public String toString() {
         return new ToStringBuilder(this)
         .append(this.id)
-        .append(this.Kd_Penjualan)
-        .append(this.Kd_Customer)
         .append(this.Kd_Produk)
-        .append(this.Jumlah_Barang)
-        .append(this.Total_Biaya)
+        .append(this.Kd_Jenis)
+        .append(this.Nama_Produk)
+        .append(this.Harga_Produk)
+        .append(this.Stok_Produk)
         .toString();
     }
     

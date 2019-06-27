@@ -3,33 +3,33 @@
 
 <hibernate-mapping package="org.sakaiproject.poll.model">
 
-    <class name="org.sakaiproject.poll.model.Penjualan"
-            table="UAS_PENJUALAN">
-
+    <class name="org.sakaiproject.poll.model.Produk"
+            table="UAS_PRODUK">
+<!--
         <id name="Id" type="long" column="UAS_PENJUALAN_ID">
             <generator class="native">
                 <param name="sequence">UAS_PENJUALAN_ID_SEQ</param>
             </generator>
-        </id>
-        
-        <property name="Kd_Penjualan" type="string" length="255" not-null="true">
-            <column name="Kd_Penjualan"/>
-        </property>
-        
-        <property name="Kd_Customer" type="string" length="255" not-null="true">
-            <column name="Kd_Customer"/>
-        </property>
+        </id>-->
         
         <property name="Kd_Produk" type="string" length="255" not-null="true">
             <column name="Kd_Produk"/>
         </property>
         
-        <property name="Jumlah_Barang" type="long" not-null="true">
-            <column name="Jumlah_Barang"/>
+        <property name="Kd_Jenis" type="string" length="255" not-null="true">
+            <column name="Kd_Jenis"/>
         </property>
         
-        <property name="Total_Biaya" type="long" not-null="true">
-            <column name="Total_Biaya"/>
+        <property name="Nama_Produk" type="string" length="255" not-null="true">
+            <column name="Nama_Produk"/>
+        </property>
+        
+        <property name="Harga_Produk" type="int" length="25" not-null="true">
+            <column name="Harga_Produk"/>
+        </property>
+        
+        <property name="Stok_Produk" type="int" length="25" not-null="true">
+            <column name="Stok_Produk"/>
         </property>
 
     </class>
