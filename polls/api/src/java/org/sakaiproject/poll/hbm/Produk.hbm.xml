@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="org.sakaiproject.poll.model">
+
+    <class name="org.sakaiproject.poll.model.Produk"
+            table="UAS_PRODUK">
+
+        <id name="Id" type="long" column="KD_PRODUK">
+            <generator class="native">
+                <param name="sequence">KD_PRODUK</param>
+            </generator>
+        </id>
+        
+        <property name="Kd_Produk" type="int" length="255" not-null="true">
+            <column name="Kd_Produk"/>
+        </property>
+        
+        <property name="Kd_Jenis" type="int" length="255" not-null="true">
+            <column name="Kd_Jenis"/>
+        </property>
+        
+        <property name="Nama_Produk" type="string" length="255" not-null="true">
+            <column name="Nama_Produk"/>
+        </property>
+        
+        <property name="Harga_Produk" type="int" length="25" not-null="true">
+            <column name="Harga_Produk"/>
+        </property>
+        
+        <property name="Stok_Produk" type="int" length="25" not-null="true">
+            <column name="Stok_Produk"/>
+        </property>
+
+    </class>
+	
+</hibernate-mapping>

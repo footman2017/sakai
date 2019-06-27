@@ -21,6 +21,7 @@
 
 package org.sakaiproject.poll.tool.producers;
 
+import java.math.BigInteger;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -236,7 +237,8 @@ DefaultView,NavigationCaseReporter {
                     String nama_produk = (String)list[1];
                     String nama_customer = (String)list[2];
                     Integer jumlah_barang = (Integer)list[3];
-                    Integer total_harga = (Integer)list[4];	
+//                    BigInteger total_harga = (BigInteger)list[4];
+                    Integer total_harga = (Integer)list[4];
 
                     System.out.println("#ROSE"+list[0]);
                     System.out.println("#ROSE"+list[1]);
