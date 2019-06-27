@@ -277,5 +277,11 @@ public class PollVoteManagerImpl implements PollVoteManager {
     public int getHargaProduk(int kodeProduk){
         return dao.getHargaProduk(kodeProduk);
     }
+    
+    public boolean saveCustomer(Customer customer){
+        dao.insertDB(customer);
+        log.debug(" mahasiswa  " + customer.getId() + " successfuly saved");
+        return true;
+    }
 
 }

@@ -37,6 +37,7 @@ import org.sakaiproject.poll.logic.PollListManager;
 import org.sakaiproject.poll.logic.PollVoteManager;
 import org.sakaiproject.poll.model.Option;
 import org.sakaiproject.poll.model.Penjualan;
+import org.sakaiproject.poll.model.Customer;
 import org.sakaiproject.poll.model.Poll;
 import org.sakaiproject.poll.model.Vote;
 import org.sakaiproject.poll.model.VoteCollection;
@@ -409,6 +410,39 @@ public class PollToolBean {
 //		log.info("mahasiswa saved with id of " + mahasiswa.getId());
 		
 		return "success";
+	}
+                
+        private Customer customer;
+	public void setCustomer(Customer c) {
+            customer = c;       
+        }
+        
+//        public int Kd_Customer;
+        public String Nama_Customer;
+        public String Alamat_Customer;
+        public String No_HP_Customer;
+        
+        public String processActionAddCustomer() {
+            System.out.println("#Customer "+Nama_Customer);
+            System.out.println("#Customer "+Alamat_Customer);
+            System.out.println("#Customer "+No_HP_Customer);
+            Customer c = new Customer();
+
+            c.setNama_Customer(Nama_Customer);
+            c.setAlamat_Customer(Alamat_Customer);
+            c.setNo_HP_Customer(No_HP_Customer);
+                
+//                int hargaProduk = pollVoteManager.getHargaProduk(Kd_Produk);
+//                Total_Biaya = hargaProduk * Jumlah_Barang;
+//                p.setTotal_Biaya(Total_Biaya);
+                
+//		log.debug("about to save mahasiswa " + mahasiswa);
+            System.out.println("#Customer s "+c);
+            pollVoteManager.savePenjualan(c);
+//
+//		log.info("mahasiswa saved with id of " + mahasiswa.getId());
+		
+            return "success";
 	}
 
 

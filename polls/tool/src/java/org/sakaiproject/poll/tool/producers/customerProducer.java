@@ -44,6 +44,7 @@ import uk.org.ponder.rsf.components.UIInternalLink;
 import uk.org.ponder.rsf.components.UILink;
 import uk.org.ponder.rsf.components.UIMessage;
 import uk.org.ponder.rsf.components.UIOutput;
+import uk.org.ponder.rsf.components.UIInput;
 import uk.org.ponder.rsf.components.UISelect;
 import uk.org.ponder.rsf.components.UIVerbatim;
 import uk.org.ponder.rsf.flow.jsfnav.NavigationCase;
@@ -118,6 +119,22 @@ public class customerProducer implements ViewComponentProducer,NavigationCaseRep
             langMap.put("xml:lang", locale);
 
             UIOutput.make(tofill, "customer-html", null).decorate(new UIFreeAttributeDecorator(langMap));
+            UIMessage.make(tofill,"input-customer-title","customer_title");
+            UIForm newCustomer = UIForm.make(tofill, "input-customer-form");
+            
+            //ISI FORM MULAI DARI SINI
+            UIMessage.make(tofill,"new-customer-label","new_customer_label");
+            UIMessage.make(tofill,"new-alamat-customer-label","new_alamat_customer_label");
+            UIMessage.make(tofill,"new-no-hp-customer-label","new_no_hp_customer_label");
+            
+            //Text Field
+            UIInput.make(newCustomer, "new-customer-text", "#{pollToolBean.Nama_Customer}");
+//            UIInput.make(newCustomer, "new-alamat-customer-text", "#");
+            UIInput.make(newCustomer, "newpolldescr_mobile", "#{pollToolBean.Alamat_Customer}");
+            UIInput.make(newCustomer, "new-no-hp-customer-text", "#{pollToolBean.No_HP_Customer}");
+            
+            UICommand.make(newCustomer, "input-customer", UIMessage.make("input_customer"), "#{pollToolBean.processActionAddCustomer}");
+            
             UIMessage.make(tofill,"customer-title","customer_title");
 
             UILink kodeProduk = UILink.make(tofill,"kodeCustomer-title",messageLocator.getMessage("kodeCustomer_title"), "#");
@@ -139,7 +156,7 @@ public class customerProducer implements ViewComponentProducer,NavigationCaseRep
                 String no_hp_customer = (String) list[3]; 
 
                 UIBranchContainer row_dataCustomer = UIBranchContainer.make(tofill, "customer-row:");
-                UIOutput.make(row_dataCustomer, "customer-kd", kd_customer.toString());
+//                UIOutput.make(row_dataCustomer, "customer-kd", kd_customer.toString());
                 UIOutput.make(row_dataCustomer, "customer-nama", nama_customer);
                 UIOutput.make(row_dataCustomer, "customer-alamat", alamat_customer);
                 UIOutput.make(row_dataCustomer, "customer-nohp", no_hp_customer);

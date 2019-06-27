@@ -12,14 +12,64 @@
 
 <body rsf:id="scr=sakai-body">
 <div class="portletBody">
-	
+
+<h3 rsf:id="input-customer-title">Input Customer</h3>
+
+<div rsf:id="message-for:*" class="alertMessage">
+	<span>Message for user here</span>
+</div>
+
+    <form rsf:id="input-customer-form"> 
+        <div class="form-group row"> 
+            <label for="rombel-selection" class="col-md-4 col-lg-2 form-control-label"> 
+               
+		<span rsf:id="new-customer-label">Nama Customer :</span>
+            </label> 
+            <div class="col-md-2">
+		<input name="Customer" type="text" size="50" rsf:id="new-customer-text" id="namaCustomer" />
+	</div>
+        </div>
+        
+        <div class="form-group row"> 
+            <label for="rombel-selection" class="col-md-4 col-lg-2 form-control-label">
+
+                    <span rsf:id="new-alamat-customer-label">Alamat Customer :</span>
+            </label>
+<!--	<div class="col-md-2">
+		<input name="AlamatCustomer" type="text" size="100" rsf:id="new-alamat-customer-text" id="alamatCustomer" />
+	</div>-->
+            <div class="col-md-2">
+            <textarea rsf:id="newpolldescr_mobile" name="Instructions"
+                    cols="50" rows="3"></textarea>
+            </div>
+        </div>
+        
+        <div class="form-group row"> 
+            <label for="rombel-selection" class="col-md-4 col-lg-2 form-control-label"> 
+		<span rsf:id="new-no-hp-customer-label">No HP Customer :</span>
+            </label> 
+            <div class="col-md-2">
+		<input name="noHPCustomer" type="text" rsf:id="new-no-hp-customer-text" id="noHPCustomer" />
+	</div>
+        </div>
+        
+        <div class="form-group row">
+            <div class="col-md-2"> 
+                <input type="submit" value="search" rsf:id="input-customer" class="active" />       
+            </div>
+        </div> 
+        
+       
+    </form>
+    
+    
 <h3 rsf:id="customer-title">Data Produk</h3>
 
 <table id="sortableTable" class="listHier lines nolines table table-responsive table-bordered table-striped table-hover" border="0" cellspacing="0">
   <thead>
     <tr>
       <!--<th><a rsf:id="no-title" title="Sort by Question" href="#">No</a></th>-->
-      <th><a rsf:id="kodeCustomer-title" title="Sort by Question" href="#">Kode Produk</a></th>
+      <!--<th><a rsf:id="kodeCustomer-title" title="Sort by Question" href="#">Kode Produk</a></th>-->
       <th><a rsf:id="namaCustomer-title" title="Sort by Question" href="#">Jenis Produk</a></th>
       <th><a rsf:id="alamatCustomer-title" title=" Sort by Opening Date" href="#">Nama Produk</a></th>
       <th><a rsf:id="noHpCustomer-title" title=" Sort by Opening Date" href="#">Harga Produk</a></th>
@@ -28,7 +78,7 @@
   <tbody>
 
     <tr rsf:id="customer-row:">
-      <td rsf:id="customer-kd">001</td>
+      <!--<td rsf:id="customer-kd">001</td>-->
       <td rsf:id="customer-nama">dosen 1</td>
       <td rsf:id="customer-alamat">matkul 1</td>
       <td rsf:id="customer-nohp">matkul 1</td>
