@@ -161,6 +161,7 @@ DefaultView,NavigationCaseReporter {
 
                 UIForm newForm = UIForm.make(tofill, "input-penjualan-form");
                 
+
                 // Untuk dropdown nama get dari db
                 List<Object[]>namaCust;
 		namaCust = pollVoteManager.getNamaCustomer();
@@ -188,19 +189,19 @@ DefaultView,NavigationCaseReporter {
                 
                 UILink jenisiProdukLabel = UILink.make(tofill,"input-jenisproduk-title",messageLocator.getMessage("input_jenisproduk_title"), "#");
                 String[] jenisProduk = new String[]{"Electronic","HomeAppliance"};
-		UISelect jenisProdukInput = UISelect.make(newForm,"jenis-produk",jenisProduk,"#",Integer.toString(0));
+		UISelect jenisProdukInput = UISelect.make(newForm,"jenis-produk",jenisProduk,"#{pollToolBean.Kd_Jenis}",Integer.toString(0));
 
                 UILink namaProdukLabel = UILink.make(tofill,"input-namaproduk-title",messageLocator.getMessage("input_namaproduk_title"), "#");
                 String[] namaProduk = new String[]{"Asus Zenbook 15","Acer Predator 5","Macbook Pro 15"};
-		UISelect namaProdukInput = UISelect.make(newForm,"nama-produk",namaProduk,"#",Integer.toString(0));
+		UISelect namaProdukInput = UISelect.make(newForm,"nama-produk",namaProduk,"#{pollToolBean.Kd_Produk}",Integer.toString(0));
                 
                 UILink jumlahBarangLabel = UILink.make(tofill,"jumlah-barang-title",messageLocator.getMessage("input_jumlahbarang_title"), "#");
                 String[] jumlahBarang = new String[]{"1","2","3"};
-		UISelect jumlahBarangInput = UISelect.make(newForm,"jumlah-barang",jumlahBarang,"#",Integer.toString(0));
+		UISelect jumlahBarangInput = UISelect.make(newForm,"jumlah-barang",jumlahBarang,"#{pollToolBean.Jumlah_Barang}",Integer.toString(0));
                 
 //                UIInput.make(newForm, "jumlah-total", "#");
                 
-                UICommand.make(newForm, "input-penjualan-barang", UIMessage.make("input_penjualan_barang"), "#{pollToolBean.seacrhListDosen}");
+                UICommand.make(newForm, "input-penjualan-barang", UIMessage.make("input_penjualan_barang"), "#{pollToolBean.processActionAddPenjualan}");
                 
                 UIOutput.make(tofill, "data-penjualan-title", messageLocator.getMessage("data_penjualan_title"));
                 List<Object[]>dataPenjualan;
@@ -256,6 +257,7 @@ DefaultView,NavigationCaseReporter {
 	public List<NavigationCase> reportNavigationCases() {
 		List<NavigationCase> togo = new ArrayList<NavigationCase>(); // Always navigate back to this view.
 		togo.add(new NavigationCase(null, new SimpleViewParameters(VIEW_ID)));
+                togo.add(new NavigationCase("success", new SimpleViewParameters(PollToolProducer.VIEW_ID)));
 		return togo;
 	}
 
