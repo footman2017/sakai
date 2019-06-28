@@ -115,4 +115,6 @@ public interface PollVoteManager {
     public List<Object[]> getDataProduk();
     public List<Object[]> getJenisProduk();
     public List<Object[]> getDataCustomer();
+    public int getHargaProduk(int kodeProduk);
+    public boolean saveCustomer(Customer customer);
 }

@@ -42,4 +42,5 @@ public interface PollDao extends GeneralGenericDao {
          public List<Object[]> getDataProduk();
          public List<Object[]> getJenisProduk();
          public List<Object[]> getDataCustomer();
+         public int getHargaProduk(int kodeProduk);
 }

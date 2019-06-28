@@ -102,7 +102,11 @@
   	<property name="baseDirectory" value="component-templates/" />
   	<property name="templateNames"	value="Messages" />
   </bean>
-
+  
+    <bean id="resultsScope" parent="beanScopeParent">
+        <property name="copyPreservingBeans" value="pollToolBean" />
+        <property name="exclusive" value="true" />
+    </bean>
 
 <!-- added to propogate errors -->
 	<!--  <bean id="redirectOnLevel1Error" class="uk.org.ponder.springutil.BooleanFactory">
