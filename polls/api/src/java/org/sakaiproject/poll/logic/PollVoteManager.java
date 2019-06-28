@@ -30,6 +30,7 @@ import org.sakaiproject.poll.model.Penjualan;
 import org.sakaiproject.poll.model.Poll;
 import org.sakaiproject.poll.model.Vote;
 import org.sakaiproject.poll.model.Customer;
+import org.sakaiproject.poll.model.Produk;
 
 public interface PollVoteManager {
 
@@ -117,4 +118,5 @@ public interface PollVoteManager {
     public List<Object[]> getDataCustomer();
     public int getHargaProduk(int kodeProduk);
     public boolean saveCustomer(Customer customer);
+    public boolean saveProduk(Produk produk);
 }

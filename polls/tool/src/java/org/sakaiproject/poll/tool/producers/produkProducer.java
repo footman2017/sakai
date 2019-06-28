@@ -152,19 +152,20 @@ public class produkProducer implements ViewComponentProducer,NavigationCaseRepor
 //                    System.out.println("#ROSE"+list[0]);
 //                    System.out.println("#ROSE"+list[1]);
                 }
-		UILink jenisProdukLabel = UILink.make(tofill,"jenis-produk-title",messageLocator.getMessage("jenisProduk_title"), "#");
-                UISelect jenisProdukInput = UISelect.make(newForm,"jenis-produk",kodeJenis,namaJenis,Integer.toString(0));
+                
+            UILink jenisProdukLabel = UILink.make(tofill,"jenis-produk-title",messageLocator.getMessage("jenisProduk_title"), "#");
+            UISelect jenisProdukInput = UISelect.make(newForm,"jenis-produk",kodeJenis,namaJenis, "#{pollToolBean.Kd_Jenis_Produk}",Integer.toString(0));
             
             UILink inputNamaLabel = UILink.make(tofill,"input-nama-label",messageLocator.getMessage("namaProduk_title"), "#");
-            UIInput.make(newForm, "nama-produk-text", "#");
+            UIInput.make(newForm, "nama-produk-text", "#{pollToolBean.Nama_Produk}");
             
             UILink inputHargaLabel = UILink.make(tofill,"harga-produk-label",messageLocator.getMessage("hargaProduk_title"), "#");
-            UIInput.make(newForm, "harga-produk-text", "#");
+            UIInput.make(newForm, "harga-produk-text", "#{pollToolBean.Harga_Produk}");
             
             UILink stokLabel = UILink.make(tofill,"stok-produk-title",messageLocator.getMessage("stok_produk_title"), "#");
-            UIInput.make(newForm, "stok-text", "#");
+            UIInput.make(newForm, "stok-text", "#{pollToolBean.Stok_Produk}");
             
-            UICommand.make(newForm, "input-produk", UIMessage.make("input_penjualan_barang"), "#{pollToolBean.seacrhListDosen}");
+            UICommand.make(newForm, "input-produk", UIMessage.make("input_penjualan_barang"), "#{pollToolBean.processActionAddProduk}");
     
             UIMessage.make(tofill,"dataProduk-title","dataProduk_title");
 
@@ -226,6 +227,7 @@ public class produkProducer implements ViewComponentProducer,NavigationCaseRepor
 		
 		List<NavigationCase> togo = new ArrayList<NavigationCase>(); // Always navigate back to this view.
 		togo.add(new NavigationCase(null, new SimpleViewParameters(VIEW_ID)));
+                togo.add(new NavigationCase("success", new SimpleViewParameters(produkProducer.VIEW_ID)));
 //		togo.add(new NavigationCase("cancel", new PollViewParameters(ResultsProducer.VIEW_ID)));
 //                togo.add(new NavigationCase("success", new SimpleViewParameters(ListDosenProducer.VIEW_ID)));
 		return togo;

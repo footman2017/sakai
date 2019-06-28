@@ -22,6 +22,8 @@
 package org.sakaiproject.poll.tool.params;
 
 
+import static java.lang.Math.log;
+import static java.rmi.server.LogStream.log;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -38,6 +40,7 @@ import org.sakaiproject.poll.logic.PollVoteManager;
 import org.sakaiproject.poll.model.Option;
 import org.sakaiproject.poll.model.Penjualan;
 import org.sakaiproject.poll.model.Customer;
+import org.sakaiproject.poll.model.Produk;
 import org.sakaiproject.poll.model.Poll;
 import org.sakaiproject.poll.model.Vote;
 import org.sakaiproject.poll.model.VoteCollection;
@@ -444,6 +447,34 @@ public class PollToolBean {
 		
             return "success";
 	}
+        
+        private Produk produk;
+	public void setProduk(Produk c) {
+            produk = c;       
+        }
+        
+//        public int Kd_Customer;
+        public int Kd_Jenis_Produk;
+        public String Nama_Produk;
+        public int Harga_Produk;
+        public int Stok_Produk;
+        
+        public String processActionAddProduk() {
+            System.out.println("#Produk "+Kd_Jenis_Produk);
+            System.out.println("#Produk "+Nama_Produk);
+            System.out.println("#Produk "+Harga_Produk);
+            System.out.println("#Produk "+Stok_Produk);
+            
+            Produk c = new Produk();
 
-
+            c.setKd_Jenis(Kd_Jenis_Produk);
+            c.setNama_Produk(Nama_Produk);
+            c.setHarga_Produk(Harga_Produk);
+            c.setStok_Produk(Stok_Produk);
+                
+            System.out.println("#Produk s "+c);
+            pollVoteManager.saveProduk(c);
+		
+            return "success";
+	}
 }

@@ -287,5 +287,11 @@ public class PollVoteManagerImpl implements PollVoteManager {
         log.debug(" mahasiswa  " + customer.getId() + " successfuly saved");
         return true;
     }
+    
+    public boolean saveProduk(Produk produk){
+        dao.insertDB(produk);
+//        log.debug(" mahasiswa  " + produk.getId() + " successfuly saved");
+        return true;
+    }
 
 }

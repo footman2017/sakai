@@ -6,15 +6,11 @@
     <class name="org.sakaiproject.poll.model.Produk"
             table="UAS_PRODUK">
 
-        <id name="Id" type="long" column="KD_PRODUK">
+        <id name="Id" type="int" column="KD_PRODUK">
             <generator class="native">
                 <param name="sequence">KD_PRODUK</param>
             </generator>
         </id>
-        
-        <property name="Kd_Produk" type="int" length="255" not-null="true">
-            <column name="Kd_Produk"/>
-        </property>
         
         <property name="Kd_Jenis" type="int" length="255" not-null="true">
             <column name="Kd_Jenis"/>
