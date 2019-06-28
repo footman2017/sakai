@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html rsf:id="jenis-produk-html" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE"/>
+		<script rsf:id="scr=portal-matter" type="text/javascript" language="JavaScript" src="/library/js/headscripts.js"></script> 
+		<link rsf:id="scr=portal-matter" href="/library/skin/tool_base.css" type="text/css" rel="stylesheet" media="all" />
+		<link rsf:id="scr=portal-matter" href="/library/skin/default/tool.css" type="text/css" rel="stylesheet" media="all" />
+		<link rel="stylesheet" rsf:id="scr=rewrite-url" href="../css/Simplepagetool.css" type="text/css"/>
+
+		<title rsf:id="msg=simplepage.edit-page"></title>
+	</head>
+	<body rsf:id="scr=sakai-body">
+		<script type="text/javascript" src="$context/js/jquery-1.9.1.min.js"></script>
+		<div class="portletBody">
+			<h3 rsf:id="jenis-produk-title">Jenis Produk</h3>
+	            
+	        <ul rsf:id="actions:" class="navIntraTool">
+	          <li><span><a href="voteAdd.html" rsf:id="actions-penjualan">Penjualan</a></span></li>
+	          <li><span><a href="produk.html" rsf:id="actions-produk">Produk</a></span></li>
+	          <li><span><a href="voteAdd.html" rsf:id="actions-customer">Customer</a></span></li>
+	          <li><span><a href="jenisProduk.html" rsf:id="actions-jenis-produk">Jenis Produk</a></span></li>
+	        </ul>
+
+	        <h3 rsf:id="input-jenis-produk-title">Input Jenis Produk</h3>
+
+			<!-- Menginputkan data -->
+			<form rsf:id="input-jenis-produk-form"> 
+		        <div class="form-group row"> 
+		        	<label for="rombel-selection" class="col-md-4 col-lg-2 form-control-label"> 
+		        		<span rsf:id="add-jenis-produk-label">Nama Jenis Produk :</span>
+		            </label> 
+		            <div class="col-md-2">
+		            	<input name="Jenis Produk" type="text" size="50" rsf:id="new-jenis-produk-text" id="jenisProduk" />
+		            </div>
+		        </div>
+		        <div class="form-group row">
+		            <div class="col-md-2"> 
+		                <input type="submit" value="Simpan Jenis Produk" rsf:id="input-jenis-produk" class="active" />       
+		            </div>
+		        </div> 
+		    </form>
+			<!-- Menampilkan data -->
+			<div class="portletBody">
+				<h3 rsf:id="data-jenis-produk-title">Data Jenis Produk</h3>
+				<table id="sortableTable" class="listHier lines nolines" border="0" cellspacing="0">
+					<caption class="skip"><span class="skip"></span>Jenis Produk</caption>
+				    <thead>
+				      <tr>
+				        <th><a title="Kode Jenis Produk" href="#" rsf:id="kd-jenis-produk-title">Kode Jenis Produk</a></th>
+				        <th><a title="Nama Jenis Produk" href="#" rsf:id="nama-jenis-produk-title">Nama Jenis Produk</a></th>
+				      </tr>
+				    </thead>
+				    <tbody>
+				    	<tr></tr>
+				    	<tr rsf:id="jenis-produk-row:">
+				    		<td rsf:id="jenis-kode">Kd Jns Prdk</td>
+				    		<td rsf:id="jenis-nama">Jns Prdk</td>
+				      </tr>
+				    </tbody>
+			    </table>
+			</div>
+		</div>
+	</body>
+</html>

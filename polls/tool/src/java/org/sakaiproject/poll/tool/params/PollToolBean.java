@@ -38,6 +38,7 @@ import org.sakaiproject.poll.logic.PollVoteManager;
 import org.sakaiproject.poll.model.Option;
 import org.sakaiproject.poll.model.Penjualan;
 import org.sakaiproject.poll.model.Customer;
+import org.sakaiproject.poll.model.KategoriBarang;
 import org.sakaiproject.poll.model.Poll;
 import org.sakaiproject.poll.model.Vote;
 import org.sakaiproject.poll.model.VoteCollection;
@@ -442,6 +443,24 @@ public class PollToolBean {
 //
 //		log.info("mahasiswa saved with id of " + mahasiswa.getId());
 		
+            return "success";
+	}
+
+	private KategoriBarang jenisProduk;
+	public void setJenisProduk(KategoriBarang k) {
+            jenisProduk = k;       
+        }
+        
+        public String Nama_Jenis_Produk;
+        
+        public String processActionAddJenisProduk() {
+            System.out.println("#jenisProduk "+Nama_Jenis_Produk);
+            KategoriBarang k = new KategoriBarang();
+
+            k.setNama_Jenis_Produk(Nama_Jenis_Produk);
+
+            System.out.println("#jenisProduk "+k);
+            pollVoteManager.saveJenisProduk(k);
             return "success";
 	}
 

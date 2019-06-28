@@ -25,6 +25,7 @@ import java.util.List;
 import org.sakaiproject.genericdao.api.GeneralGenericDao;
 import org.sakaiproject.poll.model.Poll;
 import org.sakaiproject.poll.model.Customer;
+import org.sakaiproject.poll.model.KategoriBarang;
 
 public interface PollDao extends GeneralGenericDao {
 	
@@ -39,6 +40,7 @@ public interface PollDao extends GeneralGenericDao {
          public boolean insertDB(Object o);
          public List<Object[]> getDataPenjualan();
          public List<Object[]> getNamaCustomer();
+         public List<Object[]> getDataJenisProduk();
          public List<Object[]> getDataProduk();
          public List<Object[]> getDataCustomer();
          public int getHargaProduk(int kodeProduk);
