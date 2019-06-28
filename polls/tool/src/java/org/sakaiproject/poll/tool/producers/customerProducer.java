@@ -119,7 +119,7 @@ public class customerProducer implements ViewComponentProducer,NavigationCaseRep
             langMap.put("xml:lang", locale);
 
             UIOutput.make(tofill, "customer-html", null).decorate(new UIFreeAttributeDecorator(langMap));
-            UIMessage.make(tofill,"input-customer-title","customer_title");
+            UIMessage.make(tofill,"input-customer-title","input_customer_title");
             UIForm newCustomer = UIForm.make(tofill, "input-customer-form");
             
             //ISI FORM MULAI DARI SINI
