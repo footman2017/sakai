@@ -145,7 +145,7 @@ public class produkProducer implements ViewComponentProducer,NavigationCaseRepor
 		
                 for (Iterator <Object[]> iterator=jenisProduk.iterator(); iterator.hasNext();){ 
                     Object[] list = iterator.next();
-                    namaJenis[count] = (String)list[1];	
+                    namaJenis[count] = (String)list[2];	
                     kodeJenis[count] = (String)list[0].toString();  
                     count++;                    
 

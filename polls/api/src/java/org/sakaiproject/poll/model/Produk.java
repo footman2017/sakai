@@ -12,7 +12,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  * @author Asus
  */
 public class Produk {
-    private long id;
+    private int id;
     private int Kd_Produk;
     private int Kd_Jenis;
     private String Nama_Produk;
@@ -22,14 +22,14 @@ public class Produk {
     /**
      * @return the id
      */
-    public long getId() {
+    public int getId() {
         return id;
     }
 
     /**
      * @param id the id to set
      */
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -105,7 +105,7 @@ public class Produk {
     
         public String toString() {
         return new ToStringBuilder(this)
-        .append(this.id)
+//        .append(this.id)
         .append(this.Kd_Produk)
         .append(this.Kd_Jenis)
         .append(this.Nama_Produk)

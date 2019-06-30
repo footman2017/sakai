@@ -41,6 +41,7 @@ import org.sakaiproject.poll.model.Vote;
 import org.sakaiproject.poll.model.Penjualan;
 import org.sakaiproject.poll.model.Produk;
 import org.sakaiproject.poll.model.Customer;
+import org.sakaiproject.poll.model.KategoriBarang;
 
 @Slf4j
 public class PollVoteManagerImpl implements PollVoteManager {
@@ -277,6 +278,10 @@ public class PollVoteManagerImpl implements PollVoteManager {
     public List<Object[]> getDataCustomer(){       
     	return dao.getDataCustomer();
     }
+
+    public List<Object[]> getDataJenisProduk(){       
+    	return dao.getDataJenisProduk();
+    }
     
     public int getHargaProduk(int kodeProduk){
         return dao.getHargaProduk(kodeProduk);
@@ -291,6 +296,12 @@ public class PollVoteManagerImpl implements PollVoteManager {
     public boolean saveProduk(Produk produk){
         dao.insertDB(produk);
 //        log.debug(" mahasiswa  " + produk.getId() + " successfuly saved");
+        return true;
+    }
+
+    public boolean saveJenisProduk(KategoriBarang jenisProduk){
+        dao.insertDB(jenisProduk);
+        log.debug(" jenisproduk  " + jenisProduk.getId() + " successfuly saved");
         return true;
     }
 
