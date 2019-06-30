@@ -19,6 +19,17 @@ public class Produk {
     private int Harga_Produk;
     private int Stok_Produk;
 
+    
+//        public String toString() {
+//        return new ToStringBuilder(this)
+////        .append(this.id)
+//        .append(this.getKd_Produk())
+//        .append(this.getKd_Jenis())
+//        .append(this.getNama_Produk())
+//        .append(this.getHarga_Produk())
+//        .append(this.getStok_Produk())
+//        .toString();
+//    }
     /**
      * @return the id
      */
@@ -103,9 +114,9 @@ public class Produk {
         this.Stok_Produk = Stok_Produk;
     }
     
-        public String toString() {
+    public String toString() {
         return new ToStringBuilder(this)
-//        .append(this.id)
+    //        .append(this.id)
         .append(this.Kd_Produk)
         .append(this.Kd_Jenis)
         .append(this.Nama_Produk)
