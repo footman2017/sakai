@@ -8,7 +8,7 @@
 
         <id name="Id" type="long" column="KD_PRODUK">
             <generator class="native">
-                <param name="sequence">KD_PRODUK</param>
+                <param name="sequence">UAS_PRODUK_ID_SEQ</param>
             </generator>
         </id>
         
