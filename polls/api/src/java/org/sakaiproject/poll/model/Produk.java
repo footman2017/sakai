@@ -19,17 +19,17 @@ public class Produk {
     private int Harga_Produk;
     private int Stok_Produk;
 
-    
-//        public String toString() {
-//        return new ToStringBuilder(this)
-////        .append(this.id)
-//        .append(this.getKd_Produk())
-//        .append(this.getKd_Jenis())
+
+        public String toString() {
+        return new ToStringBuilder(this)
+//        .append(this.id)
+        .append(this.getKd_Produk())
+        .append(this.getKd_Jenis())
 //        .append(this.getNama_Produk())
-//        .append(this.getHarga_Produk())
-//        .append(this.getStok_Produk())
-//        .toString();
-//    }
+        .append(this.getHarga_Produk())
+        .append(this.getStok_Produk())
+        .toString();
+    }
     /**
      * @return the id
      */
@@ -103,7 +103,7 @@ public class Produk {
     /**
      * @return the Stok_Produk
      */
-    public long getStok_Produk() {
+    public int getStok_Produk() {
         return Stok_Produk;
     }
 
@@ -114,15 +114,15 @@ public class Produk {
         this.Stok_Produk = Stok_Produk;
     }
     
-    public String toString() {
-        return new ToStringBuilder(this)
-    //        .append(this.id)
-        .append(this.Kd_Produk)
-        .append(this.Kd_Jenis)
-        .append(this.Nama_Produk)
-        .append(this.Harga_Produk)
-        .append(this.Stok_Produk)
-        .toString();
-    }
+//    public String toString() {
+//        return new ToStringBuilder(this)
+//    //        .append(this.id)
+//        .append(this.Kd_Produk)
+//        .append(this.Kd_Jenis)
+//        .append(this.Nama_Produk)
+//        .append(this.Harga_Produk)
+//        .append(this.Stok_Produk)
+//        .toString();
+//    }
     
 }

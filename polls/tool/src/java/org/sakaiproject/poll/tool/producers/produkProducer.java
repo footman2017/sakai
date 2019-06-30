@@ -129,29 +129,27 @@ public class produkProducer implements ViewComponentProducer,NavigationCaseRepor
 //            UISelect jenisProdukInput = UISelect.make(newForm,"jenis-produk",jenisProdukArr,"#",Integer.toString(0));
             
             List<Object[]>jenisProduk;
-		jenisProduk = pollVoteManager.getJenisProduk();
-                int size = 0;
-                
-                for (Iterator <Object[]> iterator=jenisProduk.iterator(); iterator.hasNext();){ 
-                    Object[] list = iterator.next();
-                    size++;               
-                }
-                String[] kodeJenis = new String[size];
-                String[] namaJenis = new String[size];
+            jenisProduk = pollVoteManager.getJenisProduk();
+            int size = 0;
 
-//		System.out.println("#B"+namaCust.isEmpty());
-//                System.out.println("#B"+namaCust.toString());
-                int count = 0;
-		
-                for (Iterator <Object[]> iterator=jenisProduk.iterator(); iterator.hasNext();){ 
-                    Object[] list = iterator.next();
-                    namaJenis[count] = (String)list[2];	
-                    kodeJenis[count] = (String)list[0].toString();  
-                    count++;                    
+            for (Iterator <Object[]> iterator=jenisProduk.iterator(); iterator.hasNext();){ 
+                Object[] list = iterator.next();
+                size++;               
+            }
+            String[] kodeJenis = new String[size];
+            String[] namaJenis = new String[size];
+            
+            int count = 0;
+
+            for (Iterator <Object[]> iterator=jenisProduk.iterator(); iterator.hasNext();){ 
+                Object[] list = iterator.next();
+                namaJenis[count] = (String)list[1];
+                kodeJenis[count] = (String)list[0].toString();
+                count++;                    
 
 //                    System.out.println("#ROSE"+list[0]);
 //                    System.out.println("#ROSE"+list[1]);
-                }
+            }
                 
             UILink jenisProdukLabel = UILink.make(tofill,"jenis-produk-title",messageLocator.getMessage("jenisProduk_title"), "#");
             UISelect jenisProdukInput = UISelect.make(newForm,"jenis-produk",kodeJenis,namaJenis, "#{pollToolBean.Kd_Jenis_Produk}",Integer.toString(0));

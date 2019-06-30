@@ -461,10 +461,10 @@ public class PollToolBean {
         public int Stok_Produk;
         
         public String processActionAddProduk() {
-            System.out.println("#Produk "+Kd_Jenis_Produk);
-            System.out.println("#Produk "+Nama_Produk);
-            System.out.println("#Produk "+Harga_Produk);
-            System.out.println("#Produk "+Stok_Produk);
+//            System.out.println("#Produk "+Kd_Jenis_Produk);
+//            System.out.println("#Produk "+Nama_Produk);
+//            System.out.println("#Produk "+Harga_Produk);
+//            System.out.println("#Produk "+Stok_Produk);
             
             Produk c = new Produk();
 
@@ -473,7 +473,7 @@ public class PollToolBean {
             c.setHarga_Produk(Harga_Produk);
             c.setStok_Produk(Stok_Produk);
                 
-            System.out.println("#Produk s "+c);
+//            System.out.println("#Produk s "+c);
             pollVoteManager.saveProduk(c);
 		
             return "success";
