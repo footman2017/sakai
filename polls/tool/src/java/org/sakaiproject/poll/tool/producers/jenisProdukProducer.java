@@ -134,22 +134,57 @@ public class jenisProdukProducer implements ViewComponentProducer,NavigationCase
 
             UILink kodeJenisProduk = UILink.make(tofill,"kd-jenis-produk-title",messageLocator.getMessage("kd_jenis_produk_title"), "#");
             UILink namaJenisProduk = UILink.make(tofill,"nama-jenis-produk-title",messageLocator.getMessage("nama_jenis_produk_title"), "#");
-
+            
             List<Object[]> dataJenisProduk;
             dataJenisProduk = pollVoteManager.getDataJenisProduk();
+            int size = 0;
+            
+            for (Iterator <Object[]> iterator=dataJenisProduk.iterator(); iterator.hasNext();){ 
+                Object[] list = iterator.next();
+                size++;               
+            }
+            
+            String[] kodeJenis = new String[size];
+            String[] Null = new String[size];
+            String[] namaJenis = new String[size];
+            
+            int count = 0;
             
             for (Iterator <Object[]> iterator = dataJenisProduk.iterator(); iterator.hasNext();) {
                 Object[] list = iterator.next();
 
-                System.out.println("#ROSE"+list[1]);
+//                System.out.println("#ROSE"+list[1]);
                 
-                Integer kd_jenis = (Integer) list[0];
-                String nama_jenis_produk = (String) list[1];
+                namaJenis[count] = (String)list[2];
+                Null[count] = (String)list[1];
+                kodeJenis[count] = (String)list[0].toString();
+                
+//                String kd_jenis = (String) list[0];
+//                String nama_jenis_produk = (String) list[1];
 
-                UIBranchContainer row_dataJenisProduk = UIBranchContainer.make(tofill, "jenis-produk-row:");
-                UIOutput.make(row_dataJenisProduk, "jenis-kode", kd_jenis.toString());
-                UIOutput.make(row_dataJenisProduk, "jenis-nama", nama_jenis_produk);
+//                UIBranchContainer row_dataJenisProduk = UIBranchContainer.make(tofill, "jenis-produk-row:");
+//                UIOutput.make(row_dataJenisProduk, "jenis-kode", kd_jenis.toString());
+//                UIOutput.make(row_dataJenisProduk, "jenis-nama", nama_jenis_produk);
                 }
+            
+            for (Iterator <Object[]> iterator=dataJenisProduk.iterator(); iterator.hasNext();){ 
+                Object[] list = iterator.next();
+                Integer kd_produk = (Integer)list[0];
+                String Null_temp = (String)list[1];
+                String nama_jenis_produk = (String)list[2];	
+
+//                System.out.println("#ROSE"+list[0]);
+//                System.out.println("#ROSE"+list[1]);
+//                System.out.println("#ROSE"+list[2]);
+//                System.out.println("#ROSE"+list[3]);
+//                System.out.println("#ROSE"+list[4]);
+                
+               UIBranchContainer row_dataJenisProduk = UIBranchContainer.make(tofill, "jenis-produk-row:"); 
+               //Create a new <td> element 
+               UIOutput.make(row_dataJenisProduk,"jenis-kode", kd_produk.toString()); 
+               UIOutput.make(row_dataJenisProduk,"jenis-nama", Null_temp);  
+            }
+            
                 
 	}
 

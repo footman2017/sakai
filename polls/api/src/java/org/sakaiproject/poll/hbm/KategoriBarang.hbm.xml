@@ -8,7 +8,7 @@
 
     <class name="org.sakaiproject.poll.model.KategoriBarang" table="uas_Jenis_Produk">
 
-		<id name="id" type="long" column="uas_Jenis_Produk_ID">
+		<id name="id" type="int" column="uas_Jenis_Produk_ID">
                     <generator class="native">
                         <param name="sequence">uas_Jenis_Produk_ID_SEQ</param>
                     </generator>

@@ -18,20 +18,20 @@ import org.sakaiproject.event.cover.UsageSessionService;
 import org.sakaiproject.tool.cover.SessionManager;
 
 public class KategoriBarang {
-    private long id;
+    private int id;
     private String Kd_Jenis;
     private String Nama_Jenis_Produk;
-
-    public KategoriBarang(){
-        //needed by hibernate
-    }
-
-    public long getId() {
+    
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
+    }
+
+    public KategoriBarang(){
+        //needed by hibernate
     }
 
     public String getKd_Jenis() {
