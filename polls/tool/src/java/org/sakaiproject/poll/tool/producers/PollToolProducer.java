@@ -233,12 +233,12 @@ DefaultView,NavigationCaseReporter {
 
 		for (Iterator <Object[]> iterator=dataPenjualan.iterator(); iterator.hasNext();){ 
                     Object[] list = iterator.next();
-                    Integer kd_penjualan = (Integer)list[0];	
+                    BigInteger kd_penjualan = (BigInteger)list[0];	
                     String nama_produk = (String)list[1];
                     String nama_customer = (String)list[2];
                     Integer jumlah_barang = (Integer)list[3];
-//                    BigInteger total_harga = (BigInteger)list[4];
-                    Integer total_harga = (Integer)list[4];
+                    BigInteger total_harga = (BigInteger)list[4];
+//                    Integer total_harga = (Integer)list[4];
 
                     System.out.println("#ROSE"+list[0]);
                     System.out.println("#ROSE"+list[1]);

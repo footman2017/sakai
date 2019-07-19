@@ -182,7 +182,7 @@ public class jenisProdukProducer implements ViewComponentProducer,NavigationCase
                UIBranchContainer row_dataJenisProduk = UIBranchContainer.make(tofill, "jenis-produk-row:"); 
                //Create a new <td> element 
                UIOutput.make(row_dataJenisProduk,"jenis-kode", kd_produk.toString()); 
-               UIOutput.make(row_dataJenisProduk,"jenis-nama", Null_temp);  
+               UIOutput.make(row_dataJenisProduk,"jenis-nama", nama_jenis_produk);  
             }
             
                 
